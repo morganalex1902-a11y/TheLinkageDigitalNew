@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         teko: ['Teko', 'sans-serif'],
         kanit: ['Kanit', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        quicksand: ['Quicksand', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
