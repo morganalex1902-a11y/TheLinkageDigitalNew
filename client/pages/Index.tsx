@@ -324,7 +324,7 @@ export default function Index() {
               <div className="flex items-end justify-center gap-3 md:gap-5 pt-6 lg:pt-4">
                 {/* Left: person (taller) */}
                 <div
-                  className="rounded-[9999px] overflow-hidden flex-shrink-0"
+                  className="rounded-r-full overflow-hidden flex-shrink-0"
                   style={{
                     width: "clamp(120px,17vw,209px)",
                     height: "clamp(240px,34vw,418px)",
