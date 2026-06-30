@@ -324,14 +324,15 @@ export default function Index() {
               <div className="flex items-end justify-center gap-3 md:gap-5 pt-6 lg:pt-4">
                 {/* Left: person (taller) */}
                 <div
-                  className="rounded-r-full overflow-hidden flex-shrink-0"
+                  className="overflow-hidden flex-shrink-0"
                   style={{
                     width: "clamp(120px,17vw,209px)",
                     height: "clamp(240px,34vw,418px)",
+                    borderRadius: "0 9999px 9999px 0",
                   }}
                 >
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/4c4a8fca3ae24700bc687b8f5b6d15df?format=webp&width=800&height=1200"
+                    src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/43a295e41e3e4a21acaa9c69ed03d625?format=webp&width=800&height=1200"
                     alt="Team member"
                     className="w-full h-full object-cover object-top"
                   />
