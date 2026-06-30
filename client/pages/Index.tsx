@@ -152,6 +152,7 @@ const TECH_ITEMS = [
 export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const TESTIMONIALS = [
     {
@@ -1111,6 +1112,100 @@ export default function Index() {
                   →
                 </button>
               </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ SECTION ── */}
+      <section className="bg-white py-14 md:py-20 lg:py-24">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-20 items-start">
+
+            {/* Left: heading + description */}
+            <div className="lg:sticky lg:top-24">
+              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.5rem,6vw,5.5rem)] mb-6">
+                Frequently
+                <br />
+                Asked
+                <br />
+                Questions
+              </h2>
+              <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[16px] leading-[1.55] max-w-[280px]">
+                Frequently asked question (FAQ) pages to find answars.
+              </p>
+            </div>
+
+            {/* Right: accordion */}
+            <div>
+              {[
+                {
+                  q: "How does the agile manifesto address planning?",
+                  a: "Overcomplicate thing heve calling it’s good to know or more info. sometimes people put the frequently asked question section on their contact page but you can create your own page and put it right in your on website navigation menu or website footer so it’s easy to find.",
+                },
+                {
+                  q: "Reflects your audience’s need?",
+                  a: "Understanding your audience’s needs is fundamental to creating effective content and services. Research your target market and tailor your messaging to address their specific pain points and goals.",
+                },
+                {
+                  q: "What is a statement of work in project management?",
+                  a: "A statement of work (SOW) is a formal document that defines the scope, timeline, and deliverables of a project. It establishes clear expectations between the client and service provider.",
+                },
+                {
+                  q: "When is an FAQ page appropriate?",
+                  a: "An FAQ page is appropriate when you frequently receive the same questions from customers, when your product or service is complex, or when you want to reduce support requests and improve user experience.",
+                },
+                {
+                  q: "What questions belong on an FAQ page?",
+                  a: "Include questions that your customers actually ask most often. Focus on topics like pricing, process, timelines, deliverables, and any common concerns that arise during your sales or onboarding process.",
+                },
+                {
+                  q: "Align with your brand look and feel?",
+                  a: "Your FAQ page should match your overall brand identity including typography, color palette, and tone of voice. Consistency across all touchpoints builds trust and recognition with your audience.",
+                },
+                {
+                  q: "How to become an agile project manager?",
+                  a: "Start by learning agile principles and frameworks like Scrum and Kanban. Gain practical experience on agile teams, pursue certifications like PMI-ACP or CSM, and develop strong communication and collaboration skills.",
+                },
+                {
+                  q: "How to manage agile teams?",
+                  a: "Effective agile team management involves facilitating daily standups, removing blockers, fostering collaboration, and continuously improving processes through retrospectives. Focus on empowering the team rather than micromanaging.",
+                },
+              ].map((item, i) => (
+                <div key={i} className="border-t border-[#ECECEC]">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 py-5 md:py-6 text-left group"
+                  >
+                    <span
+                      className={`font-kanit font-bold uppercase text-[12px] md:text-[14px] tracking-wider leading-snug transition-colors ${
+                        openFaq === i ? "text-[#121212]" : "text-[#333] group-hover:text-[#8B0AB4]"
+                      }`}
+                    >
+                      {item.q}
+                    </span>
+                    <span
+                      className={`flex-shrink-0 w-6 h-6 flex items-center justify-center font-kanit font-light text-xl leading-none transition-colors ${
+                        openFaq === i ? "text-[#121212]" : "text-[#555] group-hover:text-[#8B0AB4]"
+                      }`}
+                    >
+                      {openFaq === i ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {/* Answer (animated open/close) */}
+                  {openFaq === i && (
+                    <div className="pb-6 pr-8">
+                      <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[15px] leading-[1.7]">
+                        {item.a}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+              {/* Bottom border */}
+              <div className="border-t border-[#ECECEC]" />
             </div>
 
           </div>
