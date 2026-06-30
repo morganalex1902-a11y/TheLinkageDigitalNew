@@ -322,14 +322,16 @@ export default function Index() {
               />
 
               {/* Pill images */}
-              <div className="flex items-end justify-center gap-3 md:gap-5 pt-6 lg:pt-4">
-                {/* Left: person (taller) */}
+              <div className="flex items-center justify-center gap-0 md:gap-1 pt-6 lg:pt-4">
+                {/* Left: person (taller) — positioned lower */}
                 <div
                   className="overflow-hidden flex-shrink-0"
                   style={{
                     width: "clamp(120px,17vw,209px)",
                     height: "clamp(240px,34vw,418px)",
                     borderRadius: "0 9999px 9999px 0",
+                    position: "relative",
+                    top: "clamp(12px,2vw,30px)",
                   }}
                 >
                   <img
@@ -339,12 +341,14 @@ export default function Index() {
                   />
                 </div>
 
-                {/* Right: group (tallest) */}
+                {/* Right: group (tallest) — positioned higher */}
                 <div
                   className="rounded-[9999px] overflow-hidden flex-shrink-0"
                   style={{
                     width: "clamp(145px,20.5vw,250px)",
                     height: "clamp(285px,40vw,498px)",
+                    position: "relative",
+                    top: "clamp(-12px,-2vw,-30px)",
                   }}
                 >
                   <img
