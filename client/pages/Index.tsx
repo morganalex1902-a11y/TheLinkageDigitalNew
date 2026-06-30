@@ -327,16 +327,16 @@ export default function Index() {
                 <div
                   className="overflow-hidden flex-shrink-0 relative z-0"
                   style={{
-                    width: "clamp(110px,15.5vw,190px)",
-                    height: "clamp(220px,31vw,380px)",
-                    top: "clamp(16px,2.5vw,36px)",
+                    width: "clamp(60px,8.5vw,100px)",
+                    height: "clamp(120px,17vw,200px)",
+                    top: "clamp(8px,1.2vw,18px)",
                   }}
                 >
                   <div
                     className="absolute left-0 top-0 overflow-hidden rounded-full"
                     style={{
-                      width: "clamp(220px,31vw,380px)",
-                      height: "clamp(220px,31vw,380px)",
+                      width: "clamp(120px,17vw,200px)",
+                      height: "clamp(120px,17vw,200px)",
                     }}
                   >
                     <img
@@ -351,17 +351,17 @@ export default function Index() {
                 <div
                   className="overflow-hidden flex-shrink-0 relative z-10"
                   style={{
-                    width: "clamp(135px,19vw,235px)",
-                    height: "clamp(270px,38vw,470px)",
-                    top: "clamp(-16px,-2.5vw,-36px)",
-                    marginLeft: "clamp(-28px,-4vw,-50px)",
+                    width: "clamp(72px,10.5vw,125px)",
+                    height: "clamp(144px,21vw,250px)",
+                    top: "clamp(-8px,-1.2vw,-18px)",
+                    marginLeft: "clamp(-12px,-1.8vw,-22px)",
                   }}
                 >
                   <div
                     className="absolute right-0 top-0 overflow-hidden rounded-full"
                     style={{
-                      width: "clamp(270px,38vw,470px)",
-                      height: "clamp(270px,38vw,470px)",
+                      width: "clamp(144px,21vw,250px)",
+                      height: "clamp(144px,21vw,250px)",
                     }}
                   >
                     <img
