@@ -807,6 +807,154 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* ── PREMIUM SERVICES SECTION ── */}
+      <section className="bg-white py-14 md:py-20 lg:py-24">
+        <div className="max-w-[1400px] mx-auto px-6">
+
+          {/* Header */}
+          <div className="text-center mb-14 md:mb-20">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/a03b2a33c768d1dfef5dfb6f28f1b06f4587f107?width=186"
+              alt=""
+              className="w-[60px] md:w-[80px] h-auto mx-auto -mb-2 relative z-10"
+            />
+            <h2 className="font-teko font-bold uppercase leading-[0.92] text-[clamp(2rem,5.5vw,5rem)] text-[#121212]">
+              We <span className="text-[#8B0AB4]">Provide</span> Premium
+              <br />
+              Services
+            </h2>
+            <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.55] mt-5 max-w-[480px] mx-auto">
+              "Our ability to combine expertise and systems thinking is what
+              fuels us as a team."
+            </p>
+          </div>
+
+          {/* Services list */}
+          {[
+            {
+              num: "01.",
+              name: "Website Design\n& Development",
+              desc: "Modern, responsive, high-converting websites tailored to your business goals.",
+              features: ["Web Design", "Interation Design", "UX Research & Plan"],
+              icon: (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 3L39 12.5V31.5L22 41L5 31.5V12.5L22 3Z" stroke="#121212" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <path d="M22 3V41M5 12.5L39 12.5M5 31.5L39 31.5" stroke="#121212" strokeWidth="1.5"/>
+                  <path d="M22 3L39 12.5M5 12.5L22 3M5 31.5L22 41M39 31.5L22 41" stroke="#121212" strokeWidth="1.5"/>
+                  <circle cx="22" cy="22" r="8" stroke="#121212" strokeWidth="1.5"/>
+                </svg>
+              ),
+            },
+            {
+              num: "02.",
+              name: "Branding &\nLogo Design",
+              desc: "Build a memorable brand identity that stands out in your market.",
+              features: ["Brand & Logo", "Interation Design", "Branding"],
+              icon: (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="18" stroke="#121212" strokeWidth="1.5"/>
+                  <line x1="10" y1="17" x2="34" y2="17" stroke="#121212" strokeWidth="1.5"/>
+                  <line x1="10" y1="22" x2="34" y2="22" stroke="#121212" strokeWidth="1.5"/>
+                  <line x1="10" y1="27" x2="34" y2="27" stroke="#121212" strokeWidth="1.5"/>
+                  <path d="M14 10C14 10 22 6 30 10" stroke="#121212" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M14 34C14 34 22 38 30 34" stroke="#121212" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+            {
+              num: "03.",
+              name: "Digital\nMarketing",
+              desc: "Reach the right audience with strategic social and online campaigns.",
+              features: ["Digital Marketing", "Social Media Managment", "Ads Campaign"],
+              icon: (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="18" stroke="#121212" strokeWidth="1.5"/>
+                  <ellipse cx="22" cy="22" rx="8" ry="18" stroke="#121212" strokeWidth="1.5"/>
+                  <line x1="4" y1="22" x2="40" y2="22" stroke="#121212" strokeWidth="1.5"/>
+                  <path d="M6 14h32M6 30h32" stroke="#121212" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+            {
+              num: "04.",
+              name: "SEO\nOptimization",
+              desc: "Improve search rankings and drive organic traffic to your business.",
+              features: ["Rank on Google", "Traffic", "Optimization"],
+              icon: (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="17" cy="8" r="5" stroke="#121212" strokeWidth="1.5"/>
+                  <circle cx="27" cy="8" r="5" stroke="#121212" strokeWidth="1.5"/>
+                  <path d="M8 36V26C8 23.8 9.8 22 12 22H32C34.2 22 36 23.8 36 26V36" stroke="#121212" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M8 36H36" stroke="#121212" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="22" y1="14" x2="22" y2="22" stroke="#121212" strokeWidth="1.5"/>
+                </svg>
+              ),
+            },
+            {
+              num: "05.",
+              name: "Video Editing\n& Motion",
+              desc: "Engaging visual content that captures attention and converts.",
+              features: ["Video editing", "Motion Graphics", "Engagement"],
+              icon: (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="12" width="28" height="20" rx="2" stroke="#121212" strokeWidth="1.5"/>
+                  <path d="M32 18L40 14V30L32 26V18Z" stroke="#121212" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <line x1="4" y1="20" x2="32" y2="20" stroke="#121212" strokeWidth="1.5"/>
+                  <line x1="14" y1="12" x2="14" y2="32" stroke="#121212" strokeWidth="1.5"/>
+                </svg>
+              ),
+            },
+          ].map((service, i, arr) => (
+            <div key={i}>
+              <div className="grid grid-cols-[50px_1fr] md:grid-cols-[70px_220px_1fr_60px] gap-4 md:gap-8 py-8 md:py-10 items-start">
+
+                {/* Number */}
+                <span className="font-teko font-bold text-[#121212] text-[22px] md:text-[28px] leading-none pt-1">
+                  {service.num}
+                </span>
+
+                {/* Service name */}
+                <h3 className="font-teko font-bold text-[#000] uppercase text-[22px] md:text-[30px] lg:text-[34px] leading-[1.1]">
+                  {service.name.split("\n").map((line, li) => (
+                    <span key={li}>
+                      {line}
+                      {li < service.name.split("\n").length - 1 && <br />}
+                    </span>
+                  ))}
+                </h3>
+
+                {/* Description + bullets — full-width on mobile */}
+                <div className="col-span-2 md:col-span-1 md:max-w-[460px]">
+                  <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[15px] leading-[1.55] mb-3">
+                    {service.desc}
+                  </p>
+                  <ul className="space-y-1">
+                    {service.features.map((f, j) => (
+                      <li
+                        key={j}
+                        className="font-kanit font-normal text-[#555] text-[13px] md:text-[15px] leading-[1.4]"
+                      >
+                        + &nbsp;{f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Icon — hidden on mobile */}
+                <div className="hidden md:flex items-center justify-end opacity-80 mt-1">
+                  {service.icon}
+                </div>
+              </div>
+
+              {/* Divider */}
+              {i < arr.length - 1 && (
+                <div className="w-full h-px bg-[#ECECEC]" />
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
