@@ -323,39 +323,53 @@ export default function Index() {
 
               {/* Pill images */}
               <div className="flex items-center justify-center pt-6 lg:pt-4">
-                {/* Left: group — semi-circle flat on right, positioned lower */}
+                {/* Left: group — half of a full circle (left side visible), positioned lower */}
                 <div
                   className="overflow-hidden flex-shrink-0 relative z-0"
                   style={{
                     width: "clamp(110px,15.5vw,190px)",
                     height: "clamp(220px,31vw,380px)",
-                    borderRadius: "9999px 0 0 9999px",
                     top: "clamp(16px,2.5vw,36px)",
                   }}
                 >
-                  <img
-                    src={GROUP_IMG}
-                    alt="Our team"
-                    className="w-full h-full object-cover"
-                  />
+                  <div
+                    className="absolute left-0 top-0 overflow-hidden rounded-full"
+                    style={{
+                      width: "clamp(220px,31vw,380px)",
+                      height: "clamp(220px,31vw,380px)",
+                    }}
+                  >
+                    <img
+                      src={GROUP_IMG}
+                      alt="Our team"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
 
-                {/* Right: person — semi-circle flat on left, positioned higher, overlapping left */}
+                {/* Right: person — half of a full circle (right side visible), positioned higher, overlapping left */}
                 <div
                   className="overflow-hidden flex-shrink-0 relative z-10"
                   style={{
                     width: "clamp(135px,19vw,235px)",
                     height: "clamp(270px,38vw,470px)",
-                    borderRadius: "0 9999px 9999px 0",
                     top: "clamp(-16px,-2.5vw,-36px)",
                     marginLeft: "clamp(-28px,-4vw,-50px)",
                   }}
                 >
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/43a295e41e3e4a21acaa9c69ed03d625?format=webp&width=800&height=1200"
-                    alt="Team member"
-                    className="w-full h-full object-cover object-top"
-                  />
+                  <div
+                    className="absolute right-0 top-0 overflow-hidden rounded-full"
+                    style={{
+                      width: "clamp(270px,38vw,470px)",
+                      height: "clamp(270px,38vw,470px)",
+                    }}
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/43a295e41e3e4a21acaa9c69ed03d625?format=webp&width=800&height=1200"
+                      alt="Team member"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
 
                 {/* Play button + Watch Video — positioned to the right of images */}
