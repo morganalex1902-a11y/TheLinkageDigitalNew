@@ -1211,6 +1211,139 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* ── CTA BANNER ── */}
+      <section className="bg-[#FFE8F5] py-16 md:py-20 lg:py-24 relative overflow-hidden text-center">
+        {/* Left purple blob decorations */}
+        <div className="absolute -left-[120px] md:-left-[80px] top-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[340px] md:h-[340px] rounded-full bg-[#8B0AB4]" />
+        <div className="absolute left-[60px] md:left-[100px] top-1/2 -translate-y-1/2 w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-full bg-[#6a00a8]" />
+
+        {/* Right purple blob decorations */}
+        <div className="absolute -right-[120px] md:-right-[80px] top-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[340px] md:h-[340px] rounded-full bg-[#8B0AB4]" />
+        <div className="absolute right-[60px] md:right-[100px] top-1/2 -translate-y-1/2 w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-full bg-[#6a00a8]" />
+
+        {/* Content */}
+        <div className="relative z-10 px-6">
+          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.8rem,4.5vw,4rem)] mb-3">
+            Let's Start Your
+            <br />
+            Experience With
+          </h2>
+          <div className="bg-[#8B0AB4] inline-block px-6 md:px-10 py-2 md:py-3 mb-6">
+            <span className="font-teko font-bold text-white uppercase text-[clamp(1.5rem,3.5vw,3rem)]">
+              The Linkage Digital
+            </span>
+          </div>
+          <br />
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-6 md:px-8 py-3 md:py-4 hover:bg-[#8B0AB4] transition-colors tracking-wider mt-2"
+          >
+            Let's Get In Touch →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── JOURNAL / BLOG SECTION ── */}
+      <section className="bg-white py-14 md:py-20 lg:py-24">
+        <div className="max-w-[1400px] mx-auto px-6">
+
+          {/* Heading row */}
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6 mb-10 md:mb-14">
+            <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(2rem,5.5vw,4.5rem)]">
+              Journal Insight
+              <br />
+              By The Linkage Digital
+            </h2>
+            <div className="max-w-[280px]">
+              <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[16px] leading-[1.55] mb-4">
+                Our ability to combine expertise and systems thinking is what
+                fuels us as a team.
+              </p>
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-2 font-kanit font-medium text-[13px] uppercase text-[#121212] border-b border-[#121212] pb-0.5 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors tracking-wider"
+              >
+                All Blog →
+              </Link>
+            </div>
+          </div>
+
+          {/* Blog cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {[
+              {
+                title: "Arolax Development Tech Agency We Talent Meet Opportunity",
+                excerpt: "We lead by the design philosophy that every deal only visually..",
+              },
+              {
+                title: "Arolax Selected 32+ Best Web Agency And Development Tool",
+                excerpt: "We lead by the design philosophy that every deal only visually..",
+              },
+              {
+                title: "Arolax Selected 32+ Best Web Agency And Development Tool",
+                excerpt:
+                  "Welcome to Arolax Agency Theme Sites. This is your first post. Edit or delete it, then start writing!",
+              },
+            ].map((post, i) => (
+              <Link
+                to="/blog"
+                key={i}
+                className="bg-[#1e2029] p-6 md:p-7 lg:p-8 flex flex-col justify-between min-h-[270px] md:min-h-[300px] hover:opacity-90 transition-opacity"
+              >
+                {/* Author */}
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-[#333] flex-shrink-0">
+                    <img
+                      src="https://api.builder.io/api/v1/image/assets/TEMP/a03b2a33c768d1dfef5dfb6f28f1b06f4587f107?width=186"
+                      alt="Admin"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-kanit font-normal text-[#888] text-[11px] leading-tight">
+                      Written by
+                    </p>
+                    <p className="font-kanit font-medium text-white text-[13px] leading-tight">
+                      Admin
+                    </p>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div>
+                  <h3 className="font-teko font-bold text-white uppercase text-[20px] md:text-[22px] lg:text-[24px] leading-[1.1] mb-3">
+                    {post.title}
+                  </h3>
+                  <p className="font-kanit font-normal text-[#888] text-[13px] md:text-[14px] leading-[1.5]">
+                    {post.excerpt}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACT CTA ── */}
+      <section className="bg-[#FFE8F5] py-20 md:py-28 lg:py-36 text-center">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <p className="font-kanit font-semibold text-[#8B0AB4] text-[14px] md:text-[16px] uppercase tracking-[4px] mb-4 md:mb-6">
+            👋&nbsp; Hello !
+          </p>
+          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(4rem,13vw,12rem)] mb-6 md:mb-8">
+            Let's Talk
+            <br />
+            With Us
+          </h2>
+          <a
+            href="mailto:hello@example.com"
+            className="font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
+          >
+            hello@example.com
+          </a>
+        </div>
+      </section>
     </div>
   );
 }
