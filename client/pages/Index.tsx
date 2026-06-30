@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const LOGO =
   "https://api.builder.io/api/v1/image/assets/TEMP/b574152e3abce375b7cc892901486aa74053d07c?width=328";
@@ -89,7 +90,67 @@ function PlayIcon() {
   );
 }
 
+const TABS = [
+  {
+    title: "Creativity",
+    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    icon: (
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip-tab-1)">
+          <path fillRule="evenodd" clipRule="evenodd" d="M24.1667 6.66667H19.1667C18.7083 6.66667 18.3333 6.29167 18.3333 5.425V0.833333C18.3333 0.61232 18.4211 0.400358 18.5774 0.244078C18.7337 0.0877973 18.9457 0 19.1667 0C20.7138 0 22.1975 0.614582 23.2915 1.70854C24.3854 2.80251 25 4.28624 25 5.83333C25 6.05435 24.9122 6.26631 24.7559 6.42259C24.5996 6.57887 24.3877 6.66667 24.1667 6.66667ZM10.25 10.9C10.527 11.8218 11.0306 12.6594 11.7148 13.3363C12.399 14.0133 13.242 14.5079 14.1667 14.775C14.7095 14.925 15.2702 15.0006 15.8333 15C17.3804 15 18.8642 14.3854 19.9581 13.2915C21.0521 12.1975 21.6667 10.7138 21.6667 9.16668C21.6667 8.94566 21.5789 8.7337 21.4226 8.57742C21.2663 8.42114 21.0543 8.33335 20.8333 8.33335H17.9167C17.5851 8.33335 17.2672 8.20165 17.0328 7.96723C16.7984 7.73281 16.6667 7.41487 16.6667 7.08334V4.16668C16.6667 3.94566 16.5789 3.7337 16.4226 3.57742C16.2663 3.42114 16.0543 3.33334 15.8333 3.33334C14.9633 3.33163 14.1038 3.52456 13.318 3.89802C12.5322 4.27147 11.8398 4.81599 11.2917 5.49168C10.6912 6.24044 10.2825 7.12438 10.101 8.06684C9.9195 9.00929 9.97064 9.9818 10.25 10.9ZM2.86612 9.53278C3.10054 9.29836 3.41848 9.16667 3.75 9.16667H6.25C6.58152 9.16667 6.89946 9.29836 7.13388 9.53278C7.3683 9.7672 7.5 10.0851 7.5 10.4167V21.6667H2.5V10.4167C2.5 10.0851 2.6317 9.7672 2.86612 9.53278ZM25 23.3333H0V25H25V23.3333ZM11.25 15.8333C10.9185 15.8333 10.6005 15.965 10.3661 16.1994C10.1317 16.4339 10 16.7518 10 17.0833V21.6667H15V17.0833C15 16.7518 14.8683 16.4339 14.6339 16.1994C14.3995 15.965 14.0815 15.8333 13.75 15.8333H11.25ZM17.8661 18.6994C18.1005 18.465 18.4185 18.3333 18.75 18.3333H21.25C21.5815 18.3333 21.8995 18.465 22.1339 18.6994C22.3683 18.9339 22.5 19.2518 22.5 19.5833V21.6667H17.5V19.5833C17.5 19.2518 17.6317 18.9339 17.8661 18.6994ZM0 0H11.6667V1.66667H0V0ZM7.5 3.33333H0V5H7.5V3.33333Z" fill="currentColor"/>
+        </g>
+        <defs><clipPath id="clip-tab-1"><rect width="25" height="25" fill="white"/></clipPath></defs>
+      </svg>
+    ),
+  },
+  {
+    title: "Relationships",
+    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    icon: (
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip-tab-2)">
+          <path d="M21.1538 14.4231C21.1538 20.2645 16.4184 25 10.5769 25C4.73545 25 0 20.2645 0 14.4231C0 8.58161 4.73545 3.84615 10.5769 3.84615C11.108 3.84615 11.5385 4.27665 11.5385 4.80769V13.4615H20.1923C20.7234 13.4615 21.1538 13.892 21.1538 14.4231ZM14.4231 0C13.892 0 13.4615 0.430496 13.4615 0.961539V10.5769C13.4615 11.108 13.892 11.5385 14.4231 11.5385H24.0385C24.5695 11.5385 25 11.108 25 10.5769C24.9934 4.7382 20.2618 0.00662368 14.4231 0Z" fill="currentColor"/>
+        </g>
+        <defs><clipPath id="clip-tab-2"><rect width="25" height="25" fill="white"/></clipPath></defs>
+      </svg>
+    ),
+  },
+  {
+    title: "Responsibility",
+    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    icon: (
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip-tab-3)">
+          <path d="M17.8374 9.89764C18.2918 9.02899 19.0793 8.37591 20.0586 8.06069C20.4684 7.92844 20.8908 7.87772 21.3112 7.87591V2.71739C21.3112 1.2192 20.0073 0 18.4051 0H2.90607C1.30386 0 0 1.2192 0 2.71739V20.8333C0 22.3315 1.30386 23.5507 2.90607 23.5507H12.5436L12.4389 23.2663C12.0176 22.1168 12.0999 20.8886 12.6685 19.8025L17.8374 9.89764ZM3.87476 5.43478H15.499C16.0347 5.43478 16.4677 5.84058 16.4677 6.34058C16.4677 6.84058 16.0347 7.24638 15.499 7.24638H3.87476C3.33907 7.24638 2.90607 6.84058 2.90607 6.34058C2.90607 5.84058 3.33907 5.43478 3.87476 5.43478ZM3.87476 9.05797H14.5303C15.066 9.05797 15.499 9.46377 15.499 9.96377C15.499 10.4638 15.066 10.8696 14.5303 10.8696H3.87476C3.33907 10.8696 2.90607 10.4638 2.90607 9.96377C2.90607 9.46377 3.33907 9.05797 3.87476 9.05797ZM10.6556 18.1159H3.87476C3.33907 18.1159 2.90607 17.7101 2.90607 17.2101C2.90607 16.7101 3.33907 16.3043 3.87476 16.3043H10.6556C11.1913 16.3043 11.6243 16.7101 11.6243 17.2101C11.6243 17.7101 11.1913 18.1159 10.6556 18.1159ZM3.87476 14.4928C3.33907 14.4928 2.90607 14.087 2.90607 13.587C2.90607 13.087 3.33907 12.6812 3.87476 12.6812H12.593C13.1286 12.6812 13.5616 13.087 13.5616 13.587C13.5616 14.087 13.1286 14.4928 12.593 14.4928H3.87476ZM24.8023 13.0752L19.6315 22.9837C19.2895 23.6368 18.6976 24.1259 17.9643 24.3614L16.1326 24.9502C16.0289 24.9837 15.9214 25 15.8177 25C15.4157 25 15.0399 24.7645 14.9023 24.3886L14.2717 22.6757C14.0189 21.9873 14.0683 21.25 14.4093 20.5987L19.5801 10.692C19.8058 10.2572 20.201 9.93116 20.6902 9.77355C21.1785 9.61594 21.7045 9.64493 22.1694 9.8587L23.9111 10.6531C24.3761 10.865 24.7248 11.2346 24.8934 11.692C25.0619 12.1495 25.03 12.6404 24.8023 13.0752Z" fill="currentColor"/>
+        </g>
+        <defs><clipPath id="clip-tab-3"><rect width="25" height="25" fill="white"/></clipPath></defs>
+      </svg>
+    ),
+  },
+  {
+    title: "Cost effective",
+    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    icon: (
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip-tab-4)">
+          <path fillRule="evenodd" clipRule="evenodd" d="M6.31223 17.3046C5.4716 16.9473 4.68721 16.4719 3.99553 15.8724C2.11737 14.2464 1.04132 11.9138 1.04132 9.47226C1.04132 4.74159 5.01326 0.893066 9.89563 0.893066C14.7779 0.893066 18.7499 4.74159 18.7499 9.47226C18.7499 12.2357 17.353 14.7823 15.1248 16.374L13.6384 14.9337C12.8728 14.1878 11.6478 14.0556 10.7331 14.6148L6.31223 17.3046ZM7.29141 8.0895C7.29141 9.26939 8.28205 10.2292 9.49982 10.2292H10.2914C10.6477 10.2292 10.9373 10.5099 10.9373 10.8651C10.9373 11.2103 10.6477 11.4909 10.2914 11.4909H8.07268C7.64142 11.4909 7.29141 11.83 7.29141 12.2479C7.29141 12.6657 7.64142 13.0049 8.07268 13.0049H9.11438V13.7608C9.11438 14.1787 9.46438 14.5178 9.89563 14.5178C10.3269 14.5178 10.6769 14.1787 10.6769 13.7608V12.9665C11.7103 12.7889 12.4998 11.9158 12.4998 10.855C12.4998 9.67513 11.5092 8.71527 10.2914 8.71527H9.49982C9.14348 8.71527 8.85394 8.43468 8.85394 8.07941C8.85394 7.73422 9.14348 7.45363 9.49982 7.45363H11.7186C12.1498 7.45363 12.4998 7.11449 12.4998 6.69664C12.4998 6.27878 12.1498 5.93965 11.7186 5.93965H10.6769V5.18266C10.6769 4.76481 10.3269 4.42567 9.89563 4.42567C9.46438 4.42567 9.11438 4.76481 9.11438 5.18266V5.978C8.08101 6.15565 7.29141 7.0287 7.29141 8.0895ZM19.7916 11.9956H23.9583C24.5344 11.9956 25 12.4477 25 13.0049V17.0422C25 17.4499 24.7469 17.8183 24.3573 17.9748C24.2281 18.0262 24.0927 18.0515 23.9583 18.0515C23.6875 18.0515 23.4208 17.9485 23.2219 17.7557L21.8749 16.4507L16.8812 21.2883C16.4738 21.683 15.8154 21.683 15.4082 21.2883L11.8248 17.8163L1.58923 23.9559C1.41839 24.0589 1.22985 24.1074 1.04235 24.1074C0.693381 24.1074 0.352751 23.9378 0.155873 23.629C-0.146214 23.1556 0.00378756 22.5338 0.493378 22.2401L11.4311 15.6796C11.8394 15.4343 12.3748 15.4918 12.7154 15.8239L16.1457 19.1475L20.4021 15.0235L19.0551 13.7184C18.7572 13.4298 18.6676 12.9957 18.8291 12.6183C18.9895 12.2418 19.3707 11.9956 19.7916 11.9956Z" fill="currentColor"/>
+        </g>
+        <defs><clipPath id="clip-tab-4"><rect width="25" height="25" fill="white"/></clipPath></defs>
+      </svg>
+    ),
+  },
+];
+
+const TECH_ITEMS = [
+  { name: "WordPress", src: "https://api.builder.io/api/v1/image/assets/TEMP/cff6b7ef129c522b03ad0aaf693172c53c4eeacf?width=200" },
+  { name: "React.js",  src: "https://api.builder.io/api/v1/image/assets/TEMP/c9918d860144666cf53a02a3c0a645deaf4ad1b1?width=200" },
+  { name: "Node.js",   src: "https://api.builder.io/api/v1/image/assets/TEMP/69d15ec1de37aea7268ec7aa8ea08e7445728784?width=200" },
+  { name: "Flutter",   src: "https://api.builder.io/api/v1/image/assets/TEMP/0d4faef2a9ab37ad34ad69931fee4bac497056ac?width=160" },
+  { name: "Redux",     src: null },
+];
+
 export default function Index() {
+  const [activeTab, setActiveTab] = useState(0);
   return (
     <div className="min-h-screen bg-white font-kanit">
       {/* ── NAVBAR ── */}
@@ -578,6 +639,108 @@ export default function Index() {
               </p>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ── EMPOWERING SKILLS SECTION ── */}
+      <section className="bg-white py-14 md:py-20 lg:py-24">
+        <div className="max-w-[1400px] mx-auto px-6">
+
+          {/* Heading + description row */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 mb-10 lg:mb-14">
+            <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.93] text-[clamp(2rem,5.5vw,5rem)]">
+              Empowering Skills
+              <br />
+              To Help You!
+            </h2>
+            <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.55] max-w-[300px] lg:mt-3">
+              Add the best talent on the market, an agile skilled management &amp;
+              seamless involvement
+            </p>
+          </div>
+
+          {/* Tabs + image grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 lg:gap-12 items-start">
+
+            {/* Tab list */}
+            <div className="flex flex-col">
+              {TABS.map((tab, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveTab(i)}
+                  className={`border-l-2 pl-8 py-4 text-left transition-colors ${
+                    activeTab === i
+                      ? "border-[#8B0AB4]"
+                      : "border-[#ECECEC] hover:border-[#8B0AB4]/40"
+                  }`}
+                >
+                  <div className="flex items-start gap-5">
+                    {/* Icon circle */}
+                    <div
+                      className={`w-[55px] h-[55px] md:w-[65px] md:h-[65px] rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+                        activeTab === i ? "bg-[#8B0AB4] text-white" : "bg-[#DDD] text-[#121212]"
+                      }`}
+                    >
+                      {tab.icon}
+                    </div>
+                    {/* Content */}
+                    <div>
+                      <h3 className="font-teko font-semibold text-[#000] uppercase text-[28px] md:text-[36px] leading-[1.1]">
+                        {tab.title}
+                      </h3>
+                      <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[18px] leading-[1.55] mt-1 max-w-[300px]">
+                        {tab.desc}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Tab panel image */}
+            <div>
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480"
+                alt="Dashboard and team"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Technology expertise */}
+          <div className="mt-20 md:mt-28 lg:mt-32">
+            <p className="font-kanit font-normal text-[#121212] text-[18px] md:text-[21px] text-center mb-10 md:mb-14">
+              Our Arolax Technology Expertise includes
+            </p>
+
+            {/* Tech circles – overlapping on desktop */}
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-0">
+              {TECH_ITEMS.map((tech, i) => (
+                <div
+                  key={tech.name}
+                  className={`flex-shrink-0 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] lg:w-[260px] lg:h-[260px] xl:w-[298px] xl:h-[298px] rounded-full border border-[#ECECEC] bg-white flex flex-col items-center justify-center gap-2 sm:gap-3 ${
+                    i > 0 ? "sm:-ml-6 lg:-ml-10 xl:-ml-12" : ""
+                  }`}
+                >
+                  {tech.src ? (
+                    <img
+                      src={tech.src}
+                      alt={tech.name}
+                      className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto object-contain"
+                    />
+                  ) : (
+                    /* Redux inline SVG */
+                    <svg height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto">
+                      <path d="M65.6 46.6c1.5-7.3.4-13.1-3.4-15.3l-.1-.1c-1.8-1-3.9-1.3-6.3-.8-2.3.5-4.7 1.7-7.1 3.6-1.6-3.4-3.5-5.9-5.7-7.3-2.6-1.7-5.4-1.9-8-.7l-.2.1c-2.5 1.4-4.1 3.9-4.7 7.4-.5 3-0.3 6.6.8 10.4-3.4 1-6 2.4-7.7 4.2-2 2.1-2.7 4.7-2 7.4l.1.2c1.3 4.8 6 7.2 13.4 6.6l.4-.1c-.1.4-.1.8-.2 1.2-1.5 7.3-.4 13.1 3.4 15.3l.1.1c1.1.6 2.3.9 3.5.9 4.3 0 9-3 13-8.6 1.6 3.3 3.5 5.8 5.7 7.2 2.6 1.7 5.4 1.9 8 .7l.2-.1c2.6-1.4 4.2-3.9 4.7-7.4.5-3 .3-6.6-.8-10.4 3.3-1 5.9-2.4 7.7-4.2 2-2.1 2.7-4.7 2-7.4l-.1-.2c-1.2-4.7-5.8-7.1-13.2-6.6l-.5.1zm-1.3 3.5c5.9-.4 9.4 1.3 10.2 4.2.5 2-.1 4-1.8 5.7-1.4 1.5-3.5 2.6-6.3 3.4-.9-2.9-2-5.8-3.3-8.5 1-1.7 1-3.2.1-4.5l1.1-.3zm-14.5-13c1.7-2.4 3.5-4.2 5.3-5.3 1.7-1 3.2-1.3 4.4-.7 2.1 1.2 3.1 5.2 2.3 10.5-.1.7-.3 1.4-.5 2.1a36.7 36.7 0 00-4.7-.3 36.7 36.7 0 00-4.7.3c-1.3-2.5-2.4-4.8-3.3-6.9l1.2.3zm-10 0c.4-2.9 1.4-4.8 2.8-5.7 2.2-1.2 5.2.3 8.1 4l.1.1c-1.1 2.2-2.2 4.5-3.2 7-.9.2-1.8.5-2.5.8-2.8-1.8-4.9-4.1-5.3-6.2zm-7.4 14.7c-5.9.4-9.4-1.3-10.2-4.2-.5-2 .1-4 1.8-5.7 1.4-1.5 3.5-2.6 6.3-3.4.9 2.9 2 5.8 3.3 8.5-1 1.7-1 3.2-.1 4.5l-1.1.3zm14.6 20.6c-3.7 5.4-7.7 7.8-10.4 6.4-2.1-1.2-3.1-5.2-2.3-10.5.1-.7.3-1.4.5-2.1 1.5.2 3 .3 4.7.3 1.7 0 3.2-.1 4.7-.3 1.3 2.5 2.4 4.8 3.3 6.9l-.5.3zm2.5-6.8c-1.6.3-3.2.5-4.7.5-1.5 0-3.1-.2-4.7-.5-.7-1.7-1.3-3.3-1.9-5-.5-1.5-1-3-1.4-4.5.5-1.5 1-3 1.4-4.5.6-1.7 1.2-3.3 1.9-5 1.6-.3 3.2-.5 4.7-.5 1.5 0 3.1.2 4.7.5.7 1.7 1.3 3.3 1.9 5 .5 1.5 1 3 1.4 4.5-.5 1.5-1 3-1.4 4.5-.6 1.7-1.2 3.3-1.9 5zm4.3 2.8c-.4 2.9-1.4 4.8-2.8 5.7l-.1.1c-2.2 1.2-5.2-.3-8.1-4-.1-.1-.2-.2-.3-.4 1.1-2.2 2.2-4.5 3.2-7 .9-.2 1.8-.5 2.5-.8 2.8 1.8 4.9 4.1 5.6 6.4zm5.7-7.8c-1.1-2.9-2.5-5.7-3.3-8.5.9-1.3.9-2.8.1-4.5l1.1-.3c5.9-.4 9.4 1.3 10.2 4.2.5 2-.1 4-1.8 5.7-1.4 1.5-3.5 2.6-6.3 3.4z" fill="#121212"/>
+                    </svg>
+                  )}
+                  <span className="font-teko font-semibold text-[#121212] uppercase text-[16px] sm:text-[20px] lg:text-[24px] xl:text-[26px]">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
