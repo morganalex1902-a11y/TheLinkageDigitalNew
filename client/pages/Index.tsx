@@ -151,6 +151,31 @@ const TECH_ITEMS = [
 
 export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const TESTIMONIALS = [
+    {
+      rating: 4.9,
+      text: "We full service digital agency that build's fascinating users experiences. Our team creates exceptional UI design and functionality that drives results.",
+      name: "Ceyhan Özçivit",
+      role: "Mid-Level Developer",
+      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+    },
+    {
+      rating: 5.0,
+      text: "The Linkage Digital transformed our online presence completely. Their strategic approach and creative execution exceeded all our expectations.",
+      name: "Sarah Johnson",
+      role: "Product Manager",
+      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320",
+    },
+    {
+      rating: 4.8,
+      text: "Exceptional service from start to finish. The team understood our vision and delivered a stunning digital experience that our clients love.",
+      name: "Alex Martinez",
+      role: "Creative Director",
+      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+    },
+  ];
   return (
     <div className="min-h-screen bg-white font-kanit">
       {/* ── NAVBAR ── */}
@@ -953,6 +978,142 @@ export default function Index() {
               )}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── TESTIMONIAL SECTION ── */}
+      <section className="bg-white">
+
+        {/* Full-width banner image */}
+        <div className="w-full h-[240px] md:h-[380px] lg:h-[560px] overflow-hidden">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=1920"
+            alt="Team meeting"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+
+        {/* Content below banner */}
+        <div className="max-w-[1400px] mx-auto px-6 py-14 md:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20 items-start">
+
+            {/* Left: Heading + description + explore */}
+            <div>
+              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(2rem,5.5vw,4.5rem)] mb-6">
+                Trusted Clients
+                <br />
+                Testimonial
+              </h2>
+              <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.55] mb-10 max-w-[380px]">
+                Consumers today rely heavily on digital means to research
+                products. We research a brand of bldend
+              </p>
+              {/* Explore circle button */}
+              <Link
+                to="/about"
+                className="relative w-[110px] h-[110px] md:w-[140px] md:h-[140px] rounded-full border border-[#EFEFEF] flex items-center justify-start pl-5 overflow-hidden hover:border-[#8B0AB4] transition-colors group"
+              >
+                <svg
+                  className="absolute top-[22%] right-[14%] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  width="11" height="16" viewBox="0 0 11 16" fill="none"
+                >
+                  <g clipPath="url(#clip-explore-testi)">
+                    <path d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z" fill="#121212"/>
+                  </g>
+                  <defs><clipPath id="clip-explore-testi"><rect width="11" height="16" fill="white"/></clipPath></defs>
+                </svg>
+                <span className="font-kanit font-semibold text-[11px] md:text-[14px] uppercase text-[#121212] leading-snug">
+                  Explore Us
+                  <br />
+                  More
+                </span>
+              </Link>
+            </div>
+
+            {/* Right: Testimonial card stack + navigation */}
+            <div>
+              {/* Card stack with stacked-paper effect */}
+              <div className="relative max-w-[480px]">
+
+                {/* Shadow / back card */}
+                <div className="absolute top-2 right-0 left-6 bottom-0 bg-[#f0f0f0] border border-[#E0E0E0]" />
+
+                {/* Main testimonial card */}
+                <div className="relative bg-white border border-[#ECECEC] shadow-sm overflow-hidden">
+
+                  {/* Card body */}
+                  <div className="p-7 md:p-9 lg:p-10">
+                    {/* Rating */}
+                    <div className="flex items-end gap-2 mb-1">
+                      <span className="font-teko font-bold text-[#121212] text-[42px] md:text-[52px] leading-none">
+                        {TESTIMONIALS[activeTestimonial].rating}
+                      </span>
+                      <span className="text-yellow-400 text-[28px] leading-none mb-1">★</span>
+                    </div>
+                    <p className="font-kanit font-normal text-[#999] text-[13px] mb-7">
+                      (out of 5 stars)
+                    </p>
+                    <p className="font-kanit font-normal text-[#444] text-[15px] md:text-[18px] leading-[1.6] mb-6">
+                      {TESTIMONIALS[activeTestimonial].text}
+                    </p>
+                    {/* Quote marks */}
+                    <div className="flex justify-end">
+                      <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 22V14.667C0 6.592 4.444 1.926 13.333 0L14.667 3.2C10.8 4.267 8.4 6.667 7.467 10.333H12V22H0ZM16 22V14.667C16 6.592 20.444 1.926 29.333 0L30.667 3.2C26.8 4.267 24.4 6.667 23.467 10.333H28V22H16Z" fill="#121212"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Card footer – dark */}
+                  <div className="bg-[#121212] px-7 md:px-9 lg:px-10 py-4 md:py-5 flex items-center gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#333]">
+                      <img
+                        src={TESTIMONIALS[activeTestimonial].avatar}
+                        alt={TESTIMONIALS[activeTestimonial].name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-kanit font-semibold text-white text-[13px] md:text-[15px] uppercase tracking-wider leading-tight">
+                        {TESTIMONIALS[activeTestimonial].name}
+                      </p>
+                      <p className="font-kanit font-normal text-[#888] text-[12px] md:text-[13px]">
+                        {TESTIMONIALS[activeTestimonial].role}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation controls */}
+              <div className="flex items-center gap-3 mt-6 md:mt-8 max-w-[480px] justify-end">
+                <div className="w-8 h-0.5 bg-[#121212] mr-1" />
+                <button
+                  onClick={() =>
+                    setActiveTestimonial((p) =>
+                      p === 0 ? TESTIMONIALS.length - 1 : p - 1
+                    )
+                  }
+                  className="w-9 h-9 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors font-kanit"
+                  aria-label="Previous"
+                >
+                  ←
+                </button>
+                <button
+                  onClick={() =>
+                    setActiveTestimonial((p) =>
+                      p === TESTIMONIALS.length - 1 ? 0 : p + 1
+                    )
+                  }
+                  className="w-9 h-9 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors font-kanit"
+                  aria-label="Next"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
     </div>
