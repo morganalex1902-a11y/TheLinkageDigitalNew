@@ -744,6 +744,69 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* ── PORTFOLIO SECTION ── */}
+      <section className="bg-white overflow-hidden">
+        {/* Staggered mosaic grid
+            Each image = 29.6vw wide (555/1875×100) so 4 fill ~120vw total
+            Row 2 shifted left by 19.9vw (373/1875×100) → last image reaches exactly 100vw */}
+        <div className="relative">
+
+          {/* Row 1 */}
+          <div className="flex gap-[0.53vw]">
+            {[
+              "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
+              "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
+              "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
+              "https://api.builder.io/api/v1/image/assets/TEMP/5d8437229e206f54ccdbc766d6b0d34d1443c74f?width=1109",
+            ].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                className="flex-shrink-0 object-cover w-[29.6vw] h-[29.9vw]"
+              />
+            ))}
+          </div>
+
+          {/* Row gap */}
+          <div className="h-[0.53vw]" />
+
+          {/* Row 2 — staggered left by ~19.9vw */}
+          <div className="flex gap-[0.53vw] -ml-[19.9vw]">
+            {[
+              "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
+              "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
+              "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
+              "https://api.builder.io/api/v1/image/assets/TEMP/04c486d57c886aa65d7f3e62a6ff656882d3dd55?width=1109",
+            ].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                className="flex-shrink-0 object-cover w-[29.6vw] h-[29.9vw]"
+              />
+            ))}
+          </div>
+
+          {/* Center "PORTFOLIO" circle overlay */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                       rounded-full bg-white flex items-center justify-center pointer-events-none"
+            style={{
+              width: "clamp(100px, 22.4vw, 420px)",
+              height: "clamp(100px, 22.4vw, 420px)",
+            }}
+          >
+            <span
+              className="font-teko font-bold text-[#8B0AB4] uppercase"
+              style={{ fontSize: "clamp(0.85rem, 2.13vw, 2.5rem)" }}
+            >
+              Portfolio
+            </span>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
