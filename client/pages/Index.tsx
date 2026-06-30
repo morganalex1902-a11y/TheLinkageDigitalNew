@@ -343,10 +343,11 @@ export default function Index() {
 
                 {/* Right: group (tallest) — positioned higher */}
                 <div
-                  className="rounded-[9999px] overflow-hidden flex-shrink-0"
+                  className="overflow-hidden flex-shrink-0"
                   style={{
                     width: "clamp(145px,20.5vw,250px)",
                     height: "clamp(285px,40vw,498px)",
+                    borderRadius: "9999px 0 0 9999px",
                     position: "relative",
                     top: "clamp(-12px,-2vw,-30px)",
                   }}
