@@ -116,8 +116,10 @@
 .success-text {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  font-size: clamp(2rem, 4vw, 4.5rem);
   line-height: 1;
+  white-space: nowrap;
+  display: block;
 }
 
 @layer base {
