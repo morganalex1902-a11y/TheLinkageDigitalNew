@@ -331,7 +331,7 @@ export default function Index() {
                   }}
                 >
                   <img
-                    src={PERSON_IMG}
+                    src="https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F080e4852d19d45ae8a86c3fdf2778044?format=webp&width=800&height=1200"
                     alt="Team member"
                     className="w-full h-full object-cover"
                   />
