@@ -347,7 +347,7 @@ export default function Index() {
                   style={{
                     width: "clamp(120px,17vw,209px)",
                     height: "clamp(240px,34vw,418px)",
-                    borderRadius: "0 9999px 9999px 0",
+                    borderRadius: "0px 9999px 9999px 0px",
                     position: "relative",
                     top: "clamp(-12px,-2vw,-30px)",
                     marginLeft: "-1px",
