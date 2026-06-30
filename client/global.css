@@ -115,7 +115,7 @@
 
 .success-text {
   writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  transform: translate(-50%, -50%) rotate(180deg);
   font-size: clamp(2rem, 4vw, 4.5rem);
   line-height: 1;
   white-space: nowrap;

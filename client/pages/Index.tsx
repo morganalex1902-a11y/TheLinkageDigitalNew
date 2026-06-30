@@ -263,11 +263,12 @@ export default function Index() {
                   Digital
                 </h1>
 
-                {/* Purple pill with vertical "SUCCESS" text */}
-                <div className="flex-shrink-0 relative flex items-center justify-center bg-[#8B0AB4] overflow-visible"
+                {/* Purple pill with vertical "SUCCESS" text — half inside, half outside */}
+                <div
+                  className="flex-shrink-0 relative bg-[#8B0AB4] overflow-visible z-10"
                   style={{ borderRadius: "3rem", width: "clamp(3.8rem,6.2vw,7rem)", height: "clamp(4.5rem,7.5vw,8.5rem)" }}
                 >
-                  <span className="success-text font-teko font-normal text-black uppercase">
+                  <span className="success-text font-teko font-normal text-black uppercase absolute left-1/2 top-1/2">
                     Success
                   </span>
                 </div>
