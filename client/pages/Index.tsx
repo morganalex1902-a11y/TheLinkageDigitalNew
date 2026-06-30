@@ -303,6 +303,161 @@ export default function Index() {
         />
       </main>
 
+      {/* ── WHO WE ARE SECTION ── */}
+      <section className="bg-white py-14 md:py-20 lg:py-24 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6">
+
+          {/* Heading row */}
+          <div className="flex items-start justify-between mb-10 lg:mb-14">
+            <div className="flex-1 min-w-0">
+              {/* Line 1: label + "Have a brilliant" */}
+              <div className="flex items-baseline gap-4 md:gap-8 flex-wrap">
+                <span className="font-kanit font-bold text-[13px] md:text-[16px] uppercase text-[#121212] whitespace-nowrap">
+                  01 Who We Are
+                </span>
+                <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.8rem,4.5vw,5rem)]">
+                  Have a brilliant
+                </h2>
+              </div>
+              {/* Lines 2-4 */}
+              <h2 className="font-teko font-bold uppercase leading-[0.92] text-[clamp(1.8rem,4.5vw,5rem)] mt-0">
+                idea boost the{" "}
+                <span className="text-[#8B0AB4]">
+                  Growth
+                  <br />
+                  Development
+                </span>{" "}
+                Agency
+                <br />
+                your branding!
+              </h2>
+            </div>
+            {/* Decorative react-shape (top-right) */}
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/1804a4d3e15f8c2216251a890d0be577b72d7c89?width=284"
+              alt=""
+              className="hidden lg:block w-[130px] xl:w-[142px] flex-shrink-0 mt-6"
+            />
+          </div>
+
+          {/* Content grid: Stats | Description | Office */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1.3fr_1.5fr] gap-8 lg:gap-10 items-start">
+
+            {/* ── LEFT: Stats + team photo ── */}
+            <div className="flex flex-col gap-8">
+              {/* Customer stat widget */}
+              <div>
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240"
+                  alt="Happy clients"
+                  className="h-[50px] w-auto mb-5"
+                />
+                <div className="flex items-center gap-3">
+                  {/* Rotated "32k+" label */}
+                  <div className="flex-shrink-0 w-[30px] h-[52px] flex items-center justify-center overflow-visible">
+                    <span className="font-teko font-semibold text-[22px] md:text-[24px] tracking-[2.5px] uppercase text-[#121212] -rotate-90 whitespace-nowrap">
+                      32k+
+                    </span>
+                  </div>
+                  <p className="font-kanit font-normal text-[15px] md:text-[16px] text-[#555] leading-[1.4]">
+                    happy
+                    <br />
+                    clients of
+                    <br />
+                    our Services
+                  </p>
+                </div>
+              </div>
+              {/* Team photo */}
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/cebf100cfa2f8b5cd61f8901babba182a2278871?width=660"
+                alt="Team working"
+                className="w-full max-w-[330px] h-[180px] md:h-[209px] object-cover"
+              />
+            </div>
+
+            {/* ── MIDDLE: Description + Explore button ── */}
+            <div className="border-l border-[#ECECEC] pl-6 md:pl-10 lg:pl-12 flex flex-col justify-between gap-8 min-h-[280px] md:min-h-[305px]">
+              <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.6]">
+                Consumers today rely heavily on digital means to research
+                products. We research a brand of bldend engaging with it,
+                according to the meanwhile, 51% of consumers.
+              </p>
+              {/* Circle "Explore Us More" button */}
+              <Link
+                to="/about"
+                className="relative w-[130px] h-[130px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full border border-[#EFEFEF] flex items-center justify-start pl-6 overflow-hidden hover:border-[#8B0AB4] transition-colors group flex-shrink-0"
+              >
+                {/* Arrow – positioned top-right */}
+                <svg
+                  className="absolute top-[22%] right-[14%] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  width="11"
+                  height="16"
+                  viewBox="0 0 11 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clipPath="url(#clip-explore)">
+                    <path
+                      d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z"
+                      fill="#121212"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip-explore">
+                      <rect width="11" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                {/* Text */}
+                <span className="font-kanit font-semibold text-[13px] md:text-[15px] lg:text-[16px] uppercase text-[#121212] leading-snug">
+                  Explore Us
+                  <br />
+                  More
+                </span>
+              </Link>
+            </div>
+
+            {/* ── RIGHT: Office image + stat card ── */}
+            <div className="md:col-span-2 lg:col-span-1 relative overflow-visible">
+              {/* Office image */}
+              <div className="overflow-hidden h-[300px] md:h-[380px] lg:h-[455px]">
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910"
+                  alt="Office"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+              {/* White stat card – overlaps right portion of image on desktop */}
+              <div className="relative lg:absolute lg:right-0 lg:-top-10 bg-[#F9F9F9] p-6 md:p-8 lg:p-10 lg:w-[65%] z-10">
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/29d2818d5b277ff727f65d90516ef514b52db1c9?width=54"
+                  alt=""
+                  className="w-7 h-6 mb-4"
+                />
+                <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.5] mb-4">
+                  Make your business prosper with our great team of experts.
+                  We'll make your.
+                </p>
+                {/* 1.8x stat */}
+                <div className="flex items-end leading-none">
+                  <span className="font-teko font-semibold text-[80px] md:text-[100px] lg:text-[120px] text-[#121212] leading-none">
+                    1.8
+                  </span>
+                  <span className="font-teko font-semibold text-[32px] md:text-[40px] lg:text-[48px] text-[#121212] leading-none mb-1 md:mb-2">
+                    x
+                  </span>
+                </div>
+                <span className="font-teko font-semibold text-[18px] md:text-[20px] lg:text-[21px] uppercase text-[#121212] tracking-wide">
+                  Faster Service
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── BRAND BAR ── */}
       <div className="flex h-[130px] md:h-[158px] overflow-hidden">
         {/* Dark left square with decorative image */}
