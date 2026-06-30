@@ -286,7 +286,7 @@ export default function Index() {
               <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px]" />
 
               {/* Scroll icon + description + CTA */}
-              <div className="flex items-start gap-6 mt-10 md:mt-14 lg:mt-16">
+              <div className="flex items-start gap-6 mt-10 md:mt-14 lg:mt-16 relative z-10">
                 <img
                   src={SCROLL_IMG}
                   alt=""
