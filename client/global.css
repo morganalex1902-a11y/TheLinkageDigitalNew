@@ -1,5 +1,5 @@
 /** @import must precede all other statements */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@400;700&family=Kanit:wght@400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -96,6 +96,28 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  will-change: transform;
+}
+
+.hero-heading {
+  font-size: clamp(3rem, 9.5vw, 9.5rem);
+  line-height: 0.85;
+}
+
+.success-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  line-height: 1;
 }
 
 @layer base {
