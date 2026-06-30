@@ -322,16 +322,15 @@ export default function Index() {
               />
 
               {/* Pill images */}
-              <div className="flex items-center justify-center gap-0 md:gap-1 pt-6 lg:pt-4">
-                {/* Left: group (tallest) — positioned lower */}
+              <div className="flex items-center justify-center pt-6 lg:pt-4">
+                {/* Left: group — semi-circle flat on right, positioned lower */}
                 <div
-                  className="overflow-hidden flex-shrink-0"
+                  className="overflow-hidden flex-shrink-0 relative z-0"
                   style={{
-                    width: "clamp(145px,20.5vw,250px)",
-                    height: "clamp(285px,40vw,498px)",
+                    width: "clamp(110px,15.5vw,190px)",
+                    height: "clamp(220px,31vw,380px)",
                     borderRadius: "9999px 0 0 9999px",
-                    position: "relative",
-                    top: "clamp(12px,2vw,30px)",
+                    top: "clamp(16px,2.5vw,36px)",
                   }}
                 >
                   <img
@@ -341,19 +340,15 @@ export default function Index() {
                   />
                 </div>
 
-                {/* Right: person (taller) — positioned higher */}
+                {/* Right: person — semi-circle flat on left, positioned higher, overlapping left */}
                 <div
-                  className="overflow-hidden flex-shrink-0"
+                  className="overflow-hidden flex-shrink-0 relative z-10"
                   style={{
-                    width: "clamp(120px,17vw,209px)",
-                    height: "clamp(240px,34vw,418px)",
-                    borderTopRightRadius: "9999px",
-                    borderBottomRightRadius: "9999px",
-                    borderTopLeftRadius: "0",
-                    borderBottomLeftRadius: "0",
-                    position: "relative",
-                    top: "clamp(-12px,-2vw,-30px)",
-                    marginLeft: "-1px",
+                    width: "clamp(135px,19vw,235px)",
+                    height: "clamp(270px,38vw,470px)",
+                    borderRadius: "0 9999px 9999px 0",
+                    top: "clamp(-16px,-2.5vw,-36px)",
+                    marginLeft: "clamp(-28px,-4vw,-50px)",
                   }}
                 >
                   <img
