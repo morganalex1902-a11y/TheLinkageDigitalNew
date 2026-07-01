@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const FOOTER_LOGO =
-  "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
+  "https://api.builder.io/api/v1/image/assets/TEMP/f6b0535e5973547e6cfe0dd5821532366a17ac51?width=416";
 
 const DISCOVER_LINKS = [
   { label: "Home", to: "/" },
