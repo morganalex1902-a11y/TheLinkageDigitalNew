@@ -1111,7 +1111,7 @@ export default function Index() {
                     )
                   }
                   fillColor="#8B0AB4"
-                  className="w-9 h-9 border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] group hover:text-white"
+                  className="relative w-9 h-9 rounded-full border-2 border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white transition-all duration-300"
                 >
                   ←
                 </OriginButton>
@@ -1122,7 +1122,7 @@ export default function Index() {
                     )
                   }
                   fillColor="#8B0AB4"
-                  className="w-9 h-9 border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] group hover:text-white"
+                  className="relative w-9 h-9 rounded-full border-2 border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white transition-all duration-300"
                 >
                   →
                 </OriginButton>
