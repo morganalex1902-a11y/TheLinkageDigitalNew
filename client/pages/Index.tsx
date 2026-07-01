@@ -78,10 +78,6 @@ function MarqueeScroll() {
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
   const [counter, setCounter] = useState(0);
 
-  // Calculate image width in pixels (29.6vw ≈ 568px at 1920px, gap 0.53vw ≈ 10px) = ~578px per image
-  const imageWidthPx = 578;
-  const totalSetWidth = imageWidthPx * images.length;
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCounter((prev) => prev + 1);
@@ -89,9 +85,11 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     return () => clearInterval(interval);
   }, []);
 
-  // Reset offset after scrolling one full set, so it loops seamlessly
-  const loopedCounter = counter % (totalSetWidth / 1); // Reset when reached one set width
-  const offset = direction === "right" ? loopedCounter : -loopedCounter;
+  // Each image + gap is approximately 578px at standard viewport
+  // With 100 sets of images, we have plenty of content
+  const imageWidth = 578;
+  const loopDistance = imageWidth * images.length * 100; // Total width of all 100 sets
+  const offset = direction === "right" ? counter : -counter;
 
   return (
     <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
@@ -103,8 +101,8 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
           transition: "none"
         }}
       >
-        {/* Duplicate images many times to ensure seamless looping */}
-        {Array(50).fill(0).flatMap(() => images).map((src, i) => (
+        {/* 100 sets of images for smooth infinite loop */}
+        {Array(100).fill(0).flatMap(() => images).map((src, i) => (
           <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
             <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
