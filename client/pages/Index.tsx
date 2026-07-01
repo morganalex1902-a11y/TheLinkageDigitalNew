@@ -217,6 +217,7 @@ export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
 
   const TESTIMONIALS = [
     {
@@ -247,6 +248,17 @@ export default function Index() {
     const header = document.getElementById("site-header");
     const onScroll = () => {
       if (header) header.classList.toggle("shadow-md", window.scrollY > 60);
+      const portfolioSection = document.getElementById("portfolio-section");
+      if (portfolioSection) {
+        const rect = portfolioSection.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const viewportHeight = window.innerHeight;
+        if (sectionTop < viewportHeight && sectionTop + sectionHeight > 0) {
+          const progress = (viewportHeight - sectionTop) / (viewportHeight + sectionHeight);
+          setParallaxOffset(Math.max(0, progress));
+        }
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -828,14 +840,14 @@ export default function Index() {
       </section>
 
       {/* ── PORTFOLIO SECTION ── */}
-      <section ref={portfolioRef as React.RefObject<HTMLElement>} className="bg-white overflow-hidden reveal">
+      <section ref={portfolioRef as React.RefObject<HTMLElement>} id="portfolio-section" className="bg-white overflow-hidden reveal">
         {/* Staggered mosaic grid
             Each image = 29.6vw wide (555/1875×100) so 4 fill ~120vw total
             Row 2 shifted left by 19.9vw (373/1875×100) → last image reaches exactly 100vw */}
         <div className="relative">
 
-          {/* Row 1 */}
-          <div className="flex gap-[0.53vw]">
+          {/* Row 1 — parallax right */}
+          <div className="flex gap-[0.53vw]" style={{ transform: `translateX(${parallaxOffset * 50}px)`, transition: "transform 0.1s ease-out" }}>
             {[
               "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
               "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
@@ -852,8 +864,8 @@ export default function Index() {
           {/* Row gap */}
           <div className="h-[0.53vw]" />
 
-          {/* Row 2 — staggered left by ~19.9vw */}
-          <div className="flex gap-[0.53vw] -ml-[19.9vw]">
+          {/* Row 2 — staggered left by ~19.9vw, parallax left */}
+          <div className="flex gap-[0.53vw] -ml-[19.9vw]" style={{ transform: `translateX(${-parallaxOffset * 50}px)`, transition: "transform 0.1s ease-out" }}>
             {[
               "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
               "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
