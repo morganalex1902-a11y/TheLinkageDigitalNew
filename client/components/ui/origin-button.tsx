@@ -77,20 +77,19 @@ const OriginButton = React.forwardRef<HTMLButtonElement, OriginButtonProps>(
           aria-hidden
           className="pointer-events-none absolute rounded-full"
           style={{
-            width: coverSize > 0 ? coverSize : 1,
-            height: coverSize > 0 ? coverSize : 1,
+            width: coverSize,
+            height: coverSize,
             left: origin.x,
             top: origin.y,
             backgroundColor: fillColor,
-            opacity: active && coverSize > 0 ? 1 : 0,
-            transform: `translate(-50%, -50%)`,
+            transform: `translate(-50%, -50%) scale(${active && coverSize > 0 ? 1 : 0})`,
             transition: active
-              ? "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)"
-              : "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+              ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)"
+              : "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
             zIndex: 1,
           }}
         />
-        <span className="relative inline-flex items-center justify-center gap-2" style={{ zIndex: 2 }}>
+        <span className="relative z-10 inline-flex items-center justify-center gap-2">
           {children}
         </span>
       </button>
