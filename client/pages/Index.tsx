@@ -61,14 +61,15 @@ function ArrowRight() {
       viewBox="0 0 14 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="flex-shrink-0"
+      className="flex-shrink-0 transition-colors"
     >
       <g clipPath="url(#clip-arrow)">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
-          fill="#121212"
+          fill="currentColor"
+          className="text-[#121212] group-hover:text-white transition-colors"
         />
       </g>
       <defs>
@@ -379,9 +380,10 @@ export default function Index() {
                   <OriginButton
                     onClick={() => navigate("/contact")}
                     fillColor="#8B0AB4"
-                    className="mt-6 md:mt-8 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#1C1D20] border-b border-[#1C1D20] pb-0.5 tracking-wider hover:text-white hover:border-[#8B0AB4] px-3 py-2 gap-2"
+                    className="group mt-6 md:mt-8 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#1C1D20] border-b border-[#1C1D20] pb-0.5 tracking-wider hover:text-white hover:border-[#8B0AB4] px-3 py-2 gap-2 transition-colors"
                   >
-                    Get Started Now <ArrowRight />
+                    <span className="text-[#1C1D20] group-hover:text-white transition-colors">Get Started Now</span>
+                    <ArrowRight />
                   </OriginButton>
                 </div>
               </div>
