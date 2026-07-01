@@ -627,8 +627,8 @@ export default function Index() {
 
         {/* Pink marquee area */}
         <div className="flex-1 bg-[#FFE8F5] overflow-hidden flex items-center">
-          <div className="flex animate-marquee">
-            {[...BRAND_LOGOS, ...BRAND_LOGOS, ...BRAND_LOGOS].map((src, i) => (
+          <div className="flex" style={{ animation: "marquee 40s linear infinite" }}>
+            {[...BRAND_LOGOS, ...BRAND_LOGOS].map((src, i) => (
               <img
                 key={i}
                 src={src}
