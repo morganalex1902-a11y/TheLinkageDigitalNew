@@ -314,13 +314,6 @@ export default function Index() {
 
             {/* RIGHT: images + video + customers */}
             <div className="relative flex-shrink-0 mt-10 lg:mt-0 lg:w-[430px] xl:w-[500px]">
-              {/* Top-right decoration */}
-              <img
-                src={INTRO_SHAPE_1}
-                alt=""
-                className="absolute -top-6 right-0 w-20 md:w-24 pointer-events-none z-10"
-              />
-
               {/* Pill images */}
               <div className="flex items-center justify-center pt-6 lg:pt-4">
                 {/* Left: red duotone shape — positioned lower, behind */}
@@ -349,7 +342,7 @@ export default function Index() {
                 />
 
                 {/* Play button + Watch Video — positioned near bottom-right curve of the right image */}
-                <div className="absolute flex flex-col items-center justify-center gap-1.5 z-20 right-0 bottom-4 md:bottom-6">
+                <div className="absolute flex flex-col items-center justify-center gap-1.5 z-20 right-2 md:right-3 bottom-8 md:bottom-12">
                   <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl flex-shrink-0">
                     <PlayIcon />
                   </button>
