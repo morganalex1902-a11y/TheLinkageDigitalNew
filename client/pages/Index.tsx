@@ -85,11 +85,11 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     return () => clearInterval(interval);
   }, []);
 
-  // Each image + gap = ~30.13vw, 4 images = ~120.52vw per set
-  // We have 3 sets, so loop every 361.56vw worth of movement
-  // Use modulo to keep it manageable
-  const loopCounter = counter % 4020; // Loop after 4020 frames (roughly 2 minutes)
-  const offset = direction === "right" ? loopCounter * 1 : -loopCounter * 1;
+  // Calculate based on 4 images (29.6vw each + 0.53vw gap = ~30.13vw per image)
+  // So 4 images = ~120.52vw per set, in pixels at 1920px viewport = ~233px per set
+  const pixelsPerSet = 233;
+  const loopCounter = counter % (pixelsPerSet * 3); // Loop every 699px
+  const offset = direction === "right" ? loopCounter : -loopCounter;
 
   return (
     <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
@@ -912,8 +912,8 @@ export default function Index() {
             Row 2 shifted left by 19.9vw (373/1875×100) → last image reaches exactly 100vw */}
         <div className="relative">
 
-          {/* Row 1 — infinite scroll left */}
-          <PortfolioRow direction="left" images={[
+          {/* Row 1 — infinite scroll right */}
+          <PortfolioRow direction="right" images={[
             "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
@@ -923,8 +923,8 @@ export default function Index() {
           {/* Row gap */}
           <div className="h-[0.53vw]" />
 
-          {/* Row 2 — infinite scroll right with stagger */}
-          <PortfolioRow direction="right" images={[
+          {/* Row 2 — infinite scroll left with stagger */}
+          <PortfolioRow direction="left" images={[
             "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
