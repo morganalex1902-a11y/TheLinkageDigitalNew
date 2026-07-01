@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 const LOGO =
-  "https://api.builder.io/api/v1/image/assets/TEMP/b574152e3abce375b7cc892901486aa74053d07c?width=328";
+  "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
 
 export default function Placeholder() {
   const { pathname } = useLocation();
