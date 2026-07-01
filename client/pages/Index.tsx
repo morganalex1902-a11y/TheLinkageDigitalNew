@@ -323,54 +323,30 @@ export default function Index() {
 
               {/* Pill images */}
               <div className="flex items-center justify-center pt-6 lg:pt-4">
-                {/* Left: group — half of a full circle (left side visible), positioned lower */}
-                <div
-                  className="overflow-hidden flex-shrink-0 relative z-0"
+                {/* Left: red duotone shape — positioned lower, behind */}
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
+                  alt="Our team"
+                  className="flex-shrink-0 relative z-0 object-contain"
                   style={{
-                    width: "clamp(85px,12vw,140px)",
-                    height: "clamp(170px,24vw,280px)",
+                    width: "clamp(110px,15.5vw,190px)",
+                    height: "clamp(220px,31vw,380px)",
                     top: "clamp(10px,1.5vw,24px)",
                   }}
-                >
-                  <div
-                    className="absolute left-0 top-0 overflow-hidden rounded-full"
-                    style={{
-                      width: "clamp(170px,24vw,280px)",
-                      height: "clamp(170px,24vw,280px)",
-                    }}
-                  >
-                    <img
-                      src={GROUP_IMG}
-                      alt="Our team"
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </div>
-                </div>
+                />
 
-                {/* Right: person — half of a full circle (right side visible), positioned higher, overlapping left */}
-                <div
-                  className="overflow-hidden flex-shrink-0 relative z-10"
+                {/* Right: photo shape — positioned higher, in front, overlapping left */}
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
+                  alt="Team member"
+                  className="flex-shrink-0 relative z-10 object-contain"
                   style={{
-                    width: "clamp(100px,14vw,165px)",
-                    height: "clamp(200px,28vw,330px)",
+                    width: "clamp(130px,18.5vw,225px)",
+                    height: "clamp(260px,37vw,450px)",
                     top: "clamp(-10px,-1.5vw,-24px)",
                     marginLeft: "clamp(-16px,-2.2vw,-28px)",
                   }}
-                >
-                  <div
-                    className="absolute right-0 top-0 overflow-hidden rounded-full"
-                    style={{
-                      width: "clamp(200px,28vw,330px)",
-                      height: "clamp(200px,28vw,330px)",
-                    }}
-                  >
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/43a295e41e3e4a21acaa9c69ed03d625?format=webp&width=800&height=1200"
-                      alt="Team member"
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                </div>
+                />
 
                 {/* Play button + Watch Video — positioned to the right of images */}
                 <div className="flex flex-col items-center justify-center gap-3 flex-shrink-0 pb-4">
