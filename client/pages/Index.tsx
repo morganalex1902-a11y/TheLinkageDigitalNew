@@ -5,6 +5,46 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 
+function MarqueeScroll() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const logoWidth = container.scrollWidth / 2;
+    const animate = () => {
+      setOffset((prev) => {
+        const next = (prev + 1) % logoWidth;
+        return next;
+      });
+    };
+
+    const interval = setInterval(animate, 30);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex-1 bg-[#FFE8F5] overflow-hidden flex items-center">
+      <div
+        ref={containerRef}
+        className="flex"
+        style={{ transform: `translateX(-${offset}px)`, willChange: "transform" }}
+      >
+        {[...BRAND_LOGOS, ...BRAND_LOGOS].map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            className="h-[50px] md:h-[60px] lg:h-[70px] w-auto flex-shrink-0 object-contain mx-8 md:mx-12 lg:mx-16"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const LOGO =
   "https://api.builder.io/api/v1/image/assets/TEMP/b574152e3abce375b7cc892901486aa74053d07c?width=328";
 const AVATAR_IMG =
@@ -626,25 +666,7 @@ export default function Index() {
         </div>
 
         {/* Pink marquee area */}
-        <div className="flex-1 bg-[#FFE8F5] overflow-hidden flex items-center">
-          <div
-            className="flex"
-            style={{
-              animation: "marquee 20s linear infinite",
-              willChange: "transform",
-              width: "max-content"
-            }}
-          >
-            {[...BRAND_LOGOS, ...BRAND_LOGOS].map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt=""
-                className="h-[50px] md:h-[60px] lg:h-[70px] w-auto flex-shrink-0 object-contain mx-8 md:mx-12 lg:mx-16"
-              />
-            ))}
-          </div>
-        </div>
+        <MarqueeScroll />
       </div>
 
       {/* ── TAKE CHARGE STEERING SECTION ── */}
