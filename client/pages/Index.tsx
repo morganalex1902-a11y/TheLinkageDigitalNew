@@ -76,33 +76,20 @@ function MarqueeScroll() {
 }
 
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter((prev) => prev + 1);
-    }, 30);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Each image + gap is approximately 578px at standard viewport
-  // With 100 sets of images, we have plenty of content
-  const imageWidth = 578;
-  const loopDistance = imageWidth * images.length * 100; // Total width of all 100 sets
-  const offset = direction === "right" ? counter : -counter;
+  const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
+  // Duplicate images twice — animation moves by -50% so second half loops back to first
+  const allImages = [...images, ...images];
 
   return (
     <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
       <div
         className="flex gap-[0.53vw]"
         style={{
-          transform: `translateX(${offset}px)`,
+          animation: `${animationName} 20s linear infinite`,
           willChange: "transform",
-          transition: "none"
         }}
       >
-        {/* 100 sets of images for smooth infinite loop */}
-        {Array(100).fill(0).flatMap(() => images).map((src, i) => (
+        {allImages.map((src, i) => (
           <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
             <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
