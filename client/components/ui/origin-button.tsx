@@ -1,27 +1,5 @@
-"use client";
-
-import { motion } from "motion/react";
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
-
-const FILL_DURATION = 0.5;
-const FILL_EASE = [0.16, 1, 0.3, 1] as const;
-
-type ButtonHTMLAttributesForMotion = Omit<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  | "onAnimationEnd"
-  | "onAnimationIteration"
-  | "onAnimationStart"
-  | "onDrag"
-  | "onDragEnd"
-  | "onDragEnter"
-  | "onDragExit"
-  | "onDragLeave"
-  | "onDragOver"
-  | "onDragStart"
-  | "onDrop"
->;
 
 function getCoverDiameter(width: number, height: number, x: number, y: number) {
   return Math.ceil(
@@ -35,199 +13,89 @@ function getCoverDiameter(width: number, height: number, x: number, y: number) {
   );
 }
 
-function assignRef<T>(ref: React.ForwardedRef<T>, value: T | null) {
-  if (typeof ref === "function") {
-    ref(value);
-    return;
-  }
-  if (ref) {
-    ref.current = value;
-  }
-}
-
-function hasTextContent(node: React.ReactNode): boolean {
-  if (typeof node === "string" || typeof node === "number") {
-    return String(node).trim().length > 0;
-  }
-  if (Array.isArray(node)) {
-    return node.some(hasTextContent);
-  }
-  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
-    return hasTextContent(node.props.children);
-  }
-  return false;
-}
-
-type OriginButtonProps = ButtonHTMLAttributesForMotion & {
+type OriginButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: React.ReactNode;
-  loading?: boolean;
   fillColor?: string;
-  textHoverColor?: string;
 };
 
 const OriginButton = React.forwardRef<HTMLButtonElement, OriginButtonProps>(
-  (
-    {
-      children,
-      className,
-      disabled = false,
-      loading = false,
-      type = "button",
-      fillColor,
-      textHoverColor,
-      onBlur,
-      onClick,
-      onFocus,
-      onKeyDown,
-      onKeyUp,
-      onPointerCancel,
-      onPointerDown,
-      onPointerEnter,
-      onPointerLeave,
-      onPointerUp,
-      ...props
-    },
-    ref
-  ) => {
+  ({ children, className, fillColor = "#8B0AB4", onClick, ...props }, ref) => {
     const buttonRef = React.useRef<HTMLButtonElement>(null);
-    const isDisabled = Boolean(disabled || loading);
-    const [hovered, setHovered] = React.useState(false);
-    const [isPressed, setIsPressed] = React.useState(false);
+    const [active, setActive] = React.useState(false);
     const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
     const [coverSize, setCoverSize] = React.useState(0);
 
-    const updateOrigin = React.useCallback((x: number, y: number) => {
+    const measure = React.useCallback((x: number, y: number) => {
       const node = buttonRef.current;
       if (!node) return;
       const rect = node.getBoundingClientRect();
-      setOrigin({ x, y });
       setCoverSize(getCoverDiameter(rect.width, rect.height, x, y));
+      setOrigin({ x, y });
     }, []);
 
-    const updateOriginFromPointer = React.useCallback(
-      (event: React.PointerEvent<HTMLButtonElement>) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        updateOrigin(event.clientX - rect.left, event.clientY - rect.top);
-      },
-      [updateOrigin]
-    );
+    const handlePointerEnter = (e: React.PointerEvent<HTMLButtonElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      measure(e.clientX - rect.left, e.clientY - rect.top);
+      setActive(true);
+    };
 
-    const updateOriginFromCenter = React.useCallback(() => {
-      const node = buttonRef.current;
-      if (!node) return;
-      const rect = node.getBoundingClientRect();
-      updateOrigin(rect.width / 2, rect.height / 2);
-    }, [updateOrigin]);
+    const handlePointerLeave = () => setActive(false);
 
-    const showFill = !isDisabled && (hovered || isPressed);
+    const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {
+      if (!active) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      measure(e.clientX - rect.left, e.clientY - rect.top);
+    };
 
-    React.useLayoutEffect(() => {
-      const node = buttonRef.current;
-      if (!(node && showFill)) return;
-      const measure = () => {
-        const rect = node.getBoundingClientRect();
-        setCoverSize(getCoverDiameter(rect.width, rect.height, origin.x, origin.y));
-      };
-      measure();
-      const observer = new ResizeObserver(measure);
-      observer.observe(node);
-      return () => observer.disconnect();
-    }, [showFill, origin.x, origin.y]);
-
-    const fillTransition = { duration: FILL_DURATION, ease: FILL_EASE };
-
-    const setMergedRef = React.useCallback(
+    const setRefs = React.useCallback(
       (node: HTMLButtonElement | null) => {
-        buttonRef.current = node;
-        assignRef(ref, node);
+        (buttonRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+        if (typeof ref === "function") ref(node);
+        else if (ref) ref.current = node;
       },
       [ref]
     );
 
     return (
-      <motion.button
-        {...props}
-        aria-busy={loading || undefined}
+      <button
+        ref={setRefs}
         className={cn(
-          "relative inline-flex cursor-pointer touch-manipulation select-none items-center justify-center overflow-hidden",
+          "relative inline-flex cursor-pointer select-none items-center justify-center overflow-hidden",
           "transition-colors duration-300",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
           "disabled:pointer-events-none disabled:opacity-50",
           className
         )}
-        data-pressed={isPressed ? "true" : "false"}
-        disabled={isDisabled}
-        onBlur={(event) => {
-          onBlur?.(event);
-          setIsPressed(false);
-          if (!event.defaultPrevented) setHovered(false);
-        }}
         onClick={onClick}
-        onFocus={(event) => {
-          onFocus?.(event);
-          if (isDisabled || event.defaultPrevented) return;
-          if (event.currentTarget.matches(":focus-visible")) {
-            updateOriginFromCenter();
-            setHovered(true);
-          }
-        }}
-        onKeyDown={(event) => {
-          onKeyDown?.(event);
-          if (event.defaultPrevented || isDisabled || event.repeat || (event.key !== " " && event.key !== "Enter")) return;
-          if (event.key === " ") event.preventDefault();
-          updateOriginFromCenter();
-          setIsPressed(true);
-          setHovered(true);
-        }}
-        onKeyUp={(event) => {
-          onKeyUp?.(event);
-          if (event.key === " " || event.key === "Enter") {
-            setIsPressed(false);
-            if (!event.currentTarget.matches(":focus-visible")) setHovered(false);
-          }
-        }}
-        onPointerCancel={(event) => { onPointerCancel?.(event); setIsPressed(false); }}
-        onPointerDown={(event) => {
-          onPointerDown?.(event);
-          if (event.defaultPrevented || isDisabled || event.button !== 0) return;
-          updateOriginFromPointer(event);
-          setIsPressed(true);
-          setHovered(true);
-        }}
-        onPointerEnter={(event) => {
-          onPointerEnter?.(event);
-          if (isDisabled || event.defaultPrevented) return;
-          updateOriginFromPointer(event);
-          setHovered(true);
-        }}
-        onPointerLeave={(event) => { onPointerLeave?.(event); setHovered(false); setIsPressed(false); }}
-        onPointerUp={(event) => { onPointerUp?.(event); setIsPressed(false); }}
-        ref={setMergedRef}
-        type={type}
-        whileTap={isDisabled ? undefined : { scale: 0.97 }}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        onPointerMove={handlePointerMove}
+        {...props}
       >
         {/* Radial fill that expands from cursor position */}
-        <motion.span
-          animate={{ scale: showFill && coverSize > 0 ? 1 : 0 }}
+        <span
           aria-hidden
-          className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full"
-          initial={false}
+          className="pointer-events-none absolute rounded-full"
           style={{
+            width: coverSize,
             height: coverSize,
             left: origin.x,
             top: origin.y,
-            width: coverSize,
-            backgroundColor: fillColor ?? "#8B0AB4",
+            backgroundColor: fillColor,
+            transform: `translate(-50%, -50%) scale(${active && coverSize > 0 ? 1 : 0})`,
+            transition: active
+              ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)"
+              : "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
-          transition={fillTransition}
         />
         <span className="relative z-10 inline-flex items-center justify-center gap-2">
           {children}
         </span>
-      </motion.button>
+      </button>
     );
   }
 );
+
 OriginButton.displayName = "OriginButton";
 
 export { OriginButton };
