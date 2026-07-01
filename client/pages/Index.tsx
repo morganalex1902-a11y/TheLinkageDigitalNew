@@ -78,24 +78,37 @@ function MarqueeScroll() {
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
+  const loopDistance = useRef(0);
 
   useEffect(() => {
     const animate = () => {
       setOffset((prev) => {
         const speed = direction === "right" ? 0.5 : -0.5;
-        return prev + speed;
+        let next = prev + speed;
+
+        // Reset when we've scrolled one full set of images
+        const imageWidth = window.innerWidth * 0.296 + window.innerWidth * 0.0053; // 29.6vw + gap
+        const loopWidth = imageWidth * images.length;
+
+        if (direction === "right" && next > loopWidth) {
+          next = 0;
+        } else if (direction === "left" && next < -loopWidth) {
+          next = 0;
+        }
+
+        return next;
       });
     };
 
     const interval = setInterval(animate, 30);
     return () => clearInterval(interval);
-  }, [direction]);
+  }, [direction, images.length]);
 
   return (
-    <div className="flex gap-[0.53vw]" style={{ marginLeft: `${stagger}vw` }}>
+    <div className="flex gap-[0.53vw] overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
       {[...images, ...images, ...images].map((src, i) => (
-        <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]" style={{ transform: `translateX(${offset}px)`, willChange: "transform" }}>
-          <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
+          <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ transform: `translateX(${offset}px)`, willChange: "transform" }} />
           <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
       ))}
