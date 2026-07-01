@@ -76,37 +76,24 @@ function MarqueeScroll() {
 }
 
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState(0);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const animate = () => {
-      setOffset((prev) => {
-        const speed = direction === "right" ? 1 : -1;
-        let next = prev + speed;
-        const scrollWidth = container.scrollWidth / 3; // One third of total width (we tripled the images)
-
-        if (direction === "right" && next > scrollWidth) {
-          next = 0;
-        } else if (direction === "left" && next < -scrollWidth) {
-          next = 0;
-        }
-
-        return next;
-      });
-    };
-
-    const interval = setInterval(animate, 30);
+    const interval = setInterval(() => {
+      setCounter((prev) => prev + 1);
+    }, 30);
     return () => clearInterval(interval);
-  }, [direction]);
+  }, []);
+
+  // Each image + gap = ~30.13vw, 4 images = ~120.52vw per set
+  // We have 3 sets, so loop every 361.56vw worth of movement
+  // Use modulo to keep it manageable
+  const loopCounter = counter % 4020; // Loop after 4020 frames (roughly 2 minutes)
+  const offset = direction === "right" ? loopCounter * 1 : -loopCounter * 1;
 
   return (
     <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
       <div
-        ref={containerRef}
         className="flex gap-[0.53vw]"
         style={{
           transform: `translateX(${offset}px)`,
