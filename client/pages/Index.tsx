@@ -94,6 +94,59 @@ function PlayIcon() {
   );
 }
 
+function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId: string }) {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const [active, setActive] = useState(false);
+  const [origin, setOrigin] = useState({ x: 0, y: 0 });
+  const [coverSize, setCoverSize] = useState(0);
+
+  const measure = (x: number, y: number) => {
+    const node = btnRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    const d = Math.ceil(2 * Math.max(Math.hypot(x, y), Math.hypot(rect.width - x, y), Math.hypot(x, rect.height - y), Math.hypot(rect.width - x, rect.height - y)));
+    setCoverSize(d);
+    setOrigin({ x, y });
+  };
+
+  return (
+    <button
+      ref={btnRef}
+      onClick={onClick}
+      onPointerEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); setActive(true); }}
+      onPointerLeave={() => setActive(false)}
+      onPointerMove={(e) => { if (!active) return; const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); }}
+      className="relative w-[130px] h-[130px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full border border-[#ECECEC] overflow-hidden flex-shrink-0 hover:border-[#8B0AB4] transition-colors cursor-pointer select-none group"
+    >
+      {/* Fill circle */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute rounded-full"
+        style={{
+          width: coverSize, height: coverSize,
+          left: origin.x, top: origin.y,
+          backgroundColor: "#8B0AB4",
+          transform: `translate(-50%, -50%) scale(${active && coverSize > 0 ? 1 : 0})`,
+          transition: active ? "transform 0.5s cubic-bezier(0.16,1,0.3,1)" : "transform 0.35s cubic-bezier(0.16,1,0.3,1)",
+        }}
+      />
+      {/* Arrow top-right */}
+      <span className="absolute top-[24%] right-[18%] z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+        <svg width="11" height="16" viewBox="0 0 11 16" fill="none">
+          <g clipPath={`url(#${clipId})`}>
+            <path d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z" fill="currentColor" className="text-[#121212] group-hover:text-white transition-colors" />
+          </g>
+          <defs><clipPath id={clipId}><rect width="11" height="16" fill="white" /></clipPath></defs>
+        </svg>
+      </span>
+      {/* Text bottom-left */}
+      <span className="absolute bottom-[22%] left-[22%] z-10 font-kanit font-semibold text-[13px] uppercase text-[#121212] leading-snug text-left group-hover:text-white transition-colors">
+        Explore Us<br />More
+      </span>
+    </button>
+  );
+}
+
 const TABS = [
   {
     title: "Creativity",
@@ -485,39 +538,7 @@ export default function Index() {
                 according to the meanwhile, 51% of consumers.
               </p>
               {/* Circle "Explore Us More" button */}
-              <OriginButton
-                onClick={() => navigate("/about")}
-                fillColor="#8B0AB4"
-                className="relative w-[130px] h-[130px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full border border-[#EFEFEF] flex items-start justify-start pl-6 overflow-hidden hover:border-[#8B0AB4] transition-colors group flex-shrink-0"
-              >
-                {/* Arrow – positioned top-right */}
-                <svg
-                  className="absolute top-[22%] right-[14%] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                  width="11"
-                  height="16"
-                  viewBox="0 0 11 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clipPath="url(#clip-explore)">
-                    <path
-                      d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z"
-                      fill="#121212"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip-explore">
-                      <rect width="11" height="16" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-                {/* Text */}
-                <span className="font-kanit font-semibold text-[13px] md:text-[15px] lg:text-[16px] uppercase text-[#121212] leading-snug">
-                  Explore Us
-                  <br />
-                  More
-                </span>
-              </OriginButton>
+              <ExploreCircleButton onClick={() => navigate("/about")} clipId="clip-explore" />
             </div>
 
             {/* ── RIGHT: Office image + stat card ── */}
@@ -1021,26 +1042,7 @@ export default function Index() {
                 products. We research a brand of bldend
               </p>
               {/* Explore circle button */}
-              <OriginButton
-                onClick={() => navigate("/about")}
-                fillColor="#8B0AB4"
-                className="relative w-[110px] h-[110px] md:w-[140px] md:h-[140px] rounded-full border border-[#EFEFEF] flex items-start justify-start pl-5 overflow-hidden hover:border-[#8B0AB4] transition-colors group"
-              >
-                <svg
-                  className="absolute top-[22%] right-[14%] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                  width="11" height="16" viewBox="0 0 11 16" fill="none"
-                >
-                  <g clipPath="url(#clip-explore-testi)">
-                    <path d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z" fill="#121212"/>
-                  </g>
-                  <defs><clipPath id="clip-explore-testi"><rect width="11" height="16" fill="white"/></clipPath></defs>
-                </svg>
-                <span className="font-kanit font-semibold text-[11px] md:text-[14px] uppercase text-[#121212] leading-snug">
-                  Explore Us
-                  <br />
-                  More
-                </span>
-              </OriginButton>
+              <ExploreCircleButton onClick={() => navigate("/about")} clipId="clip-explore-testi" />
             </div>
 
             {/* Right: Testimonial card stack + navigation */}
