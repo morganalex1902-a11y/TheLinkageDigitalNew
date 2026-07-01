@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import type React from "react";
+import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
+import { OriginButton } from "../components/ui/origin-button";
 
 const LOGO =
   "https://api.builder.io/api/v1/image/assets/TEMP/b574152e3abce375b7cc892901486aa74053d07c?width=328";
@@ -179,6 +181,8 @@ export default function Index() {
       avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
     },
   ];
+  const navigate = useNavigate();
+
   useEffect(() => {
     const header = document.getElementById("site-header");
     const onScroll = () => {
@@ -254,12 +258,13 @@ export default function Index() {
           </nav>
 
           {/* Contact Us button */}
-          <Link
-            to="/contact"
-            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 hover:bg-[#8B0AB4] hover:scale-[1.03] transition-all whitespace-nowrap tracking-wide"
+          <OriginButton
+            onClick={() => navigate("/contact")}
+            fillColor="#8B0AB4"
+            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
           >
             Contact Us
-          </Link>
+          </OriginButton>
         </div>
       </header>
 
@@ -319,15 +324,13 @@ export default function Index() {
                     experiences. our team creates and exceptional UI design and
                     functionality.
                   </p>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 mt-6 md:mt-8 group"
+                  <OriginButton
+                    onClick={() => navigate("/contact")}
+                    fillColor="#8B0AB4"
+                    className="mt-6 md:mt-8 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#1C1D20] border-b border-[#1C1D20] pb-0.5 tracking-wider hover:text-white hover:border-[#8B0AB4] px-3 py-2 gap-2"
                   >
-                    <span className="font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#1C1D20] border-b border-[#1C1D20] pb-0.5 group-hover:text-[#8B0AB4] group-hover:border-[#8B0AB4] transition-colors tracking-wider">
-                      Get Started Now
-                    </span>
-                    <ArrowRight />
-                  </Link>
+                    Get Started Now <ArrowRight />
+                  </OriginButton>
                 </div>
               </div>
             </div>
@@ -482,9 +485,10 @@ export default function Index() {
                 according to the meanwhile, 51% of consumers.
               </p>
               {/* Circle "Explore Us More" button */}
-              <Link
-                to="/about"
-                className="relative w-[130px] h-[130px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full border border-[#EFEFEF] flex items-center justify-start pl-6 overflow-hidden hover:border-[#8B0AB4] transition-colors group flex-shrink-0"
+              <OriginButton
+                onClick={() => navigate("/about")}
+                fillColor="#8B0AB4"
+                className="relative w-[130px] h-[130px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full border border-[#EFEFEF] flex items-start justify-start pl-6 overflow-hidden hover:border-[#8B0AB4] transition-colors group flex-shrink-0"
               >
                 {/* Arrow – positioned top-right */}
                 <svg
@@ -513,7 +517,7 @@ export default function Index() {
                   <br />
                   More
                 </span>
-              </Link>
+              </OriginButton>
             </div>
 
             {/* ── RIGHT: Office image + stat card ── */}
@@ -1017,9 +1021,10 @@ export default function Index() {
                 products. We research a brand of bldend
               </p>
               {/* Explore circle button */}
-              <Link
-                to="/about"
-                className="relative w-[110px] h-[110px] md:w-[140px] md:h-[140px] rounded-full border border-[#EFEFEF] flex items-center justify-start pl-5 overflow-hidden hover:border-[#8B0AB4] transition-colors group"
+              <OriginButton
+                onClick={() => navigate("/about")}
+                fillColor="#8B0AB4"
+                className="relative w-[110px] h-[110px] md:w-[140px] md:h-[140px] rounded-full border border-[#EFEFEF] flex items-start justify-start pl-5 overflow-hidden hover:border-[#8B0AB4] transition-colors group"
               >
                 <svg
                   className="absolute top-[22%] right-[14%] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
@@ -1035,7 +1040,7 @@ export default function Index() {
                   <br />
                   More
                 </span>
-              </Link>
+              </OriginButton>
             </div>
 
             {/* Right: Testimonial card stack + navigation */}
@@ -1245,12 +1250,13 @@ export default function Index() {
             </span>
           </div>
           <br />
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-6 md:px-8 py-3 md:py-4 hover:bg-[#8B0AB4] hover:scale-105 hover:gap-4 transition-all tracking-wider mt-2"
+          <OriginButton
+            onClick={() => navigate("/contact")}
+            fillColor="#ffffff"
+            className="bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-6 md:px-8 py-3 md:py-4 tracking-wider mt-2 hover:text-[#121212]"
           >
             Let's Get In Touch →
-          </Link>
+          </OriginButton>
         </div>
       </section>
 
