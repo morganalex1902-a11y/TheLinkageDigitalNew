@@ -75,6 +75,34 @@ function MarqueeScroll() {
   );
 }
 
+function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const animate = () => {
+      setOffset((prev) => {
+        const speed = direction === "right" ? 0.5 : -0.5;
+        return prev + speed;
+      });
+    };
+
+    const interval = setInterval(animate, 30);
+    return () => clearInterval(interval);
+  }, [direction]);
+
+  return (
+    <div className="flex gap-[0.53vw]" style={{ marginLeft: `${stagger}vw` }}>
+      {[...images, ...images, ...images].map((src, i) => (
+        <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]" style={{ transform: `translateX(${offset}px)`, willChange: "transform" }}>
+          <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ChevronDown() {
   return (
     <svg
@@ -870,43 +898,29 @@ export default function Index() {
 
       {/* ── PORTFOLIO SECTION ── */}
       <section ref={portfolioRef as React.RefObject<HTMLElement>} id="portfolio-section" className="bg-white overflow-hidden reveal">
-        {/* Staggered mosaic grid
+        {/* Staggered mosaic grid with infinite scroll
             Each image = 29.6vw wide (555/1875×100) so 4 fill ~120vw total
             Row 2 shifted left by 19.9vw (373/1875×100) → last image reaches exactly 100vw */}
         <div className="relative">
 
-          {/* Row 1 — parallax right */}
-          <div className="flex gap-[0.53vw]" style={{ transform: `translateX(${parallaxOffset * 50}px)`, transition: "transform 0.1s ease-out" }}>
-            {[
-              "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
-              "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
-              "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
-              "https://api.builder.io/api/v1/image/assets/TEMP/5d8437229e206f54ccdbc766d6b0d34d1443c74f?width=1109",
-            ].map((src, i) => (
-              <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
-                <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            ))}
-          </div>
+          {/* Row 1 — infinite scroll right */}
+          <PortfolioRow direction="right" images={[
+            "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
+            "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
+            "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
+            "https://api.builder.io/api/v1/image/assets/TEMP/5d8437229e206f54ccdbc766d6b0d34d1443c74f?width=1109",
+          ]} />
 
           {/* Row gap */}
           <div className="h-[0.53vw]" />
 
-          {/* Row 2 — staggered left by ~19.9vw, parallax left */}
-          <div className="flex gap-[0.53vw] -ml-[19.9vw]" style={{ transform: `translateX(${-parallaxOffset * 50}px)`, transition: "transform 0.1s ease-out" }}>
-            {[
-              "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
-              "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
-              "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
-              "https://api.builder.io/api/v1/image/assets/TEMP/04c486d57c886aa65d7f3e62a6ff656882d3dd55?width=1109",
-            ].map((src, i) => (
-              <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
-                <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            ))}
-          </div>
+          {/* Row 2 — infinite scroll left with stagger */}
+          <PortfolioRow direction="left" images={[
+            "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
+            "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
+            "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
+            "https://api.builder.io/api/v1/image/assets/TEMP/04c486d57c886aa65d7f3e62a6ff656882d3dd55?width=1109",
+          ]} stagger={-19.9} />
 
           {/* Center "PORTFOLIO" circle overlay */}
           <div
