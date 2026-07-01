@@ -912,8 +912,8 @@ export default function Index() {
             Row 2 shifted left by 19.9vw (373/1875×100) → last image reaches exactly 100vw */}
         <div className="relative">
 
-          {/* Row 1 — infinite scroll right */}
-          <PortfolioRow direction="right" images={[
+          {/* Row 1 — infinite scroll left */}
+          <PortfolioRow direction="left" images={[
             "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
@@ -923,8 +923,8 @@ export default function Index() {
           {/* Row gap */}
           <div className="h-[0.53vw]" />
 
-          {/* Row 2 — infinite scroll left with stagger */}
-          <PortfolioRow direction="left" images={[
+          {/* Row 2 — infinite scroll right with stagger */}
+          <PortfolioRow direction="right" images={[
             "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
             "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
