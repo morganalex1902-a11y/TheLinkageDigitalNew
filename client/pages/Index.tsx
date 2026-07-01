@@ -281,6 +281,7 @@ const TECH_ITEMS = [
 export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [testimonialDir, setTestimonialDir] = useState<"left" | "right">("right");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
 
@@ -1090,12 +1091,13 @@ export default function Index() {
       <section ref={testimonialsRef as React.RefObject<HTMLElement>} className="bg-white reveal">
 
         {/* Full-width banner image */}
-        <div className="w-full h-[240px] md:h-[380px] lg:h-[560px] overflow-hidden">
+        <div className="w-full h-[240px] md:h-[380px] lg:h-[560px] overflow-hidden relative">
           <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=1920"
-            alt="Team meeting"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"
+            alt="Team collaboration"
             className="w-full h-full object-cover object-center"
           />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
 
         {/* Content below banner */}
@@ -1126,7 +1128,11 @@ export default function Index() {
                 <div className="absolute top-2 right-0 left-6 bottom-0 bg-[#f0f0f0] border border-[#E0E0E0]" />
 
                 {/* Main testimonial card */}
-                <div className="relative bg-white border border-[#ECECEC] shadow-sm overflow-hidden">
+                <div
+                  key={activeTestimonial}
+                  className="relative bg-white border border-[#ECECEC] shadow-sm overflow-hidden"
+                  style={{ animation: `${testimonialDir === 'left' ? 'testimonialEnterLeft' : 'testimonialEnterRight'} 0.45s cubic-bezier(0.16,1,0.3,1) both` }}
+                >
 
                   {/* Card body */}
                   <div className="p-7 md:p-9 lg:p-10">
@@ -1176,19 +1182,17 @@ export default function Index() {
               <div className="flex items-center gap-3 mt-6 md:mt-8 max-w-[480px] justify-end">
                 <div className="w-8 h-0.5 bg-[#121212] mr-1" />
                 <ArrowPointerButton
-                  onClick={() =>
-                    setActiveTestimonial((p) =>
-                      p === 0 ? TESTIMONIALS.length - 1 : p - 1
-                    )
-                  }
+                  onClick={() => {
+                    setTestimonialDir("left");
+                    setActiveTestimonial((p) => p === 0 ? TESTIMONIALS.length - 1 : p - 1);
+                  }}
                   direction="left"
                 />
                 <ArrowPointerButton
-                  onClick={() =>
-                    setActiveTestimonial((p) =>
-                      p === TESTIMONIALS.length - 1 ? 0 : p + 1
-                    )
-                  }
+                  onClick={() => {
+                    setTestimonialDir("right");
+                    setActiveTestimonial((p) => p === TESTIMONIALS.length - 1 ? 0 : p + 1);
+                  }}
                   direction="right"
                 />
               </div>

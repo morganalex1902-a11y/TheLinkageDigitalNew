@@ -145,6 +145,16 @@
   to   { box-shadow: 0 2px 16px rgba(0,0,0,0.08); background: white; }
 }
 
+@keyframes testimonialEnterRight {
+  from { opacity: 0; transform: translateX(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes testimonialEnterLeft {
+  from { opacity: 0; transform: translateX(-40px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
 /* ── Utility classes ───────────────────────────── */
 .animate-marquee {
   animation: marquee 25s linear infinite;
