@@ -342,7 +342,7 @@ export default function Index() {
                 />
 
                 {/* Play button + Watch Video — positioned near bottom-right curve of the right image */}
-                <div className="absolute flex flex-col items-center justify-center gap-1.5 z-20 right-2 md:right-3 bottom-8 md:bottom-12">
+                <div className="absolute flex flex-col items-center justify-center gap-1.5 z-20 right-[clamp(4px,3vw,16px)] bottom-[clamp(20px,5vw,48px)]">
                   <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl flex-shrink-0">
                     <PlayIcon />
                   </button>
