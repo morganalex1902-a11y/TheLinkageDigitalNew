@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import type React from "react";
+import { useInView } from "../hooks/useInView";
 
 const LOGO =
   "https://api.builder.io/api/v1/image/assets/TEMP/b574152e3abce375b7cc892901486aa74053d07c?width=328";
@@ -177,10 +179,30 @@ export default function Index() {
       avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
     },
   ];
+  useEffect(() => {
+    const header = document.getElementById("site-header");
+    const onScroll = () => {
+      if (header) header.classList.toggle("shadow-md", window.scrollY > 60);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const whoRef = useInView();
+  const takeChargeRef = useInView();
+  const empowerRef = useInView();
+  const techRef = useInView();
+  const portfolioRef = useInView();
+  const servicesRef = useInView();
+  const testimonialsRef = useInView();
+  const faqRef = useInView();
+  const ctaRef = useInView();
+  const blogRef = useInView();
+
   return (
     <div className="min-h-screen bg-white font-kanit">
       {/* ── NAVBAR ── */}
-      <header className="border-b border-[#ECECEC] relative z-50 bg-white">
+      <header id="site-header" className="border-b border-[#ECECEC] relative z-50 bg-white sticky top-0 transition-shadow duration-300">
         <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between h-[87px]">
           <img
             src={LOGO}
@@ -234,7 +256,7 @@ export default function Index() {
           {/* Contact Us button */}
           <Link
             to="/contact"
-            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 hover:bg-[#3a3a3e] transition-colors whitespace-nowrap tracking-wide"
+            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 hover:bg-[#8B0AB4] hover:scale-[1.03] transition-all whitespace-nowrap tracking-wide"
           >
             Contact Us
           </Link>
@@ -250,11 +272,9 @@ export default function Index() {
             <div className="flex-1 min-w-0">
               {/* "TURNING IDEAS INTO" */}
               <h1 className="hero-heading font-teko font-bold text-black uppercase">
-                Turning
-                <br />
-                Ideas
-                <br />
-                Into
+                <span className="hero-line block">Turning</span>
+                <span className="hero-line block">Ideas</span>
+                <span className="hero-line block">Into</span>
               </h1>
 
               {/* "DIGITAL" + SUCCESS pill + avatar */}
@@ -265,7 +285,7 @@ export default function Index() {
 
                 {/* Purple pill with vertical "SUCCESS" text — half inside, half outside */}
                 <div
-                  className="flex-shrink-0 relative bg-[#8B0AB4] overflow-visible z-10"
+                  className="flex-shrink-0 relative bg-[#8B0AB4] overflow-visible z-10 animate-float"
                   style={{ borderRadius: "3rem", width: "clamp(3.8rem,6.2vw,7rem)", height: "clamp(4.5rem,7.5vw,8.5rem)" }}
                 >
                   <span className="success-text font-teko font-normal text-black uppercase absolute left-1/2 top-1/2">
@@ -315,7 +335,7 @@ export default function Index() {
             {/* RIGHT: images + video + customers */}
             <div className="relative flex-shrink-0 mt-10 lg:mt-0 lg:w-[430px] xl:w-[500px]">
               {/* Pill images */}
-              <div className="flex items-center justify-center pt-6 lg:pt-4">
+              <div className="flex items-center justify-center pt-6 lg:pt-4 hero-images-enter">
                 {/* Left: red duotone shape — positioned lower, behind */}
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
@@ -344,7 +364,7 @@ export default function Index() {
                   />
                   {/* Play button sits just outside the bottom-right curve */}
                   <div className="absolute -right-10 bottom-[38%] flex flex-col items-center gap-1">
-                    <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl">
+                    <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
                       <PlayIcon />
                     </button>
                     <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
@@ -357,7 +377,7 @@ export default function Index() {
               </div>
 
               {/* Arrow + customers */}
-              <div className="mt-4 md:mt-6 pl-2 md:pl-4">
+              <div className="mt-4 md:mt-6 pl-2 md:pl-4 hero-bottom-enter">
                 <img src={ARROW_DOWN} alt="" className="w-16 md:w-20 h-10 md:h-12 mb-2 md:mb-3" />
                 <img src={THUMB_IMG} alt="Customers" className="h-12 md:h-14 mb-2 md:mb-3 max-w-full" />
                 <p className="font-kanit text-[15px] md:text-[17px] lg:text-[18px] leading-[1.4]">
@@ -382,7 +402,7 @@ export default function Index() {
       </main>
 
       {/* ── WHO WE ARE SECTION ── */}
-      <section className="bg-white py-14 md:py-20 lg:py-24 overflow-hidden">
+      <section ref={whoRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 overflow-hidden reveal">
         <div className="max-w-[1400px] mx-auto px-6">
 
           {/* Heading row */}
@@ -564,7 +584,7 @@ export default function Index() {
       </div>
 
       {/* ── TAKE CHARGE STEERING SECTION ── */}
-      <section className="bg-[#171717] py-16 md:py-20 lg:py-24 overflow-hidden">
+      <section ref={takeChargeRef as React.RefObject<HTMLElement>} className="bg-[#171717] py-16 md:py-20 lg:py-24 overflow-hidden reveal">
         <div className="max-w-[1400px] mx-auto px-6">
 
           {/* Top: character + heading + description */}
@@ -591,7 +611,7 @@ export default function Index() {
           </div>
 
           {/* Feature cards: 3-column grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 reveal-stagger in-view">
 
             {/* Card 1: Dedicated Team */}
             <div className="md:border-r border-white/[0.08] pb-10 md:pb-0 md:pr-8 lg:pr-14">
@@ -661,7 +681,7 @@ export default function Index() {
       </section>
 
       {/* ── EMPOWERING SKILLS SECTION ── */}
-      <section className="bg-white py-14 md:py-20 lg:py-24">
+      <section ref={empowerRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
         <div className="max-w-[1400px] mx-auto px-6">
 
           {/* Heading + description row */}
@@ -763,7 +783,7 @@ export default function Index() {
       </section>
 
       {/* ── PORTFOLIO SECTION ── */}
-      <section className="bg-white overflow-hidden">
+      <section ref={portfolioRef as React.RefObject<HTMLElement>} className="bg-white overflow-hidden reveal">
         {/* Staggered mosaic grid
             Each image = 29.6vw wide (555/1875×100) so 4 fill ~120vw total
             Row 2 shifted left by 19.9vw (373/1875×100) → last image reaches exactly 100vw */}
@@ -777,12 +797,10 @@ export default function Index() {
               "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
               "https://api.builder.io/api/v1/image/assets/TEMP/5d8437229e206f54ccdbc766d6b0d34d1443c74f?width=1109",
             ].map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt=""
-                className="flex-shrink-0 object-cover w-[29.6vw] h-[29.9vw]"
-              />
+              <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
+                <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             ))}
           </div>
 
@@ -797,12 +815,10 @@ export default function Index() {
               "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
               "https://api.builder.io/api/v1/image/assets/TEMP/04c486d57c886aa65d7f3e62a6ff656882d3dd55?width=1109",
             ].map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt=""
-                className="flex-shrink-0 object-cover w-[29.6vw] h-[29.9vw]"
-              />
+              <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
+                <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             ))}
           </div>
 
@@ -826,7 +842,7 @@ export default function Index() {
       </section>
 
       {/* ── PREMIUM SERVICES SECTION ── */}
-      <section className="bg-white py-14 md:py-20 lg:py-24">
+      <section ref={servicesRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
         <div className="max-w-[1400px] mx-auto px-6">
 
           {/* Header */}
@@ -974,7 +990,7 @@ export default function Index() {
       </section>
 
       {/* ── TESTIMONIAL SECTION ── */}
-      <section className="bg-white">
+      <section ref={testimonialsRef as React.RefObject<HTMLElement>} className="bg-white reveal">
 
         {/* Full-width banner image */}
         <div className="w-full h-[240px] md:h-[380px] lg:h-[560px] overflow-hidden">
@@ -1110,7 +1126,7 @@ export default function Index() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="bg-white py-14 md:py-20 lg:py-24">
+      <section ref={faqRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-20 items-start">
 
@@ -1186,13 +1202,16 @@ export default function Index() {
                   </button>
 
                   {/* Answer (animated open/close) */}
-                  {openFaq === i && (
+                  <div
+                    className="overflow-hidden transition-all duration-300 ease-in-out"
+                    style={{ maxHeight: openFaq === i ? "200px" : "0px", opacity: openFaq === i ? 1 : 0 }}
+                  >
                     <div className="pb-6 pr-8">
                       <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[15px] leading-[1.7]">
                         {item.a}
                       </p>
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
               {/* Bottom border */}
@@ -1204,7 +1223,7 @@ export default function Index() {
       </section>
 
       {/* ── CTA BANNER ── */}
-      <section className="bg-[#FFE8F5] py-16 md:py-20 lg:py-24 relative overflow-hidden text-center">
+      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] py-16 md:py-20 lg:py-24 relative overflow-hidden text-center reveal">
         {/* Left purple blob decorations */}
         <div className="absolute -left-[120px] md:-left-[80px] top-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[340px] md:h-[340px] rounded-full bg-[#8B0AB4]" />
         <div className="absolute left-[60px] md:left-[100px] top-1/2 -translate-y-1/2 w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-full bg-[#6a00a8]" />
@@ -1228,7 +1247,7 @@ export default function Index() {
           <br />
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-6 md:px-8 py-3 md:py-4 hover:bg-[#8B0AB4] transition-colors tracking-wider mt-2"
+            className="inline-flex items-center gap-2 bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-6 md:px-8 py-3 md:py-4 hover:bg-[#8B0AB4] hover:scale-105 hover:gap-4 transition-all tracking-wider mt-2"
           >
             Let's Get In Touch →
           </Link>
@@ -1236,7 +1255,7 @@ export default function Index() {
       </section>
 
       {/* ── JOURNAL / BLOG SECTION ── */}
-      <section className="bg-white py-14 md:py-20 lg:py-24">
+      <section ref={blogRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
         <div className="max-w-[1400px] mx-auto px-6">
 
           {/* Heading row */}
@@ -1280,7 +1299,7 @@ export default function Index() {
               <Link
                 to="/blog"
                 key={i}
-                className="bg-[#1e2029] p-6 md:p-7 lg:p-8 flex flex-col justify-between min-h-[270px] md:min-h-[300px] hover:opacity-90 transition-opacity"
+                className="bg-[#1e2029] p-6 md:p-7 lg:p-8 flex flex-col justify-between min-h-[270px] md:min-h-[300px] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
               >
                 {/* Author */}
                 <div className="flex items-center gap-3 mb-8">
