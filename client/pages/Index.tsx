@@ -61,7 +61,7 @@ function ArrowRight() {
       viewBox="0 0 14 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="flex-shrink-0 transition-colors"
+      className="flex-shrink-0"
     >
       <g clipPath="url(#clip-arrow)">
         <path
@@ -78,6 +78,48 @@ function ArrowRight() {
         </clipPath>
       </defs>
     </svg>
+  );
+}
+
+function ArrowButton({ onClick, className = "", direction = "right" }: { onClick?: () => void; className?: string; direction?: "left" | "right" }) {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const [active, setActive] = useState(false);
+  const [origin, setOrigin] = useState({ x: 0, y: 0 });
+  const [coverSize, setCoverSize] = useState(0);
+
+  const measure = (x: number, y: number) => {
+    const node = btnRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    const d = Math.ceil(2 * Math.max(Math.hypot(x, y), Math.hypot(rect.width - x, y), Math.hypot(x, rect.height - y), Math.hypot(rect.width - x, rect.height - y)));
+    setCoverSize(d);
+    setOrigin({ x, y });
+  };
+
+  return (
+    <button
+      ref={btnRef}
+      onClick={onClick}
+      onPointerEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); setActive(true); }}
+      onPointerLeave={() => setActive(false)}
+      onPointerMove={(e) => { if (!active) return; const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); }}
+      className={`relative inline-flex items-center justify-center overflow-hidden cursor-pointer select-none transition-colors rounded-full ${className}`}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute rounded-full"
+        style={{
+          width: coverSize, height: coverSize,
+          left: origin.x, top: origin.y,
+          backgroundColor: "#8B0AB4",
+          transform: `translate(-50%, -50%) scale(${active && coverSize > 0 ? 1 : 0})`,
+          transition: active ? "transform 0.5s cubic-bezier(0.16,1,0.3,1)" : "transform 0.35s cubic-bezier(0.16,1,0.3,1)",
+        }}
+      />
+      <span className="relative z-10 group flex items-center justify-center">
+        {direction === "left" ? "←" : "→"}
+      </span>
+    </button>
   );
 }
 
@@ -1104,28 +1146,24 @@ export default function Index() {
               {/* Navigation controls */}
               <div className="flex items-center gap-3 mt-6 md:mt-8 max-w-[480px] justify-end">
                 <div className="w-8 h-0.5 bg-[#121212] mr-1" />
-                <button
+                <ArrowButton
+                  direction="left"
                   onClick={() =>
                     setActiveTestimonial((p) =>
                       p === 0 ? TESTIMONIALS.length - 1 : p - 1
                     )
                   }
-                  className="w-9 h-9 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors font-kanit"
-                  aria-label="Previous"
-                >
-                  ←
-                </button>
-                <button
+                  className="w-9 h-9 border border-[#ECECEC] hover:border-[#8B0AB4] group text-[#121212] group-hover:text-white"
+                />
+                <ArrowButton
+                  direction="right"
                   onClick={() =>
                     setActiveTestimonial((p) =>
                       p === TESTIMONIALS.length - 1 ? 0 : p + 1
                     )
                   }
-                  className="w-9 h-9 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors font-kanit"
-                  aria-label="Next"
-                >
-                  →
-                </button>
+                  className="w-9 h-9 border border-[#ECECEC] hover:border-[#8B0AB4] group text-[#121212] group-hover:text-white"
+                />
               </div>
             </div>
 
