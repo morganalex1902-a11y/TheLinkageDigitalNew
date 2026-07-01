@@ -343,7 +343,7 @@ export default function Index() {
                     className="w-full h-full object-contain"
                   />
                   {/* Play button sits just outside the bottom-right curve */}
-                  <div className="absolute -right-8 bottom-[18%] flex flex-col items-center gap-1">
+                  <div className="absolute -right-8 bottom-[6%] flex flex-col items-center gap-1">
                     <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl">
                       <PlayIcon />
                     </button>
