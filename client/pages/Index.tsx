@@ -5,6 +5,36 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 
+const LOGO =
+  "https://api.builder.io/api/v1/image/assets/TEMP/b574152e3abce375b7cc892901486aa74053d07c?width=328";
+const AVATAR_IMG =
+  "https://api.builder.io/api/v1/image/assets/TEMP/ccf757ecc570bad21be86586be9ed913626543a9?width=164";
+const SCROLL_IMG =
+  "https://api.builder.io/api/v1/image/assets/TEMP/606973b7a19e784fa309acebad1d2d62459e0d20?width=80";
+const INTRO_SHAPE_1 =
+  "https://api.builder.io/api/v1/image/assets/TEMP/146d714265786810fdd18a4fcf76b2fc19105251?width=200";
+const PERSON_IMG =
+  "https://api.builder.io/api/v1/image/assets/TEMP/16fdf4661237be3a6f0753facd7aa91bfa13ef50?width=418";
+const GROUP_IMG =
+  "https://api.builder.io/api/v1/image/assets/TEMP/9dcd1bb21880ba2e5bc600ed06cba837cc13bca1?width=500";
+const ARROW_DOWN =
+  "https://api.builder.io/api/v1/image/assets/TEMP/1685b8dc9de3e96d40e004a1cd5fa325c3f783d1?width=160";
+const THUMB_IMG =
+  "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320";
+const INTRO_SHAPE =
+  "https://api.builder.io/api/v1/image/assets/TEMP/b1cd86f4ef199e2be3d9b85ebc88d5bf004fc2b8?width=820";
+const BRAND_CORNER =
+  "https://api.builder.io/api/v1/image/assets/TEMP/2f8efb74891ead64813feaafacd54fb4855ea528?width=312";
+
+const BRAND_LOGOS = [
+  "https://api.builder.io/api/v1/image/assets/TEMP/c879a0f5aebe016864bd1cd82e1d16c217116b3d?width=297",
+  "https://api.builder.io/api/v1/image/assets/TEMP/957bf2587ffbe603681b88cad470b214d38cc216?width=344",
+  "https://api.builder.io/api/v1/image/assets/TEMP/60abf8b538f518a80ab9a841924e64d10a9bf558?width=322",
+  "https://api.builder.io/api/v1/image/assets/TEMP/2749008110e8a6883274172ecd2cd6d9176beffb?width=311",
+  "https://api.builder.io/api/v1/image/assets/TEMP/01ab5c0799c8b4f3b758b1c8a878ec698c3fc843?width=344",
+  "https://api.builder.io/api/v1/image/assets/TEMP/2df19b14c5298afc8c404d5f60b74c9c25a19679?width=336",
+];
+
 function MarqueeScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
@@ -44,36 +74,6 @@ function MarqueeScroll() {
     </div>
   );
 }
-
-const LOGO =
-  "https://api.builder.io/api/v1/image/assets/TEMP/b574152e3abce375b7cc892901486aa74053d07c?width=328";
-const AVATAR_IMG =
-  "https://api.builder.io/api/v1/image/assets/TEMP/ccf757ecc570bad21be86586be9ed913626543a9?width=164";
-const SCROLL_IMG =
-  "https://api.builder.io/api/v1/image/assets/TEMP/606973b7a19e784fa309acebad1d2d62459e0d20?width=80";
-const INTRO_SHAPE_1 =
-  "https://api.builder.io/api/v1/image/assets/TEMP/146d714265786810fdd18a4fcf76b2fc19105251?width=200";
-const PERSON_IMG =
-  "https://api.builder.io/api/v1/image/assets/TEMP/16fdf4661237be3a6f0753facd7aa91bfa13ef50?width=418";
-const GROUP_IMG =
-  "https://api.builder.io/api/v1/image/assets/TEMP/9dcd1bb21880ba2e5bc600ed06cba837cc13bca1?width=500";
-const ARROW_DOWN =
-  "https://api.builder.io/api/v1/image/assets/TEMP/1685b8dc9de3e96d40e004a1cd5fa325c3f783d1?width=160";
-const THUMB_IMG =
-  "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320";
-const INTRO_SHAPE =
-  "https://api.builder.io/api/v1/image/assets/TEMP/b1cd86f4ef199e2be3d9b85ebc88d5bf004fc2b8?width=820";
-const BRAND_CORNER =
-  "https://api.builder.io/api/v1/image/assets/TEMP/2f8efb74891ead64813feaafacd54fb4855ea528?width=312";
-
-const BRAND_LOGOS = [
-  "https://api.builder.io/api/v1/image/assets/TEMP/c879a0f5aebe016864bd1cd82e1d16c217116b3d?width=297",
-  "https://api.builder.io/api/v1/image/assets/TEMP/957bf2587ffbe603681b88cad470b214d38cc216?width=344",
-  "https://api.builder.io/api/v1/image/assets/TEMP/60abf8b538f518a80ab9a841924e64d10a9bf558?width=322",
-  "https://api.builder.io/api/v1/image/assets/TEMP/2749008110e8a6883274172ecd2cd6d9176beffb?width=311",
-  "https://api.builder.io/api/v1/image/assets/TEMP/01ab5c0799c8b4f3b758b1c8a878ec698c3fc843?width=344",
-  "https://api.builder.io/api/v1/image/assets/TEMP/2df19b14c5298afc8c404d5f60b74c9c25a19679?width=336",
-];
 
 function ChevronDown() {
   return (
