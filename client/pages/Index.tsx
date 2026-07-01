@@ -348,12 +348,12 @@ export default function Index() {
                   }}
                 />
 
-                {/* Play button + Watch Video — positioned to the right of images */}
-                <div className="flex flex-col items-center justify-center gap-3 flex-shrink-0 pb-4">
-                  <button className="w-[70px] h-[70px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100px] rounded-full bg-black border-[4px] md:border-[5px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl flex-shrink-0">
+                {/* Play button + Watch Video — positioned near bottom-right curve of the right image */}
+                <div className="absolute flex flex-col items-center justify-center gap-1.5 z-20 right-0 bottom-4 md:bottom-6">
+                  <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl flex-shrink-0">
                     <PlayIcon />
                   </button>
-                  <span className="font-kanit font-medium text-[11px] md:text-[13px] lg:text-[14px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                  <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
                     Watch
                     <br />
                     Video
