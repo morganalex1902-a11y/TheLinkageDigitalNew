@@ -1300,34 +1300,75 @@ export default function Index() {
       </section>
 
       {/* ── CTA BANNER ── */}
-      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] py-16 md:py-20 lg:py-24 relative overflow-hidden text-center reveal">
-        {/* Left purple blob decorations */}
-        <div className="absolute -left-[120px] md:-left-[80px] top-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[340px] md:h-[340px] rounded-full bg-[#8B0AB4]" />
-        <div className="absolute left-[60px] md:left-[100px] top-1/2 -translate-y-1/2 w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-full bg-[#6a00a8]" />
+      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] relative overflow-hidden reveal">
 
-        {/* Right purple blob decorations */}
-        <div className="absolute -right-[120px] md:-right-[80px] top-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[340px] md:h-[340px] rounded-full bg-[#8B0AB4]" />
-        <div className="absolute right-[60px] md:right-[100px] top-1/2 -translate-y-1/2 w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-full bg-[#6a00a8]" />
+        {/* Decorative left blobs */}
+        <div className="absolute -left-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-90 animate-float" />
+        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8]" />
+
+        {/* Decorative right blobs */}
+        <div className="absolute -right-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-90 animate-float" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute right-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8]" />
+
+        {/* Decorative side images */}
+        <img
+          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&q=80"
+          alt=""
+          className="absolute left-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-20 pointer-events-none select-none"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=80"
+          alt=""
+          className="absolute right-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-20 pointer-events-none select-none"
+        />
 
         {/* Content */}
-        <div className="relative z-10 px-6">
-          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.8rem,4.5vw,4rem)] mb-3">
-            Let's Start Your
+        <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
+
+          {/* Label */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-8 h-px bg-[#8B0AB4]" />
+            <span className="font-kanit font-semibold text-[#8B0AB4] text-[12px] md:text-[13px] uppercase tracking-[0.2em]">
+              👋 Hello !
+            </span>
+            <div className="w-8 h-px bg-[#8B0AB4]" />
+          </div>
+
+          {/* Main heading */}
+          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3rem,7vw,7rem)] mb-4">
+            Let's Talk
             <br />
-            Experience With
+            <span className="text-[#8B0AB4]">With Us</span>
           </h2>
-          <div className="bg-[#8B0AB4] inline-block px-6 md:px-10 py-2 md:py-3 mb-6">
-            <span className="font-teko font-bold text-white uppercase text-[clamp(1.5rem,3.5vw,3rem)]">
+
+          {/* Sub label */}
+          <div className="bg-[#121212] px-8 md:px-14 py-3 mb-8">
+            <span className="font-teko font-semibold text-white uppercase text-[clamp(1rem,2.2vw,1.8rem)] tracking-widest">
               The Linkage Digital
             </span>
           </div>
-          <br />
+
+          {/* Email link */}
+          <a
+            href="mailto:hello@thelinkagedigital.com"
+            className="font-kanit font-light text-[#121212] text-[clamp(0.9rem,2vw,1.5rem)] border-b border-[#121212] pb-0.5 mb-10 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors"
+          >
+            hello@thelinkagedigital.com
+          </a>
+
+          {/* CTA */}
           <OriginButton
             onClick={() => navigate("/contact")}
-            fillColor="#ffffff"
-            className="bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-6 md:px-8 py-3 md:py-4 tracking-wider mt-2 hover:text-[#121212]"
+            fillColor="#8B0AB4"
+            className="bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-10 md:px-14 py-4 md:py-5 tracking-widest hover:text-white inline-flex items-center gap-3"
           >
-            Let's Get In Touch →
+            Let's Get In Touch
+            <svg width="20" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+              <g clipPath="url(#cta-arrow)">
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.6143 3.89748C11.9608 3.4741 12.5848 3.4117 13.0081 3.7581L20.6033 9.9723H0.990476C0.443451 9.9723 0 9.52885 0 8.98183C0 8.43481 0.443451 7.99135 0.990476 7.99135H15.0539L11.7538 5.29127C11.3304 4.94488 11.268 4.32085 11.6143 3.89748Z" fill="currentColor"/>
+              </g>
+              <defs><clipPath id="cta-arrow"><rect width="20.8" height="14" fill="white"/></clipPath></defs>
+            </svg>
           </OriginButton>
         </div>
       </section>
