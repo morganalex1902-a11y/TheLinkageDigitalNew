@@ -116,7 +116,7 @@ function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId:
       onPointerEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); setActive(true); }}
       onPointerLeave={() => setActive(false)}
       onPointerMove={(e) => { if (!active) return; const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); }}
-      className="relative w-[130px] h-[130px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full border border-[#ECECEC] overflow-hidden flex-shrink-0 hover:border-[#8B0AB4] transition-colors cursor-pointer select-none group"
+      className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border border-[#ECECEC] overflow-hidden flex-shrink-0 hover:border-[#8B0AB4] transition-colors cursor-pointer select-none group"
     >
       {/* Fill circle */}
       <span
@@ -130,18 +130,18 @@ function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId:
           transition: active ? "transform 0.5s cubic-bezier(0.16,1,0.3,1)" : "transform 0.35s cubic-bezier(0.16,1,0.3,1)",
         }}
       />
-      {/* Arrow top-right */}
-      <span className="absolute top-[24%] right-[18%] z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-        <svg width="11" height="16" viewBox="0 0 11 16" fill="none">
+      {/* Arrow — top-right, tight to edge */}
+      <span className="absolute top-5 right-5 z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+        <svg width="10" height="14" viewBox="0 0 11 16" fill="none">
           <g clipPath={`url(#${clipId})`}>
             <path d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z" fill="currentColor" className="text-[#121212] group-hover:text-white transition-colors" />
           </g>
           <defs><clipPath id={clipId}><rect width="11" height="16" fill="white" /></clipPath></defs>
         </svg>
       </span>
-      {/* Text bottom-left */}
-      <span className="absolute bottom-[22%] left-[22%] z-10 font-kanit font-semibold text-[13px] uppercase text-[#121212] leading-snug text-left group-hover:text-white transition-colors">
-        Explore Us<br />More
+      {/* Text — vertically centered, left-aligned with padding */}
+      <span className="absolute inset-0 z-10 flex items-center pl-5 font-kanit font-semibold text-[12px] md:text-[13px] uppercase text-[#121212] leading-snug text-left group-hover:text-white transition-colors">
+        Explore<br />Us More
       </span>
     </button>
   );
