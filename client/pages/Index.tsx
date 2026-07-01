@@ -85,11 +85,8 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     return () => clearInterval(interval);
   }, []);
 
-  // Calculate based on 4 images (29.6vw each + 0.53vw gap = ~30.13vw per image)
-  // So 4 images = ~120.52vw per set, in pixels at 1920px viewport = ~233px per set
-  const pixelsPerSet = 233;
-  const loopCounter = counter % (pixelsPerSet * 3); // Loop every 699px
-  const offset = direction === "right" ? loopCounter : -loopCounter;
+  // Just keep growing the offset, it will loop seamlessly with enough copies
+  const offset = direction === "right" ? counter : -counter;
 
   return (
     <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
@@ -101,7 +98,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
           transition: "none"
         }}
       >
-        {[...images, ...images, ...images].map((src, i) => (
+        {Array(10).fill(0).flatMap(() => images).map((src, i) => (
           <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
             <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
