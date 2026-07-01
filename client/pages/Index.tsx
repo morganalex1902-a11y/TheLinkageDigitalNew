@@ -1302,56 +1302,42 @@ export default function Index() {
       {/* ── CTA BANNER ── */}
       <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] relative overflow-hidden reveal">
 
-        {/* Decorative left blobs — bg only, very low opacity */}
-        <div className="absolute -left-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-[0.05] animate-float pointer-events-none" />
-        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8] opacity-[0.05] pointer-events-none" />
-
-        {/* Decorative right blobs — bg only, very low opacity */}
-        <div className="absolute -right-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-[0.05] animate-float pointer-events-none" style={{ animationDelay: "1.5s" }} />
-        <div className="absolute right-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8] opacity-[0.05] pointer-events-none" />
-
-        {/* Decorative side images */}
+        {/* Left decorative image panel */}
         <img
-          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&q=80"
+          src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
           alt=""
-          className="absolute left-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-[0.05] pointer-events-none select-none"
+          className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
         />
+
+        {/* Right decorative image panel */}
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=80"
+          src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
           alt=""
-          className="absolute right-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-[0.05] pointer-events-none select-none"
+          className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
         />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
 
           {/* Label */}
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-px bg-[#8B0AB4]" />
-            <span className="font-kanit font-semibold text-[#8B0AB4] text-[12px] md:text-[13px] uppercase tracking-[0.2em]">
-              👋 Hello !
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-[1.4rem]">👋</span>
+            <span className="font-teko font-bold text-[#121212] text-[clamp(1.4rem,2.5vw,2rem)] uppercase tracking-wider">
+              Hello !
             </span>
-            <div className="w-8 h-px bg-[#8B0AB4]" />
           </div>
 
           {/* Main heading */}
-          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3rem,7vw,7rem)] mb-4">
+          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-4">
             Let's Talk
             <br />
-            <span className="text-[#8B0AB4]">With Us</span>
+            With Us
           </h2>
-
-          {/* Sub label */}
-          <div className="bg-[#121212] px-8 md:px-14 py-3 mb-8">
-            <span className="font-teko font-semibold text-white uppercase text-[clamp(1rem,2.2vw,1.8rem)] tracking-widest">
-              The Linkage Digital
-            </span>
-          </div>
 
           {/* Email link */}
           <a
             href="mailto:hello@thelinkagedigital.com"
-            className="font-kanit font-light text-[#121212] text-[clamp(0.9rem,2vw,1.5rem)] border-b border-[#121212] pb-0.5 mb-10 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors"
+            className="font-kanit font-light text-[#121212] text-[clamp(0.9rem,1.8vw,1.4rem)] underline underline-offset-4 mb-10 hover:text-[#8B0AB4] transition-colors"
           >
             hello@thelinkagedigital.com
           </a>
