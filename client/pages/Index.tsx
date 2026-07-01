@@ -329,9 +329,9 @@ export default function Index() {
                   alt="Our team"
                   className="flex-shrink-0 relative z-0 object-contain"
                   style={{
-                    width: "clamp(110px,15.5vw,190px)",
-                    height: "clamp(220px,31vw,380px)",
-                    top: "clamp(10px,1.5vw,24px)",
+                    width: "clamp(120px,17vw,210px)",
+                    height: "clamp(240px,34vw,420px)",
+                    top: "clamp(18px,2.6vw,42px)",
                   }}
                 />
 
@@ -341,9 +341,9 @@ export default function Index() {
                   alt="Team member"
                   className="flex-shrink-0 relative z-10 object-contain"
                   style={{
-                    width: "clamp(130px,18.5vw,225px)",
-                    height: "clamp(260px,37vw,450px)",
-                    top: "clamp(-10px,-1.5vw,-24px)",
+                    width: "clamp(120px,17vw,210px)",
+                    height: "clamp(240px,34vw,420px)",
+                    top: "clamp(-18px,-2.6vw,-42px)",
                     marginLeft: "clamp(-16px,-2.2vw,-28px)",
                   }}
                 />
