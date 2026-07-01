@@ -78,21 +78,20 @@ function MarqueeScroll() {
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
-  const loopDistance = useRef(0);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const animate = () => {
       setOffset((prev) => {
-        const speed = direction === "right" ? 0.5 : -0.5;
+        const speed = direction === "right" ? 1 : -1;
         let next = prev + speed;
+        const scrollWidth = container.scrollWidth / 3; // One third of total width (we tripled the images)
 
-        // Reset when we've scrolled one full set of images
-        const imageWidth = window.innerWidth * 0.296 + window.innerWidth * 0.0053; // 29.6vw + gap
-        const loopWidth = imageWidth * images.length;
-
-        if (direction === "right" && next > loopWidth) {
+        if (direction === "right" && next > scrollWidth) {
           next = 0;
-        } else if (direction === "left" && next < -loopWidth) {
+        } else if (direction === "left" && next < -scrollWidth) {
           next = 0;
         }
 
@@ -102,16 +101,26 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
 
     const interval = setInterval(animate, 30);
     return () => clearInterval(interval);
-  }, [direction, images.length]);
+  }, [direction]);
 
   return (
-    <div className="flex gap-[0.53vw] overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
-      {[...images, ...images, ...images].map((src, i) => (
-        <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
-          <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ transform: `translateX(${offset}px)`, willChange: "transform" }} />
-          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
-      ))}
+    <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
+      <div
+        ref={containerRef}
+        className="flex gap-[0.53vw]"
+        style={{
+          transform: `translateX(${offset}px)`,
+          willChange: "transform",
+          transition: "none"
+        }}
+      >
+        {[...images, ...images, ...images].map((src, i) => (
+          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
+            <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
