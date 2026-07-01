@@ -1302,24 +1302,24 @@ export default function Index() {
       {/* ── CTA BANNER ── */}
       <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] relative overflow-hidden reveal">
 
-        {/* Decorative left blobs */}
-        <div className="absolute -left-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-90 animate-float" />
-        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8]" />
+        {/* Decorative left blobs — bg only, very low opacity */}
+        <div className="absolute -left-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-[0.05] animate-float pointer-events-none" />
+        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8] opacity-[0.05] pointer-events-none" />
 
-        {/* Decorative right blobs */}
-        <div className="absolute -right-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-90 animate-float" style={{ animationDelay: "1.5s" }} />
-        <div className="absolute right-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8]" />
+        {/* Decorative right blobs — bg only, very low opacity */}
+        <div className="absolute -right-[100px] top-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#8B0AB4] opacity-[0.05] animate-float pointer-events-none" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute right-[80px] top-1/2 -translate-y-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-[#6a00a8] opacity-[0.05] pointer-events-none" />
 
         {/* Decorative side images */}
         <img
           src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&q=80"
           alt=""
-          className="absolute left-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-20 pointer-events-none select-none"
+          className="absolute left-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-[0.05] pointer-events-none select-none"
         />
         <img
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=80"
           alt=""
-          className="absolute right-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-20 pointer-events-none select-none"
+          className="absolute right-0 top-0 h-full w-[200px] md:w-[280px] lg:w-[340px] object-cover opacity-[0.05] pointer-events-none select-none"
         />
 
         {/* Content */}
