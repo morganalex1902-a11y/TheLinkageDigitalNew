@@ -328,29 +328,31 @@ export default function Index() {
                   }}
                 />
 
-                {/* Right: photo shape — positioned higher, in front, overlapping left */}
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
-                  alt="Team member"
-                  className="flex-shrink-0 relative z-10 object-contain"
+                {/* Right: photo shape + Watch Video anchored to it */}
+                <div
+                  className="relative flex-shrink-0 z-10"
                   style={{
                     width: "clamp(120px,17vw,210px)",
                     height: "clamp(240px,34vw,420px)",
                     top: "clamp(-18px,-2.6vw,-42px)",
-                    marginLeft: 0,
                   }}
-                />
-
-                {/* Play button + Watch Video — positioned near bottom-right curve of the right image */}
-                <div className="absolute flex flex-col items-center justify-center gap-1.5 z-20 right-[clamp(4px,3vw,16px)] bottom-[clamp(20px,5vw,48px)]">
-                  <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl flex-shrink-0">
-                    <PlayIcon />
-                  </button>
-                  <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
-                    Watch
-                    <br />
-                    Video
-                  </span>
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
+                    alt="Team member"
+                    className="w-full h-full object-contain"
+                  />
+                  {/* Play button sits just outside the bottom-right curve */}
+                  <div className="absolute -right-8 bottom-[18%] flex flex-col items-center gap-1">
+                    <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] transition-colors shadow-2xl">
+                      <PlayIcon />
+                    </button>
+                    <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                      Watch
+                      <br />
+                      Video
+                    </span>
+                  </div>
                 </div>
               </div>
 
