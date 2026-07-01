@@ -85,8 +85,9 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     return () => clearInterval(interval);
   }, []);
 
-  // Just keep growing the offset, it will loop seamlessly with enough copies
-  const offset = direction === "right" ? counter : -counter;
+  // Loop after 2400 frames (~80 seconds) - plenty of time before looping
+  const loopCounter = counter % 2400;
+  const offset = direction === "right" ? loopCounter : -loopCounter;
 
   return (
     <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
