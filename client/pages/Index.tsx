@@ -344,7 +344,7 @@ export default function Index() {
                     width: "clamp(120px,17vw,210px)",
                     height: "clamp(240px,34vw,420px)",
                     top: "clamp(-18px,-2.6vw,-42px)",
-                    marginLeft: "clamp(-16px,-2.2vw,-28px)",
+                    marginLeft: 0,
                   }}
                 />
 
