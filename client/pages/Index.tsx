@@ -53,31 +53,38 @@ function ChevronDown() {
   );
 }
 
-function ArrowRight() {
+function ArrowPointerButton({ onClick, direction = "right" }: { onClick?: () => void; direction?: "left" | "right" }) {
   return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="flex-shrink-0"
+    <OriginButton
+      onClick={onClick}
+      fillColor="#8B0AB4"
+      className="w-9 h-9 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white flex items-center justify-center"
     >
-      <g clipPath="url(#clip-arrow)">
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
-          fill="currentColor"
-          className="text-[#121212] group-hover:text-white transition-colors"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip-arrow">
-          <rect width="14" height="14" fill="white" />
-        </clipPath>
-      </defs>
-    </svg>
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="flex-shrink-0"
+        style={{ transform: direction === "left" ? "scaleX(-1)" : "none" }}
+      >
+        <g clipPath="url(#clip-arrow-ptr)">
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
+            fill="currentColor"
+            className="text-[#121212] group-hover:text-white transition-colors"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip-arrow-ptr">
+            <rect width="14" height="14" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </OriginButton>
   );
 }
 
@@ -377,14 +384,16 @@ export default function Index() {
                     experiences. our team creates and exceptional UI design and
                     functionality.
                   </p>
-                  <OriginButton
-                    onClick={() => navigate("/contact")}
-                    fillColor="#8B0AB4"
-                    className="group mt-6 md:mt-8 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#1C1D20] border-b border-[#1C1D20] pb-0.5 tracking-wider hover:text-white hover:border-[#8B0AB4] px-3 py-2 gap-2 transition-colors"
-                  >
-                    <span className="text-[#1C1D20] group-hover:text-white transition-colors">Get Started Now</span>
-                    <ArrowRight />
-                  </OriginButton>
+                  <div className="flex items-center gap-2">
+                    <OriginButton
+                      onClick={() => navigate("/contact")}
+                      fillColor="#8B0AB4"
+                      className="group mt-6 md:mt-8 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#1C1D20] border-b border-[#1C1D20] pb-0.5 tracking-wider hover:text-white hover:border-[#8B0AB4] px-3 py-2 transition-colors"
+                    >
+                      Get Started Now
+                    </OriginButton>
+                    <ArrowPointerButton onClick={() => navigate("/contact")} direction="right" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -1104,28 +1113,22 @@ export default function Index() {
               {/* Navigation controls */}
               <div className="flex items-center gap-3 mt-6 md:mt-8 max-w-[480px] justify-end">
                 <div className="w-8 h-0.5 bg-[#121212] mr-1" />
-                <OriginButton
+                <ArrowPointerButton
                   onClick={() =>
                     setActiveTestimonial((p) =>
                       p === 0 ? TESTIMONIALS.length - 1 : p - 1
                     )
                   }
-                  fillColor="#8B0AB4"
-                  className="relative w-9 h-9 rounded-full border-2 border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white transition-all duration-300"
-                >
-                  ←
-                </OriginButton>
-                <OriginButton
+                  direction="left"
+                />
+                <ArrowPointerButton
                   onClick={() =>
                     setActiveTestimonial((p) =>
                       p === TESTIMONIALS.length - 1 ? 0 : p + 1
                     )
                   }
-                  fillColor="#8B0AB4"
-                  className="relative w-9 h-9 rounded-full border-2 border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white transition-all duration-300"
-                >
-                  →
-                </OriginButton>
+                  direction="right"
+                />
               </div>
             </div>
 
