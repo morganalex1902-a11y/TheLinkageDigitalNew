@@ -1336,10 +1336,10 @@ export default function Index() {
 
           {/* Email link */}
           <a
-            href="mailto:hello@thelinkagedigital.com"
+            href="mailto:sales@thelinkagedigital.com"
             className="font-kanit font-light text-[#121212] text-[clamp(0.9rem,1.8vw,1.4rem)] underline underline-offset-4 mb-10 hover:text-[#8B0AB4] transition-colors"
           >
-            hello@thelinkagedigital.com
+            sales@thelinkagedigital.com
           </a>
 
           {/* CTA */}
@@ -1452,10 +1452,10 @@ export default function Index() {
             With Us
           </h2>
           <a
-            href="mailto:hello@example.com"
+            href="mailto:sales@thelinkagedigital.com"
             className="font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
           >
-            hello@example.com
+            sales@thelinkagedigital.com
           </a>
         </div>
       </section>

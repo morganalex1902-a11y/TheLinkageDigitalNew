@@ -85,15 +85,15 @@ export default function Footer() {
             </h4>
             <div className="space-y-4">
               <p className="font-poppins font-light text-white text-[14px] md:text-[15px] leading-[1.7] tracking-[0.32px]">
-                27 Design Avenue, New York, NY
+                5900 Balcones Dr Ste 10429,
                 <br />
-                10001, USA
+                Austin, TX 78731, United States
               </p>
               <p className="font-poppins font-normal text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px]">
-                +1(512)200-3815
+                +1(512) 200-3815
               </p>
               <p className="font-poppins font-normal text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px]">
-                contact@blackie.com
+                sales@thelinkagedigital.com
               </p>
             </div>
           </div>
