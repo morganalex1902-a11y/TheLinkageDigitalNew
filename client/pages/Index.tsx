@@ -373,11 +373,14 @@ export default function Index() {
 
               {/* Scroll icon + description + CTA */}
               <div className="flex items-start gap-6 mt-10 md:mt-14 lg:mt-16 relative z-10">
-                <img
-                  src={SCROLL_IMG}
-                  alt=""
-                  className="w-8 h-14 md:w-10 md:h-16 flex-shrink-0 hidden sm:block"
-                />
+                <OriginButton
+                  fillColor="#8B0AB4"
+                  className="w-8 h-14 md:w-10 md:h-16 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white hidden sm:flex items-center justify-center flex-shrink-0"
+                >
+                  <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 animate-bounce">
+                    <path d="M4 0V10M0.5 7.5L4 11L7.5 7.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
+                  </svg>
+                </OriginButton>
                 <div>
                   <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[360px]">
                     We are a full-service digital agency that builds fascinating user
@@ -444,7 +447,14 @@ export default function Index() {
 
               {/* Arrow + customers */}
               <div className="mt-4 md:mt-6 pl-2 md:pl-4 hero-bottom-enter">
-                <img src={ARROW_DOWN} alt="" className="w-16 md:w-20 h-10 md:h-12 mb-2 md:mb-3" />
+                <OriginButton
+                  fillColor="#8B0AB4"
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white mb-2 md:mb-3 flex items-center justify-center"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <path d="M5 0V8.5M5 8.5L1.25 4.75M5 8.5L8.75 4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
+                  </svg>
+                </OriginButton>
                 <img src={THUMB_IMG} alt="Customers" className="h-12 md:h-14 mb-2 md:mb-3 max-w-full" />
                 <p className="font-kanit text-[15px] md:text-[17px] lg:text-[18px] leading-[1.4]">
                   <span className="text-[#121212] underline underline-offset-2">
