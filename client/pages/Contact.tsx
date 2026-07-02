@@ -20,6 +20,7 @@ export default function Contact() {
   const whyRef = useInView();
   const processRef = useInView();
   const testimonialsRef = useInView();
+  const faqRef = useInView();
 
   const SERVICES_CHECKBOX = [
     "Web Design",
@@ -533,7 +534,7 @@ export default function Contact() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
+      <section ref={faqRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="text-center mb-14 md:mb-20">
             <span className="font-kanit font-bold text-[13px] md:text-[16px] uppercase text-[#121212] block mb-4">

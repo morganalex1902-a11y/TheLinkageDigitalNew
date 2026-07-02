@@ -180,17 +180,33 @@
   transform: translateY(0);
 }
 
-/* Staggered children */
+/* Staggered children. Supports two usages: .reveal-stagger as a wrapper
+   around plain children, or .reveal-stagger applied directly to each
+   repeated item nested inside a .reveal/.in-view ancestor. */
+.reveal-stagger,
 .reveal-stagger > * {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.reveal-stagger.in-view > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0.05s; }
-.reveal-stagger.in-view > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.15s; }
-.reveal-stagger.in-view > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.25s; }
-.reveal-stagger.in-view > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.35s; }
-.reveal-stagger.in-view > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.45s; }
+.reveal-stagger.in-view > *:nth-child(1),
+.reveal-stagger.in-view:nth-child(1),
+.in-view .reveal-stagger:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0.05s; }
+.reveal-stagger.in-view > *:nth-child(2),
+.reveal-stagger.in-view:nth-child(2),
+.in-view .reveal-stagger:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.15s; }
+.reveal-stagger.in-view > *:nth-child(3),
+.reveal-stagger.in-view:nth-child(3),
+.in-view .reveal-stagger:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.25s; }
+.reveal-stagger.in-view > *:nth-child(4),
+.reveal-stagger.in-view:nth-child(4),
+.in-view .reveal-stagger:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.35s; }
+.reveal-stagger.in-view > *:nth-child(5),
+.reveal-stagger.in-view:nth-child(5),
+.in-view .reveal-stagger:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.45s; }
+.reveal-stagger.in-view > *:nth-child(n+6),
+.reveal-stagger.in-view:nth-child(n+6),
+.in-view .reveal-stagger:nth-child(n+6) { opacity:1; transform:translateY(0); transition-delay: 0.5s; }
 
 /* Hero heading lines stagger */
 .hero-line {
