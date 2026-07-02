@@ -102,7 +102,7 @@ export default function Contact() {
       company: "TechStartup Inc.",
       role: "CEO",
       text: "The Linkage Digital completely transformed our digital presence. Their team was professional, responsive, and delivered beyond our expectations.",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+      initial: "JS",
       rating: 5,
     },
     {
@@ -110,7 +110,7 @@ export default function Contact() {
       company: "E-Commerce Solutions",
       role: "Founder",
       text: "Working with them was fantastic. They understood our vision immediately and delivered a platform that increased our sales by 45%.",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320",
+      initial: "SM",
       rating: 5,
     },
     {
@@ -118,7 +118,7 @@ export default function Contact() {
       company: "Digital Marketing Co.",
       role: "Director",
       text: "Exceptional service from start to finish. The attention to detail and commitment to quality is unmatched. Highly recommend!",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+      initial: "MJ",
       rating: 5,
     },
   ];
@@ -504,11 +504,11 @@ export default function Contact() {
             {TESTIMONIALS.map((testimonial, i) => (
               <div key={i} className="reveal-stagger bg-[#F9F9F9] p-8 md:p-10 rounded-lg border border-[#ECECEC] hover:border-[#8B0AB4] transition-colors">
                 <div className="flex items-center gap-4 mb-6">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-14 h-14 rounded-full object-cover"
-                  />
+                  <div className="w-14 h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center flex-shrink-0">
+                    <span className="font-teko font-bold text-white text-[16px]">
+                      {testimonial.initial}
+                    </span>
+                  </div>
                   <div>
                     <h4 className="font-teko font-bold text-[#121212] uppercase text-[14px]">
                       {testimonial.name}
