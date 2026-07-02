@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { OriginButton } from "../components/ui/origin-button";
+import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
-
-const LOGO =
-  "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -71,22 +69,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white font-kanit">
-      {/* ── NAVBAR ── */}
-      <header className="border-b border-[#ECECEC] relative z-50 bg-white sticky top-0 transition-shadow duration-300">
-        <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between h-[87px]">
-          <img
-            src={LOGO}
-            alt="The Linkage Digital"
-            className="h-[56px] md:h-[68px] lg:h-[78px] w-auto flex-shrink-0"
-          />
-          <button
-            onClick={() => navigate("/")}
-            className="font-kanit font-medium text-[13px] md:text-[15px] uppercase px-6 py-3 text-[#121212] hover:text-[#8B0AB4] transition-colors"
-          >
-            Back
-          </button>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
