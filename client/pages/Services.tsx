@@ -91,7 +91,7 @@ export default function Services() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <section className="bg-[#FFE8F5] relative overflow-hidden">
+        <section className="bg-white relative overflow-hidden">
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
             alt=""
