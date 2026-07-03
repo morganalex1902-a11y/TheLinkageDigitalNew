@@ -10,6 +10,7 @@ export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const blogRef = useInView();
+  const articlesGridRef = useInView();
 
   const CATEGORIES = ["All", "Design", "Development", "Marketing", "Strategy"];
 
@@ -80,24 +81,29 @@ export default function Blog() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <div className="max-w-[1400px] mx-auto px-6 pt-10 md:pt-14 lg:pt-20 pb-16 lg:pb-28">
-          <div className="flex flex-col lg:items-center lg:gap-12">
-            <div className="flex-1">
-              <h1 className="hero-heading font-teko font-bold text-black uppercase">
-                <span className="hero-line block">Our</span>
-                <span className="hero-line block">Blog</span>
-              </h1>
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3" />
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px]" />
-              
-              <div className="mt-10 md:mt-14">
-                <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[460px]">
-                  Insights, tips, and industry trends from our team of experts.
-                </p>
-              </div>
-            </div>
+        <section className="bg-white relative overflow-hidden">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
+            alt=""
+            className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
+          />
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
+            alt=""
+            className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
+          />
+
+          <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
+            <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-6">
+              Our
+              <br />
+              Blog
+            </h1>
+            <p className="font-kanit font-normal text-[#555] text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
+              Insights, tips, and industry trends from our team of experts.
+            </p>
           </div>
-        </div>
+        </section>
       </main>
 
       {/* ── BLOG SECTION ── */}
@@ -147,11 +153,11 @@ export default function Blog() {
           </div>
 
           {/* Articles grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div ref={articlesGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {filteredArticles.map((article, i) => (
               <div
                 key={i}
-                className="group cursor-pointer reveal-stagger bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+                className="group cursor-pointer bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <div className="relative overflow-hidden h-[220px] md:h-[250px] lg:h-[280px] bg-[#ECECEC]">
                   <img

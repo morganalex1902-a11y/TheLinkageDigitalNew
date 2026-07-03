@@ -20,6 +20,11 @@ export default function Contact() {
   const whyRef = useInView();
   const processRef = useInView();
   const testimonialsRef = useInView();
+  const faqRef = useInView();
+  const whyGridRef = useInView();
+  const processGridRef = useInView();
+  const testimonialsGridRef = useInView();
+  const faqListRef = useInView();
 
   const SERVICES_CHECKBOX = [
     "Web Design",
@@ -200,25 +205,29 @@ export default function Contact() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <div className="max-w-[1400px] mx-auto px-6 pt-10 md:pt-14 lg:pt-20 pb-16 lg:pb-28">
-          <div className="flex flex-col lg:items-center lg:gap-12">
-            <div className="flex-1">
-              <h1 className="hero-heading font-teko font-bold text-black uppercase">
-                <span className="hero-line block">Let's</span>
-                <span className="hero-line block">Work</span>
-                <span className="hero-line block">Together</span>
-              </h1>
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3" />
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px]" />
+        <section className="bg-white relative overflow-hidden">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
+            alt=""
+            className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
+          />
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
+            alt=""
+            className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
+          />
 
-              <div className="mt-10 md:mt-14">
-                <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[480px]">
-                  Have a project in mind? We'd love to hear about it. Get in touch with our team today and let's create something amazing together.
-                </p>
-              </div>
-            </div>
+          <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
+            <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-6">
+              Let's Work
+              <br />
+              Together
+            </h1>
+            <p className="font-kanit font-normal text-[#555] text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
+              Have a project in mind? We'd love to hear about it. Get in touch with our team today and let's create something amazing together.
+            </p>
           </div>
-        </div>
+        </section>
       </main>
 
       {/* ── CONTACT FORM & INFO SECTION ── */}
@@ -438,9 +447,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div ref={whyGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {WHY_CHOOSE_US.map((item, i) => (
-              <div key={i} className="reveal-stagger bg-[#F9F9F9] p-8 md:p-10 rounded-lg hover:shadow-lg hover:border-[#8B0AB4] border border-transparent transition-all">
+              <div key={i} className="bg-[#F9F9F9] p-8 md:p-10 rounded-lg hover:shadow-lg hover:border-[#8B0AB4] border border-transparent transition-all">
                 <div className="text-5xl md:text-6xl mb-5">{item.icon}</div>
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[24px] leading-[1.1] mb-3">
                   {item.title}
@@ -466,9 +475,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={processGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-stagger">
             {PROCESS_STEPS.map((item, i) => (
-              <div key={i} className="reveal-stagger">
+              <div key={i}>
                 <div className="flex items-start gap-6 mb-5">
                   <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#8B0AB4] border-4 border-white flex-shrink-0">
                     <span className="font-teko font-bold text-white text-[18px]">{item.step}</span>
@@ -500,9 +509,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div ref={testimonialsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-stagger">
             {TESTIMONIALS.map((testimonial, i) => (
-              <div key={i} className="reveal-stagger bg-[#F9F9F9] p-8 md:p-10 rounded-lg border border-[#ECECEC] hover:border-[#8B0AB4] transition-colors">
+              <div key={i} className="bg-[#F9F9F9] p-8 md:p-10 rounded-lg border border-[#ECECEC] hover:border-[#8B0AB4] transition-colors">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center flex-shrink-0">
                     <span className="font-teko font-bold text-white text-[16px]">
@@ -533,7 +542,7 @@ export default function Contact() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
+      <section ref={faqRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="text-center mb-14 md:mb-20">
             <span className="font-kanit font-bold text-[13px] md:text-[16px] uppercase text-[#121212] block mb-4">
@@ -544,9 +553,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div ref={faqListRef as React.RefObject<HTMLDivElement>} className="max-w-3xl mx-auto space-y-4 reveal-stagger">
             {FAQ.map((faq, i) => (
-              <div key={i} className="reveal-stagger bg-white border border-[#ECECEC] rounded-lg p-6 md:p-8 hover:border-[#8B0AB4] transition-colors">
+              <div key={i} className="bg-white border border-[#ECECEC] rounded-lg p-6 md:p-8 hover:border-[#8B0AB4] transition-colors">
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[16px] md:text-[18px] leading-[1.2] mb-3">
                   {faq.q}
                 </h3>
