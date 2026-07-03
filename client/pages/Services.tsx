@@ -106,7 +106,7 @@ export default function Services() {
               <br />
               Services
             </h1>
-            <p className="font-kanit font-normal text-[#555] text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
+            <p className="font-kanit font-normal text-black text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
               We offer a comprehensive range of services designed to help your business thrive in the digital landscape.
             </p>
           </div>
