@@ -73,6 +73,15 @@ export default function Portfolio() {
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
         <section className="bg-white relative overflow-hidden">
+          {/* Background image with white overlay */}
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F213039643cca445ab1343a8346c8eadc?format=webp&width=800&height=1200"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
+          />
+          <div className="absolute inset-0 bg-white/55 pointer-events-none" />
+
+          {/* Purple shape overlays */}
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
             alt=""
