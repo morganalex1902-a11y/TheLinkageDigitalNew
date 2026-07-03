@@ -416,7 +416,7 @@ export default function Index() {
               <div className="flex items-end gap-2 md:gap-3">
                 <h1 className="hero-heading font-teko font-bold text-black uppercase">
                   <span className="hero-line block">Linking</span>
-                  <span className="hero-line block">Brands</span>
+                  <span className="hero-line block" style={{ color: "#AE1ACE" }}>Brands</span>
                   <span className="hero-line block">To The</span>
                 </h1>
 
