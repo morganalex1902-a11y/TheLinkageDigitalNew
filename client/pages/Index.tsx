@@ -429,14 +429,6 @@ export default function Index() {
                     New Age
                   </span>
                 </div>
-
-                {/* Avatar circle */}
-                <div
-                  className="flex-shrink-0 bg-[#121212] rounded-full overflow-hidden"
-                  style={{ width: "clamp(3.5rem,6vw,7rem)", height: "clamp(3.5rem,6vw,7rem)" }}
-                >
-                  <img src={AVATAR_IMG} alt="" className="w-full h-full object-cover" />
-                </div>
               </div>
 
               {/* Purple underlines */}
