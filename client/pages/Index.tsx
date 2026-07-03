@@ -418,20 +418,10 @@ export default function Index() {
                 <span className="hero-line block">Linking</span>
               </h1>
 
-              {/* "BRANDS" (purple emphasis) + avatar */}
-              <div className="flex items-end gap-2 md:gap-3 mt-1">
-                <h1 className="hero-heading font-teko font-bold uppercase flex-shrink-0" style={{ color: "#8B0AB4" }}>
-                  Brands
-                </h1>
-
-                {/* Avatar circle */}
-                <div
-                  className="flex-shrink-0 bg-[#121212] rounded-full overflow-hidden"
-                  style={{ width: "clamp(3.5rem,6vw,7rem)", height: "clamp(3.5rem,6vw,7rem)" }}
-                >
-                  <img src={AVATAR_IMG} alt="" className="w-full h-full object-cover" />
-                </div>
-              </div>
+              {/* "BRANDS" (purple emphasis) */}
+              <h1 className="hero-heading font-teko font-bold uppercase mt-1" style={{ color: "#8B0AB4" }}>
+                Brands
+              </h1>
 
               {/* "TO THE" */}
               <h1 className="hero-heading font-teko font-bold text-black uppercase mt-1">
