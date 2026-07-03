@@ -92,16 +92,13 @@ export default function Services() {
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
         <section className="bg-white relative overflow-hidden">
+          {/* Background image with white overlay */}
           <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80"
             alt=""
-            className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
+            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
           />
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
-            alt=""
-            className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-          />
+          <div className="absolute inset-0 bg-white/55 pointer-events-none" />
 
           <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
             <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-6">
@@ -109,7 +106,7 @@ export default function Services() {
               <br />
               Services
             </h1>
-            <p className="font-kanit font-normal text-[#555] text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
+            <p className="font-kanit font-normal text-black text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
               We offer a comprehensive range of services designed to help your business thrive in the digital landscape.
             </p>
           </div>
