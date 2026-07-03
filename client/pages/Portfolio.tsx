@@ -79,7 +79,7 @@ export default function Portfolio() {
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
           />
-          <div className="absolute inset-0 bg-white/55 pointer-events-none" />
+          <div className="absolute inset-0 bg-white/40 pointer-events-none" />
 
           {/* Purple shape overlays */}
           <img
