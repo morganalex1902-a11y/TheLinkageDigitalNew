@@ -413,19 +413,14 @@ export default function Index() {
 
             {/* LEFT: text */}
             <div className="flex-1 min-w-0">
-              <h1 className="hero-heading font-teko font-bold text-black uppercase">
-                <span className="hero-line block">Linking</span>
-                <span className="hero-line block">Brands</span>
-                <span className="hero-line block">To The</span>
-              </h1>
-
-              {/* "DIGITAL" + SUCCESS pill + avatar */}
-              <div className="flex items-end gap-2 md:gap-3 mt-1">
-                <h1 className="hero-heading font-teko font-bold text-black uppercase flex-shrink-0">
-                  New
+              <div className="flex items-end gap-2 md:gap-3">
+                <h1 className="hero-heading font-teko font-bold text-black uppercase">
+                  <span className="hero-line block">Linking</span>
+                  <span className="hero-line block">Brands</span>
+                  <span className="hero-line block">To The</span>
                 </h1>
 
-                {/* Purple pill with vertical "SUCCESS" text — half inside, half outside */}
+                {/* Purple pill with "NEW AGE" text */}
                 <div
                   className="flex-shrink-0 relative bg-[#8B0AB4] overflow-visible z-10 animate-float"
                   style={{ borderRadius: "3rem", width: "clamp(3.8rem,6.2vw,7rem)", height: "clamp(4.5rem,7.5vw,8.5rem)" }}
