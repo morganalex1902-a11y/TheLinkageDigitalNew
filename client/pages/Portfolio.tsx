@@ -99,7 +99,7 @@ export default function Portfolio() {
               <br />
               Portfolio
             </h1>
-            <p className="font-kanit font-normal text-[#555] text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
+            <p className="font-kanit font-normal text-black text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
               Explore our collection of award-winning projects and case studies showcasing our expertise across various industries.
             </p>
           </div>
