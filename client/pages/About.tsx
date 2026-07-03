@@ -39,22 +39,22 @@ export default function About() {
     {
       name: "Alex Thompson",
       role: "Creative Director",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+      image: "https://images.pexels.com/photos/37842959/pexels-photo-37842959.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       name: "Sarah Williams",
       role: "Lead Developer",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320",
+      image: "https://images.pexels.com/photos/10041272/pexels-photo-10041272.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       name: "Marcus Johnson",
       role: "UX/UI Designer",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+      image: "https://images.pexels.com/photos/7163434/pexels-photo-7163434.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       name: "Emma Davis",
       role: "Product Manager",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320",
+      image: "https://images.pexels.com/photos/12902926/pexels-photo-12902926.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
   ];
 
@@ -91,7 +91,7 @@ export default function About() {
 
             <div className="flex-shrink-0 mt-10 lg:mt-0 lg:w-[400px] xl:w-[500px] hero-images-enter">
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910"
+                src="https://images.pexels.com/photos/3865639/pexels-photo-3865639.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Team working"
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -106,7 +106,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/cebf100cfa2f8b5cd61f8901babba182a2278871?width=660"
+                src="https://images.pexels.com/photos/36765663/pexels-photo-36765663.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Our journey"
                 className="w-full h-auto object-cover rounded-lg"
               />
