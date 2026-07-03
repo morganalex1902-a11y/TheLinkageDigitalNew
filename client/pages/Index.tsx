@@ -413,25 +413,36 @@ export default function Index() {
 
             {/* LEFT: text */}
             <div className="flex-1 min-w-0">
-              {/* "LINKING" */}
               <h1 className="hero-heading font-teko font-bold text-black uppercase">
-                <span className="hero-line block">Linking</span>
+                <span className="hero-line block">Turning</span>
+                <span className="hero-line block">Ideas</span>
+                <span className="hero-line block">Into</span>
               </h1>
 
-              {/* "BRANDS" (purple emphasis) */}
-              <h1 className="hero-heading font-teko font-bold uppercase mt-1" style={{ color: "#8B0AB4" }}>
-                Brands
-              </h1>
+              {/* "DIGITAL" + SUCCESS pill + avatar */}
+              <div className="flex items-end gap-2 md:gap-3 mt-1">
+                <h1 className="hero-heading font-teko font-bold text-black uppercase flex-shrink-0">
+                  Digital
+                </h1>
 
-              {/* "TO THE" */}
-              <h1 className="hero-heading font-teko font-bold text-black uppercase mt-1">
-                <span className="hero-line block">To The</span>
-              </h1>
+                {/* Purple pill with vertical "SUCCESS" text — half inside, half outside */}
+                <div
+                  className="flex-shrink-0 relative bg-[#8B0AB4] overflow-visible z-10 animate-float"
+                  style={{ borderRadius: "3rem", width: "clamp(3.8rem,6.2vw,7rem)", height: "clamp(4.5rem,7.5vw,8.5rem)" }}
+                >
+                  <span className="success-text font-teko font-normal text-black uppercase absolute left-1/2 top-1/2">
+                    Success
+                  </span>
+                </div>
 
-              {/* "NEW AGE" (purple emphasis) */}
-              <h1 className="hero-heading font-teko font-bold uppercase" style={{ color: "#8B0AB4" }}>
-                New Age
-              </h1>
+                {/* Avatar circle */}
+                <div
+                  className="flex-shrink-0 bg-[#121212] rounded-full overflow-hidden"
+                  style={{ width: "clamp(3.5rem,6vw,7rem)", height: "clamp(3.5rem,6vw,7rem)" }}
+                >
+                  <img src={AVATAR_IMG} alt="" className="w-full h-full object-cover" />
+                </div>
+              </div>
 
               {/* Purple underlines */}
               <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3" />
