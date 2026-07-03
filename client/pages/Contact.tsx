@@ -21,6 +21,10 @@ export default function Contact() {
   const processRef = useInView();
   const testimonialsRef = useInView();
   const faqRef = useInView();
+  const whyGridRef = useInView();
+  const processGridRef = useInView();
+  const testimonialsGridRef = useInView();
+  const faqListRef = useInView();
 
   const SERVICES_CHECKBOX = [
     "Web Design",
@@ -439,9 +443,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div ref={whyGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {WHY_CHOOSE_US.map((item, i) => (
-              <div key={i} className="reveal-stagger bg-[#F9F9F9] p-8 md:p-10 rounded-lg hover:shadow-lg hover:border-[#8B0AB4] border border-transparent transition-all">
+              <div key={i} className="bg-[#F9F9F9] p-8 md:p-10 rounded-lg hover:shadow-lg hover:border-[#8B0AB4] border border-transparent transition-all">
                 <div className="text-5xl md:text-6xl mb-5">{item.icon}</div>
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[24px] leading-[1.1] mb-3">
                   {item.title}
@@ -467,9 +471,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={processGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-stagger">
             {PROCESS_STEPS.map((item, i) => (
-              <div key={i} className="reveal-stagger">
+              <div key={i}>
                 <div className="flex items-start gap-6 mb-5">
                   <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#8B0AB4] border-4 border-white flex-shrink-0">
                     <span className="font-teko font-bold text-white text-[18px]">{item.step}</span>
@@ -501,9 +505,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div ref={testimonialsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-stagger">
             {TESTIMONIALS.map((testimonial, i) => (
-              <div key={i} className="reveal-stagger bg-[#F9F9F9] p-8 md:p-10 rounded-lg border border-[#ECECEC] hover:border-[#8B0AB4] transition-colors">
+              <div key={i} className="bg-[#F9F9F9] p-8 md:p-10 rounded-lg border border-[#ECECEC] hover:border-[#8B0AB4] transition-colors">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center flex-shrink-0">
                     <span className="font-teko font-bold text-white text-[16px]">
@@ -545,9 +549,9 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div ref={faqListRef as React.RefObject<HTMLDivElement>} className="max-w-3xl mx-auto space-y-4 reveal-stagger">
             {FAQ.map((faq, i) => (
-              <div key={i} className="reveal-stagger bg-white border border-[#ECECEC] rounded-lg p-6 md:p-8 hover:border-[#8B0AB4] transition-colors">
+              <div key={i} className="bg-white border border-[#ECECEC] rounded-lg p-6 md:p-8 hover:border-[#8B0AB4] transition-colors">
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[16px] md:text-[18px] leading-[1.2] mb-3">
                   {faq.q}
                 </h3>

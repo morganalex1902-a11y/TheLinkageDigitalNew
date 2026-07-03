@@ -11,6 +11,8 @@ export default function About() {
   const storyRef = useInView();
   const valuesRef = useInView();
   const teamRef = useInView();
+  const valuesGridRef = useInView();
+  const teamGridRef = useInView();
 
   const VALUES = [
     {
@@ -155,9 +157,9 @@ export default function About() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div ref={valuesGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 reveal-stagger">
             {VALUES.map((value, i) => (
-              <div key={i} className="reveal-stagger bg-[#F9F9F9] p-8 md:p-10 rounded-lg hover:shadow-lg transition-shadow">
+              <div key={i} className="bg-[#F9F9F9] p-8 md:p-10 rounded-lg hover:shadow-lg transition-shadow">
                 <div className="text-4xl mb-4">{value.icon}</div>
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[24px] md:text-[28px] leading-[1.1] mb-3">
                   {value.title}
@@ -183,9 +185,9 @@ export default function About() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div ref={teamGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 reveal-stagger">
             {TEAM_MEMBERS.map((member, i) => (
-              <div key={i} className="reveal-stagger group cursor-pointer">
+              <div key={i} className="group cursor-pointer">
                 <div className="overflow-hidden rounded-lg mb-5 h-[280px] md:h-[320px]">
                   <img
                     src={member.image}

@@ -9,6 +9,8 @@ export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const portfolioRef = useInView();
+  const projectsGridRef = useInView();
+  const statsGridRef = useInView();
 
   const CATEGORIES = ["All", "Web Design", "Web Development", "Mobile App", "E-Commerce"];
 
@@ -111,11 +113,11 @@ export default function Portfolio() {
           </div>
 
           {/* Projects grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {filteredProjects.map((project, i) => (
               <div
                 key={i}
-                className="group cursor-pointer reveal-stagger overflow-hidden rounded-lg"
+                className="group cursor-pointer overflow-hidden rounded-lg"
               >
                 <div className="relative overflow-hidden h-[300px] md:h-[350px] lg:h-[380px] bg-[#ECECEC]">
                   <img
@@ -157,8 +159,8 @@ export default function Portfolio() {
       {/* ── STATS SECTION ── */}
       <section className="bg-white py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center">
-            <div className="reveal-stagger">
+          <div ref={statsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center reveal-stagger">
+            <div>
               <div className="font-teko font-bold text-[64px] md:text-[80px] text-[#8B0AB4] leading-none mb-3">
                 250+
               </div>
@@ -169,7 +171,7 @@ export default function Portfolio() {
                 Successfully delivered across various industries and scales
               </p>
             </div>
-            <div className="reveal-stagger">
+            <div>
               <div className="font-teko font-bold text-[64px] md:text-[80px] text-[#8B0AB4] leading-none mb-3">
                 50+
               </div>
@@ -180,7 +182,7 @@ export default function Portfolio() {
                 Talented professionals dedicated to excellence
               </p>
             </div>
-            <div className="reveal-stagger">
+            <div>
               <div className="font-teko font-bold text-[64px] md:text-[80px] text-[#8B0AB4] leading-none mb-3">
                 98%
               </div>

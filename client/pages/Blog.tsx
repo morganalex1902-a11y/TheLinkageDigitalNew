@@ -10,6 +10,7 @@ export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const blogRef = useInView();
+  const articlesGridRef = useInView();
 
   const CATEGORIES = ["All", "Design", "Development", "Marketing", "Strategy"];
 
@@ -147,11 +148,11 @@ export default function Blog() {
           </div>
 
           {/* Articles grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div ref={articlesGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {filteredArticles.map((article, i) => (
               <div
                 key={i}
-                className="group cursor-pointer reveal-stagger bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+                className="group cursor-pointer bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <div className="relative overflow-hidden h-[220px] md:h-[250px] lg:h-[280px] bg-[#ECECEC]">
                   <img

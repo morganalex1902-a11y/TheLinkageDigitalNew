@@ -10,6 +10,8 @@ export default function Services() {
 
   const servicesRef = useInView();
   const processRef = useInView();
+  const servicesGridRef = useInView();
+  const processGridRef = useInView();
 
   const SERVICES = [
     {
@@ -112,12 +114,12 @@ export default function Services() {
       {/* ── SERVICES GRID ── */}
       <section ref={servicesRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div ref={servicesGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {SERVICES.map((service, i) => (
               <div
                 key={i}
                 onClick={() => setExpandedService(expandedService === i ? -1 : i)}
-                className="bg-white p-8 md:p-10 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300 reveal-stagger border border-[#ECECEC] hover:border-[#8B0AB4]"
+                className="bg-white p-8 md:p-10 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300 border border-[#ECECEC] hover:border-[#8B0AB4]"
               >
                 <div className="text-5xl md:text-6xl mb-5">{service.icon}</div>
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[24px] md:text-[28px] leading-[1.1] mb-3">
@@ -160,9 +162,9 @@ export default function Services() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          <div ref={processGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 reveal-stagger">
             {PROCESS.map((item, i) => (
-              <div key={i} className="reveal-stagger relative">
+              <div key={i} className="relative">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
                     <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#8B0AB4] border-4 border-white">
