@@ -431,7 +431,7 @@ export default function Index() {
                   style={{ borderRadius: "3rem", width: "clamp(3.8rem,6.2vw,7rem)", height: "clamp(4.5rem,7.5vw,8.5rem)" }}
                 >
                   <span className="success-text font-teko font-normal text-black uppercase absolute left-1/2 top-1/2">
-                    Age
+                    New Age
                   </span>
                 </div>
 
