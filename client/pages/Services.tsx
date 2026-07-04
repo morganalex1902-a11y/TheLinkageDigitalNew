@@ -136,9 +136,9 @@ export default function Services() {
       </div>
 
       {/* RIGHT — circle eclipse effect + arrow badge + service tags */}
-      <div className="relative flex items-center justify-center lg:justify-end h-[320px] sm:h-[380px] md:h-[440px] lg:h-[480px]">
-        {/* Outer wrapper — holds halo circle, photo circle, arrow badge, and card stack together */}
-        <div className="relative w-[280px] sm:w-[340px] md:w-[400px] lg:w-[440px] h-[280px] sm:h-[340px] md:h-[400px] lg:h-[440px]">
+      <div className="relative flex items-center justify-center lg:justify-end h-[380px] sm:h-[460px] md:h-[540px] lg:h-[600px]">
+  {/* Outer wrapper — holds halo circle, photo circle, arrow badge, and card stack together */}
+  <div className="relative w-[320px] sm:w-[400px] md:w-[460px] lg:w-[520px] h-[320px] sm:h-[400px] md:h-[460px] lg:h-[520px]">
           {/* Halo circle — larger, top-right anchored */}
           <div className="absolute top-0 right-0 w-full h-full rounded-full bg-[#F3E8F7] z-0" />
 
