@@ -138,6 +138,9 @@ export default function Services() {
               {/* RIGHT — circular photo + floating badge + service tags */}
               <div className="relative flex items-center justify-center lg:justify-end h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
                 <div className="relative w-[280px] sm:w-[340px] md:w-[400px] lg:w-[450px] aspect-square">
+                  {/* Background halo circle — large pale lavender, offset up-right, behind everything */}
+                  <div className="absolute -top-[5%] -right-[5%] w-[115%] h-[115%] rounded-full bg-[#8B0AB4] opacity-10 z-0 pointer-events-none" />
+
                   {/* dot grid — tucked behind, bottom-left of the circle */}
                   <div className="hidden md:grid absolute -bottom-6 -left-8 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-0">
                     {Array.from({ length: 16 }).map((_, i) => (
@@ -145,23 +148,25 @@ export default function Services() {
                     ))}
                   </div>
 
-                  {/* Circular photo */}
+                  {/* Circular photo — grayscale/desaturated with subtle overlay */}
                   <div className="relative w-full h-full rounded-full overflow-hidden z-10 shadow-lg">
                     <img
                       src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                       alt="Our team collaborating on a project"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover filter grayscale"
                     />
+                    {/* Subtle dark overlay for tinting effect */}
+                    <div className="absolute inset-0 bg-[#8B0AB4] opacity-5 mix-blend-multiply" />
                   </div>
 
-                  {/* Floating scroll/arrow badge — overlaps top-right of the circle */}
+                  {/* Arrow badge — positioned exactly on the rim at top-right, half in/half out */}
                   <button
                     type="button"
                     onClick={() =>
                       servicesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                     }
                     aria-label="Explore services"
-                    className="absolute -top-4 -right-4 flex items-center justify-center w-14 h-14 bg-[#8B0AB4] rounded-full text-white hover:scale-110 transition-transform cursor-pointer shadow-lg z-20"
+                    className="absolute top-[calc(50%-28px)] right-[calc(50%-28px)] flex items-center justify-center w-14 h-14 bg-[#8B0AB4] rounded-full text-white hover:scale-110 transition-transform cursor-pointer shadow-lg z-20"
                   >
                     <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
                       <path
