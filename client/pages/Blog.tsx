@@ -81,31 +81,34 @@ export default function Blog() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <section className="bg-white relative overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-6 pt-20 pb-10 md:pt-28 md:pb-14 lg:pt-32 lg:pb-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-8 items-center">
+        <section className="bg-white relative overflow-hidden min-h-[calc(100vh-88px)] flex items-center">
+          <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
               {/* LEFT — text column */}
               <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-5">
                   <span className="w-8 h-[2px] bg-[#8B0AB4]" />
                   <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] md:text-[14px] uppercase tracking-wider">
                     Blog
                   </span>
                 </div>
 
-                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(3rem,6vw,5.5rem)] mb-6">
+                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(2.5rem,5.5vw,5rem)] mb-5">
                   Insights That
                   <br />
                   <span className="text-[#8B0AB4]">Inspire</span> Action.
                 </h1>
 
-                <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[16px] lg:text-[17px] leading-[1.6] max-w-[420px] mb-10">
+                <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[16px] leading-[1.6] max-w-[420px] mb-8">
                   Stay updated with the latest trends, tips and insights on design,
                   development and digital growth.
                 </p>
 
-                <a
-                  href="#articles"
+                <button
+                  type="button"
+                  onClick={() =>
+                    articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
                 >
                   Read Our Blog
@@ -117,11 +120,11 @@ export default function Blog() {
                       fill="currentColor"
                     />
                   </svg>
-                </a>
+                </button>
               </div>
 
               {/* RIGHT — stacked article preview cards */}
-              <div className="relative h-[340px] sm:h-[400px] md:h-[440px] lg:h-[480px] flex items-center justify-center">
+              <div className="relative h-[260px] sm:h-[300px] md:h-[340px] lg:h-[360px] flex items-center justify-center">
                 {/* dotted grid decoration */}
                 <div className="hidden md:grid absolute -top-4 right-4 grid-cols-4 gap-[6px] opacity-60 pointer-events-none">
                   {Array.from({ length: 16 }).map((_, i) => (
@@ -130,7 +133,7 @@ export default function Blog() {
                 </div>
 
                 {/* Left card — TRENDS */}
-                <div className="absolute left-0 sm:left-2 md:left-4 top-6 w-[40%] sm:w-[38%] h-[62%] sm:h-[68%] rounded-xl overflow-hidden shadow-md -rotate-3 hidden xs:block">
+                <div className="absolute left-0 sm:left-2 md:left-4 top-4 w-[38%] sm:w-[36%] h-[60%] sm:h-[66%] rounded-xl overflow-hidden shadow-md -rotate-3 block">
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480"
                     alt="Top Web Design Trends to Watch in 2024"
@@ -153,7 +156,7 @@ export default function Blog() {
                 </div>
 
                 {/* Middle card — STRATEGY (featured) */}
-                <div className="relative z-10 w-[62%] sm:w-[50%] md:w-[42%] h-[85%] sm:h-[88%] rounded-xl overflow-hidden shadow-xl">
+                <div className="relative z-10 w-[58%] sm:w-[48%] md:w-[40%] h-[82%] sm:h-[86%] rounded-xl overflow-hidden shadow-xl">
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910"
                     alt="Building Brands with Purpose and Impact"
@@ -166,17 +169,17 @@ export default function Blog() {
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
-                    <h3 className="font-teko font-bold text-white uppercase text-[18px] md:text-[20px] leading-[1.1] mb-2">
+                    <h3 className="font-teko font-bold text-white uppercase text-[16px] md:text-[18px] leading-[1.1] mb-2">
                       Building Brands with Purpose and Impact
                     </h3>
-                    <p className="font-kanit text-white/80 text-[11px] md:text-[12px]">
+                    <p className="font-kanit text-white/80 text-[10px] md:text-[11px]">
                       April 28, 2024 • 6 min read
                     </p>
                   </div>
                 </div>
 
                 {/* Right card — TIPS */}
-                <div className="absolute right-0 sm:right-2 md:right-4 top-10 w-[40%] sm:w-[38%] h-[60%] sm:h-[66%] rounded-xl overflow-hidden shadow-md rotate-3 hidden xs:block">
+                <div className="absolute right-0 sm:right-2 md:right-4 top-6 w-[38%] sm:w-[36%] h-[58%] sm:h-[64%] rounded-xl overflow-hidden shadow-md rotate-3 block">
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/606973b7a19e784fa309acebad1d2d62459e0d20?width=80"
                     alt="How to Improve Your Website Performance"
@@ -201,7 +204,7 @@ export default function Blog() {
             </div>
 
             {/* Bottom row — scroll indicator + view all link */}
-            <div className="flex items-center justify-between mt-14 md:mt-16">
+            <div className="flex items-center justify-between mt-8 md:mt-10">
               <button
                 onClick={() =>
                   articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -219,8 +222,11 @@ export default function Blog() {
                 </svg>
               </button>
 
-              <a
-                href="#articles"
+              <button
+                type="button"
+                onClick={() =>
+                  articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="inline-flex items-center gap-2 font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors"
               >
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -232,7 +238,7 @@ export default function Blog() {
                   />
                 </svg>
                 View All Articles
-              </a>
+              </button>
             </div>
           </div>
         </section>
