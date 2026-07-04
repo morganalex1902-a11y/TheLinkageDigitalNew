@@ -172,6 +172,29 @@ export default function Services() {
                       />
                     </svg>
                   </button>
+
+                  {/* Service tags — floating on the right side */}
+                  <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-full flex-col gap-4 pl-6">
+                    {["STRATEGY", "DESIGN", "UI/UX", "MARKETING"].map((tag, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-3 bg-white px-4 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                      >
+                        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[#8B0AB4] rounded-lg">
+                          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                            <path
+                              d="M8 2L10.39 7.26H16L11.82 11.01L13.41 16L8 12.25L2.59 16L4.18 11.01L0 7.26H5.61L8 2Z"
+                              fill="currentColor"
+                              className="text-white"
+                            />
+                          </svg>
+                        </div>
+                        <span className="font-kanit font-semibold text-[#121212] text-[12px] uppercase tracking-wider whitespace-nowrap">
+                          {tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
