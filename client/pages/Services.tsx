@@ -258,8 +258,8 @@ export default function Services() {
               <div key={i} className="relative">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#8B0AB4] border-4 border-white">
-                      <span className="font-teko font-bold text-white text-[20px] md:text-[24px]">
+                    <div className="flex items-center justify-center w-20 h-20 md:w-28 md:h-28 rounded-2xl bg-[#8B0AB4] border-4 border-white">
+                      <span className="font-teko font-bold text-white text-[28px] md:text-[36px]">
                         {item.step}
                       </span>
                     </div>
