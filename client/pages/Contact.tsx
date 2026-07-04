@@ -205,27 +205,106 @@ export default function Contact() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <section className="bg-white relative overflow-hidden">
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
-            alt=""
-            className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-          />
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
-            alt=""
-            className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-          />
+        <section className="bg-white relative overflow-hidden min-h-[calc(100vh-87px)] flex items-center">
+          <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
+              {/* LEFT — text column */}
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="w-8 h-[2px] bg-[#8B0AB4]" />
+                  <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] md:text-[14px] uppercase tracking-wider">
+                    Contact
+                  </span>
+                </div>
 
-          <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
-            <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-6">
-              Let's Work
-              <br />
-              Together
-            </h1>
-            <p className="font-kanit font-normal text-[#555] text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
-              Have a project in mind? We'd love to hear about it. Get in touch with our team today and let's create something amazing together.
-            </p>
+                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(2.5rem,5.5vw,5rem)] mb-5">
+                  Let's Create Something
+                  <br />
+                  <span className="text-[#8B0AB4]">Great</span> Together.
+                </h1>
+
+                <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[16px] leading-[1.6] max-w-[420px] mb-8">
+                  Have a project in mind or want to learn more about what we do?
+                  We'd love to hear from you.
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    formRef.current?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
+                >
+                  Get In Touch
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* RIGHT — duotone photo + floating response-time card */}
+              <div className="relative h-[300px] sm:h-[340px] md:h-[380px] lg:h-[400px] flex items-center justify-center lg:justify-end">
+                {/* dotted grid decoration — scoped to its own wrapper, tucked to the image's corner */}
+                <div className="relative w-full max-w-[420px] lg:max-w-[440px] h-full">
+                  <div className="hidden md:grid absolute -top-4 -right-4 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
+                    {Array.from({ length: 16 }).map((_, i) => (
+                      <span key={i} className="w-[4px] h-[4px] rounded-full bg-[#8B0AB4]" />
+                    ))}
+                  </div>
+
+                  {/* Main photo */}
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                    <img
+                      src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=80"
+                      alt="Our team ready to help with your project"
+                      className="w-full h-full object-cover grayscale contrast-125"
+                    />
+                    <div className="absolute inset-0 bg-[#8B0AB4] mix-blend-multiply opacity-80" />
+                    <div className="absolute inset-0 bg-[#8B0AB4]/20" />
+                  </div>
+
+                  {/* Floating white stat card */}
+                  <div className="absolute -bottom-6 -left-4 sm:-left-8 bg-white rounded-xl shadow-xl p-5 md:p-6 max-w-[220px] z-10">
+                    <div className="flex items-end leading-none mb-1">
+                      <span className="font-teko font-semibold text-[#121212] text-[44px] md:text-[52px] leading-none">
+                        24
+                      </span>
+                      <span className="font-teko font-semibold text-[#8B0AB4] text-[20px] md:text-[24px] leading-none mb-1">
+                        hrs
+                      </span>
+                    </div>
+                    <p className="font-kanit font-normal text-[#555] text-[12px] md:text-[13px] leading-[1.4]">
+                      Average response time on every project inquiry
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom row — scroll indicator */}
+            <div className="mt-14 md:mt-16">
+              <button
+                onClick={() =>
+                  formRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
+                aria-label="Scroll to contact form"
+                className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </section>
       </main>
