@@ -92,10 +92,10 @@ export default function Services() {
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
 <section className="bg-white relative overflow-hidden min-h-[calc(100vh-87px)] flex items-center">
-  <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
-    <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-8 items-center">
+  <div className="max-w-[1500px] mx-auto pl-6 pr-0 lg:pr-0 py-10 md:py-12 w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-10 lg:gap-6 items-center">
       {/* LEFT — text column */}
-      <div className="relative z-10">
+      <div className="relative z-10 pr-6">
         <div className="flex items-center gap-3 mb-5">
           <span className="w-8 h-[2px] bg-[#8B0AB4]" />
           <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] md:text-[14px] uppercase tracking-wider">
@@ -103,7 +103,7 @@ export default function Services() {
           </span>
         </div>
 
-        <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(2.3rem,5vw,4.5rem)] mb-5">
+        <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.8rem,6.5vw,6.2rem)] mb-5">
           Digital Solutions
           <br />
           That Drive
@@ -135,10 +135,10 @@ export default function Services() {
         </button>
       </div>
 
-      {/* RIGHT — circle eclipse effect + arrow badge + service tags */}
-      <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px]">
+      {/* RIGHT — circle eclipse effect, bleeding to the viewport edge */}
+      <div className="relative flex items-center justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-visible">
         {/* Outer wrapper — holds halo circle, photo circle, arrow badge, and card stack together */}
-        <div className="relative w-[360px] sm:w-[440px] md:w-[520px] lg:w-[580px] h-[360px] sm:h-[440px] md:h-[520px] lg:h-[580px]">
+        <div className="relative w-[360px] sm:w-[440px] md:w-[520px] lg:w-[600px] h-[360px] sm:h-[440px] md:h-[520px] lg:h-[600px] -mr-6 lg:-mr-16">
           {/* Halo circle — larger, top-right anchored */}
           <div className="absolute top-0 right-0 w-full h-full rounded-full bg-[#F3E8F7] z-0" />
 
@@ -166,10 +166,10 @@ export default function Services() {
             </svg>
           </button>
 
-          {/* Dot grid — bottom-left, overlapping the photo circle's rim */}
-          <div className="hidden md:grid absolute -bottom-4 -left-8 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <span key={i} className="w-[4px] h-[4px] rounded-full bg-[#8B0AB4]" />
+          {/* Dot grid — smaller, tucked closer to the upper-left of the photo circle */}
+          <div className="hidden md:grid absolute top-[8%] -left-10 grid-cols-3 gap-[4px] opacity-60 pointer-events-none z-20">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <span key={i} className="w-[3px] h-[3px] rounded-full bg-[#8B0AB4]" />
             ))}
           </div>
 
@@ -199,13 +199,13 @@ export default function Services() {
     </div>
 
     {/* Bottom row — scroll indicator */}
-    <div className="mt-14 md:mt-16">
+    <div className="mt-14 md:mt-16 pl-0">
       <button
         onClick={() =>
           servicesGridRef.current?.scrollIntoView({ behavior: "smooth" })
         }
         aria-label="Scroll to services"
-        className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors"
+        className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors ml-6 lg:ml-0"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path
