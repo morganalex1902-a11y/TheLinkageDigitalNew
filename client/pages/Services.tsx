@@ -90,7 +90,7 @@ export default function Services() {
       <SiteHeader />
 
       <main className="relative overflow-hidden">
-        {{/* ── HERO SECTION ── */}
+        {/* ── HERO SECTION ── */}
 <section className="bg-white relative overflow-hidden min-h-[calc(100vh-87px)] flex items-center">
   <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
     <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-10 items-center">
