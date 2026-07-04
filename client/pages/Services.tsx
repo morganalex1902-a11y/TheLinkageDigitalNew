@@ -103,7 +103,7 @@ export default function Services() {
                   </span>
                 </div>
 
-                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(2.3rem,5vw,4.5rem)] mb-5">
+                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(2.5rem,6vw,5rem)] mb-5">
                   Digital Solutions
                   <br />
                   That Drive
@@ -136,8 +136,8 @@ export default function Services() {
               </div>
 
               {/* RIGHT — circular photo + floating badge + service tags */}
-              <div className="relative flex items-center justify-center lg:justify-end h-[300px] sm:h-[340px] md:h-[380px] lg:h-[400px]">
-                <div className="relative w-[240px] sm:w-[280px] md:w-[320px] lg:w-[340px] aspect-square">
+              <div className="relative flex items-center justify-center lg:justify-end h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
+                <div className="relative w-[280px] sm:w-[340px] md:w-[400px] lg:w-[450px] aspect-square">
                   {/* dot grid — tucked behind, bottom-left of the circle */}
                   <div className="hidden md:grid absolute -bottom-6 -left-8 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-0">
                     {Array.from({ length: 16 }).map((_, i) => (
@@ -173,15 +173,15 @@ export default function Services() {
                     </svg>
                   </button>
 
-                  {/* Service tags — floating on the right side */}
-                  <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-full flex-col gap-4 pl-6">
+                  {/* Service tags — positioned inside the circle on the right side */}
+                  <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 flex-col gap-4 z-20 pr-6">
                     {["STRATEGY", "DESIGN", "UI/UX", "MARKETING"].map((tag, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-3 bg-white px-4 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                        className="flex items-center gap-2 bg-white px-3 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-shadow"
                       >
-                        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[#8B0AB4] rounded-lg">
-                          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <div className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-[#8B0AB4] rounded-lg">
+                          <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
                             <path
                               d="M8 2L10.39 7.26H16L11.82 11.01L13.41 16L8 12.25L2.59 16L4.18 11.01L0 7.26H5.61L8 2Z"
                               fill="currentColor"
@@ -189,7 +189,7 @@ export default function Services() {
                             />
                           </svg>
                         </div>
-                        <span className="font-kanit font-semibold text-[#121212] text-[12px] uppercase tracking-wider whitespace-nowrap">
+                        <span className="font-kanit font-semibold text-[#121212] text-[11px] uppercase tracking-wider whitespace-nowrap">
                           {tag}
                         </span>
                       </div>
