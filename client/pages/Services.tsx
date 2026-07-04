@@ -92,10 +92,10 @@ export default function Services() {
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
 <section className="bg-white relative overflow-hidden min-h-[calc(100vh-87px)] flex items-center">
-  <div className="max-w-[1500px] mx-auto pl-6 pr-0 lg:pr-0 py-10 md:py-12 w-full">
-    <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-10 lg:gap-6 items-center">
+  <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-10 items-center">
       {/* LEFT — text column */}
-      <div className="relative z-10 pr-6">
+      <div className="relative z-10">
         <div className="flex items-center gap-3 mb-5">
           <span className="w-8 h-[2px] bg-[#8B0AB4]" />
           <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] md:text-[14px] uppercase tracking-wider">
@@ -135,10 +135,10 @@ export default function Services() {
         </button>
       </div>
 
-      {/* RIGHT — circle eclipse effect, bleeding to the viewport edge */}
-      <div className="relative flex items-center justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-visible">
+      {/* RIGHT — circle eclipse effect, contained within viewport */}
+      <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[640px]">
         {/* Outer wrapper — holds halo circle, photo circle, arrow badge, and card stack together */}
-        <div className="relative w-[360px] sm:w-[440px] md:w-[520px] lg:w-[600px] h-[360px] sm:h-[440px] md:h-[520px] lg:h-[600px] -mr-6 lg:-mr-16">
+        <div className="relative w-[340px] sm:w-[420px] md:w-[480px] lg:w-[540px] h-[340px] sm:h-[420px] md:h-[480px] lg:h-[540px]">
           {/* Halo circle — larger, top-right anchored */}
           <div className="absolute top-0 right-0 w-full h-full rounded-full bg-[#F3E8F7] z-0" />
 
@@ -159,24 +159,24 @@ export default function Services() {
             }
             aria-label="Explore services"
             className="absolute top-0 right-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center z-30 hover:scale-105 transition-transform shadow-lg"
-            style={{ transform: "translate(30%, -30%)" }}
+            style={{ transform: "translate(20%, -20%)" }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>
 
-          {/* Dot grid — smaller, tucked closer to the upper-left of the photo circle */}
-          <div className="hidden md:grid absolute top-[8%] -left-10 grid-cols-3 gap-[4px] opacity-60 pointer-events-none z-20">
+          {/* Dot grid — nudged slightly up-left from the photo circle's bottom-left rim */}
+          <div className="hidden md:grid absolute bottom-8 -left-6 grid-cols-3 gap-[4px] opacity-60 pointer-events-none z-20">
             {Array.from({ length: 9 }).map((_, i) => (
               <span key={i} className="w-[3px] h-[3px] rounded-full bg-[#8B0AB4]" />
             ))}
           </div>
 
-          {/* Service tag stack — pinned to the right edge, overlapping the halo circle */}
+          {/* Service tag stack — pinned to the right edge, staying inside the wrapper's bounds */}
           <div
             className="hidden sm:flex flex-col gap-2 absolute z-20"
-            style={{ right: "-40px", top: "50%", transform: "translateY(-50%)" }}
+            style={{ right: "-20px", top: "50%", transform: "translateY(-50%)" }}
           >
             {["Strategy", "Design", "UI/UX", "Marketing"].map((label) => (
               <div
@@ -199,13 +199,13 @@ export default function Services() {
     </div>
 
     {/* Bottom row — scroll indicator */}
-    <div className="mt-14 md:mt-16 pl-0">
+    <div className="mt-14 md:mt-16">
       <button
         onClick={() =>
           servicesGridRef.current?.scrollIntoView({ behavior: "smooth" })
         }
         aria-label="Scroll to services"
-        className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors ml-6 lg:ml-0"
+        className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path
