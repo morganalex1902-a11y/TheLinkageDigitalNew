@@ -94,36 +94,125 @@ export default function Portfolio() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <section className="bg-white relative overflow-hidden">
-          {/* Background image with white overlay */}
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F213039643cca445ab1343a8346c8eadc?format=webp&width=800&height=1200"
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
-          />
-          <div className="absolute inset-0 bg-white/40 pointer-events-none" />
+        <section className="bg-white relative overflow-hidden min-h-[calc(100vh-87px)] flex items-center">
+          <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-10 items-center">
+              {/* LEFT — text column */}
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="w-8 h-[2px] bg-[#8B0AB4]" />
+                  <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] md:text-[14px] uppercase tracking-wider">
+                    Portfolio
+                  </span>
+                </div>
 
-          {/* Purple shape overlays */}
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
-            alt=""
-            className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-          />
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
-            alt=""
-            className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-          />
+                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.8rem,6.5vw,6.2rem)] mb-5">
+                  Creative
+                  <br />
+                  Work.
+                  <br />
+                  <span className="text-[#8B0AB4]">Real Impact.</span>
+                </h1>
 
-          <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
-            <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-6">
-              Our
-              <br />
-              Portfolio
-            </h1>
-            <p className="font-kanit font-normal text-black text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
-              Explore our collection of award-winning projects and case studies showcasing our expertise across various industries.
-            </p>
+                <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[16px] leading-[1.6] max-w-[420px] mb-8">
+                  Explore a selection of our recent projects where design meets strategy and results speak louder than words.
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
+                >
+                  Explore Our Work
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* RIGHT — two-image pill cluster */}
+              <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-visible">
+                <div className="relative w-full flex items-center justify-end overflow-visible">
+                  {/* Two-image pill cluster with Image URLs from Index hero */}
+                  <div className="flex items-center justify-center pt-6 lg:pt-4 relative z-10 overflow-visible">
+                    {/* Left: red duotone shape — positioned lower, behind */}
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
+                      alt="Portfolio showcase"
+                      className="flex-shrink-0 relative z-0 object-contain"
+                      style={{
+                        width: "clamp(140px,19vw,240px)",
+                        height: "clamp(280px,38vw,480px)",
+                        top: "clamp(20px,2.8vw,45px)",
+                      }}
+                    />
+
+                    {/* Right: photo shape + Play button anchored to it */}
+                    <div
+                      className="relative flex-shrink-0 z-10 overflow-visible"
+                      style={{
+                        width: "clamp(140px,19vw,240px)",
+                        height: "clamp(280px,38vw,480px)",
+                        top: "clamp(-20px,-2.8vw,-45px)",
+                      }}
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
+                        alt="Team member"
+                        className="w-full h-full object-contain"
+                      />
+                      {/* Play button — positioned outside to avoid clip */}
+                      <div className="absolute -right-16 bottom-[38%] flex flex-col items-center gap-1 z-30">
+                        <button className="w-[48px] h-[48px] md:w-[56px] md:h-[56px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl">
+                          <svg width="12" height="13" viewBox="0 0 12 13" fill="white">
+                            <path d="M11.6309 6.06836L0.738281 11.9971V0.152344L11.6309 6.06836Z" fill="white" />
+                          </svg>
+                        </button>
+                        <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                          Watch
+                          <br />
+                          Video
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dot grid decoration (4x4) — matches Services page positioning */}
+                  <div className="hidden md:grid absolute bottom-6 -left-2 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
+                    {Array.from({ length: 16 }).map((_, i) => (
+                      <span key={i} className="w-[5px] h-[5px] rounded-full bg-[#8B0AB4]" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom row — scroll indicator */}
+            <div className="mt-14 md:mt-16">
+              <button
+                onClick={() =>
+                  projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
+                aria-label="Scroll to portfolio projects"
+                className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </section>
       </main>
