@@ -94,133 +94,106 @@ export default function Portfolio() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <section className="bg-white relative overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-6">
-            <div className="min-h-screen flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-20 py-20 md:py-28 lg:py-0 relative">
-              
-              {/* LEFT COLUMN: Text */}
-              <div className="flex-1 min-w-0 flex flex-col justify-center">
-                {/* Purple line + PORTFOLIO label */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-px bg-[#8B0AB4]" />
-                  <span className="font-kanit font-bold text-[13px] md:text-[14px] uppercase text-[#8B0AB4] tracking-wider">
+        <section className="bg-white relative overflow-hidden min-h-[calc(100vh-87px)] flex items-center">
+          <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-10 items-center">
+              {/* LEFT — text column */}
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="w-8 h-[2px] bg-[#8B0AB4]" />
+                  <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] md:text-[14px] uppercase tracking-wider">
                     Portfolio
                   </span>
                 </div>
 
-                {/* Heading */}
-                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.5rem,5.5vw,6rem)] mb-4 md:mb-6">
-                  <span className="block">Creative Work.</span>
-                  <span className="block" style={{ color: "#8B0AB4" }}>Real Impact.</span>
+                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.8rem,6.5vw,6.2rem)] mb-5">
+                  Creative
+                  <br />
+                  Work.
+                  <br />
+                  <span className="text-[#8B0AB4]">Real Impact.</span>
                 </h1>
 
-                {/* Supporting paragraph */}
-                <p className="font-kanit font-normal text-[#555] text-base md:text-[17px] lg:text-[18px] leading-[1.55] max-w-[520px] mb-8 md:mb-12">
+                <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[16px] leading-[1.6] max-w-[420px] mb-8">
                   Explore a selection of our recent projects where design meets strategy and results speak louder than words.
                 </p>
 
-                {/* Text link with arrow */}
                 <button
-                  onClick={() => {
-                    const element = projectsGridRef.current;
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                  }}
-                  className="inline-flex items-center gap-2 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
+                  type="button"
+                  onClick={() =>
+                    projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
                 >
                   Explore Our Work
-                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0">
-                    <path d="M1 5H11M11 5L6.5 0.5M11 5L6.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
+                      fill="currentColor"
+                    />
                   </svg>
                 </button>
               </div>
 
-              {/* RIGHT COLUMN: Image cluster */}
-              <div className="relative flex-shrink-0 mt-12 lg:mt-0 lg:w-[430px] xl:w-[520px] flex items-center justify-end">
-                <div className="relative w-full flex items-center justify-end">
-                  
-                  {/* Two-image pill cluster (left: red duotone, right: full color) */}
-                  <div className="flex items-center justify-center pt-6 lg:pt-4 relative z-10">
-                    {/* Left: red duotone shape — positioned lower, behind */}
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
-                      alt="Portfolio showcase"
-                      className="flex-shrink-0 relative z-0 object-contain"
-                      style={{
-                        width: "clamp(100px,14vw,180px)",
-                        height: "clamp(200px,28vw,360px)",
-                        top: "clamp(15px,2vw,35px)",
-                      }}
-                    />
+              {/* RIGHT — circle eclipse effect, similar to Services */}
+              <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px]">
+                {/* Outer wrapper — offset by exactly the container's own padding (24px) so it sits flush at the edge */}
+                <div className="relative w-[360px] sm:w-[440px] md:w-[520px] lg:w-[580px] h-[360px] sm:h-[440px] md:h-[520px] lg:h-[580px] lg:-mr-6">
+                  {/* Halo circle — larger, top-right anchored */}
+                  <div className="absolute top-0 right-0 w-full h-full rounded-full bg-[#F3E8F7] z-0" />
 
-                    {/* Right: photo shape + Play button anchored to it */}
-                    <div
-                      className="relative flex-shrink-0 z-10"
-                      style={{
-                        width: "clamp(100px,14vw,180px)",
-                        height: "clamp(200px,28vw,360px)",
-                        top: "clamp(-15px,-2vw,-35px)",
-                      }}
-                    >
-                      <img
-                        src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
-                        alt="Team member"
-                        className="w-full h-full object-contain"
-                      />
-                      {/* Play button */}
-                      <div className="absolute -right-10 bottom-[38%] flex flex-col items-center gap-1">
-                        <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl">
-                          <svg width="12" height="13" viewBox="0 0 12 13" fill="white">
-                            <path d="M11.6309 6.06836L0.738281 11.9971V0.152344L11.6309 6.06836Z" fill="white" />
-                          </svg>
-                        </button>
-                        <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
-                          Watch
-                          <br />
-                          Video
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Mini gallery stack (2 images, stacked vertically) */}
-                  <div className="flex flex-col gap-3 md:gap-4 ml-3 md:ml-4 flex-shrink-0">
+                  {/* Photo circle — smaller, bottom-left anchored, overlapping the halo */}
+                  <div className="absolute bottom-0 left-0 w-[85%] h-[85%] rounded-full overflow-hidden z-10 shadow-lg">
                     <img
-                      src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=200&q=80"
-                      alt="Gallery 1"
-                      className="w-[60px] h-[80px] md:w-[80px] md:h-[100px] rounded-lg object-cover"
-                    />
-                    <img
-                      src="https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=200&q=80"
-                      alt="Gallery 2"
-                      className="w-[60px] h-[80px] md:w-[80px] md:h-[100px] rounded-lg object-cover"
+                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
+                      alt="Portfolio showcase - creative work"
+                      className="w-full h-full object-cover"
                     />
                   </div>
 
-                  {/* Dot grid decoration (4x4) */}
-                  <div className="hidden md:grid absolute bottom-0 -left-12 grid-cols-4 gap-[8px] opacity-50 pointer-events-none z-5">
+                  {/* Arrow badge — sits on the rim of the halo circle's top-right corner */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
+                    }
+                    aria-label="Explore portfolio"
+                    className="absolute top-0 right-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center z-30 hover:scale-105 transition-transform shadow-lg"
+                    style={{ transform: "translate(20%, -20%)" }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </button>
+
+                  {/* Dot grid — anchored near the photo circle's lower-left rim */}
+                  <div className="hidden md:grid absolute bottom-6 -left-8 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
                     {Array.from({ length: 16 }).map((_, i) => (
-                      <span key={i} className="w-[6px] h-[6px] rounded-full bg-[#8B0AB4]" />
+                      <span key={i} className="w-[5px] h-[5px] rounded-full bg-[#8B0AB4]" />
                     ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Bottom-left scroll button */}
-            <div className="flex justify-start pb-8 lg:absolute lg:bottom-8 lg:left-6 xl:left-12">
+            {/* Bottom row — scroll indicator */}
+            <div className="mt-14 md:mt-16">
               <button
-                onClick={() => {
-                  const element = projectsGridRef.current;
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white hover:bg-[#8B0AB4] flex items-center justify-center transition-all group"
+                onClick={() =>
+                  projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
+                aria-label="Scroll to portfolio projects"
+                className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors"
               >
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="flex-shrink-0">
-                  <path d="M5 0V8.5M5 8.5L1.25 4.75M5 8.5L8.75 4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
                 </svg>
               </button>
             </div>
