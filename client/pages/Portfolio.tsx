@@ -95,35 +95,135 @@ export default function Portfolio() {
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
         <section className="bg-white relative overflow-hidden">
-          {/* Background image with white overlay */}
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F213039643cca445ab1343a8346c8eadc?format=webp&width=800&height=1200"
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
-          />
-          <div className="absolute inset-0 bg-white/40 pointer-events-none" />
+          <div className="max-w-[1400px] mx-auto px-6">
+            <div className="min-h-screen flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-20 py-20 md:py-28 lg:py-0 relative">
+              
+              {/* LEFT COLUMN: Text */}
+              <div className="flex-1 min-w-0 flex flex-col justify-center">
+                {/* Purple line + PORTFOLIO label */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-8 h-px bg-[#8B0AB4]" />
+                  <span className="font-kanit font-bold text-[13px] md:text-[14px] uppercase text-[#8B0AB4] tracking-wider">
+                    Portfolio
+                  </span>
+                </div>
 
-          {/* Purple shape overlays */}
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
-            alt=""
-            className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-          />
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
-            alt=""
-            className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-          />
+                {/* Heading */}
+                <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.5rem,5.5vw,6rem)] mb-4 md:mb-6">
+                  <span className="block">Creative Work.</span>
+                  <span className="block" style={{ color: "#8B0AB4" }}>Real Impact.</span>
+                </h1>
 
-          <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
-            <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-6">
-              Our
-              <br />
-              Portfolio
-            </h1>
-            <p className="font-kanit font-normal text-black text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[560px]">
-              Explore our collection of award-winning projects and case studies showcasing our expertise across various industries.
-            </p>
+                {/* Supporting paragraph */}
+                <p className="font-kanit font-normal text-[#555] text-base md:text-[17px] lg:text-[18px] leading-[1.55] max-w-[520px] mb-8 md:mb-12">
+                  Explore a selection of our recent projects where design meets strategy and results speak louder than words.
+                </p>
+
+                {/* Text link with arrow */}
+                <button
+                  onClick={() => {
+                    const element = projectsGridRef.current;
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }}
+                  className="inline-flex items-center gap-2 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
+                >
+                  Explore Our Work
+                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0">
+                    <path d="M1 5H11M11 5L6.5 0.5M11 5L6.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* RIGHT COLUMN: Image cluster */}
+              <div className="relative flex-shrink-0 mt-12 lg:mt-0 lg:w-[430px] xl:w-[520px] flex items-center justify-end">
+                <div className="relative w-full flex items-center justify-end">
+                  
+                  {/* Two-image pill cluster (left: red duotone, right: full color) */}
+                  <div className="flex items-center justify-center pt-6 lg:pt-4 relative z-10">
+                    {/* Left: red duotone shape — positioned lower, behind */}
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
+                      alt="Portfolio showcase"
+                      className="flex-shrink-0 relative z-0 object-contain"
+                      style={{
+                        width: "clamp(100px,14vw,180px)",
+                        height: "clamp(200px,28vw,360px)",
+                        top: "clamp(15px,2vw,35px)",
+                      }}
+                    />
+
+                    {/* Right: photo shape + Play button anchored to it */}
+                    <div
+                      className="relative flex-shrink-0 z-10"
+                      style={{
+                        width: "clamp(100px,14vw,180px)",
+                        height: "clamp(200px,28vw,360px)",
+                        top: "clamp(-15px,-2vw,-35px)",
+                      }}
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
+                        alt="Team member"
+                        className="w-full h-full object-contain"
+                      />
+                      {/* Play button */}
+                      <div className="absolute -right-10 bottom-[38%] flex flex-col items-center gap-1">
+                        <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl">
+                          <svg width="12" height="13" viewBox="0 0 12 13" fill="white">
+                            <path d="M11.6309 6.06836L0.738281 11.9971V0.152344L11.6309 6.06836Z" fill="white" />
+                          </svg>
+                        </button>
+                        <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                          Watch
+                          <br />
+                          Video
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mini gallery stack (2 images, stacked vertically) */}
+                  <div className="flex flex-col gap-3 md:gap-4 ml-3 md:ml-4 flex-shrink-0">
+                    <img
+                      src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=200&q=80"
+                      alt="Gallery 1"
+                      className="w-[60px] h-[80px] md:w-[80px] md:h-[100px] rounded-lg object-cover"
+                    />
+                    <img
+                      src="https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=200&q=80"
+                      alt="Gallery 2"
+                      className="w-[60px] h-[80px] md:w-[80px] md:h-[100px] rounded-lg object-cover"
+                    />
+                  </div>
+
+                  {/* Dot grid decoration (4x4) */}
+                  <div className="hidden md:grid absolute bottom-0 -left-12 grid-cols-4 gap-[8px] opacity-50 pointer-events-none z-5">
+                    {Array.from({ length: 16 }).map((_, i) => (
+                      <span key={i} className="w-[6px] h-[6px] rounded-full bg-[#8B0AB4]" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom-left scroll button */}
+            <div className="flex justify-start pb-8 lg:absolute lg:bottom-8 lg:left-6 xl:left-12">
+              <button
+                onClick={() => {
+                  const element = projectsGridRef.current;
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white hover:bg-[#8B0AB4] flex items-center justify-center transition-all group"
+              >
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="flex-shrink-0">
+                  <path d="M5 0V8.5M5 8.5L1.25 4.75M5 8.5L8.75 4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
         </section>
       </main>
