@@ -138,42 +138,48 @@ export default function Portfolio() {
               </div>
 
               {/* RIGHT — two-image pill cluster */}
-              <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px]">
-                <div className="relative w-full flex items-center justify-end">
-                  {/* Two-image pill cluster with large sizing */}
-                  <div className="flex items-center justify-center pt-6 lg:pt-4 relative z-10">
-                    {/* Left: placeholder space */}
-                    <div
-                      className="flex-shrink-0 relative z-0 bg-gradient-to-br from-[#E8D4F8] to-[#D0A8E8] rounded-[3rem]"
+              <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-visible">
+                <div className="relative w-full flex items-center justify-end overflow-visible">
+                  {/* Two-image pill cluster with Image URLs from Index hero */}
+                  <div className="flex items-center justify-center pt-6 lg:pt-4 relative z-10 overflow-visible">
+                    {/* Left: red duotone shape — positioned lower, behind */}
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
+                      alt="Portfolio showcase"
+                      className="flex-shrink-0 relative z-0 object-contain"
                       style={{
-                        width: "clamp(160px,20vw,240px)",
-                        height: "clamp(320px,40vw,480px)",
-                        top: "clamp(20px,3vw,50px)",
+                        width: "clamp(140px,19vw,240px)",
+                        height: "clamp(280px,38vw,480px)",
+                        top: "clamp(20px,2.8vw,45px)",
                       }}
                     />
 
-                    {/* Right: photo container + Play button anchored to it */}
+                    {/* Right: photo shape + Play button anchored to it */}
                     <div
-                      className="relative flex-shrink-0 z-10 bg-gray-200 rounded-[3rem] overflow-hidden flex items-center justify-center"
+                      className="relative flex-shrink-0 z-10 overflow-visible"
                       style={{
-                        width: "clamp(160px,20vw,240px)",
-                        height: "clamp(320px,40vw,480px)",
-                        top: "clamp(-20px,-3vw,-50px)",
-                        marginLeft: "clamp(-40px,-5vw,-60px)",
+                        width: "clamp(140px,19vw,240px)",
+                        height: "clamp(280px,38vw,480px)",
+                        top: "clamp(-20px,-2.8vw,-45px)",
+                        marginLeft: "clamp(-35px,-4.5vw,-55px)",
                       }}
                     >
-                      <span className="text-gray-400 text-sm">Image placeholder</span>
-                      {/* Play button */}
-                      <div className="absolute -right-8 bottom-[38%] flex flex-col items-center gap-2">
-                        <button className="w-[48px] h-[48px] md:w-[56px] md:h-[56px] rounded-full bg-[#8B0AB4] flex items-center justify-center hover:scale-110 transition-transform shadow-xl">
-                          <svg width="14" height="15" viewBox="0 0 14 15" fill="white">
-                            <path d="M13.3 7.5L0.7 14.93V0.07L13.3 7.5Z" fill="white" />
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
+                        alt="Team member"
+                        className="w-full h-full object-contain"
+                      />
+                      {/* Play button — positioned outside to avoid clip */}
+                      <div className="absolute -right-16 bottom-[38%] flex flex-col items-center gap-1 z-30">
+                        <button className="w-[48px] h-[48px] md:w-[56px] md:h-[56px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl">
+                          <svg width="12" height="13" viewBox="0 0 12 13" fill="white">
+                            <path d="M11.6309 6.06836L0.738281 11.9971V0.152344L11.6309 6.06836Z" fill="white" />
                           </svg>
                         </button>
-                        <span className="font-kanit font-medium text-[10px] md:text-[11px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                        <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
                           Watch
                           <br />
-                          Showreel
+                          Video
                         </span>
                       </div>
                     </div>
