@@ -137,39 +137,50 @@ export default function Portfolio() {
                 </button>
               </div>
 
-              {/* RIGHT — circle eclipse effect, similar to Services */}
+              {/* RIGHT — two-image pill cluster */}
               <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px]">
-                {/* Outer wrapper — offset by exactly the container's own padding (24px) so it sits flush at the edge */}
-                <div className="relative w-[360px] sm:w-[440px] md:w-[520px] lg:w-[580px] h-[360px] sm:h-[440px] md:h-[520px] lg:h-[580px] lg:-mr-6">
-                  {/* Halo circle — larger, top-right anchored */}
-                  <div className="absolute top-0 right-0 w-full h-full rounded-full bg-[#F3E8F7] z-0" />
-
-                  {/* Photo circle — smaller, bottom-left anchored, overlapping the halo */}
-                  <div className="absolute bottom-0 left-0 w-[85%] h-[85%] rounded-full overflow-hidden z-10 shadow-lg">
-                    <img
-                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
-                      alt="Portfolio showcase - creative work"
-                      className="w-full h-full object-cover"
+                <div className="relative w-full flex items-center justify-end">
+                  {/* Two-image pill cluster with large sizing */}
+                  <div className="flex items-center justify-center pt-6 lg:pt-4 relative z-10">
+                    {/* Left: placeholder space */}
+                    <div
+                      className="flex-shrink-0 relative z-0 bg-gradient-to-br from-[#E8D4F8] to-[#D0A8E8] rounded-[3rem]"
+                      style={{
+                        width: "clamp(160px,20vw,240px)",
+                        height: "clamp(320px,40vw,480px)",
+                        top: "clamp(20px,3vw,50px)",
+                      }}
                     />
+
+                    {/* Right: photo container + Play button anchored to it */}
+                    <div
+                      className="relative flex-shrink-0 z-10 bg-gray-200 rounded-[3rem] overflow-hidden flex items-center justify-center"
+                      style={{
+                        width: "clamp(160px,20vw,240px)",
+                        height: "clamp(320px,40vw,480px)",
+                        top: "clamp(-20px,-3vw,-50px)",
+                        marginLeft: "clamp(-40px,-5vw,-60px)",
+                      }}
+                    >
+                      <span className="text-gray-400 text-sm">Image placeholder</span>
+                      {/* Play button */}
+                      <div className="absolute -right-8 bottom-[38%] flex flex-col items-center gap-2">
+                        <button className="w-[48px] h-[48px] md:w-[56px] md:h-[56px] rounded-full bg-[#8B0AB4] flex items-center justify-center hover:scale-110 transition-transform shadow-xl">
+                          <svg width="14" height="15" viewBox="0 0 14 15" fill="white">
+                            <path d="M13.3 7.5L0.7 14.93V0.07L13.3 7.5Z" fill="white" />
+                          </svg>
+                        </button>
+                        <span className="font-kanit font-medium text-[10px] md:text-[11px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                          Watch
+                          <br />
+                          Showreel
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Arrow badge — sits on the rim of the halo circle's top-right corner */}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    aria-label="Explore portfolio"
-                    className="absolute top-0 right-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center z-30 hover:scale-105 transition-transform shadow-lg"
-                    style={{ transform: "translate(20%, -20%)" }}
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
-                  </button>
-
-                  {/* Dot grid — anchored near the photo circle's lower-left rim */}
-                  <div className="hidden md:grid absolute bottom-6 -left-8 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
+                  {/* Dot grid decoration (4x4) */}
+                  <div className="hidden md:grid absolute bottom-0 -left-12 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-5">
                     {Array.from({ length: 16 }).map((_, i) => (
                       <span key={i} className="w-[5px] h-[5px] rounded-full bg-[#8B0AB4]" />
                     ))}
