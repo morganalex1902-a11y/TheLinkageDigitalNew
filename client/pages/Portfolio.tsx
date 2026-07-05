@@ -185,7 +185,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Dot grid decoration (4x4) — matches Services page positioning */}
-                  <div className="hidden md:grid absolute bottom-6 -left-8 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
+                  <div className="hidden md:grid absolute bottom-6 -left-2 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
                     {Array.from({ length: 16 }).map((_, i) => (
                       <span key={i} className="w-[5px] h-[5px] rounded-full bg-[#8B0AB4]" />
                     ))}
