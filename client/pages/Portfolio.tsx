@@ -250,7 +250,7 @@ export default function Portfolio() {
       </main>
 
       {/* ── PORTFOLIO SECTION ── */}
-      <section ref={portfolioRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
+      <section className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           {/* Main category filter buttons */}
           <div className="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-10">
@@ -292,7 +292,7 @@ export default function Portfolio() {
           )}
 
           {/* Projects grid */}
-          <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
+          <div ref={projectsGridRef as React.RefObject<HTMLElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {filteredProjects.map((project, i) => (
               <div
                 key={i}
@@ -343,7 +343,7 @@ export default function Portfolio() {
       {/* ── STATS SECTION ── */}
       <section className="bg-white py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div ref={statsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center reveal-stagger">
+          <div ref={statsGridRef as React.RefObject<HTMLElement>} className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center reveal-stagger">
             <div>
               <div className="font-teko font-bold text-[64px] md:text-[80px] text-[#8B0AB4] leading-none mb-3">
                 250+
