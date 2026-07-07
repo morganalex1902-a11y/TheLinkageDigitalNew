@@ -299,7 +299,7 @@ export default function Portfolio() {
           )}
 
           {/* Projects grid */}
-          <div ref={projectsGridRef as React.RefObject<HTMLElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
+          <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
             {filteredProjects.map((project) => (
               <div
                 key={`${project.title.replace(/\s+/g, "-").toLowerCase()}`}
@@ -361,7 +361,7 @@ export default function Portfolio() {
       {/* ── STATS SECTION ── */}
       <section className="bg-white py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div ref={statsGridRef as React.RefObject<HTMLElement>} className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center reveal-stagger">
+          <div ref={statsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center reveal-stagger">
             <div>
               <div className="font-teko font-bold text-[64px] md:text-[80px] text-[#8B0AB4] leading-none mb-3">
                 250+
