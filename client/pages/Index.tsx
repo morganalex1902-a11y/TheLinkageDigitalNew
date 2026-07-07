@@ -90,7 +90,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
         }}
       >
         {allImages.map((src, i) => (
-          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[29.6vw] h-[29.9vw]">
+          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(120px,29.6vw,400px)] h-[clamp(120px,29.9vw,400px)]">
             <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
