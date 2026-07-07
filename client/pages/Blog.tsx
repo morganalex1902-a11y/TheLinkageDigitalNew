@@ -123,8 +123,8 @@ export default function Blog() {
                 </button>
               </div>
 
-              {/* RIGHT — overlapping article preview cards */}
-              <div className="relative h-[300px] sm:h-[360px] md:h-[480px] lg:h-[600px] flex items-center justify-center mt-6 sm:mt-4 lg:mt-0">
+              {/* RIGHT — overlapping article preview cards with 3D floating effect */}
+              <div className="relative h-[320px] sm:h-[400px] md:h-[520px] lg:h-[640px] flex items-center justify-center mt-3 sm:mt-2 lg:mt-0" style={{ perspective: "1000px" }}>
                 {/* dotted grid decoration */}
                 <div className="hidden md:grid absolute -top-4 right-4 grid-cols-4 gap-[6px] opacity-60 pointer-events-none">
                   {Array.from({ length: 16 }).map((_, i) => (
@@ -132,70 +132,70 @@ export default function Blog() {
                   ))}
                 </div>
 
-                {/* Left card — TRENDS (9:16 aspect ratio, tightly packed) */}
-                <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md -rotate-2 block" style={{ aspectRatio: "9/16", left: "2%", sm: "4%", top: "50%", transform: "translateY(-50%)", zIndex: 5 }}>
+                {/* Left card — TRENDS (9:16 aspect ratio, floating animation) */}
+                <div className="absolute w-[24%] sm:w-[26%] md:w-[24%] lg:w-[24%] rounded-xl overflow-hidden shadow-lg -rotate-2 block animate-float" style={{ aspectRatio: "9/16", left: "1%", sm: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5, animationDelay: "0.2s" }}>
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480"
                     alt="Top Web Design Trends to Watch in 2024"
                     className="w-full h-full object-cover grayscale"
                   />
                   <div className="absolute inset-0 bg-black/10" />
-                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
-                    <span className="bg-white/90 text-[#121212] font-kanit font-semibold text-[7px] sm:text-[9px] md:text-[10px] uppercase px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                    <span className="bg-white/90 text-[#121212] font-kanit font-semibold text-[8px] sm:text-[9px] md:text-[10px] uppercase px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-full">
                       Trends
                     </span>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent">
-                    <p className="font-kanit text-white text-[8px] sm:text-[10px] md:text-[11px] font-medium leading-tight">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="font-kanit text-white text-[9px] sm:text-[10px] md:text-[11px] font-medium leading-tight">
                       Top Web Design Trends to Watch in 2024
                     </p>
-                    <p className="font-kanit text-white/70 text-[7px] sm:text-[9px] md:text-[10px] mt-0.5 sm:mt-1">
+                    <p className="font-kanit text-white/70 text-[8px] sm:text-[9px] md:text-[10px] mt-1 sm:mt-1">
                       May 10, 2024 • 5 min read
                     </p>
                   </div>
                 </div>
 
-                {/* Middle card — STRATEGY (featured, centered and largest) */}
-                <div className="absolute w-[28%] sm:w-[30%] md:w-[28%] lg:w-[28%] rounded-xl overflow-hidden shadow-2xl block" style={{ aspectRatio: "9/16", left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 20 }}>
+                {/* Middle card — STRATEGY (featured, centered and largest with prominent floating) */}
+                <div className="absolute w-[32%] sm:w-[34%] md:w-[32%] lg:w-[32%] rounded-xl overflow-hidden shadow-2xl block animate-float" style={{ aspectRatio: "9/16", left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 20 }}>
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910"
                     alt="Building Brands with Purpose and Impact"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#8B0AB4]/95 via-[#8B0AB4]/30 to-transparent" />
-                  <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
-                    <span className="bg-white text-[#8B0AB4] font-kanit font-semibold text-[8px] sm:text-[10px] md:text-[11px] uppercase px-2 sm:px-4 py-1 sm:py-2 rounded-full">
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                    <span className="bg-white text-[#8B0AB4] font-kanit font-semibold text-[9px] sm:text-[10px] md:text-[11px] uppercase px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                       Strategy
                     </span>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5">
-                    <h3 className="font-teko font-bold text-white uppercase text-[13px] sm:text-[16px] md:text-[18px] leading-[1.1] mb-1 sm:mb-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6">
+                    <h3 className="font-teko font-bold text-white uppercase text-[14px] sm:text-[16px] md:text-[18px] leading-[1.1] mb-2 sm:mb-2">
                       Building Brands with Purpose and Impact
                     </h3>
-                    <p className="font-kanit text-white/80 text-[8px] sm:text-[10px] md:text-[11px]">
+                    <p className="font-kanit text-white/80 text-[9px] sm:text-[10px] md:text-[11px]">
                       April 28, 2024 • 6 min read
                     </p>
                   </div>
                 </div>
 
-                {/* Right card — TIPS (9:16 aspect ratio, tightly packed) */}
-                <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md rotate-2 block" style={{ aspectRatio: "9/16", right: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5 }}>
+                {/* Right card — TIPS (9:16 aspect ratio, floating animation) */}
+                <div className="absolute w-[24%] sm:w-[26%] md:w-[24%] lg:w-[24%] rounded-xl overflow-hidden shadow-lg rotate-2 block animate-float" style={{ aspectRatio: "9/16", right: "1%", sm: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5, animationDelay: "0.4s" }}>
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/606973b7a19e784fa309acebad1d2d62459e0d20?width=80"
                     alt="How to Improve Your Website Performance"
                     className="w-full h-full object-cover grayscale"
                   />
                   <div className="absolute inset-0 bg-black/10" />
-                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
-                    <span className="bg-white/90 text-[#121212] font-kanit font-semibold text-[7px] sm:text-[9px] md:text-[10px] uppercase px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                    <span className="bg-white/90 text-[#121212] font-kanit font-semibold text-[8px] sm:text-[9px] md:text-[10px] uppercase px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-full">
                       Tips
                     </span>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent">
-                    <p className="font-kanit text-white text-[8px] sm:text-[10px] md:text-[11px] font-medium leading-tight">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="font-kanit text-white text-[9px] sm:text-[10px] md:text-[11px] font-medium leading-tight">
                       How to Improve Your Website Performance
                     </p>
-                    <p className="font-kanit text-white/70 text-[7px] sm:text-[9px] md:text-[10px] mt-0.5 sm:mt-1">
+                    <p className="font-kanit text-white/70 text-[8px] sm:text-[9px] md:text-[10px] mt-1 sm:mt-1">
                       April 19, 2024 • 6 min read
                     </p>
                   </div>

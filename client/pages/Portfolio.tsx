@@ -190,8 +190,8 @@ export default function Portfolio() {
                       }}
                     >
                       <img
-                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
-                        alt="Team collaboration moment"
+                        src="https://images.unsplash.com/photo-1559657121-cd4628902d4a?w=600&q=80"
+                        alt="Creative project workspace"
                         className="w-full h-full object-cover"
                       />
                     </div>
