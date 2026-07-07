@@ -138,10 +138,10 @@ export default function Portfolio() {
               </div>
 
               {/* RIGHT — asymmetric project-tile collage */}
-              <div className="relative flex items-start justify-end pt-8 md:pt-6">
-                <div className="relative w-full h-auto flex justify-end">
-                  {/* Collage wrapper — constrained to avoid overflow */}
-                  <div className="relative w-full max-w-[500px] h-[380px] sm:h-[420px] md:h-[480px]">
+              <div className="relative flex items-center justify-center lg:justify-end pt-6 lg:pt-8">
+                <div className="relative w-full h-auto flex justify-center lg:justify-end overflow-hidden lg:overflow-visible">
+                  {/* Collage wrapper — constrained to avoid overflow with mobile-first sizing */}
+                  <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[420px] lg:max-w-[500px] h-[320px] sm:h-[360px] md:h-[420px] lg:h-[480px]">
                     {/* Large featured tile — positioned center-left of collage */}
                     <div
                       className="absolute rounded-xl overflow-hidden shadow-md"
@@ -198,25 +198,25 @@ export default function Portfolio() {
 
                     {/* Floating stat badge — overlaid on large tile */}
                     <div
-                      className="absolute bg-[#8B0AB4] rounded-lg px-4 py-3 shadow-lg flex flex-col items-center justify-center"
+                      className="absolute bg-[#8B0AB4] rounded-lg px-3 py-2 sm:px-4 sm:py-3 shadow-lg flex flex-col items-center justify-center"
                       style={{
                         width: "max-content",
-                        minWidth: "110px",
+                        minWidth: "100px",
                         zIndex: 35,
                         left: "8%",
                         bottom: "12%",
                       }}
                     >
-                      <span className="font-kanit font-bold text-white text-[20px] md:text-[24px] leading-none">
+                      <span className="font-kanit font-bold text-white text-[18px] sm:text-[20px] md:text-[24px] leading-none">
                         250+
                       </span>
-                      <span className="font-kanit font-medium text-white text-[9px] md:text-[10px] uppercase text-center leading-tight mt-2 tracking-wide whitespace-nowrap">
+                      <span className="font-kanit font-medium text-white text-[8px] sm:text-[9px] md:text-[10px] uppercase text-center leading-tight mt-1 sm:mt-2 tracking-wide whitespace-nowrap">
                         Projects Done
                       </span>
                     </div>
                   </div>
 
-                  {/* Dot grid decoration (3x3) — positioned outside bottom-right of collage */}
+                  {/* Dot grid decoration (3x3) — positioned outside bottom-right of collage on desktop */}
                   <div className="hidden md:grid absolute -right-12 bottom-6 grid-cols-3 gap-[8px] opacity-50 pointer-events-none z-5">
                     {Array.from({ length: 9 }).map((_, i) => (
                       <span key={i} className="w-[6px] h-[6px] rounded-full bg-[#8B0AB4]" />
