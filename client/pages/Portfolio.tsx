@@ -22,57 +22,37 @@ export default function Portfolio() {
     { title: "Premium Auto Detail Pro", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80", description: "Professional auto detailing showcase with booking system.", website: "https://example.com/auto-detail-1" },
     { title: "Shine & Sparkle Auto Care", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80", description: "Complete detailing services with before/after gallery.", website: "https://example.com/auto-detail-2" },
     { title: "Crystal Clear Detailing", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1610809388341-eb2dcc1d9c57?w=600&q=80", description: "Luxury car detailing specialists website.", website: "https://example.com/auto-detail-3" },
-    { title: "Quick Shine Auto Services", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80", description: "Express detailing service with mobile bookings.", website: "https://example.com/auto-detail-4" },
-    { title: "Pristine Wheels Detailing", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=600&q=80", description: "Full-service automotive detailing center.", website: "https://example.com/auto-detail-5" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Landscaping
     { title: "Green Acres Landscaping", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1581578731548-c64695c952952?w=600&q=80", description: "Complete landscape design and maintenance services.", website: "https://example.com/landscape-1" },
     { title: "Nature's Touch Garden Design", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1469022563149-aa64991b93ff?w=600&q=80", description: "Professional garden and yard transformation.", website: "https://example.com/landscape-2" },
-    { title: "Outdoor Oasis Landscapes", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80", description: "Hardscape and softscape design specialists.", website: "https://example.com/landscape-3" },
-    { title: "Pristine Grounds Maintenance", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1585320806553-fd2d3facf6d1?w=600&q=80", description: "Year-round lawn care and landscaping solutions.", website: "https://example.com/landscape-4" },
-    { title: "Eco Landscaping Solutions", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?w=600&q=80", description: "Sustainable and eco-friendly landscape services.", website: "https://example.com/landscape-5" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Junk Removal
     { title: "Quick Junk Haul", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80", description: "Fast and efficient junk removal services.", website: "https://example.com/junk-1" },
     { title: "Trash Away Removal", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=80", description: "Same-day junk removal and disposal.", website: "https://example.com/junk-2" },
-    { title: "Clutter Free Living", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1578681033249-c8c2a3c93e1f?w=600&q=80", description: "Professional decluttering and junk removal.", website: "https://example.com/junk-3" },
-    { title: "Debris Busters", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1609842787596-7aba43d27e3a?w=600&q=80", description: "Eco-friendly junk disposal specialists.", website: "https://example.com/junk-4" },
-    { title: "Load It Gone Services", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80", description: "Residential and commercial junk removal.", website: "https://example.com/junk-5" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Construction
     { title: "BuildRight Construction", type: "websites", niche: "Construction", image: "https://images.unsplash.com/photo-1504917595217-3404ee9c6e65?w=600&q=80", description: "Residential and commercial construction projects.", website: "https://example.com/construction-1" },
     { title: "Quality Builds LLC", type: "websites", niche: "Construction", image: "https://images.unsplash.com/photo-1581578731548-c64695c952951?w=600&q=80", description: "Custom home and renovation construction.", website: "https://example.com/construction-2" },
-    { title: "Foundation First Builders", type: "websites", niche: "Construction", image: "https://images.unsplash.com/photo-1577720643272-265f434a93f6?w=600&q=80", description: "General contracting with 20+ years experience.", website: "https://example.com/construction-3" },
-    { title: "Premier Construction Group", type: "websites", niche: "Construction", image: "https://images.unsplash.com/photo-1541123603104-852bdf13a9b5?w=600&q=80", description: "Commercial construction and development.", website: "https://example.com/construction-4" },
-    { title: "Precision Home Builders", type: "websites", niche: "Construction", image: "https://images.unsplash.com/photo-1634437927393-ef5cca01a5c4?w=600&q=80", description: "New construction and full renovations.", website: "https://example.com/construction-5" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
     { title: "Spotless Pressure Washing", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1563693339725-0c1006b6a0ee?w=600&q=80", description: "Professional house and driveway pressure washing.", website: "https://example.com/pressure-1" },
     { title: "Clean Slate Services", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", description: "Commercial and residential pressure washing.", website: "https://example.com/pressure-2" },
-    { title: "Crystal Clean Pressure Wash", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", description: "Eco-friendly pressure and soft washing services.", website: "https://example.com/pressure-3" },
-    { title: "High Pressure Pros", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=600&q=80", description: "Deck, patio, and roof cleaning specialists.", website: "https://example.com/pressure-4" },
-    { title: "Shine Bright Washing", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", description: "Mobile pressure washing for homes and businesses.", website: "https://example.com/pressure-5" },
 
     // DIGITAL MARKETING
     { title: "Social Media Campaign - E-Commerce Boost", type: "digital-marketing", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=600&q=80", description: "Multi-platform social media strategy resulting in 250% engagement increase.", website: "https://example.com/marketing-1" },
     { title: "SEO Optimization - Local Dominance", type: "digital-marketing", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", description: "Achieved first-page rankings for 15+ high-intent keywords.", website: "https://example.com/marketing-2" },
     { title: "Email Marketing Funnel", type: "digital-marketing", image: "https://images.unsplash.com/photo-1563486835-86a717a0a0a6?w=600&q=80", description: "Automated email sequences with 45% conversion rate.", website: "https://example.com/marketing-3" },
-    { title: "PPC Campaign - Lead Generation", type: "digital-marketing", image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80", description: "Google and Facebook Ads driving qualified leads daily.", website: "https://example.com/marketing-4" },
-    { title: "Content Marketing Strategy", type: "digital-marketing", image: "https://images.unsplash.com/photo-1516321318423-f06f70a504f9?w=600&q=80", description: "Blog and video content establishing industry authority.", website: "https://example.com/marketing-5" },
 
     // GRAPHIC DESIGN
     { title: "Brand Identity Package", type: "graphic-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80", description: "Complete logo, color palette, and brand guidelines.", website: "https://example.com/design-1" },
     { title: "Print Marketing Collateral", type: "graphic-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80", description: "Business cards, brochures, and packaging design.", website: "https://example.com/design-2" },
     { title: "Social Media Graphics", type: "graphic-design", image: "https://images.unsplash.com/photo-1545235617-7a424c7556c7?w=600&q=80", description: "Custom templates and branded assets for social platforms.", website: "https://example.com/design-3" },
-    { title: "Advertisement Design", type: "graphic-design", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80", description: "High-converting banner and display ads.", website: "https://example.com/design-4" },
-    { title: "Infographic Design", type: "graphic-design", image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80", description: "Data visualization and infographic design.", website: "https://example.com/design-5" },
 
     // MOBILE APPS
     { title: "Service Booking App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=600&q=80", description: "iOS/Android app for service scheduling and payments.", website: "https://example.com/app-1" },
     { title: "Loyalty Program App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80", description: "Customer rewards and points tracking application.", website: "https://example.com/app-2" },
     { title: "Marketplace App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=600&q=80", description: "Full-featured mobile marketplace with payments.", website: "https://example.com/app-3" },
-    { title: "Inventory Management App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80", description: "Real-time inventory tracking and reporting tool.", website: "https://example.com/app-4" },
-    { title: "Fitness Tracking App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=600&q=80", description: "Comprehensive fitness and wellness tracking platform.", website: "https://example.com/app-5" },
   ];
 
   const getFilteredProjects = () => {
@@ -299,7 +279,7 @@ export default function Portfolio() {
           )}
 
           {/* Projects grid */}
-          <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
+          <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {filteredProjects.map((project) => (
               <div
                 key={`${project.title.replace(/\s+/g, "-").toLowerCase()}`}
@@ -361,7 +341,7 @@ export default function Portfolio() {
       {/* ── STATS SECTION ── */}
       <section className="bg-white py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div ref={statsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center reveal-stagger">
+          <div ref={statsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-center">
             <div>
               <div className="font-teko font-bold text-[64px] md:text-[80px] text-[#8B0AB4] leading-none mb-3">
                 250+
