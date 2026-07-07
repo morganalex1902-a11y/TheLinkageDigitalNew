@@ -190,8 +190,8 @@ export default function Portfolio() {
                       }}
                     >
                       <img
-                        src="https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80"
-                        alt="Auto detailing showcase"
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                        alt="Team collaboration moment"
                         className="w-full h-full object-cover"
                       />
                     </div>
