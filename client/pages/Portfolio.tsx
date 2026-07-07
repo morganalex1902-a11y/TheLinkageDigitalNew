@@ -137,55 +137,88 @@ export default function Portfolio() {
                 </button>
               </div>
 
-              {/* RIGHT — two-image pill cluster */}
+              {/* RIGHT — asymmetric project-tile collage */}
               <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-visible">
                 <div className="relative w-full flex items-center justify-end overflow-visible">
-                  {/* Two-image pill cluster with Image URLs from Index hero */}
-                  <div className="flex items-center justify-center pt-6 lg:pt-4 relative z-10 overflow-visible">
-                    {/* Left: red duotone shape — positioned lower, behind */}
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
-                      alt="Portfolio showcase"
-                      className="flex-shrink-0 relative z-0 object-contain"
-                      style={{
-                        width: "clamp(140px,19vw,240px)",
-                        height: "clamp(280px,38vw,480px)",
-                        top: "clamp(20px,2.8vw,45px)",
-                      }}
-                    />
-
-                    {/* Right: photo shape + Play button anchored to it */}
+                  {/* Collage container with staggered tiles */}
+                  <div className="relative w-full h-full flex items-center justify-center overflow-visible">
+                    {/* Large featured tile — main visual anchor (portrait orientation) */}
                     <div
-                      className="relative flex-shrink-0 z-10 overflow-visible"
+                      className="absolute rounded-2xl overflow-hidden shadow-lg flex-shrink-0"
                       style={{
-                        width: "clamp(140px,19vw,240px)",
-                        height: "clamp(280px,38vw,480px)",
-                        top: "clamp(-20px,-2.8vw,-45px)",
+                        width: "clamp(200px,26vw,340px)",
+                        height: "clamp(280px,36vw,480px)",
+                        zIndex: 20,
+                        left: "clamp(0px,8vw,120px)",
+                        top: "0",
                       }}
                     >
                       <img
-                        src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
-                        alt="Team member"
-                        className="w-full h-full object-contain"
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                        alt="Team collaboration workspace"
+                        className="w-full h-full object-cover"
                       />
-                      {/* Play button — positioned outside to avoid clip */}
-                      <div className="absolute -right-16 bottom-[38%] flex flex-col items-center gap-1 z-30">
-                        <button className="w-[48px] h-[48px] md:w-[56px] md:h-[56px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl">
-                          <svg width="12" height="13" viewBox="0 0 12 13" fill="white">
-                            <path d="M11.6309 6.06836L0.738281 11.9971V0.152344L11.6309 6.06836Z" fill="white" />
-                          </svg>
-                        </button>
-                        <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
-                          Watch
-                          <br />
-                          Video
-                        </span>
-                      </div>
+                    </div>
+
+                    {/* Top-right smaller tile — tucked behind top-right corner */}
+                    <div
+                      className="absolute rounded-2xl overflow-hidden shadow-md flex-shrink-0"
+                      style={{
+                        width: "clamp(120px,16vw,220px)",
+                        height: "clamp(140px,19vw,260px)",
+                        zIndex: 10,
+                        right: "clamp(0px,5vw,80px)",
+                        top: "clamp(-20px,0vw,20px)",
+                      }}
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80"
+                        alt="Design mockup workspace"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Bottom-left smaller tile — tucked in front of bottom-left corner */}
+                    <div
+                      className="absolute rounded-2xl overflow-hidden shadow-lg flex-shrink-0"
+                      style={{
+                        width: "clamp(130px,17vw,240px)",
+                        height: "clamp(150px,20vw,280px)",
+                        zIndex: 30,
+                        left: "clamp(-10px,-2vw,10px)",
+                        bottom: "clamp(-30px,-2vw,0px)",
+                      }}
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80"
+                        alt="Creative project detail"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Floating stat badge — positioned over bottom-left tile */}
+                    <div
+                      className="absolute bg-[#8B0AB4] rounded-2xl px-4 py-3 shadow-lg flex flex-col items-center justify-center flex-shrink-0"
+                      style={{
+                        width: "clamp(100px,13vw,160px)",
+                        zIndex: 35,
+                        left: "clamp(40px,12vw,160px)",
+                        bottom: "clamp(60px,15vw,140px)",
+                      }}
+                    >
+                      <span className="font-kanit font-bold text-white text-[clamp(20px,3.5vw,36px)] leading-none">
+                        250+
+                      </span>
+                      <span className="font-kanit font-medium text-white text-[clamp(9px,1.2vw,12px)] uppercase text-center leading-tight mt-2 tracking-wide">
+                        Projects
+                        <br />
+                        Completed
+                      </span>
                     </div>
                   </div>
 
-                  {/* Dot grid decoration (4x4) — matches Services page positioning */}
-                  <div className="hidden md:grid absolute bottom-6 -left-2 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">
+                  {/* Dot grid decoration (4x4) — positioned near collage */}
+                  <div className="hidden md:grid absolute bottom-12 right-0 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-5">
                     {Array.from({ length: 16 }).map((_, i) => (
                       <span key={i} className="w-[5px] h-[5px] rounded-full bg-[#8B0AB4]" />
                     ))}
