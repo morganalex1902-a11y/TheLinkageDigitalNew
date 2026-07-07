@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { OriginButton } from "../components/ui/origin-button";
 import SiteHeader from "../components/SiteHeader";
+import { PortfolioIframe } from "../components/PortfolioIframe";
 import { useInView } from "../hooks/useInView";
 
 export default function Portfolio() {
@@ -302,13 +303,14 @@ export default function Portfolio() {
             {filteredProjects.map((project, i) => (
               <div
                 key={i}
-                className="group cursor-pointer overflow-hidden rounded-lg flex flex-col h-full"
+                className="group cursor-pointer overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-[#ECECEC] flex-shrink-0 min-h-[220px]">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <a
@@ -328,9 +330,19 @@ export default function Portfolio() {
                   <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[24px] leading-[1.1] mb-3">
                     {project.title}
                   </h3>
-                  <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[15px] leading-[1.6]">
+                  <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[15px] leading-[1.6] mb-4">
                     {project.description}
                   </p>
+                  <div className="mt-auto pt-4 border-t border-[#ECECEC]">
+                    <p className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider mb-3">
+                      Preview
+                    </p>
+                    <PortfolioIframe
+                      projectTitle={project.title}
+                      iframeKey={`${project.title}-${i}`}
+                      aspectRatio="16/9"
+                    />
+                  </div>
                 </div>
               </div>
             ))}
