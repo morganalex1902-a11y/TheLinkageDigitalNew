@@ -138,87 +138,88 @@ export default function Portfolio() {
               </div>
 
               {/* RIGHT — asymmetric project-tile collage */}
-              <div className="relative h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-hidden">
-                {/* Constrained collage wrapper — fixed height matching hero, uses percentage-based positioning */}
-                <div className="relative w-full h-full">
-                  {/* Large featured tile — positioned top-left (60% of wrapper width/height) */}
-                  <div
-                    className="absolute rounded-2xl overflow-hidden shadow-lg"
-                    style={{
-                      width: "58%",
-                      height: "65%",
-                      left: "0",
-                      top: "0",
-                      zIndex: 20,
-                    }}
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
-                      alt="Team collaboration workspace"
-                      className="w-full h-full object-cover"
-                    />
+              <div className="relative flex items-start justify-end pt-8 md:pt-6">
+                <div className="relative w-full h-auto flex justify-end">
+                  {/* Collage wrapper — constrained to avoid overflow */}
+                  <div className="relative w-full max-w-[500px] h-[380px] sm:h-[420px] md:h-[480px]">
+                    {/* Large featured tile — positioned center-left of collage */}
+                    <div
+                      className="absolute rounded-xl overflow-hidden shadow-md"
+                      style={{
+                        width: "55%",
+                        height: "72%",
+                        left: "0",
+                        top: "8%",
+                        zIndex: 20,
+                      }}
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                        alt="Team collaboration workspace"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Top-right smaller tile — stacked above large tile */}
+                    <div
+                      className="absolute rounded-xl overflow-hidden shadow-sm"
+                      style={{
+                        width: "42%",
+                        height: "45%",
+                        right: "0",
+                        top: "0",
+                        zIndex: 10,
+                      }}
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80"
+                        alt="Design mockup workspace"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Bottom-right smaller tile — positioned bottom-right */}
+                    <div
+                      className="absolute rounded-xl overflow-hidden shadow-md"
+                      style={{
+                        width: "44%",
+                        height: "48%",
+                        right: "0",
+                        bottom: "0",
+                        zIndex: 15,
+                      }}
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80"
+                        alt="Auto detailing showcase"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Floating stat badge — overlaid on large tile */}
+                    <div
+                      className="absolute bg-[#8B0AB4] rounded-lg px-4 py-3 shadow-lg flex flex-col items-center justify-center"
+                      style={{
+                        width: "max-content",
+                        minWidth: "110px",
+                        zIndex: 35,
+                        left: "8%",
+                        bottom: "12%",
+                      }}
+                    >
+                      <span className="font-kanit font-bold text-white text-[20px] md:text-[24px] leading-none">
+                        250+
+                      </span>
+                      <span className="font-kanit font-medium text-white text-[9px] md:text-[10px] uppercase text-center leading-tight mt-2 tracking-wide whitespace-nowrap">
+                        Projects Done
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Top-right smaller tile — offset into top-right corner (40% of wrapper) */}
-                  <div
-                    className="absolute rounded-2xl overflow-hidden shadow-md"
-                    style={{
-                      width: "38%",
-                      height: "48%",
-                      right: "0",
-                      top: "2%",
-                      zIndex: 10,
-                    }}
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80"
-                      alt="Design mockup workspace"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Bottom-left smaller tile — offset into bottom-left corner (42% of wrapper) */}
-                  <div
-                    className="absolute rounded-2xl overflow-hidden shadow-lg"
-                    style={{
-                      width: "42%",
-                      height: "50%",
-                      left: "0",
-                      bottom: "0",
-                      zIndex: 30,
-                    }}
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80"
-                      alt="Auto detailing showcase"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Floating stat badge — overlaid on bottom-left tile edge */}
-                  <div
-                    className="absolute bg-[#8B0AB4] rounded-2xl px-5 py-4 shadow-lg flex flex-col items-center justify-center"
-                    style={{
-                      width: "32%",
-                      zIndex: 35,
-                      left: "12%",
-                      bottom: "12%",
-                    }}
-                  >
-                    <span className="font-kanit font-bold text-white text-[24px] sm:text-[28px] md:text-[32px] leading-none">
-                      250+
-                    </span>
-                    <span className="font-kanit font-medium text-white text-[10px] md:text-[11px] uppercase text-center leading-tight mt-2 tracking-wide">
-                      Projects
-                      <br />
-                      Completed
-                    </span>
-                  </div>
-
-                  {/* Dot grid decoration (4x4) — anchored inside wrapper */}
-                  <div className="hidden md:grid absolute bottom-6 right-4 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-5">
-                    {Array.from({ length: 16 }).map((_, i) => (
-                      <span key={i} className="w-[5px] h-[5px] rounded-full bg-[#8B0AB4]" />
+                  {/* Dot grid decoration (3x3) — positioned outside bottom-right of collage */}
+                  <div className="hidden md:grid absolute -right-12 bottom-6 grid-cols-3 gap-[8px] opacity-50 pointer-events-none z-5">
+                    {Array.from({ length: 9 }).map((_, i) => (
+                      <span key={i} className="w-[6px] h-[6px] rounded-full bg-[#8B0AB4]" />
                     ))}
                   </div>
                 </div>
