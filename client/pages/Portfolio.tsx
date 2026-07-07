@@ -138,87 +138,85 @@ export default function Portfolio() {
               </div>
 
               {/* RIGHT — asymmetric project-tile collage */}
-              <div className="relative flex items-center justify-center lg:justify-end h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-visible">
-                <div className="relative w-full flex items-center justify-end overflow-visible">
-                  {/* Collage container with staggered tiles */}
-                  <div className="relative w-full h-full flex items-center justify-center overflow-visible">
-                    {/* Large featured tile — main visual anchor (portrait orientation) */}
-                    <div
-                      className="absolute rounded-2xl overflow-hidden shadow-lg flex-shrink-0"
-                      style={{
-                        width: "clamp(200px,26vw,340px)",
-                        height: "clamp(280px,36vw,480px)",
-                        zIndex: 20,
-                        left: "clamp(0px,8vw,120px)",
-                        top: "0",
-                      }}
-                    >
-                      <img
-                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
-                        alt="Team collaboration workspace"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Top-right smaller tile — tucked behind top-right corner */}
-                    <div
-                      className="absolute rounded-2xl overflow-hidden shadow-md flex-shrink-0"
-                      style={{
-                        width: "clamp(120px,16vw,220px)",
-                        height: "clamp(140px,19vw,260px)",
-                        zIndex: 10,
-                        right: "clamp(0px,5vw,80px)",
-                        top: "clamp(-20px,0vw,20px)",
-                      }}
-                    >
-                      <img
-                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80"
-                        alt="Design mockup workspace"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Bottom-left smaller tile — tucked in front of bottom-left corner */}
-                    <div
-                      className="absolute rounded-2xl overflow-hidden shadow-lg flex-shrink-0"
-                      style={{
-                        width: "clamp(130px,17vw,240px)",
-                        height: "clamp(150px,20vw,280px)",
-                        zIndex: 30,
-                        left: "clamp(-10px,-2vw,10px)",
-                        bottom: "clamp(-30px,-2vw,0px)",
-                      }}
-                    >
-                      <img
-                        src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80"
-                        alt="Creative project detail"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Floating stat badge — positioned over bottom-left tile */}
-                    <div
-                      className="absolute bg-[#8B0AB4] rounded-2xl px-4 py-3 shadow-lg flex flex-col items-center justify-center flex-shrink-0"
-                      style={{
-                        width: "clamp(100px,13vw,160px)",
-                        zIndex: 35,
-                        left: "clamp(40px,12vw,160px)",
-                        bottom: "clamp(60px,15vw,140px)",
-                      }}
-                    >
-                      <span className="font-kanit font-bold text-white text-[clamp(20px,3.5vw,36px)] leading-none">
-                        250+
-                      </span>
-                      <span className="font-kanit font-medium text-white text-[clamp(9px,1.2vw,12px)] uppercase text-center leading-tight mt-2 tracking-wide">
-                        Projects
-                        <br />
-                        Completed
-                      </span>
-                    </div>
+              <div className="relative h-[420px] sm:h-[500px] md:h-[580px] lg:h-[660px] overflow-hidden">
+                {/* Constrained collage wrapper — fixed height matching hero, uses percentage-based positioning */}
+                <div className="relative w-full h-full">
+                  {/* Large featured tile — positioned top-left (60% of wrapper width/height) */}
+                  <div
+                    className="absolute rounded-2xl overflow-hidden shadow-lg"
+                    style={{
+                      width: "58%",
+                      height: "65%",
+                      left: "0",
+                      top: "0",
+                      zIndex: 20,
+                    }}
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                      alt="Team collaboration workspace"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
-                  {/* Dot grid decoration (4x4) — positioned near collage */}
-                  <div className="hidden md:grid absolute bottom-12 right-0 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-5">
+                  {/* Top-right smaller tile — offset into top-right corner (40% of wrapper) */}
+                  <div
+                    className="absolute rounded-2xl overflow-hidden shadow-md"
+                    style={{
+                      width: "38%",
+                      height: "48%",
+                      right: "0",
+                      top: "2%",
+                      zIndex: 10,
+                    }}
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80"
+                      alt="Design mockup workspace"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Bottom-left smaller tile — offset into bottom-left corner (42% of wrapper) */}
+                  <div
+                    className="absolute rounded-2xl overflow-hidden shadow-lg"
+                    style={{
+                      width: "42%",
+                      height: "50%",
+                      left: "0",
+                      bottom: "0",
+                      zIndex: 30,
+                    }}
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80"
+                      alt="Auto detailing showcase"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Floating stat badge — overlaid on bottom-left tile edge */}
+                  <div
+                    className="absolute bg-[#8B0AB4] rounded-2xl px-5 py-4 shadow-lg flex flex-col items-center justify-center"
+                    style={{
+                      width: "32%",
+                      zIndex: 35,
+                      left: "12%",
+                      bottom: "12%",
+                    }}
+                  >
+                    <span className="font-kanit font-bold text-white text-[24px] sm:text-[28px] md:text-[32px] leading-none">
+                      250+
+                    </span>
+                    <span className="font-kanit font-medium text-white text-[10px] md:text-[11px] uppercase text-center leading-tight mt-2 tracking-wide">
+                      Projects
+                      <br />
+                      Completed
+                    </span>
+                  </div>
+
+                  {/* Dot grid decoration (4x4) — anchored inside wrapper */}
+                  <div className="hidden md:grid absolute bottom-6 right-4 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-5">
                     {Array.from({ length: 16 }).map((_, i) => (
                       <span key={i} className="w-[5px] h-[5px] rounded-full bg-[#8B0AB4]" />
                     ))}
