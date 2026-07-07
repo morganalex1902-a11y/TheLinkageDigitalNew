@@ -12,9 +12,15 @@ export function PortfolioIframe({ projectTitle, iframeKey, aspectRatio = "16/9" 
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setIsLoaded(false);
+  }, [iframeKey]);
+
+  useEffect(() => {
+    if (isVisible || !containerRef.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
+        if (entry.isIntersecting) {
           setIsVisible(true);
           observer.unobserve(entry.target);
         }
@@ -22,10 +28,7 @@ export function PortfolioIframe({ projectTitle, iframeKey, aspectRatio = "16/9" 
       { threshold: 0.1, rootMargin: "50px" }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
+    observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, [isVisible]);
 
@@ -33,7 +36,7 @@ export function PortfolioIframe({ projectTitle, iframeKey, aspectRatio = "16/9" 
     "16/9": "56.25%",
     "4/3": "75%",
     "1/1": "100%",
-  }[aspectRatio];
+  }[aspectRatio] ?? "56.25%";
 
   return (
     <div
@@ -71,13 +74,25 @@ export function PortfolioIframe({ projectTitle, iframeKey, aspectRatio = "16/9" 
   );
 }
 
+function escapeHtml(text: string): string {
+  const map: { [key: string]: string } = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  };
+  return text.replace(/[&<>"']/g, (char) => map[char]);
+}
+
 function getMinimalHtml(title: string): string {
+  const escapedTitle = escapeHtml(title);
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title}</title>
+  <title>${escapedTitle}</title>
   <style>
     * {
       margin: 0;
@@ -198,7 +213,7 @@ function getMinimalHtml(title: string): string {
   <div class="container">
     <div class="logo">✓</div>
     <div class="tagline">Portfolio Project</div>
-    <h1>${title}</h1>
+    <h1>${escapedTitle}</h1>
     <p>This is a lightweight mockup of a portfolio project. Optimized for fast loading on all devices.</p>
     
     <div class="features">

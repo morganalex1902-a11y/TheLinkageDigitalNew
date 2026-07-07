@@ -300,9 +300,9 @@ export default function Portfolio() {
 
           {/* Projects grid */}
           <div ref={projectsGridRef as React.RefObject<HTMLElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
-            {filteredProjects.map((project, i) => (
+            {filteredProjects.map((project) => (
               <div
-                key={i}
+                key={`${project.title.replace(/\s+/g, "-").toLowerCase()}`}
                 className="group cursor-pointer overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-[#ECECEC] flex-shrink-0 min-h-[220px]">
@@ -339,7 +339,7 @@ export default function Portfolio() {
                     </p>
                     <PortfolioIframe
                       projectTitle={project.title}
-                      iframeKey={`${project.title}-${i}`}
+                      iframeKey={`${project.title.replace(/\s+/g, "-").toLowerCase()}`}
                       aspectRatio="16/9"
                     />
                   </div>
