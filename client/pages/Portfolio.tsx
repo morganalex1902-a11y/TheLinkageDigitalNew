@@ -141,7 +141,7 @@ export default function Portfolio() {
               <div className="relative flex items-center justify-center lg:justify-end pt-6 lg:pt-8">
                 <div className="relative w-full h-auto flex justify-center lg:justify-end overflow-hidden lg:overflow-visible">
                   {/* Collage wrapper — constrained to avoid overflow with mobile-first sizing */}
-                  <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[420px] lg:max-w-[500px] h-[320px] sm:h-[360px] md:h-[420px] lg:h-[480px]">
+                  <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[420px] lg:max-w-[500px] h-[320px] sm:h-[360px] md:h-[420px] lg:h-[480px]" style={{ minHeight: "280px" }}>
                     {/* Large featured tile — positioned center-left of collage */}
                     <div
                       className="absolute rounded-xl overflow-hidden shadow-md"
@@ -151,6 +151,8 @@ export default function Portfolio() {
                         left: "0",
                         top: "8%",
                         zIndex: 20,
+                        minWidth: "100px",
+                        minHeight: "100px",
                       }}
                     >
                       <img
@@ -169,6 +171,8 @@ export default function Portfolio() {
                         right: "0",
                         top: "0",
                         zIndex: 10,
+                        minWidth: "80px",
+                        minHeight: "80px",
                       }}
                     >
                       <img
@@ -187,6 +191,8 @@ export default function Portfolio() {
                         right: "0",
                         bottom: "0",
                         zIndex: 15,
+                        minWidth: "80px",
+                        minHeight: "80px",
                       }}
                     >
                       <img
@@ -298,7 +304,7 @@ export default function Portfolio() {
                 key={i}
                 className="group cursor-pointer overflow-hidden rounded-lg flex flex-col h-full"
               >
-                <div className="relative overflow-hidden h-[300px] md:h-[350px] bg-[#ECECEC] flex-shrink-0">
+                <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-[#ECECEC] flex-shrink-0 min-h-[220px]">
                   <img
                     src={project.image}
                     alt={project.title}
