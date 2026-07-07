@@ -124,7 +124,7 @@ export default function Blog() {
               </div>
 
               {/* RIGHT — stacked article preview cards */}
-              <div className="relative h-[260px] sm:h-[300px] md:h-[340px] lg:h-[360px] flex items-center justify-center">
+              <div className="relative h-[420px] sm:h-[480px] md:h-[540px] lg:h-[600px] flex items-center justify-center">
                 {/* dotted grid decoration */}
                 <div className="hidden md:grid absolute -top-4 right-4 grid-cols-4 gap-[6px] opacity-60 pointer-events-none">
                   {Array.from({ length: 16 }).map((_, i) => (
@@ -132,8 +132,8 @@ export default function Blog() {
                   ))}
                 </div>
 
-                {/* Left card — TRENDS */}
-                <div className="absolute left-0 sm:left-2 md:left-4 top-4 w-[38%] sm:w-[36%] h-[60%] sm:h-[66%] rounded-xl overflow-hidden shadow-md -rotate-3 block">
+                {/* Left card — TRENDS (9:16 aspect ratio portrait) */}
+                <div className="absolute left-0 sm:left-2 md:left-4 top-8 w-[28%] sm:w-[26%] md:w-[24%] rounded-xl overflow-hidden shadow-md -rotate-3 block" style={{ aspectRatio: "9/16" }}>
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480"
                     alt="Top Web Design Trends to Watch in 2024"
@@ -155,8 +155,8 @@ export default function Blog() {
                   </div>
                 </div>
 
-                {/* Middle card — STRATEGY (featured) */}
-                <div className="relative z-10 w-[58%] sm:w-[48%] md:w-[40%] h-[82%] sm:h-[86%] rounded-xl overflow-hidden shadow-xl">
+                {/* Middle card — STRATEGY (featured, 9:16 aspect ratio portrait) */}
+                <div className="relative z-10 w-[35%] sm:w-[32%] md:w-[30%] rounded-xl overflow-hidden shadow-xl" style={{ aspectRatio: "9/16" }}>
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910"
                     alt="Building Brands with Purpose and Impact"
@@ -178,8 +178,8 @@ export default function Blog() {
                   </div>
                 </div>
 
-                {/* Right card — TIPS */}
-                <div className="absolute right-0 sm:right-2 md:right-4 top-6 w-[38%] sm:w-[36%] h-[58%] sm:h-[64%] rounded-xl overflow-hidden shadow-md rotate-3 block">
+                {/* Right card — TIPS (9:16 aspect ratio portrait) */}
+                <div className="absolute right-0 sm:right-2 md:right-4 top-12 w-[28%] sm:w-[26%] md:w-[24%] rounded-xl overflow-hidden shadow-md rotate-3 block" style={{ aspectRatio: "9/16" }}>
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/606973b7a19e784fa309acebad1d2d62459e0d20?width=80"
                     alt="How to Improve Your Website Performance"
