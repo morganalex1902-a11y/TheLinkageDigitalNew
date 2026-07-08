@@ -79,6 +79,7 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
 export default function SiteHeader() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
   useEffect(() => {
     const header = document.getElementById("site-header");
