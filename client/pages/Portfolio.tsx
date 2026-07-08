@@ -37,6 +37,7 @@ export default function Portfolio() {
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
     { title: "MidWash Night Auto Detailing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/midwash-night-auto-detailing.vercel.app", description: "Professional auto and property pressure washing.", website: "https://midwash-night-auto-detailing.vercel.app/" },
     { title: "Ti-Vo Detailing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/ti-vo-detailing.vercel.app", description: "Expert detailing and pressure washing services.", website: "https://ti-vo-detailing.vercel.app/" },
+    { title: "Grime Goblins Power Washing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/www.grimegoblinspowerwashing.com", description: "Professional power washing and property cleaning services.", website: "https://www.grimegoblinspowerwashing.com/" },
 
     // DIGITAL MARKETING
     { title: "Social Media Campaign - E-Commerce Boost", type: "digital-marketing", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=600&q=80", description: "Multi-platform social media strategy resulting in 250% engagement increase.", website: "https://example.com/marketing-1" },
