@@ -19,6 +19,9 @@ export default function Portfolio() {
   const WEB_NICHES = ["All", "Auto Detailing", "Landscaping", "Junk Removal", "Construction", "Pressure Washing"];
 
   const PROJECTS = [
+    // WEBSITE DESIGN & DEVELOPMENT - Featured Client
+    { title: "Buscando Amore Eterno", type: "websites", image: "https://image.thum.io/get/width/600/crop/600/url/www.buscandoamoreterno.com", description: "A premium dating platform connecting meaningful relationships.", website: "https://www.buscandoamoreterno.com/" },
+
     // WEBSITE DESIGN & DEVELOPMENT - Auto Detailing
     { title: "Rivera's Auto Detailing LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/www.riveras-autodetailingllc.com", description: "Professional auto detailing services in your area.", website: "https://www.riveras-autodetailingllc.com/" },
     { title: "A-V Auto LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/a-v-auto-llc.thelinkagedigital.workers.dev", description: "Full-service auto detailing and care specialists.", website: "https://a-v-auto-llc.thelinkagedigital.workers.dev/" },
@@ -30,7 +33,6 @@ export default function Portfolio() {
 
     // WEBSITE DESIGN & DEVELOPMENT - Junk Removal
     { title: "Haul All 515", type: "websites", niche: "Junk Removal", image: "https://image.thum.io/get/width/600/crop/600/url/www.haulall515.com", description: "Fast and efficient junk removal and hauling services.", website: "https://www.haulall515.com/" },
-    { title: "Buscando Amore Terno", type: "websites", niche: "Junk Removal", image: "https://image.thum.io/get/width/600/crop/600/url/www.buscandoamoreterno.com", description: "Professional removal and cleanup services.", website: "https://www.buscandoamoreterno.com/" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
     { title: "MidWash Night Auto Detailing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/midwash-night-auto-detailing.vercel.app", description: "Professional auto and property pressure washing.", website: "https://midwash-night-auto-detailing.vercel.app/" },
