@@ -16,7 +16,7 @@ export default function Portfolio() {
   const statsGridRef = useInView();
 
   const MAIN_CATEGORIES = ["Websites", "Digital Marketing", "Graphic Design", "Mobile Apps"];
-  const WEB_NICHES = ["All", "Auto Detailing", "Landscaping", "Junk Removal", "Construction", "Pressure Washing"];
+  const WEB_NICHES = ["All", "Auto Detailing", "Landscaping", "Junk Removal", "Construction", "Pressure Washing", "Wellness & Therapy"];
 
   const PROJECTS = [
     // WEBSITE DESIGN & DEVELOPMENT - Featured Client
@@ -24,7 +24,7 @@ export default function Portfolio() {
 
     // WEBSITE DESIGN & DEVELOPMENT - Auto Detailing
     { title: "Rivera's Auto Detailing LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/www.riveras-autodetailingllc.com", description: "Professional auto detailing services in your area.", website: "https://www.riveras-autodetailingllc.com/" },
-    { title: "A-V Auto LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/a-v-auto-llc.thelinkagedigital.workers.dev", description: "Full-service auto detailing and care specialists.", website: "https://a-v-auto-llc.thelinkagedigital.workers.dev/" },
+    { title: "Mind Strive Wellness", type: "websites", niche: "Wellness & Therapy", image: "https://image.thum.io/get/width/600/crop/600/url/www.mindstrivewellness.com", description: "Premium wellness and therapy services supporting mental health and personal growth.", website: "https://mindstrivewellness.com/" },
     { title: "TiVo Auto Detailing", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/tivo-auto-detailingg.vercel.app/services", description: "Premium auto detailing services with proven results.", website: "https://tivo-auto-detailingg.vercel.app/services" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Landscaping
