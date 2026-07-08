@@ -410,7 +410,7 @@ export default function Index() {
       {/* ── HERO ── */}
       <main className="relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 pt-10 md:pt-14 lg:pt-16 pb-16 lg:pb-28">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20 justify-between">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20">
 
             {/* LEFT: text */}
             <div className="flex-1 min-w-0">
@@ -464,11 +464,6 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* CENTER: Contact Form Card */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-md z-20 lg:relative lg:translate-x-0 lg:translate-y-0 lg:left-auto lg:top-auto lg:w-auto lg:flex-shrink-0 lg:mt-0">
-              <ContactFormCard />
             </div>
 
             {/* RIGHT: images + video + customers */}
