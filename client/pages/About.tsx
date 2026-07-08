@@ -39,18 +39,18 @@ export default function About() {
 
   const TEAM_MEMBERS = [
     {
-      name: "Alex Thompson",
+      name: "Saadi J.",
       role: "Creative Director",
       image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2F14452e3d04e648af85a019469720ed5c?format=webp&width=800&height=1200",
     },
     {
-      name: "Sarah Williams",
+      name: "Wasif R.",
       role: "Lead Developer",
       image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2F4897094158eb40fbb8b283c78b40fed2?format=webp&width=800&height=1200",
     },
     {
-      name: "Marcus Johnson",
-      role: "UX/UI Designer",
+      name: "Davis Bryan",
+      role: "Manager",
       image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2Fff642e5bc08b45e0834a84d65c6771f9?format=webp&width=800&height=1200",
     },
   ];
@@ -182,7 +182,7 @@ export default function About() {
 
           <div ref={teamGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 reveal-stagger">
             {TEAM_MEMBERS.map((member, i) => (
-              <div key={i} className="group cursor-pointer">
+              <div key={i} className="group cursor-pointer text-center">
                 <div className="overflow-hidden rounded-lg mb-5 h-[280px] md:h-[320px] flex items-center justify-center bg-[#f5f5f5]">
                   <img
                     src={member.image}
