@@ -6,6 +6,55 @@ import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 
+function MenuIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="transition-all duration-500"
+    >
+      <path
+        d="M3 6H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          transformOrigin: "12px 12px",
+          transform: isOpen ? "rotate(45deg) translateY(6px)" : "rotate(0deg) translateY(0px)",
+          transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+      <path
+        d="M3 12H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          opacity: isOpen ? 0 : 1,
+          transition: "opacity 300ms ease-in-out",
+        }}
+      />
+      <path
+        d="M3 18H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          transformOrigin: "12px 12px",
+          transform: isOpen ? "rotate(-45deg) translateY(-6px)" : "rotate(0deg) translateY(0px)",
+          transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+    </svg>
+  );
+}
+
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
 const AVATAR_IMG =
@@ -256,6 +305,7 @@ export default function Index() {
   const [testimonialDir, setTestimonialDir] = useState<"left" | "right">("right");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const TESTIMONIALS = [
     {
@@ -311,6 +361,20 @@ export default function Index() {
   const testimonialsRef = useInView();
   const faqRef = useInView();
   const blogRef = useInView();
+
+  const navItems = [
+    { label: "Home", path: "/" },
+    { label: "About", path: "/about" },
+    { label: "Services", path: "/services" },
+    { label: "Portfolio", path: "/portfolio" },
+    { label: "Blog", path: "/blog" },
+    { label: "Contact", path: "/contact" },
+  ];
+
+  const handleNavClick = (path: string) => {
+    navigate(path);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-white font-kanit">
@@ -372,6 +436,15 @@ export default function Index() {
             </AnimatedButton>
           </nav>
 
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 flex items-center justify-center"
+            aria-label="Toggle menu"
+          >
+            <MenuIcon isOpen={mobileMenuOpen} />
+          </button>
+
           {/* Contact Us button */}
           <OriginButton
             onClick={() => navigate("/contact")}
@@ -380,6 +453,34 @@ export default function Index() {
           >
             Contact Us
           </OriginButton>
+        </div>
+
+        {/* Mobile menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+            mobileMenuOpen ? "max-h-screen" : "max-h-0"
+          }`}
+          style={{ background: "white" }}
+        >
+          <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
+            {navItems.map((item) => (
+              <AnimatedButton
+                key={item.path}
+                onClick={() => handleNavClick(item.path)}
+                fillColor="#8B0AB4"
+                className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
+              >
+                {item.label}
+              </AnimatedButton>
+            ))}
+            <OriginButton
+              onClick={() => handleNavClick("/contact")}
+              fillColor="#8B0AB4"
+              className="w-full mt-4 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase px-4 py-3 rounded-lg tracking-wide hover:text-white"
+            >
+              Contact Us
+            </OriginButton>
+          </nav>
         </div>
       </header>
 
