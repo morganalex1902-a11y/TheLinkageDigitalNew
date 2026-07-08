@@ -187,7 +187,7 @@ export default function About() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[22px] leading-[1.1] mb-1">
