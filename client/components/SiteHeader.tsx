@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { OriginButton } from "./ui/origin-button";
 import { AnimatedButton } from "./ui/animated-button";
 
@@ -24,8 +24,31 @@ function ChevronDown() {
   );
 }
 
+function MenuIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="transition-transform duration-300"
+      style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0deg)" }}
+    >
+      <path
+        d="M3 6H21M3 12H21M3 18H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function SiteHeader() {
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const header = document.getElementById("site-header");
@@ -35,6 +58,20 @@ export default function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const navItems = [
+    { label: "Home", path: "/" },
+    { label: "About", path: "/about" },
+    { label: "Services", path: "/services" },
+    { label: "Portfolio", path: "/portfolio" },
+    { label: "Blog", path: "/blog" },
+    { label: "Contact", path: "/contact" },
+  ];
+
+  const handleNavClick = (path: string) => {
+    navigate(path);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header id="site-header" className="border-b border-[#ECECEC] relative z-50 bg-white sticky top-0 transition-shadow duration-300">
@@ -96,14 +133,58 @@ export default function SiteHeader() {
           </AnimatedButton>
         </nav>
 
-        {/* Contact Us button */}
-        <OriginButton
-          onClick={() => navigate("/contact")}
-          fillColor="#8B0AB4"
-          className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 flex items-center justify-center"
+          aria-label="Toggle menu"
         >
-          Contact Us
-        </OriginButton>
+          <MenuIcon isOpen={mobileMenuOpen} />
+        </button>
+
+        {/* Contact Us button - Hidden on mobile when menu is open */}
+        <div className={`hidden md:block transition-opacity duration-300 ${mobileMenuOpen ? "md:block" : ""}`}>
+          <OriginButton
+            onClick={() => navigate("/contact")}
+            fillColor="#8B0AB4"
+            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
+          >
+            Contact Us
+          </OriginButton>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+          mobileMenuOpen ? "max-h-96" : "max-h-0"
+        }`}
+        style={{ background: "white" }}
+      >
+        <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
+          {navItems.map((item) => (
+            <button
+              key={item.path}
+              onClick={() => handleNavClick(item.path)}
+              className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] transition-colors duration-200 relative group hover:text-white"
+              style={{
+                background: "transparent",
+              }}
+            >
+              <span
+                className="absolute inset-0 rounded-lg bg-[#8B0AB4] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ zIndex: -1 }}
+              />
+              <span className="relative z-10">{item.label}</span>
+            </button>
+          ))}
+          <button
+            onClick={() => handleNavClick("/contact")}
+            className="w-full mt-4 px-4 py-3 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase rounded-lg tracking-wide hover:bg-[#1a1a1d] transition-colors duration-200"
+          >
+            Contact Us
+          </button>
+        </nav>
       </div>
     </header>
   );
