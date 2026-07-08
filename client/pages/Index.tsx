@@ -490,8 +490,8 @@ export default function Index() {
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20">
 
             {/* LEFT: text */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-end gap-2 md:gap-3">
+            <div className="flex-1 min-w-0 text-center lg:text-left">
+              <div className="flex items-end gap-2 md:gap-3 lg:justify-start justify-center">
                 <h1 className="hero-heading font-teko font-bold text-black uppercase">
                   <span className="hero-line block">Linking</span>
                   <span className="hero-line block" style={{ color: "#8B0AB4" }}>Brands</span>
@@ -510,11 +510,11 @@ export default function Index() {
               </div>
 
               {/* Purple underlines */}
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3" />
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px]" />
+              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3 mx-auto lg:mx-0" />
+              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px] mx-auto lg:mx-0" />
 
               {/* Scroll icon + description + CTA */}
-              <div className="flex items-start gap-6 mt-10 md:mt-14 lg:mt-16 relative z-10">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-10 md:mt-14 lg:mt-16 relative z-10">
                 <OriginButton
                   fillColor="#8B0AB4"
                   className="w-8 h-14 md:w-10 md:h-16 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white hidden sm:flex items-center justify-center flex-shrink-0"
@@ -523,7 +523,7 @@ export default function Index() {
                     <path d="M4 0V10M0.5 7.5L4 11L7.5 7.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
                   </svg>
                 </OriginButton>
-                <div>
+                <div className="text-center lg:text-left">
                   <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[360px]">
                     We are a full-service digital agency that builds fascinating user
                     experiences. our team creates and exceptional UI design and
