@@ -466,9 +466,70 @@ export default function Index() {
               </div>
             </div>
 
-            {/* RIGHT: Contact Form Card */}
-            <div className="relative flex-shrink-0 mt-10 lg:mt-0">
-              <ContactFormCard />
+            {/* RIGHT: images + video + customers */}
+            <div className="relative flex-shrink-0 mt-10 lg:mt-0 lg:w-[430px] xl:w-[500px]">
+              {/* Pill images */}
+              <div className="flex items-center justify-center pt-6 lg:pt-4 hero-images-enter">
+                {/* Left: red duotone shape — positioned lower, behind */}
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
+                  alt="Our team"
+                  className="flex-shrink-0 relative z-0 object-contain"
+                  style={{
+                    width: "clamp(120px,17vw,210px)",
+                    height: "clamp(240px,34vw,420px)",
+                    top: "clamp(18px,2.6vw,42px)",
+                  }}
+                />
+
+                {/* Right: photo shape + Watch Video anchored to it */}
+                <div
+                  className="relative flex-shrink-0 z-10"
+                  style={{
+                    width: "clamp(120px,17vw,210px)",
+                    height: "clamp(240px,34vw,420px)",
+                    top: "clamp(-18px,-2.6vw,-42px)",
+                  }}
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
+                    alt="Team member"
+                    className="w-full h-full object-contain"
+                  />
+                  {/* Play button sits just outside the bottom-right curve */}
+                  <div className="absolute -right-10 bottom-[38%] flex flex-col items-center gap-1">
+                    <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
+                      <PlayIcon />
+                    </button>
+                    <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                      Watch
+                      <br />
+                      Video
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Arrow + customers */}
+              <div className="mt-4 md:mt-6 pl-2 md:pl-4 hero-bottom-enter">
+                <OriginButton
+                  fillColor="#8B0AB4"
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white mb-2 md:mb-3 flex items-center justify-center"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <path d="M5 0V8.5M5 8.5L1.25 4.75M5 8.5L8.75 4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
+                  </svg>
+                </OriginButton>
+                <img src={THUMB_IMG} alt="Customers" className="h-12 md:h-14 mb-2 md:mb-3 max-w-full" />
+                <p className="font-kanit text-[15px] md:text-[17px] lg:text-[18px] leading-[1.4]">
+                  <span className="text-[#121212] underline underline-offset-2">
+                    We have 18k+
+                  </span>
+                  <span className="text-[#999]"> customers</span>
+                  <br />
+                  <span className="text-[#999]">word-wide</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1226,62 +1287,55 @@ export default function Index() {
       </section>
 
       {/* ── CTA BANNER ── */}
-      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] relative overflow-hidden reveal">
+      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16 xl:gap-24">
 
-        {/* Left decorative image panel */}
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
-          alt=""
-          className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-        />
+            {/* LEFT: Contact Form (primary) */}
+            <div className="flex-1">
+              <ContactFormCard />
+            </div>
 
-        {/* Right decorative image panel */}
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
-          alt=""
-          className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-        />
+            {/* RIGHT: Original content (small) */}
+            <div className="flex-shrink-0 lg:w-[280px]">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="text-[1.2rem]">👋</span>
+                <span className="font-teko font-bold text-[#121212] text-[13px] md:text-[14px] uppercase tracking-wider">
+                  Hello !
+                </span>
+              </div>
 
-        {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
+              {/* Main heading (small) */}
+              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[1.8rem] md:text-[2rem] mb-3">
+                Let's Talk
+                <br />
+                With Us
+              </h2>
 
-          {/* Label */}
-          <div className="flex items-center gap-3 mb-5">
-            <span className="text-[1.4rem]">👋</span>
-            <span className="font-teko font-bold text-[#121212] text-[clamp(1.4rem,2.5vw,2rem)] uppercase tracking-wider">
-              Hello !
-            </span>
+              {/* Email link */}
+              <a
+                href="mailto:sales@thelinkagedigital.com"
+                className="font-kanit font-light text-[#121212] text-[0.95rem] underline underline-offset-4 mb-6 hover:text-[#8B0AB4] transition-colors block"
+              >
+                sales@thelinkagedigital.com
+              </a>
+
+              {/* CTA */}
+              <OriginButton
+                onClick={() => navigate("/contact")}
+                fillColor="#8B0AB4"
+                className="bg-[#121212] text-white font-kanit font-medium text-[12px] md:text-[13px] uppercase px-6 md:px-8 py-3 md:py-4 tracking-widest hover:text-white inline-flex items-center gap-2 text-nowrap"
+              >
+                Get In Touch
+                <svg width="16" height="12" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                  <g clipPath="url(#cta-arrow)">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M11.6143 3.89748C11.9608 3.4741 12.5848 3.4117 13.0081 3.7581L20.6033 9.9723H0.990476C0.443451 9.9723 0 9.52885 0 8.98183C0 8.43481 0.443451 7.99135 0.990476 7.99135H15.0539L11.7538 5.29127C11.3304 4.94488 11.268 4.32085 11.6143 3.89748Z" fill="currentColor"/>
+                  </g>
+                  <defs><clipPath id="cta-arrow"><rect width="20.8" height="14" fill="white"/></clipPath></defs>
+                </svg>
+              </OriginButton>
+            </div>
           </div>
-
-          {/* Main heading */}
-          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-4">
-            Let's Talk
-            <br />
-            With Us
-          </h2>
-
-          {/* Email link */}
-          <a
-            href="mailto:sales@thelinkagedigital.com"
-            className="font-kanit font-light text-[#121212] text-[clamp(0.9rem,1.8vw,1.4rem)] underline underline-offset-4 mb-10 hover:text-[#8B0AB4] transition-colors"
-          >
-            sales@thelinkagedigital.com
-          </a>
-
-          {/* CTA */}
-          <OriginButton
-            onClick={() => navigate("/contact")}
-            fillColor="#8B0AB4"
-            className="bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-10 md:px-14 py-4 md:py-5 tracking-widest hover:text-white inline-flex items-center gap-3"
-          >
-            Let's Get In Touch
-            <svg width="20" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-              <g clipPath="url(#cta-arrow)">
-                <path fillRule="evenodd" clipRule="evenodd" d="M11.6143 3.89748C11.9608 3.4741 12.5848 3.4117 13.0081 3.7581L20.6033 9.9723H0.990476C0.443451 9.9723 0 9.52885 0 8.98183C0 8.43481 0.443451 7.99135 0.990476 7.99135H15.0539L11.7538 5.29127C11.3304 4.94488 11.268 4.32085 11.6143 3.89748Z" fill="currentColor"/>
-              </g>
-              <defs><clipPath id="cta-arrow"><rect width="20.8" height="14" fill="white"/></clipPath></defs>
-            </svg>
-          </OriginButton>
         </div>
       </section>
 
