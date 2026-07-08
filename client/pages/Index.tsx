@@ -4,6 +4,7 @@ import type React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
+import { ContactFormCard } from "../components/ui/contact-form-card";
 
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
@@ -465,70 +466,9 @@ export default function Index() {
               </div>
             </div>
 
-            {/* RIGHT: images + video + customers */}
-            <div className="relative flex-shrink-0 mt-10 lg:mt-0 lg:w-[430px] xl:w-[500px]">
-              {/* Pill images */}
-              <div className="flex items-center justify-center pt-6 lg:pt-4 hero-images-enter">
-                {/* Left: red duotone shape — positioned lower, behind */}
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
-                  alt="Our team"
-                  className="flex-shrink-0 relative z-0 object-contain"
-                  style={{
-                    width: "clamp(120px,17vw,210px)",
-                    height: "clamp(240px,34vw,420px)",
-                    top: "clamp(18px,2.6vw,42px)",
-                  }}
-                />
-
-                {/* Right: photo shape + Watch Video anchored to it */}
-                <div
-                  className="relative flex-shrink-0 z-10"
-                  style={{
-                    width: "clamp(120px,17vw,210px)",
-                    height: "clamp(240px,34vw,420px)",
-                    top: "clamp(-18px,-2.6vw,-42px)",
-                  }}
-                >
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
-                    alt="Team member"
-                    className="w-full h-full object-contain"
-                  />
-                  {/* Play button sits just outside the bottom-right curve */}
-                  <div className="absolute -right-10 bottom-[38%] flex flex-col items-center gap-1">
-                    <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
-                      <PlayIcon />
-                    </button>
-                    <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
-                      Watch
-                      <br />
-                      Video
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Arrow + customers */}
-              <div className="mt-4 md:mt-6 pl-2 md:pl-4 hero-bottom-enter">
-                <OriginButton
-                  fillColor="#8B0AB4"
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white mb-2 md:mb-3 flex items-center justify-center"
-                >
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                    <path d="M5 0V8.5M5 8.5L1.25 4.75M5 8.5L8.75 4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
-                  </svg>
-                </OriginButton>
-                <img src={THUMB_IMG} alt="Customers" className="h-12 md:h-14 mb-2 md:mb-3 max-w-full" />
-                <p className="font-kanit text-[15px] md:text-[17px] lg:text-[18px] leading-[1.4]">
-                  <span className="text-[#121212] underline underline-offset-2">
-                    We have 18k+
-                  </span>
-                  <span className="text-[#999]"> customers</span>
-                  <br />
-                  <span className="text-[#999]">word-wide</span>
-                </p>
-              </div>
+            {/* RIGHT: Contact Form Card */}
+            <div className="relative flex-shrink-0 mt-10 lg:mt-0">
+              <ContactFormCard />
             </div>
           </div>
         </div>
