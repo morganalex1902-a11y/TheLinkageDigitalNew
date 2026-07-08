@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
-import { ContactFormCard } from "../components/ui/contact-form-card";
 
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
@@ -310,7 +309,6 @@ export default function Index() {
   const servicesRef = useInView();
   const testimonialsRef = useInView();
   const faqRef = useInView();
-  const ctaRef = useInView();
   const blogRef = useInView();
 
   return (
@@ -1289,30 +1287,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
-      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] relative overflow-hidden reveal">
-
-        {/* Left decorative image panel */}
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
-          alt=""
-          className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-        />
-
-        {/* Right decorative image panel */}
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
-          alt=""
-          className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-        />
-
-        {/* Content */}
-        <div className="relative z-10 py-20 md:py-28 lg:py-36 px-6">
-          <div className="max-w-[1400px] mx-auto flex flex-col items-center justify-center text-center">
-            <ContactFormCard />
-          </div>
-        </div>
-      </section>
 
       {/* ── JOURNAL / BLOG SECTION ── */}
       <section ref={blogRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
