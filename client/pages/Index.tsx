@@ -722,7 +722,7 @@ export default function Index() {
                 />
                 <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.5] mb-4">
                   Make your business prosper with our great team of experts.
-                  We'll make your.
+                  We'll accelerate your growth and success.
                 </p>
                 {/* 1.8x stat */}
                 <div className="flex items-end leading-none">
