@@ -322,27 +322,20 @@ export default function Portfolio() {
           {/* Projects grid */}
           <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {filteredProjects.map((project) => (
-              <div
+              <a
                 key={`${project.title.replace(/\s+/g, "-").toLowerCase()}`}
-                className="group cursor-pointer overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
+                href={project.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-[#ECECEC] flex-shrink-0 min-h-[220px]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  <iframe
+                    src={project.website}
+                    title={project.title}
+                    className="w-full h-full border-none pointer-events-none"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a
-                      href={project.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-[#8B0AB4] text-white font-kanit font-medium text-[12px] md:text-[13px] uppercase px-6 py-3 rounded hover:bg-[#7a0a94] transition-colors"
-                    >
-                      Visit Website
-                    </a>
-                  </div>
                 </div>
                 <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
                   <p className="font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#8B0AB4] mb-2 tracking-wider">
@@ -355,17 +348,12 @@ export default function Portfolio() {
                     {project.description}
                   </p>
                   <div className="mt-auto pt-4 border-t border-[#ECECEC]">
-                    <p className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider mb-3">
-                      Preview
+                    <p className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider">
+                      Click to visit →
                     </p>
-                    <PortfolioIframe
-                      projectTitle={project.title}
-                      iframeKey={`${project.title.replace(/\s+/g, "-").toLowerCase()}`}
-                      aspectRatio="16/9"
-                    />
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 
