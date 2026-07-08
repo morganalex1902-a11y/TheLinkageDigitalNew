@@ -1191,9 +1191,9 @@ export default function Index() {
                 Testimonial
               </h2>
               <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.55] mb-10 max-w-[380px]">
-                Consumers today rely heavily on digital means to research
-                products. We help brands build engaging digital experiences that
-                connect with your audience.
+                Our clients trust us to deliver exceptional results and outstanding
+                service. See what they have to say about working with our team and
+                the impact we've made on their business.
               </p>
               {/* Explore circle button */}
               <ExploreCircleButton onClick={() => navigate("/about")} clipId="clip-explore-testi" />
