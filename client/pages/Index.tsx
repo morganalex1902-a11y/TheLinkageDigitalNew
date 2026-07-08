@@ -445,16 +445,16 @@ export default function Index() {
             {/* RIGHT: images + video + customers */}
             <div className="relative flex-shrink-0 mt-10 lg:mt-0 lg:w-[430px] xl:w-[500px]">
               {/* Pill images */}
-              <div className="flex flex-col sm:flex-row items-center justify-center pt-6 lg:pt-4 hero-images-enter gap-4 sm:gap-0">
+              <div className="flex items-center justify-center pt-6 lg:pt-4 hero-images-enter">
                 {/* Left: red duotone shape — positioned lower, behind */}
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
                   alt="Our team"
                   className="flex-shrink-0 relative z-0 object-contain"
                   style={{
-                    width: "clamp(100px,40vw,210px)",
-                    height: "clamp(200px,80vw,420px)",
-                    top: "clamp(12px,2vw,42px)",
+                    width: "clamp(80px,15vw,210px)",
+                    height: "clamp(160px,30vw,420px)",
+                    top: "clamp(10px,1.5vw,42px)",
                   }}
                 />
 
@@ -462,9 +462,9 @@ export default function Index() {
                 <div
                   className="relative flex-shrink-0 z-10"
                   style={{
-                    width: "clamp(100px,40vw,210px)",
-                    height: "clamp(200px,80vw,420px)",
-                    top: "clamp(-12px,-2vw,-42px)",
+                    width: "clamp(80px,15vw,210px)",
+                    height: "clamp(160px,30vw,420px)",
+                    top: "clamp(-10px,-1.5vw,-42px)",
                   }}
                 >
                   <img
@@ -473,8 +473,8 @@ export default function Index() {
                     className="w-full h-full object-contain"
                   />
                   {/* Play button sits just outside the bottom-right curve */}
-                  <div className="absolute -right-8 sm:-right-10 bottom-[35%] sm:bottom-[38%] flex flex-col items-center gap-1">
-                    <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
+                  <div className="absolute -right-7 sm:-right-10 bottom-[38%] flex flex-col items-center gap-1">
+                    <button className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
                       <PlayIcon />
                     </button>
                     <span className="font-kanit font-medium text-[8px] sm:text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
