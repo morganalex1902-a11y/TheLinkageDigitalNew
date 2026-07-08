@@ -39,24 +39,19 @@ export default function About() {
 
   const TEAM_MEMBERS = [
     {
-      name: "Alex Thompson",
+      name: "Saadi J.",
       role: "Creative Director",
-      image: "https://images.pexels.com/photos/37842959/pexels-photo-37842959.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2F14452e3d04e648af85a019469720ed5c?format=webp&width=800&height=1200",
     },
     {
-      name: "Sarah Williams",
+      name: "Wasif R.",
       role: "Lead Developer",
-      image: "https://images.pexels.com/photos/10041272/pexels-photo-10041272.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2F4897094158eb40fbb8b283c78b40fed2?format=webp&width=800&height=1200",
     },
     {
-      name: "Marcus Johnson",
-      role: "UX/UI Designer",
-      image: "https://images.pexels.com/photos/7163434/pexels-photo-7163434.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      name: "Emma Davis",
-      role: "Product Manager",
-      image: "https://images.pexels.com/photos/12902926/pexels-photo-12902926.jpeg?auto=compress&cs=tinysrgb&w=600",
+      name: "Davis Bryan",
+      role: "Manager",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2Fff642e5bc08b45e0834a84d65c6771f9?format=webp&width=800&height=1200",
     },
   ];
 
@@ -67,7 +62,7 @@ export default function About() {
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
         <div className="max-w-[1400px] mx-auto px-6 pt-10 md:pt-14 lg:pt-20 pb-16 lg:pb-28">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-20">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-20 lg:justify-center">
             <div className="flex-1">
               <h1 className="hero-heading font-teko font-bold text-black uppercase">
                 <span className="hero-line block">About</span>
@@ -76,7 +71,7 @@ export default function About() {
               </h1>
               <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3" />
               <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px]" />
-              
+
               <div className="mt-10 md:mt-14">
                 <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[420px]">
                   We're a team of passionate designers, developers, and strategists dedicated to creating exceptional digital experiences that drive real business results.
@@ -91,11 +86,11 @@ export default function About() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 mt-10 lg:mt-0 lg:w-[400px] xl:w-[500px] hero-images-enter">
+            <div className="flex-shrink-0 mt-10 lg:mt-0 flex-1 flex justify-center hero-images-enter">
               <img
                 src="https://images.pexels.com/photos/3865639/pexels-photo-3865639.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Team working"
-                className="w-full h-auto object-cover rounded-lg"
+                className="w-full max-w-[500px] h-auto object-cover rounded-lg"
               />
             </div>
           </div>
@@ -106,11 +101,11 @@ export default function About() {
       <section ref={storyRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 flex justify-center">
               <img
                 src="https://images.pexels.com/photos/36765663/pexels-photo-36765663.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Our journey"
-                className="w-full h-auto object-cover rounded-lg"
+                className="w-full max-w-[500px] h-auto object-cover rounded-lg"
               />
             </div>
             <div className="order-1 lg:order-2">
@@ -185,14 +180,14 @@ export default function About() {
             </h2>
           </div>
 
-          <div ref={teamGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 reveal-stagger">
+          <div ref={teamGridRef as React.RefObject<HTMLDivElement>} className="flex justify-center gap-8 md:gap-10 reveal-stagger flex-wrap">
             {TEAM_MEMBERS.map((member, i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="overflow-hidden rounded-lg mb-5 h-[280px] md:h-[320px]">
+              <div key={i} className="group cursor-pointer text-center w-[260px]">
+                <div className="overflow-hidden rounded-lg mb-5 h-[280px] md:h-[320px] flex items-center justify-center bg-[#f5f5f5]">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[22px] leading-[1.1] mb-1">
