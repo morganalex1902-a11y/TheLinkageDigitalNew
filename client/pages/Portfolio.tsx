@@ -105,17 +105,19 @@ export default function Portfolio() {
                     projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
                   }
                   fillColor="#8B0AB4"
-                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit"
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit group"
                 >
-                  Explore Our Work
-                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
-                      fill="currentColor"
-                    />
-                  </svg>
+                  <span className="relative z-10 inline-flex items-center gap-2">
+                    Explore Our Work
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
                 </AnimatedButton>
               </div>
 
@@ -225,16 +227,13 @@ export default function Portfolio() {
               >
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute rounded-full"
+                  className="pointer-events-none absolute rounded-full bg-[#8B0AB4] group-hover:opacity-10 opacity-0 transition-opacity duration-300"
                   style={{
-                    width: 0,
-                    height: 0,
+                    width: 44,
+                    height: 44,
                     left: "50%",
                     top: "50%",
-                    backgroundColor: "#8B0AB4",
-                    opacity: 0.1,
-                    transform: "translate(-50%, -50%) scale(0)",
-                    transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                    transform: "translate(-50%, -50%)",
                     zIndex: 0,
                   }}
                 />
