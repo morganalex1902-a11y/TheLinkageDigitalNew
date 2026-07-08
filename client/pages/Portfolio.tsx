@@ -20,7 +20,7 @@ export default function Portfolio() {
 
   const PROJECTS = [
     // WEBSITE DESIGN & DEVELOPMENT - Auto Detailing
-    { title: "Chino Mobile Details", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/chino-mobile-details.thelinkagedigital.workers.dev", description: "Professional mobile auto detailing service.", website: "https://chino-mobile-details.thelinkagedigital.workers.dev/" },
+    { title: "Rivera's Auto Detailing LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/www.riveras-autodetailingllc.com", description: "Professional auto detailing services in your area.", website: "https://www.riveras-autodetailingllc.com/" },
     { title: "A-V Auto LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/a-v-auto-llc.thelinkagedigital.workers.dev", description: "Full-service auto detailing and care specialists.", website: "https://a-v-auto-llc.thelinkagedigital.workers.dev/" },
     { title: "TiVo Auto Detailing", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/tivo-auto-detailingg.vercel.app/services", description: "Premium auto detailing services with proven results.", website: "https://tivo-auto-detailingg.vercel.app/services" },
 
