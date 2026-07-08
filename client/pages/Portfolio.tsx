@@ -20,21 +20,21 @@ export default function Portfolio() {
 
   const PROJECTS = [
     // WEBSITE DESIGN & DEVELOPMENT - Auto Detailing
-    { title: "Chino Mobile Details", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80", description: "Professional mobile auto detailing service.", website: "https://chino-mobile-details.thelinkagedigital.workers.dev/" },
-    { title: "A-V Auto LLC", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80", description: "Full-service auto detailing and care specialists.", website: "https://a-v-auto-llc.thelinkagedigital.workers.dev/" },
-    { title: "TiVo Auto Detailing", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1610809388341-eb2dcc1d9c57?w=600&q=80", description: "Premium auto detailing services with proven results.", website: "https://tivo-auto-detailingg.vercel.app/services" },
+    { title: "Chino Mobile Details", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/chino-mobile-details.thelinkagedigital.workers.dev", description: "Professional mobile auto detailing service.", website: "https://chino-mobile-details.thelinkagedigital.workers.dev/" },
+    { title: "A-V Auto LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/a-v-auto-llc.thelinkagedigital.workers.dev", description: "Full-service auto detailing and care specialists.", website: "https://a-v-auto-llc.thelinkagedigital.workers.dev/" },
+    { title: "TiVo Auto Detailing", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/tivo-auto-detailingg.vercel.app/services", description: "Premium auto detailing services with proven results.", website: "https://tivo-auto-detailingg.vercel.app/services" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Landscaping
-    { title: "Sarajian Landscaping", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1581578731548-c64695c952952?w=600&q=80", description: "Professional landscaping and lawn care services.", website: "https://www.sarajianlandscapingandlawncarellc.online/" },
-    { title: "Next Level Excavation", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1469022563149-aa64991b93ff?w=600&q=80", description: "Land management and excavation services.", website: "https://next-level-excavation-land-manageme.vercel.app/" },
+    { title: "Sarajian Landscaping", type: "websites", niche: "Landscaping", image: "https://image.thum.io/get/width/600/crop/600/url/www.sarajianlandscapingandlawncarellc.online", description: "Professional landscaping and lawn care services.", website: "https://www.sarajianlandscapingandlawncarellc.online/" },
+    { title: "Next Level Excavation", type: "websites", niche: "Landscaping", image: "https://image.thum.io/get/width/600/crop/600/url/next-level-excavation-land-manageme.vercel.app", description: "Land management and excavation services.", website: "https://next-level-excavation-land-manageme.vercel.app/" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Junk Removal
-    { title: "Haul All 515", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80", description: "Fast and efficient junk removal and hauling services.", website: "https://www.haulall515.com/" },
-    { title: "Buscando Amore Terno", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=80", description: "Professional removal and cleanup services.", website: "https://www.buscandoamoreterno.com/" },
+    { title: "Haul All 515", type: "websites", niche: "Junk Removal", image: "https://image.thum.io/get/width/600/crop/600/url/www.haulall515.com", description: "Fast and efficient junk removal and hauling services.", website: "https://www.haulall515.com/" },
+    { title: "Buscando Amore Terno", type: "websites", niche: "Junk Removal", image: "https://image.thum.io/get/width/600/crop/600/url/www.buscandoamoreterno.com", description: "Professional removal and cleanup services.", website: "https://www.buscandoamoreterno.com/" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
-    { title: "MidWash Night Auto Detailing", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1563693339725-0c1006b6a0ee?w=600&q=80", description: "Professional auto and property pressure washing.", website: "https://midwash-night-auto-detailing.vercel.app/" },
-    { title: "Ti-Vo Detailing", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", description: "Expert detailing and pressure washing services.", website: "https://ti-vo-detailing.vercel.app/" },
+    { title: "MidWash Night Auto Detailing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/midwash-night-auto-detailing.vercel.app", description: "Professional auto and property pressure washing.", website: "https://midwash-night-auto-detailing.vercel.app/" },
+    { title: "Ti-Vo Detailing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/ti-vo-detailing.vercel.app", description: "Expert detailing and pressure washing services.", website: "https://ti-vo-detailing.vercel.app/" },
 
     // DIGITAL MARKETING
     { title: "Social Media Campaign - E-Commerce Boost", type: "digital-marketing", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=600&q=80", description: "Multi-platform social media strategy resulting in 250% engagement increase.", website: "https://example.com/marketing-1" },
