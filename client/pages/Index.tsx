@@ -1307,11 +1307,9 @@ export default function Index() {
               <AnimatedButton
                 onClick={() => navigate("/blog")}
                 fillColor="#8B0AB4"
-                className="inline-flex font-kanit font-medium text-[13px] uppercase text-[#121212] border-b border-[#121212] pb-0.5 group"
+                className="inline-flex font-kanit font-medium text-[13px] uppercase text-[#121212] border-b border-[#121212] pb-0.5 hover:text-white hover:border-white transition-colors"
               >
-                <span className="group-hover:text-[#8B0AB4] group-hover:border-[#8B0AB4] transition-colors">
-                  All Blog →
-                </span>
+                All Blog →
               </AnimatedButton>
             </div>
           </div>
