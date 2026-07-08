@@ -307,6 +307,7 @@ export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const TESTIMONIALS = [
     {
@@ -484,16 +485,83 @@ export default function Index() {
           style={{ background: "white" }}
         >
           <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
-            {navItems.map((item) => (
-              <AnimatedButton
-                key={item.path}
-                onClick={() => handleNavClick(item.path)}
-                fillColor="#8B0AB4"
-                className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
-              >
-                {item.label}
-              </AnimatedButton>
-            ))}
+            {navItems.map((item) => {
+              if (item.label === "Services") {
+                return (
+                  <div key={item.path}>
+                    <button
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] flex items-center justify-between group"
+                    >
+                      <span>{item.label}</span>
+                      <svg
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-shrink-0 transition-transform duration-300"
+                        style={{
+                          transform: mobileServicesOpen ? "rotate(180deg)" : "rotate(0deg)",
+                        }}
+                      >
+                        <path
+                          d="M4.19092 5.84619L0.206543 1.86182C-0.0688477 1.58643 -0.0688477 1.14111 0.206543 0.868652L0.868652 0.206543C1.14404 -0.0688476 1.58936 -0.0688476 1.86182 0.206543L4.68604 3.03076L7.51025 0.206543C7.78564 -0.0688476 8.23096 -0.0688476 8.50342 0.206543L9.16553 0.868652C9.44092 1.14404 9.44092 1.58936 9.16553 1.86182L5.18115 5.84619C4.91162 6.12158 4.46631 6.12158 4.19092 5.84619Z"
+                          fill="#121212"
+                        />
+                      </svg>
+                    </button>
+                    {/* Mobile Services Dropdown */}
+                    <div
+                      className={`overflow-hidden transition-all ease-out ${
+                        mobileServicesOpen ? "max-h-screen duration-500" : "max-h-0 duration-300"
+                      }`}
+                    >
+                      <div className="pl-4 space-y-2">
+                        <OriginButton
+                          onClick={() => handleNavClick("/services")}
+                          fillColor="#8B0AB4"
+                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                        >
+                          Web Design
+                        </OriginButton>
+                        <OriginButton
+                          onClick={() => handleNavClick("/services")}
+                          fillColor="#8B0AB4"
+                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                        >
+                          App Development
+                        </OriginButton>
+                        <OriginButton
+                          onClick={() => handleNavClick("/services")}
+                          fillColor="#8B0AB4"
+                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                        >
+                          Brand Strategy
+                        </OriginButton>
+                        <OriginButton
+                          onClick={() => handleNavClick("/services")}
+                          fillColor="#8B0AB4"
+                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                        >
+                          Digital Marketing
+                        </OriginButton>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <AnimatedButton
+                  key={item.path}
+                  onClick={() => handleNavClick(item.path)}
+                  fillColor="#8B0AB4"
+                  className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
+                >
+                  {item.label}
+                </AnimatedButton>
+              );
+            })}
             <OriginButton
               onClick={() => handleNavClick("/contact")}
               fillColor="#8B0AB4"
