@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { OriginButton } from "../components/ui/origin-button";
+import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
 
 export default function Blog() {
-  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -104,12 +104,12 @@ export default function Blog() {
                   development and digital growth.
                 </p>
 
-                <button
-                  type="button"
+                <AnimatedButton
                   onClick={() =>
                     articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
+                  fillColor="#8B0AB4"
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit"
                 >
                   Read Our Blog
                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -120,7 +120,7 @@ export default function Blog() {
                       fill="currentColor"
                     />
                   </svg>
-                </button>
+                </AnimatedButton>
               </div>
 
               {/* RIGHT — overlapping article preview cards */}
@@ -133,7 +133,7 @@ export default function Blog() {
                 </div>
 
                 {/* Left card — TRENDS (9:16 aspect ratio, tightly packed) */}
-                <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md -rotate-2 block" style={{ aspectRatio: "9/16", left: "2%", sm: "4%", top: "50%", transform: "translateY(-50%)", zIndex: 5 }}>
+                <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md -rotate-2 block" style={{ aspectRatio: "9/16", left: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5 } as React.CSSProperties}>
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480"
                     alt="Top Web Design Trends to Watch in 2024"
@@ -222,12 +222,12 @@ export default function Blog() {
                 </svg>
               </button>
 
-              <button
-                type="button"
+              <AnimatedButton
                 onClick={() =>
                   articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="inline-flex items-center gap-2 font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors"
+                fillColor="#8B0AB4"
+                className="inline-flex items-center gap-2 font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#121212] hover:text-[#8B0AB4]"
               >
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                   <path
@@ -238,7 +238,7 @@ export default function Blog() {
                   />
                 </svg>
                 View All Articles
-              </button>
+              </AnimatedButton>
             </div>
           </div>
         </section>
