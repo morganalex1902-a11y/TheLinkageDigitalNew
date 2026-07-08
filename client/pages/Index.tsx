@@ -532,6 +532,13 @@ export default function Index() {
               </div>
             </div>
           </div>
+
+          {/* Contact Form Card - Centered below hero content */}
+          <div className="flex justify-center mt-12 md:mt-16 lg:mt-20">
+            <div className="w-full max-w-md">
+              <ContactFormCard />
+            </div>
+          </div>
         </div>
 
         {/* Bottom-left blob decoration */}
