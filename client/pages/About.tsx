@@ -180,9 +180,9 @@ export default function About() {
             </h2>
           </div>
 
-          <div ref={teamGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger justify-items-center max-w-[900px] mx-auto">
+          <div ref={teamGridRef as React.RefObject<HTMLDivElement>} className="flex justify-center gap-8 md:gap-10 reveal-stagger flex-wrap">
             {TEAM_MEMBERS.map((member, i) => (
-              <div key={i} className="group cursor-pointer text-center">
+              <div key={i} className="group cursor-pointer text-center w-[260px]">
                 <div className="overflow-hidden rounded-lg mb-5 h-[280px] md:h-[320px] flex items-center justify-center bg-[#f5f5f5]">
                   <img
                     src={member.image}
