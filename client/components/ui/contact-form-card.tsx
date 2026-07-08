@@ -31,15 +31,15 @@ export function ContactFormCard() {
       <div
         className="relative p-8 md:p-10 rounded-2xl overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 240, 245, 0.95) 100%)",
+          background: "linear-gradient(135deg, rgba(255, 232, 245, 0.98) 0%, rgba(248, 220, 240, 0.98) 100%)",
           backdropFilter: "blur(20px)",
           boxShadow: `
-            0 0 60px rgba(139, 10, 180, 0.15),
-            0 20px 60px rgba(0, 0, 0, 0.12),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8),
-            inset 0 -1px 20px rgba(139, 10, 180, 0.08)
+            0 0 60px rgba(139, 10, 180, 0.2),
+            0 20px 60px rgba(139, 10, 180, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9),
+            inset 0 -1px 20px rgba(139, 10, 180, 0.12)
           `,
-          border: "1px solid rgba(139, 10, 180, 0.2)",
+          border: "1px solid rgba(139, 10, 180, 0.25)",
         }}
       >
         {/* Top shine overlay for 3D effect */}
