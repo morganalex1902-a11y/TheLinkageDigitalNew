@@ -517,32 +517,32 @@ export default function Index() {
                         mobileServicesOpen ? "max-h-screen duration-500" : "max-h-0 duration-300"
                       }`}
                     >
-                      <div className="pl-4 space-y-2">
+                      <div className="pl-4 pt-2 pb-2 space-y-1 bg-[#FFE8F5]/20 rounded-lg my-1">
                         <OriginButton
                           onClick={() => handleNavClick("/services")}
                           fillColor="#8B0AB4"
-                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
                         >
                           Web Design
                         </OriginButton>
                         <OriginButton
                           onClick={() => handleNavClick("/services")}
                           fillColor="#8B0AB4"
-                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
                         >
                           App Development
                         </OriginButton>
                         <OriginButton
                           onClick={() => handleNavClick("/services")}
                           fillColor="#8B0AB4"
-                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
                         >
                           Brand Strategy
                         </OriginButton>
                         <OriginButton
                           onClick={() => handleNavClick("/services")}
                           fillColor="#8B0AB4"
-                          className="w-full text-left px-4 py-2 rounded-lg font-kanit text-[13px] text-[#121212] hover:text-white justify-start"
+                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
                         >
                           Digital Marketing
                         </OriginButton>
