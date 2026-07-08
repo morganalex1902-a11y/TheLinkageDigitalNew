@@ -4,6 +4,7 @@ import type React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
+import { ContactFormCard } from "../components/ui/contact-form-card";
 
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
@@ -1303,45 +1304,10 @@ export default function Index() {
         />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
-
-          {/* Label */}
-          <div className="flex items-center gap-3 mb-5">
-            <span className="text-[1.4rem]">👋</span>
-            <span className="font-teko font-bold text-[#121212] text-[clamp(1.4rem,2.5vw,2rem)] uppercase tracking-wider">
-              Hello !
-            </span>
+        <div className="relative z-10 py-20 md:py-28 lg:py-36 px-6">
+          <div className="max-w-[1400px] mx-auto flex flex-col items-center justify-center text-center">
+            <ContactFormCard />
           </div>
-
-          {/* Main heading */}
-          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-4">
-            Let's Talk
-            <br />
-            With Us
-          </h2>
-
-          {/* Email link */}
-          <a
-            href="mailto:sales@thelinkagedigital.com"
-            className="font-kanit font-light text-[#121212] text-[clamp(0.9rem,1.8vw,1.4rem)] underline underline-offset-4 mb-10 hover:text-[#8B0AB4] transition-colors"
-          >
-            sales@thelinkagedigital.com
-          </a>
-
-          {/* CTA */}
-          <OriginButton
-            onClick={() => navigate("/contact")}
-            fillColor="#8B0AB4"
-            className="bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-10 md:px-14 py-4 md:py-5 tracking-widest hover:text-white inline-flex items-center gap-3"
-          >
-            Let's Get In Touch
-            <svg width="20" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-              <g clipPath="url(#cta-arrow)">
-                <path fillRule="evenodd" clipRule="evenodd" d="M11.6143 3.89748C11.9608 3.4741 12.5848 3.4117 13.0081 3.7581L20.6033 9.9723H0.990476C0.443451 9.9723 0 9.52885 0 8.98183C0 8.43481 0.443451 7.99135 0.990476 7.99135H15.0539L11.7538 5.29127C11.3304 4.94488 11.268 4.32085 11.6143 3.89748Z" fill="currentColor"/>
-              </g>
-              <defs><clipPath id="cta-arrow"><rect width="20.8" height="14" fill="white"/></clipPath></defs>
-            </svg>
-          </OriginButton>
         </div>
       </section>
 
