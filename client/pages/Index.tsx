@@ -478,8 +478,8 @@ export default function Index() {
 
         {/* Mobile menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-            mobileMenuOpen ? "max-h-screen" : "max-h-0"
+          className={`md:hidden overflow-hidden transition-all ease-out ${
+            mobileMenuOpen ? "max-h-screen duration-500" : "max-h-0 duration-300"
           }`}
           style={{ background: "white" }}
         >
