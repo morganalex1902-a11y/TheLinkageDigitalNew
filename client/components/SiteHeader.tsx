@@ -32,50 +32,46 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="transition-all duration-300"
+      className="transition-all duration-500"
     >
-      {isOpen ? (
-        <>
-          <path
-            d="M6 6L18 18"
-            stroke="#121212"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M18 6L6 18"
-            stroke="#121212"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </>
-      ) : (
-        <>
-          <path
-            d="M3 6H21"
-            stroke="#121212"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M3 12H21"
-            stroke="#121212"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M3 18H21"
-            stroke="#121212"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </>
-      )}
+      {/* Top line - rotates to diagonal */}
+      <path
+        d="M3 6H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          transformOrigin: "12px 12px",
+          transform: isOpen ? "rotate(45deg) translateY(6px)" : "rotate(0deg) translateY(0px)",
+          transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+      {/* Middle line - fades out */}
+      <path
+        d="M3 12H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          opacity: isOpen ? 0 : 1,
+          transition: "opacity 300ms ease-in-out",
+        }}
+      />
+      {/* Bottom line - rotates to diagonal */}
+      <path
+        d="M3 18H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          transformOrigin: "12px 12px",
+          transform: isOpen ? "rotate(-45deg) translateY(-6px)" : "rotate(0deg) translateY(0px)",
+          transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
     </svg>
   );
 }
