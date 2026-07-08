@@ -1,6 +1,56 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
+const styles = `
+  @keyframes slideUpIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fieldFocus {
+    from {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 4px 12px rgba(139, 10, 180, 0.12), 0 8px 20px rgba(139, 10, 180, 0.15), 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    to {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 4px 12px rgba(139, 10, 180, 0.2), 0 12px 28px rgba(139, 10, 180, 0.25), 0 4px 8px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .contact-form-card {
+    animation: slideUpIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .contact-field {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .contact-field:focus-within {
+    animation: fieldFocus 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .contact-field input,
+  .contact-field textarea {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .contact-field input:focus,
+  .contact-field textarea:focus {
+    transform: translateY(-2px);
+  }
+`;
+
+if (typeof document !== "undefined") {
+  const styleSheet = document.createElement("style");
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+}
+
 export function ContactFormCard() {
   const [formData, setFormData] = useState({
     email: "",
@@ -26,7 +76,7 @@ export function ContactFormCard() {
   };
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full max-w-md contact-form-card">
       {/* Glossy 3D card with shadow and depth */}
       <div
         className="relative p-8 md:p-10 rounded-2xl overflow-hidden"
@@ -62,7 +112,7 @@ export function ContactFormCard() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div
-              className="relative rounded-xl overflow-hidden"
+              className="contact-field relative rounded-xl overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #FFE8F5 0%, #F8DCF0 100%)",
                 boxShadow: `
@@ -85,7 +135,7 @@ export function ContactFormCard() {
             </div>
 
             <div
-              className="relative rounded-xl overflow-hidden"
+              className="contact-field relative rounded-xl overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #FFE8F5 0%, #F8DCF0 100%)",
                 boxShadow: `
