@@ -157,7 +157,7 @@ export default function SiteHeader() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-          mobileMenuOpen ? "max-h-96" : "max-h-0"
+          mobileMenuOpen ? "max-h-screen" : "max-h-0"
         }`}
         style={{ background: "white" }}
       >
