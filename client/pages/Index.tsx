@@ -1019,7 +1019,7 @@ export default function Index() {
             {/* Tab panel image */}
             <div>
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480"
+                src="https://cdn.builder.io/api/v1/image/assets%2Feaa719c761d64fc58dbfe871f4fb5f8e%2Fe6c2f37c15ae41b5b4880182ef260f71?format=webp&width=800&height=1200"
                 alt="Dashboard and team"
                 className="w-full h-auto object-cover"
               />
