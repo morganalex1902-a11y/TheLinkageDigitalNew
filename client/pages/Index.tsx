@@ -436,15 +436,6 @@ export default function Index() {
             </AnimatedButton>
           </nav>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 flex items-center justify-center"
-            aria-label="Toggle menu"
-          >
-            <MenuIcon isOpen={mobileMenuOpen} />
-          </button>
-
           {/* Contact Us button */}
           <OriginButton
             onClick={() => navigate("/contact")}
@@ -453,6 +444,15 @@ export default function Index() {
           >
             Contact Us
           </OriginButton>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 flex items-center justify-center"
+            aria-label="Toggle menu"
+          >
+            <MenuIcon isOpen={mobileMenuOpen} />
+          </button>
         </div>
 
         {/* Mobile menu */}
