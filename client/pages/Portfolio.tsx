@@ -20,25 +20,21 @@ export default function Portfolio() {
 
   const PROJECTS = [
     // WEBSITE DESIGN & DEVELOPMENT - Auto Detailing
-    { title: "Premium Auto Detail Pro", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80", description: "Professional auto detailing showcase with booking system.", website: "https://example.com/auto-detail-1" },
-    { title: "Shine & Sparkle Auto Care", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80", description: "Complete detailing services with before/after gallery.", website: "https://example.com/auto-detail-2" },
-    { title: "Crystal Clear Detailing", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1610809388341-eb2dcc1d9c57?w=600&q=80", description: "Luxury car detailing specialists website.", website: "https://example.com/auto-detail-3" },
+    { title: "Chino Mobile Details", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80", description: "Professional mobile auto detailing service.", website: "https://chino-mobile-details.thelinkagedigital.workers.dev/" },
+    { title: "A-V Auto LLC", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1551501350-4091e0c31ba8?w=600&q=80", description: "Full-service auto detailing and care specialists.", website: "https://a-v-auto-llc.thelinkagedigital.workers.dev/" },
+    { title: "TiVo Auto Detailing", type: "websites", niche: "Auto Detailing", image: "https://images.unsplash.com/photo-1610809388341-eb2dcc1d9c57?w=600&q=80", description: "Premium auto detailing services with proven results.", website: "https://tivo-auto-detailingg.vercel.app/services" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Landscaping
-    { title: "Green Acres Landscaping", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1581578731548-c64695c952952?w=600&q=80", description: "Complete landscape design and maintenance services.", website: "https://example.com/landscape-1" },
-    { title: "Nature's Touch Garden Design", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1469022563149-aa64991b93ff?w=600&q=80", description: "Professional garden and yard transformation.", website: "https://example.com/landscape-2" },
+    { title: "Sarajian Landscaping", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1581578731548-c64695c952952?w=600&q=80", description: "Professional landscaping and lawn care services.", website: "https://www.sarajianlandscapingandlawncarellc.online/" },
+    { title: "Next Level Excavation", type: "websites", niche: "Landscaping", image: "https://images.unsplash.com/photo-1469022563149-aa64991b93ff?w=600&q=80", description: "Land management and excavation services.", website: "https://next-level-excavation-land-manageme.vercel.app/" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Junk Removal
-    { title: "Quick Junk Haul", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80", description: "Fast and efficient junk removal services.", website: "https://example.com/junk-1" },
-    { title: "Trash Away Removal", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=80", description: "Same-day junk removal and disposal.", website: "https://example.com/junk-2" },
-
-    // WEBSITE DESIGN & DEVELOPMENT - Construction
-    { title: "BuildRight Construction", type: "websites", niche: "Construction", image: "https://images.unsplash.com/photo-1504917595217-3404ee9c6e65?w=600&q=80", description: "Residential and commercial construction projects.", website: "https://example.com/construction-1" },
-    { title: "Quality Builds LLC", type: "websites", niche: "Construction", image: "https://images.unsplash.com/photo-1581578731548-c64695c952951?w=600&q=80", description: "Custom home and renovation construction.", website: "https://example.com/construction-2" },
+    { title: "Haul All 515", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80", description: "Fast and efficient junk removal and hauling services.", website: "https://www.haulall515.com/" },
+    { title: "Buscando Amore Terno", type: "websites", niche: "Junk Removal", image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=80", description: "Professional removal and cleanup services.", website: "https://www.buscandoamoreterno.com/" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
-    { title: "Spotless Pressure Washing", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1563693339725-0c1006b6a0ee?w=600&q=80", description: "Professional house and driveway pressure washing.", website: "https://example.com/pressure-1" },
-    { title: "Clean Slate Services", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", description: "Commercial and residential pressure washing.", website: "https://example.com/pressure-2" },
+    { title: "MidWash Night Auto Detailing", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1563693339725-0c1006b6a0ee?w=600&q=80", description: "Professional auto and property pressure washing.", website: "https://midwash-night-auto-detailing.vercel.app/" },
+    { title: "Ti-Vo Detailing", type: "websites", niche: "Pressure Washing", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", description: "Expert detailing and pressure washing services.", website: "https://ti-vo-detailing.vercel.app/" },
 
     // DIGITAL MARKETING
     { title: "Social Media Campaign - E-Commerce Boost", type: "digital-marketing", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=600&q=80", description: "Multi-platform social media strategy resulting in 250% engagement increase.", website: "https://example.com/marketing-1" },
