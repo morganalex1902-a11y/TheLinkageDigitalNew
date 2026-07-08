@@ -60,27 +60,51 @@ export function ContactFormCard() {
             Let's Talk<br />With Us
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div
+              className="relative rounded-xl overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 250, 255, 0.6) 100%)",
+                boxShadow: `
+                  inset 0 2px 8px rgba(139, 10, 180, 0.08),
+                  0 4px 12px rgba(139, 10, 180, 0.1)
+                `,
+              }}
+            >
               <input
                 type="email"
                 name="email"
                 placeholder="sales@thelinkagedigital.com"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full bg-transparent border-b border-[#E0E0E0] focus:border-[#8B0AB4] py-3 font-kanit text-sm text-[#333] placeholder-[#999] outline-none transition-colors"
+                className="w-full bg-transparent px-4 py-3 font-kanit text-sm text-[#333] placeholder-[#BBB] outline-none transition-all"
+                style={{
+                  boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.05)",
+                }}
                 required
               />
             </div>
 
-            <div>
+            <div
+              className="relative rounded-xl overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 250, 255, 0.6) 100%)",
+                boxShadow: `
+                  inset 0 2px 8px rgba(139, 10, 180, 0.08),
+                  0 4px 12px rgba(139, 10, 180, 0.1)
+                `,
+              }}
+            >
               <textarea
                 name="message"
                 placeholder="Tell us about your project..."
                 value={formData.message}
                 onChange={handleChange}
                 rows={3}
-                className="w-full bg-transparent border-b border-[#E0E0E0] focus:border-[#8B0AB4] py-3 font-kanit text-sm text-[#333] placeholder-[#999] outline-none transition-colors resize-none"
+                className="w-full bg-transparent px-4 py-3 font-kanit text-sm text-[#333] placeholder-[#BBB] outline-none transition-all resize-none"
+                style={{
+                  boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.05)",
+                }}
                 required
               />
             </div>
