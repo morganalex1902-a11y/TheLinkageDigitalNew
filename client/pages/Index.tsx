@@ -440,7 +440,7 @@ export default function Index() {
           <OriginButton
             onClick={() => navigate("/contact")}
             fillColor="#8B0AB4"
-            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
+            className="hidden md:block bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
           >
             Contact Us
           </OriginButton>
