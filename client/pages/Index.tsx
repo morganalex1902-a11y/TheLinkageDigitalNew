@@ -410,7 +410,7 @@ export default function Index() {
       {/* ── HERO ── */}
       <main className="relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 pt-10 md:pt-14 lg:pt-16 pb-16 lg:pb-28">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20 justify-between">
 
             {/* LEFT: text */}
             <div className="flex-1 min-w-0">
@@ -464,6 +464,11 @@ export default function Index() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* CENTER: Contact Form Card */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-md z-20 lg:relative lg:translate-x-0 lg:translate-y-0 lg:left-auto lg:top-auto lg:w-auto lg:flex-shrink-0 lg:mt-0">
+              <ContactFormCard />
             </div>
 
             {/* RIGHT: images + video + customers */}
@@ -1287,55 +1292,62 @@ export default function Index() {
       </section>
 
       {/* ── CTA BANNER ── */}
-      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16 xl:gap-24">
+      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] relative overflow-hidden reveal">
 
-            {/* LEFT: Contact Form (primary) */}
-            <div className="flex-1">
-              <ContactFormCard />
-            </div>
+        {/* Left decorative image panel */}
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
+          alt=""
+          className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
+        />
 
-            {/* RIGHT: Original content (small) */}
-            <div className="flex-shrink-0 lg:w-[280px]">
-              <div className="flex items-center gap-2 mb-6">
-                <span className="text-[1.2rem]">👋</span>
-                <span className="font-teko font-bold text-[#121212] text-[13px] md:text-[14px] uppercase tracking-wider">
-                  Hello !
-                </span>
-              </div>
+        {/* Right decorative image panel */}
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
+          alt=""
+          className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
+        />
 
-              {/* Main heading (small) */}
-              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[1.8rem] md:text-[2rem] mb-3">
-                Let's Talk
-                <br />
-                With Us
-              </h2>
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 md:py-28 lg:py-36 px-6">
 
-              {/* Email link */}
-              <a
-                href="mailto:sales@thelinkagedigital.com"
-                className="font-kanit font-light text-[#121212] text-[0.95rem] underline underline-offset-4 mb-6 hover:text-[#8B0AB4] transition-colors block"
-              >
-                sales@thelinkagedigital.com
-              </a>
-
-              {/* CTA */}
-              <OriginButton
-                onClick={() => navigate("/contact")}
-                fillColor="#8B0AB4"
-                className="bg-[#121212] text-white font-kanit font-medium text-[12px] md:text-[13px] uppercase px-6 md:px-8 py-3 md:py-4 tracking-widest hover:text-white inline-flex items-center gap-2 text-nowrap"
-              >
-                Get In Touch
-                <svg width="16" height="12" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                  <g clipPath="url(#cta-arrow)">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M11.6143 3.89748C11.9608 3.4741 12.5848 3.4117 13.0081 3.7581L20.6033 9.9723H0.990476C0.443451 9.9723 0 9.52885 0 8.98183C0 8.43481 0.443451 7.99135 0.990476 7.99135H15.0539L11.7538 5.29127C11.3304 4.94488 11.268 4.32085 11.6143 3.89748Z" fill="currentColor"/>
-                  </g>
-                  <defs><clipPath id="cta-arrow"><rect width="20.8" height="14" fill="white"/></clipPath></defs>
-                </svg>
-              </OriginButton>
-            </div>
+          {/* Label */}
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-[1.4rem]">👋</span>
+            <span className="font-teko font-bold text-[#121212] text-[clamp(1.4rem,2.5vw,2rem)] uppercase tracking-wider">
+              Hello !
+            </span>
           </div>
+
+          {/* Main heading */}
+          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(3.5rem,8vw,8rem)] mb-4">
+            Let's Talk
+            <br />
+            With Us
+          </h2>
+
+          {/* Email link */}
+          <a
+            href="mailto:sales@thelinkagedigital.com"
+            className="font-kanit font-light text-[#121212] text-[clamp(0.9rem,1.8vw,1.4rem)] underline underline-offset-4 mb-10 hover:text-[#8B0AB4] transition-colors"
+          >
+            sales@thelinkagedigital.com
+          </a>
+
+          {/* CTA */}
+          <OriginButton
+            onClick={() => navigate("/contact")}
+            fillColor="#8B0AB4"
+            className="bg-[#121212] text-white font-kanit font-medium text-[13px] md:text-[15px] uppercase px-10 md:px-14 py-4 md:py-5 tracking-widest hover:text-white inline-flex items-center gap-3"
+          >
+            Let's Get In Touch
+            <svg width="20" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+              <g clipPath="url(#cta-arrow)">
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.6143 3.89748C11.9608 3.4741 12.5848 3.4117 13.0081 3.7581L20.6033 9.9723H0.990476C0.443451 9.9723 0 9.52885 0 8.98183C0 8.43481 0.443451 7.99135 0.990476 7.99135H15.0539L11.7538 5.29127C11.3304 4.94488 11.268 4.32085 11.6143 3.89748Z" fill="currentColor"/>
+              </g>
+              <defs><clipPath id="cta-arrow"><rect width="20.8" height="14" fill="white"/></clipPath></defs>
+            </svg>
+          </OriginButton>
         </div>
       </section>
 
