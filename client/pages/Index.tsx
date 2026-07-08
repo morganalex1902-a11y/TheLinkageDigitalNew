@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
-import { ContactFormCard } from "../components/ui/contact-form-card";
 
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
@@ -81,18 +80,19 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
   // Duplicate images twice — animation moves by -50% so second half loops back to first
   const allImages = [...images, ...images];
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
-    <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
+    <div className="overflow-hidden" style={{ marginLeft: isMobile ? 0 : `${stagger}vw` }}>
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: `${animationName} 20s linear infinite`,
+          animation: isMobile ? "none" : `${animationName} 20s linear infinite`,
           willChange: "transform",
         }}
       >
-        {allImages.map((src, i) => (
-          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(120px,29.6vw,400px)] h-[clamp(120px,29.9vw,400px)]">
+        {(isMobile ? images.slice(0, 2) : allImages).map((src, i) => (
+          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)]">
             <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
@@ -125,7 +125,7 @@ function ArrowPointerButton({ onClick, direction = "right" }: { onClick?: () => 
     <OriginButton
       onClick={onClick}
       fillColor="#8B0AB4"
-      className="w-9 h-9 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white flex items-center justify-center"
+      className="w-10 h-10 sm:w-9 sm:h-9 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white flex items-center justify-center"
     >
       <svg
         width="12"
@@ -310,61 +310,66 @@ export default function Index() {
   const servicesRef = useInView();
   const testimonialsRef = useInView();
   const faqRef = useInView();
-  const ctaRef = useInView();
   const blogRef = useInView();
 
   return (
     <div className="min-h-screen bg-white font-kanit">
       {/* ── NAVBAR ── */}
       <header id="site-header" className="border-b border-[#ECECEC] relative z-50 bg-white sticky top-0 transition-shadow duration-300">
-        <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between h-[87px]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 flex items-center justify-between h-[70px] sm:h-[87px]">
           <img
             src={LOGO}
             alt="The Linkage Digital"
-            className="h-[56px] md:h-[68px] lg:h-[78px] w-auto flex-shrink-0"
+            className="h-[48px] sm:h-[56px] md:h-[68px] lg:h-[78px] w-auto flex-shrink-0"
           />
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link
-              to="/"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            <AnimatedButton
+              onClick={() => navigate("/")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Home
-            </Link>
-            <Link
-              to="/about"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            </AnimatedButton>
+            <AnimatedButton
+              onClick={() => navigate("/about")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               About
-            </Link>
+            </AnimatedButton>
             <div className="flex items-center gap-1">
-              <Link
-                to="/services"
-                className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+              <AnimatedButton
+                onClick={() => navigate("/services")}
+                fillColor="#8B0AB4"
+                className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
               >
                 Services
-              </Link>
+              </AnimatedButton>
               <ChevronDown />
             </div>
-            <Link
-              to="/portfolio"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            <AnimatedButton
+              onClick={() => navigate("/portfolio")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Portfolio
-            </Link>
-            <Link
-              to="/blog"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            </AnimatedButton>
+            <AnimatedButton
+              onClick={() => navigate("/blog")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Blog
-            </Link>
-            <Link
-              to="/contact"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            </AnimatedButton>
+            <AnimatedButton
+              onClick={() => navigate("/contact")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Contact
-            </Link>
+            </AnimatedButton>
           </nav>
 
           {/* Contact Us button */}
@@ -380,7 +385,7 @@ export default function Index() {
 
       {/* ── HERO ── */}
       <main className="relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-6 pt-10 md:pt-14 lg:pt-16 pb-16 lg:pb-28">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-8 md:pt-14 lg:pt-16 pb-12 md:pb-16 lg:pb-28">
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20">
 
             {/* LEFT: text */}
@@ -447,9 +452,9 @@ export default function Index() {
                   alt="Our team"
                   className="flex-shrink-0 relative z-0 object-contain"
                   style={{
-                    width: "clamp(120px,17vw,210px)",
-                    height: "clamp(240px,34vw,420px)",
-                    top: "clamp(18px,2.6vw,42px)",
+                    width: "clamp(80px,15vw,210px)",
+                    height: "clamp(160px,30vw,420px)",
+                    top: "clamp(10px,1.5vw,42px)",
                   }}
                 />
 
@@ -457,9 +462,9 @@ export default function Index() {
                 <div
                   className="relative flex-shrink-0 z-10"
                   style={{
-                    width: "clamp(120px,17vw,210px)",
-                    height: "clamp(240px,34vw,420px)",
-                    top: "clamp(-18px,-2.6vw,-42px)",
+                    width: "clamp(80px,15vw,210px)",
+                    height: "clamp(160px,30vw,420px)",
+                    top: "clamp(-10px,-1.5vw,-42px)",
                   }}
                 >
                   <img
@@ -468,11 +473,11 @@ export default function Index() {
                     className="w-full h-full object-contain"
                   />
                   {/* Play button sits just outside the bottom-right curve */}
-                  <div className="absolute -right-10 bottom-[38%] flex flex-col items-center gap-1">
-                    <button className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
+                  <div className="absolute -right-7 sm:-right-10 bottom-[38%] flex flex-col items-center gap-1">
+                    <button className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
                       <PlayIcon />
                     </button>
-                    <span className="font-kanit font-medium text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
+                    <span className="font-kanit font-medium text-[8px] sm:text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
                       Watch
                       <br />
                       Video
@@ -509,23 +514,23 @@ export default function Index() {
         <img
           src={INTRO_SHAPE}
           alt=""
-          className="absolute bottom-0 left-0 w-[220px] md:w-[310px] lg:w-[410px] pointer-events-none select-none"
+          className="hidden lg:block absolute bottom-0 left-0 w-[410px] pointer-events-none select-none"
         />
       </main>
 
       {/* ── WHO WE ARE SECTION ── */}
-      <section ref={whoRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 overflow-hidden reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
+      <section ref={whoRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 overflow-hidden reveal">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
           {/* Heading row */}
           <div className="flex items-start justify-between mb-10 lg:mb-14">
             <div className="flex-1 min-w-0">
               {/* Line 1: label + "Have a brilliant" */}
-              <div className="flex items-baseline gap-4 md:gap-8 flex-wrap">
-                <span className="font-kanit font-bold text-[13px] md:text-[16px] uppercase text-[#121212] whitespace-nowrap">
+              <div className="flex items-baseline gap-2 sm:gap-4 md:gap-8 flex-wrap">
+                <span className="font-kanit font-bold text-[11px] sm:text-[13px] md:text-[16px] uppercase text-[#121212] whitespace-nowrap">
                   01 Who We Are
                 </span>
-                <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.8rem,4.5vw,5rem)]">
+                <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.5rem,4vw,5rem)]">
                   Have a brilliant
                 </h2>
               </div>
@@ -587,7 +592,7 @@ export default function Index() {
             </div>
 
             {/* ── MIDDLE: Description + Explore button ── */}
-            <div className="border-l border-[#ECECEC] pl-6 md:pl-10 lg:pl-12 flex flex-col justify-between gap-8 min-h-[280px] md:min-h-[305px]">
+            <div className="md:border-l border-[#ECECEC] pl-0 md:pl-10 lg:pl-12 flex flex-col justify-between gap-8 min-h-[280px] md:min-h-[305px] mt-6 md:mt-0">
               <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.6]">
                 Consumers today rely heavily on digital means to research
                 products. We research a brand of bldend engaging with it,
@@ -638,9 +643,9 @@ export default function Index() {
       </section>
 
       {/* ── BRAND BAR ── */}
-      <div className="flex h-[130px] md:h-[158px] overflow-hidden">
+      <div className="flex h-[100px] sm:h-[130px] md:h-[158px] overflow-hidden">
         {/* Dark left square with decorative image */}
-        <div className="w-[120px] md:w-[156px] flex-shrink-0 bg-[#121212] relative overflow-hidden">
+        <div className="w-[100px] sm:w-[120px] md:w-[156px] flex-shrink-0 bg-[#121212] relative overflow-hidden">
           <div className="absolute top-0 left-0 w-16 md:w-20 h-16 md:h-20 bg-[#8B0AB4]" />
           <img
             src={BRAND_CORNER}
@@ -654,8 +659,8 @@ export default function Index() {
       </div>
 
       {/* ── TAKE CHARGE STEERING SECTION ── */}
-      <section ref={takeChargeRef as React.RefObject<HTMLElement>} className="bg-[#171717] py-16 md:py-20 lg:py-24 overflow-hidden reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
+      <section ref={takeChargeRef as React.RefObject<HTMLElement>} className="bg-[#171717] py-12 md:py-20 lg:py-24 overflow-hidden reveal">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
           {/* Top: character + heading + description */}
           <div className="flex flex-col items-center text-center mb-14 md:mb-20">
@@ -666,7 +671,7 @@ export default function Index() {
               className="w-[70px] md:w-[93px] h-auto -mb-3 md:-mb-4 relative z-10"
             />
             {/* Heading */}
-            <h2 className="font-teko font-bold text-white uppercase leading-[0.93] text-[clamp(2.2rem,5.5vw,5rem)]">
+            <h2 className="font-teko font-bold text-white uppercase leading-[0.93] text-[clamp(1.8rem,5vw,5rem)]">
               Take Charge Steering
               <br />
               Your Product
@@ -751,8 +756,8 @@ export default function Index() {
       </section>
 
       {/* ── EMPOWERING SKILLS SECTION ── */}
-      <section ref={empowerRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
+      <section ref={empowerRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
           {/* Heading + description row */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 mb-10 lg:mb-14">
@@ -837,12 +842,12 @@ export default function Index() {
             </p>
 
             {/* Tech circles – overlapping on desktop */}
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-0">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-0">
               {TECH_ITEMS.map((tech, i) => (
                 <div
                   key={tech.name}
-                  className={`flex-shrink-0 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] lg:w-[260px] lg:h-[260px] xl:w-[298px] xl:h-[298px] rounded-full border border-[#ECECEC] bg-white flex flex-col items-center justify-center gap-2 sm:gap-3 ${
-                    i > 0 ? "sm:-ml-6 lg:-ml-10 xl:-ml-12" : ""
+                  className={`flex-shrink-0 w-[130px] h-[130px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] xl:w-[298px] xl:h-[298px] rounded-full border border-[#ECECEC] bg-white flex flex-col items-center justify-center gap-1 sm:gap-2 lg:gap-3 ${
+                    i > 0 ? "sm:-ml-4 md:-ml-6 lg:-ml-10 xl:-ml-12" : ""
                   }`}
                 >
                   {tech.src ? (
@@ -868,7 +873,7 @@ export default function Index() {
       </section>
 
       {/* ── PORTFOLIO SECTION ── */}
-      <section ref={portfolioRef as React.RefObject<HTMLElement>} id="portfolio-section" className="bg-white overflow-hidden reveal">
+      <section ref={portfolioRef as React.RefObject<HTMLElement>} id="portfolio-section" className="bg-white overflow-hidden reveal py-6 md:py-0">
         {/* Staggered mosaic grid with infinite scroll
             Each image = 29.6vw wide (555/1875×100) so 4 fill ~120vw total
             Row 2 shifted left by 19.9vw (373/1875×100) → last image reaches exactly 100vw */}
@@ -913,8 +918,8 @@ export default function Index() {
       </section>
 
       {/* ── PREMIUM SERVICES SECTION ── */}
-      <section ref={servicesRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
+      <section ref={servicesRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
           {/* Header */}
           <div className="text-center mb-14 md:mb-20">
@@ -1074,7 +1079,7 @@ export default function Index() {
         </div>
 
         {/* Content below banner */}
-        <div className="max-w-[1400px] mx-auto px-6 py-14 md:py-20 lg:py-24">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 md:py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20 items-start">
 
             {/* Left: Heading + description + explore */}
@@ -1176,13 +1181,13 @@ export default function Index() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section ref={faqRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
+      <section ref={faqRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-20 items-start">
 
             {/* Left: heading + description */}
             <div className="lg:sticky lg:top-24">
-              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.5rem,6vw,5.5rem)] mb-6">
+              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2rem,5.5vw,5.5rem)] mb-6">
                 Frequently
                 <br />
                 Asked
@@ -1289,38 +1294,14 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
-      <section ref={ctaRef as React.RefObject<HTMLElement>} className="bg-[#FFE8F5] relative overflow-hidden reveal">
-
-        {/* Left decorative image panel */}
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/ee951d9528412da7631bce9adcb908e0a2e2ebfd?width=1272"
-          alt=""
-          className="absolute left-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-        />
-
-        {/* Right decorative image panel */}
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/c98164b931a5afa28448df48252b06e4750016f2?width=1408"
-          alt=""
-          className="absolute right-0 top-0 h-full w-[28vw] max-w-[360px] object-cover object-center pointer-events-none select-none"
-        />
-
-        {/* Content */}
-        <div className="relative z-10 py-20 md:py-28 lg:py-36 px-6">
-          <div className="max-w-[1400px] mx-auto flex flex-col items-center justify-center text-center">
-            <ContactFormCard />
-          </div>
-        </div>
-      </section>
 
       {/* ── JOURNAL / BLOG SECTION ── */}
-      <section ref={blogRef as React.RefObject<HTMLElement>} className="bg-white py-14 md:py-20 lg:py-24 reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
+      <section ref={blogRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
           {/* Heading row */}
           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6 mb-10 md:mb-14">
-            <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(2rem,5.5vw,4.5rem)]">
+            <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.8rem,5vw,4.5rem)]">
               Journal Insight
               <br />
               By The Linkage Digital
@@ -1330,12 +1311,13 @@ export default function Index() {
                 Our ability to combine expertise and systems thinking is what
                 fuels us as a team.
               </p>
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-2 font-kanit font-medium text-[13px] uppercase text-[#121212] border-b border-[#121212] pb-0.5 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors tracking-wider"
+              <AnimatedButton
+                onClick={() => navigate("/blog")}
+                fillColor="#8B0AB4"
+                className="inline-flex font-kanit font-medium text-[13px] uppercase text-[#121212] border-b border-[#121212] pb-0.5 hover:text-white hover:border-white transition-colors"
               >
                 All Blog →
-              </Link>
+              </AnimatedButton>
             </div>
           </div>
 
@@ -1396,12 +1378,12 @@ export default function Index() {
       </section>
 
       {/* ── CONTACT CTA ── */}
-      <section className="bg-[#FFE8F5] py-20 md:py-28 lg:py-36 text-center">
-        <div className="max-w-[1200px] mx-auto px-6">
+      <section className="bg-[#FFE8F5] py-14 md:py-28 lg:py-36 text-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <p className="font-kanit font-semibold text-[#8B0AB4] text-[14px] md:text-[16px] uppercase tracking-[4px] mb-4 md:mb-6">
             👋&nbsp; Hello !
           </p>
-          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(4rem,13vw,12rem)] mb-6 md:mb-8">
+          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.5rem,10vw,12rem)] mb-6 md:mb-8">
             Let's Talk
             <br />
             With Us
