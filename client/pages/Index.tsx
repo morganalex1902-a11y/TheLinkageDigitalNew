@@ -6,6 +6,55 @@ import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 
+function MenuIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="transition-all duration-500"
+    >
+      <path
+        d="M3 6H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          transformOrigin: "12px 12px",
+          transform: isOpen ? "rotate(45deg) translateY(6px)" : "rotate(0deg) translateY(0px)",
+          transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+      <path
+        d="M3 12H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          opacity: isOpen ? 0 : 1,
+          transition: "opacity 300ms ease-in-out",
+        }}
+      />
+      <path
+        d="M3 18H21"
+        stroke="#121212"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          transformOrigin: "12px 12px",
+          transform: isOpen ? "rotate(-45deg) translateY(-6px)" : "rotate(0deg) translateY(0px)",
+          transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+    </svg>
+  );
+}
+
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
 const AVATAR_IMG =
@@ -256,6 +305,7 @@ export default function Index() {
   const [testimonialDir, setTestimonialDir] = useState<"left" | "right">("right");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const TESTIMONIALS = [
     {
@@ -311,6 +361,20 @@ export default function Index() {
   const testimonialsRef = useInView();
   const faqRef = useInView();
   const blogRef = useInView();
+
+  const navItems = [
+    { label: "Home", path: "/" },
+    { label: "About", path: "/about" },
+    { label: "Services", path: "/services" },
+    { label: "Portfolio", path: "/portfolio" },
+    { label: "Blog", path: "/blog" },
+    { label: "Contact", path: "/contact" },
+  ];
+
+  const handleNavClick = (path: string) => {
+    navigate(path);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-white font-kanit">
@@ -376,10 +440,47 @@ export default function Index() {
           <OriginButton
             onClick={() => navigate("/contact")}
             fillColor="#8B0AB4"
-            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
+            className="hidden md:block bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
           >
             Contact Us
           </OriginButton>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 flex items-center justify-center"
+            aria-label="Toggle menu"
+          >
+            <MenuIcon isOpen={mobileMenuOpen} />
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+            mobileMenuOpen ? "max-h-screen" : "max-h-0"
+          }`}
+          style={{ background: "white" }}
+        >
+          <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
+            {navItems.map((item) => (
+              <AnimatedButton
+                key={item.path}
+                onClick={() => handleNavClick(item.path)}
+                fillColor="#8B0AB4"
+                className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
+              >
+                {item.label}
+              </AnimatedButton>
+            ))}
+            <OriginButton
+              onClick={() => handleNavClick("/contact")}
+              fillColor="#8B0AB4"
+              className="w-full mt-4 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase px-4 py-3 rounded-lg tracking-wide hover:text-white"
+            >
+              Contact Us
+            </OriginButton>
+          </nav>
         </div>
       </header>
 
@@ -389,8 +490,8 @@ export default function Index() {
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20">
 
             {/* LEFT: text */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-end gap-2 md:gap-3">
+            <div className="flex-1 min-w-0 text-center lg:text-left">
+              <div className="flex items-end gap-2 md:gap-3 lg:justify-start justify-center">
                 <h1 className="hero-heading font-teko font-bold text-black uppercase">
                   <span className="hero-line block">Linking</span>
                   <span className="hero-line block" style={{ color: "#8B0AB4" }}>Brands</span>
@@ -409,11 +510,11 @@ export default function Index() {
               </div>
 
               {/* Purple underlines */}
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3" />
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px]" />
+              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3 mx-auto lg:mx-0" />
+              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px] mx-auto lg:mx-0" />
 
               {/* Scroll icon + description + CTA */}
-              <div className="flex items-start gap-6 mt-10 md:mt-14 lg:mt-16 relative z-10">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-10 md:mt-14 lg:mt-16 relative z-10">
                 <OriginButton
                   fillColor="#8B0AB4"
                   className="w-8 h-14 md:w-10 md:h-16 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white hidden sm:flex items-center justify-center flex-shrink-0"
@@ -422,7 +523,7 @@ export default function Index() {
                     <path d="M4 0V10M0.5 7.5L4 11L7.5 7.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
                   </svg>
                 </OriginButton>
-                <div>
+                <div className="text-center lg:text-left">
                   <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[360px]">
                     We are a full-service digital agency that builds fascinating user
                     experiences. our team creates and exceptional UI design and
@@ -595,8 +696,8 @@ export default function Index() {
             <div className="md:border-l border-[#ECECEC] pl-0 md:pl-10 lg:pl-12 flex flex-col justify-between gap-8 min-h-[280px] md:min-h-[305px] mt-6 md:mt-0">
               <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.6]">
                 Consumers today rely heavily on digital means to research
-                products. We research a brand of bldend engaging with it,
-                according to the meanwhile, 51% of consumers.
+                products. We help brands build engaging digital experiences that
+                connect with your audience and drive meaningful results.
               </p>
               {/* Circle "Explore Us More" button */}
               <ExploreCircleButton onClick={() => navigate("/about")} clipId="clip-explore" />
@@ -621,7 +722,7 @@ export default function Index() {
                 />
                 <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.5] mb-4">
                   Make your business prosper with our great team of experts.
-                  We'll make your.
+                  We'll accelerate your growth and success.
                 </p>
                 {/* 1.8x stat */}
                 <div className="flex items-end leading-none">
@@ -1090,8 +1191,9 @@ export default function Index() {
                 Testimonial
               </h2>
               <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.55] mb-10 max-w-[380px]">
-                Consumers today rely heavily on digital means to research
-                products. We research a brand of bldend
+                Our clients trust us to deliver exceptional results and outstanding
+                service. See what they have to say about working with our team and
+                the impact we've made on their business.
               </p>
               {/* Explore circle button */}
               <ExploreCircleButton onClick={() => navigate("/about")} clipId="clip-explore-testi" />
