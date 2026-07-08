@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { OriginButton } from "./ui/origin-button";
+import { AnimatedButton } from "./ui/animated-button";
 
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
@@ -25,58 +27,73 @@ function ChevronDown() {
 export default function SiteHeader() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const header = document.getElementById("site-header");
+    const onScroll = () => {
+      if (header) header.classList.toggle("shadow-md", window.scrollY > 60);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header id="site-header" className="border-b border-[#ECECEC] relative z-50 bg-white sticky top-0 transition-shadow duration-300">
-      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between h-[87px]">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 flex items-center justify-between h-[70px] sm:h-[87px]">
         <Link to="/">
           <img
             src={LOGO}
             alt="The Linkage Digital"
-            className="h-[56px] md:h-[68px] lg:h-[78px] w-auto flex-shrink-0 hover:opacity-80 transition-opacity"
+            className="h-[48px] sm:h-[56px] md:h-[68px] lg:h-[78px] w-auto flex-shrink-0"
           />
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <Link
-            to="/"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+          <AnimatedButton
+            onClick={() => navigate("/")}
+            fillColor="#8B0AB4"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Home
-          </Link>
-          <Link
-            to="/about"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+          </AnimatedButton>
+          <AnimatedButton
+            onClick={() => navigate("/about")}
+            fillColor="#8B0AB4"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             About
-          </Link>
+          </AnimatedButton>
           <div className="flex items-center gap-1">
-            <Link
-              to="/services"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            <AnimatedButton
+              onClick={() => navigate("/services")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Services
-            </Link>
+            </AnimatedButton>
             <ChevronDown />
           </div>
-          <Link
-            to="/portfolio"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+          <AnimatedButton
+            onClick={() => navigate("/portfolio")}
+            fillColor="#8B0AB4"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Portfolio
-          </Link>
-          <Link
-            to="/blog"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+          </AnimatedButton>
+          <AnimatedButton
+            onClick={() => navigate("/blog")}
+            fillColor="#8B0AB4"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Blog
-          </Link>
-          <Link
-            to="/contact"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+          </AnimatedButton>
+          <AnimatedButton
+            onClick={() => navigate("/contact")}
+            fillColor="#8B0AB4"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Contact
-          </Link>
+          </AnimatedButton>
         </nav>
 
         {/* Contact Us button */}
