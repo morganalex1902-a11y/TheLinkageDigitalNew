@@ -53,11 +53,6 @@ export default function About() {
       role: "UX/UI Designer",
       image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2Fff642e5bc08b45e0834a84d65c6771f9?format=webp&width=800&height=1200",
     },
-    {
-      name: "Emma Davis",
-      role: "Product Manager",
-      image: "https://images.pexels.com/photos/12902926/pexels-photo-12902926.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
   ];
 
   return (
@@ -188,11 +183,11 @@ export default function About() {
           <div ref={teamGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 reveal-stagger">
             {TEAM_MEMBERS.map((member, i) => (
               <div key={i} className="group cursor-pointer">
-                <div className="overflow-hidden rounded-lg mb-5 h-[280px] md:h-[320px]">
+                <div className="overflow-hidden rounded-lg mb-5 h-[280px] md:h-[320px] flex items-center justify-center bg-[#f5f5f5]">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[22px] leading-[1.1] mb-1">
