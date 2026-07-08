@@ -64,10 +64,12 @@ export function ContactFormCard() {
             <div
               className="relative rounded-xl overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 250, 255, 0.6) 100%)",
+                background: "linear-gradient(135deg, #FFE8F5 0%, #F8DCF0 100%)",
                 boxShadow: `
-                  inset 0 2px 8px rgba(139, 10, 180, 0.08),
-                  0 4px 12px rgba(139, 10, 180, 0.1)
+                  inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                  inset 0 4px 12px rgba(139, 10, 180, 0.12),
+                  0 8px 20px rgba(139, 10, 180, 0.15),
+                  0 2px 6px rgba(0, 0, 0, 0.08)
                 `,
               }}
             >
@@ -77,10 +79,7 @@ export function ContactFormCard() {
                 placeholder="sales@thelinkagedigital.com"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full bg-transparent px-4 py-3 font-kanit text-sm text-[#333] placeholder-[#BBB] outline-none transition-all"
-                style={{
-                  boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.05)",
-                }}
+                className="w-full bg-transparent px-4 py-4 font-kanit text-sm text-[#333] placeholder-[#999] outline-none transition-all focus:placeholder-[#8B0AB4]"
                 required
               />
             </div>
@@ -88,10 +87,12 @@ export function ContactFormCard() {
             <div
               className="relative rounded-xl overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 250, 255, 0.6) 100%)",
+                background: "linear-gradient(135deg, #FFE8F5 0%, #F8DCF0 100%)",
                 boxShadow: `
-                  inset 0 2px 8px rgba(139, 10, 180, 0.08),
-                  0 4px 12px rgba(139, 10, 180, 0.1)
+                  inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                  inset 0 4px 12px rgba(139, 10, 180, 0.12),
+                  0 8px 20px rgba(139, 10, 180, 0.15),
+                  0 2px 6px rgba(0, 0, 0, 0.08)
                 `,
               }}
             >
@@ -100,11 +101,8 @@ export function ContactFormCard() {
                 placeholder="Tell us about your project..."
                 value={formData.message}
                 onChange={handleChange}
-                rows={3}
-                className="w-full bg-transparent px-4 py-3 font-kanit text-sm text-[#333] placeholder-[#BBB] outline-none transition-all resize-none"
-                style={{
-                  boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.05)",
-                }}
+                rows={4}
+                className="w-full bg-transparent px-4 py-4 font-kanit text-sm text-[#333] placeholder-[#999] outline-none transition-all resize-none focus:placeholder-[#8B0AB4]"
                 required
               />
             </div>
