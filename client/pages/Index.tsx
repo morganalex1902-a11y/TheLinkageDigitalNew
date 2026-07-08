@@ -514,7 +514,7 @@ export default function Index() {
         <img
           src={INTRO_SHAPE}
           alt=""
-          className="absolute bottom-0 left-0 w-[220px] md:w-[310px] lg:w-[410px] pointer-events-none select-none"
+          className="absolute bottom-0 left-0 w-[120px] sm:w-[180px] md:w-[310px] lg:w-[410px] pointer-events-none select-none -mb-12 sm:-mb-6 md:-mb-0"
         />
       </main>
 
