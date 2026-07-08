@@ -163,27 +163,22 @@ export default function SiteHeader() {
       >
         <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
           {navItems.map((item) => (
-            <button
+            <AnimatedButton
               key={item.path}
               onClick={() => handleNavClick(item.path)}
-              className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] transition-colors duration-200 relative group hover:text-white"
-              style={{
-                background: "transparent",
-              }}
+              fillColor="#8B0AB4"
+              className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
             >
-              <span
-                className="absolute inset-0 rounded-lg bg-[#8B0AB4] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ zIndex: -1 }}
-              />
-              <span className="relative z-10">{item.label}</span>
-            </button>
+              {item.label}
+            </AnimatedButton>
           ))}
-          <button
+          <OriginButton
             onClick={() => handleNavClick("/contact")}
-            className="w-full mt-4 px-4 py-3 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase rounded-lg tracking-wide hover:bg-[#1a1a1d] transition-colors duration-200"
+            fillColor="#8B0AB4"
+            className="w-full mt-4 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase px-4 py-3 rounded-lg tracking-wide hover:text-white"
           >
             Contact Us
-          </button>
+          </OriginButton>
         </nav>
       </div>
     </header>
