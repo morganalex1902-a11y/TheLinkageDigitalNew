@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
+import { DropdownMenu } from "../components/ui/dropdown-menu";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -403,16 +404,36 @@ export default function Index() {
             >
               About
             </AnimatedButton>
-            <div className="flex items-center gap-1">
-              <AnimatedButton
-                onClick={() => navigate("/services")}
-                fillColor="#8B0AB4"
-                className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
-              >
-                Services
-              </AnimatedButton>
-              <ChevronDown />
-            </div>
+            <DropdownMenu
+              fillColor="#8B0AB4"
+              trigger={
+                <AnimatedButton
+                  fillColor="#8B0AB4"
+                  className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none group"
+                >
+                  Services
+                  <svg
+                    width="10"
+                    height="7"
+                    viewBox="0 0 10 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="flex-shrink-0 transition-transform duration-300 group-hover:rotate-180"
+                  >
+                    <path
+                      d="M4.19092 5.84619L0.206543 1.86182C-0.0688477 1.58643 -0.0688477 1.14111 0.206543 0.868652L0.868652 0.206543C1.14404 -0.0688476 1.58936 -0.0688476 1.86182 0.206543L4.68604 3.03076L7.51025 0.206543C7.78564 -0.0688476 8.23096 -0.0688476 8.50342 0.206543L9.16553 0.868652C9.44092 1.14404 9.44092 1.58936 9.16553 1.86182L5.18115 5.84619C4.91162 6.12158 4.46631 6.12158 4.19092 5.84619Z"
+                      fill="#121212"
+                    />
+                  </svg>
+                </AnimatedButton>
+              }
+              items={[
+                { label: "Web Design", onClick: () => navigate("/services") },
+                { label: "App Development", onClick: () => navigate("/services") },
+                { label: "Brand Strategy", onClick: () => navigate("/services") },
+                { label: "Digital Marketing", onClick: () => navigate("/services") },
+              ]}
+            />
             <AnimatedButton
               onClick={() => navigate("/portfolio")}
               fillColor="#8B0AB4"
