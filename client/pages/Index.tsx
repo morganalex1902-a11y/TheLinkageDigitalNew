@@ -324,45 +324,51 @@ export default function Index() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link
-              to="/"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            <AnimatedButton
+              onClick={() => navigate("/")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Home
-            </Link>
-            <Link
-              to="/about"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            </AnimatedButton>
+            <AnimatedButton
+              onClick={() => navigate("/about")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               About
-            </Link>
+            </AnimatedButton>
             <div className="flex items-center gap-1">
-              <Link
-                to="/services"
-                className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+              <AnimatedButton
+                onClick={() => navigate("/services")}
+                fillColor="#8B0AB4"
+                className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
               >
                 Services
-              </Link>
+              </AnimatedButton>
               <ChevronDown />
             </div>
-            <Link
-              to="/portfolio"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            <AnimatedButton
+              onClick={() => navigate("/portfolio")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Portfolio
-            </Link>
-            <Link
-              to="/blog"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            </AnimatedButton>
+            <AnimatedButton
+              onClick={() => navigate("/blog")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Blog
-            </Link>
-            <Link
-              to="/contact"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors leading-none"
+            </AnimatedButton>
+            <AnimatedButton
+              onClick={() => navigate("/contact")}
+              fillColor="#8B0AB4"
+              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Contact
-            </Link>
+            </AnimatedButton>
           </nav>
 
           {/* Contact Us button */}
