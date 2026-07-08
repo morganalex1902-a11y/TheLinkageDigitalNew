@@ -1304,12 +1304,15 @@ export default function Index() {
                 Our ability to combine expertise and systems thinking is what
                 fuels us as a team.
               </p>
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-2 font-kanit font-medium text-[13px] uppercase text-[#121212] border-b border-[#121212] pb-0.5 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors tracking-wider"
+              <AnimatedButton
+                onClick={() => navigate("/blog")}
+                fillColor="#8B0AB4"
+                className="inline-flex font-kanit font-medium text-[13px] uppercase text-[#121212] border-b border-[#121212] pb-0.5 group"
               >
-                All Blog →
-              </Link>
+                <span className="group-hover:text-[#8B0AB4] group-hover:border-[#8B0AB4] transition-colors">
+                  All Blog →
+                </span>
+              </AnimatedButton>
             </div>
           </div>
 
