@@ -696,8 +696,8 @@ export default function Index() {
             <div className="md:border-l border-[#ECECEC] pl-0 md:pl-10 lg:pl-12 flex flex-col justify-between gap-8 min-h-[280px] md:min-h-[305px] mt-6 md:mt-0">
               <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.6]">
                 Consumers today rely heavily on digital means to research
-                products. We research a brand of bldend engaging with it,
-                according to the meanwhile, 51% of consumers.
+                products. We help brands build engaging digital experiences that
+                connect with your audience and drive meaningful results.
               </p>
               {/* Circle "Explore Us More" button */}
               <ExploreCircleButton onClick={() => navigate("/about")} clipId="clip-explore" />
@@ -1192,7 +1192,8 @@ export default function Index() {
               </h2>
               <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.55] mb-10 max-w-[380px]">
                 Consumers today rely heavily on digital means to research
-                products. We research a brand of bldend
+                products. We help brands build engaging digital experiences that
+                connect with your audience.
               </p>
               {/* Explore circle button */}
               <ExploreCircleButton onClick={() => navigate("/about")} clipId="clip-explore-testi" />
