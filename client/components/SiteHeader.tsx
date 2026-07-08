@@ -80,6 +80,7 @@ export default function SiteHeader() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   useEffect(() => {
     const header = document.getElementById("site-header");
@@ -103,6 +104,14 @@ export default function SiteHeader() {
     navigate(path);
     setMobileMenuOpen(false);
   };
+
+  const services = [
+    { label: "Web Design & Development", path: "/services" },
+    { label: "Branding & Logo Design", path: "/services" },
+    { label: "Digital Marketing", path: "/services" },
+    { label: "SEO Optimization", path: "/services" },
+    { label: "Video Editing & Motion", path: "/services" },
+  ];
 
   return (
     <header id="site-header" className="border-b border-[#ECECEC] relative z-50 bg-white sticky top-0 transition-shadow duration-300">
@@ -131,15 +140,30 @@ export default function SiteHeader() {
           >
             About
           </AnimatedButton>
-          <div className="flex items-center gap-1">
-            <AnimatedButton
-              onClick={() => navigate("/services")}
-              fillColor="#8B0AB4"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+          <div className="relative group">
+            <button
+              onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+              className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors duration-200 leading-none"
             >
               Services
-            </AnimatedButton>
-            <ChevronDown />
+              <ChevronDown />
+            </button>
+
+            {/* Desktop dropdown */}
+            <div className="absolute left-0 mt-0 w-56 bg-white border border-[#ECECEC] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out pt-2">
+              {services.map((service) => (
+                <button
+                  key={service.path}
+                  onClick={() => {
+                    navigate(service.path);
+                    setServicesDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-5 py-3 font-kanit text-[14px] text-[#121212] hover:bg-[#FFE8F5] hover:text-[#8B0AB4] transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
+                >
+                  {service.label}
+                </button>
+              ))}
+            </div>
           </div>
           <AnimatedButton
             onClick={() => navigate("/portfolio")}
@@ -193,16 +217,46 @@ export default function SiteHeader() {
         style={{ background: "white" }}
       >
         <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
-          {navItems.map((item) => (
-            <AnimatedButton
-              key={item.path}
-              onClick={() => handleNavClick(item.path)}
-              fillColor="#8B0AB4"
-              className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
-            >
-              {item.label}
-            </AnimatedButton>
-          ))}
+          {navItems.map((item) => {
+            if (item.label === "Services") {
+              return (
+                <div key={item.path}>
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:bg-[#FFE8F5] hover:text-[#8B0AB4] transition-colors flex items-center justify-between"
+                  >
+                    {item.label}
+                    <span className={`transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`}>
+                      ▼
+                    </span>
+                  </button>
+                  {mobileServicesOpen && (
+                    <div className="pl-4 space-y-1 bg-[#FFE8F5]/30 rounded-lg mt-1 mb-2">
+                      {services.map((service) => (
+                        <button
+                          key={service.path}
+                          onClick={() => handleNavClick(service.path)}
+                          className="w-full text-left px-4 py-2 font-kanit text-[13px] text-[#555] hover:text-[#8B0AB4] hover:bg-white/50 rounded-lg transition-colors"
+                        >
+                          {service.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            return (
+              <AnimatedButton
+                key={item.path}
+                onClick={() => handleNavClick(item.path)}
+                fillColor="#8B0AB4"
+                className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
+              >
+                {item.label}
+              </AnimatedButton>
+            );
+          })}
           <OriginButton
             onClick={() => handleNavClick("/contact")}
             fillColor="#8B0AB4"
