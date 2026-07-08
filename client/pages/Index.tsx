@@ -776,13 +776,28 @@ export default function Index() {
                 <button
                   key={i}
                   onClick={() => setActiveTab(i)}
-                  className={`border-l-2 pl-8 py-4 text-left transition-colors ${
+                  className={`relative border-l-2 pl-8 py-4 text-left transition-colors overflow-hidden ${
                     activeTab === i
                       ? "border-[#8B0AB4]"
                       : "border-[#ECECEC] hover:border-[#8B0AB4]/40"
                   }`}
                 >
-                  <div className="flex items-start gap-5">
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute rounded-full"
+                    style={{
+                      width: 0,
+                      height: 0,
+                      left: 0,
+                      top: 0,
+                      backgroundColor: "#8B0AB4",
+                      opacity: activeTab === i ? 0.05 : 0,
+                      transform: "translate(-50%, -50%) scale(0)",
+                      transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                      zIndex: 0,
+                    }}
+                  />
+                  <div className="relative z-10 flex items-start gap-5">
                     {/* Icon circle */}
                     <div
                       className={`w-[55px] h-[55px] md:w-[65px] md:h-[65px] rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
@@ -1218,17 +1233,34 @@ export default function Index() {
                 <div key={i} className="border-t border-[#ECECEC]">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between gap-4 py-5 md:py-6 text-left group"
+                    className="relative w-full flex items-center justify-between gap-4 py-5 md:py-6 text-left group overflow-hidden"
                   >
                     <span
-                      className={`font-kanit font-bold uppercase text-[12px] md:text-[14px] tracking-wider leading-snug transition-colors ${
-                        openFaq === i ? "text-[#121212]" : "text-[#333] group-hover:text-[#8B0AB4]"
-                      }`}
-                    >
-                      {item.q}
+                      aria-hidden
+                      className="pointer-events-none absolute rounded-full"
+                      style={{
+                        width: 0,
+                        height: 0,
+                        left: 0,
+                        top: 0,
+                        backgroundColor: "#8B0AB4",
+                        opacity: 0.05,
+                        transform: "translate(-50%, -50%) scale(0)",
+                        transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                        zIndex: 0,
+                      }}
+                    />
+                    <span className="relative z-10">
+                      <span
+                        className={`font-kanit font-bold uppercase text-[12px] md:text-[14px] tracking-wider leading-snug transition-colors ${
+                          openFaq === i ? "text-[#121212]" : "text-[#333] group-hover:text-[#8B0AB4]"
+                        }`}
+                      >
+                        {item.q}
+                      </span>
                     </span>
                     <span
-                      className={`flex-shrink-0 w-6 h-6 flex items-center justify-center font-kanit font-light text-xl leading-none transition-colors ${
+                      className={`flex-shrink-0 relative z-10 w-6 h-6 flex items-center justify-center font-kanit font-light text-xl leading-none transition-colors ${
                         openFaq === i ? "text-[#121212]" : "text-[#555] group-hover:text-[#8B0AB4]"
                       }`}
                     >
