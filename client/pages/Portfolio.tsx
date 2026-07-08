@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { OriginButton } from "../components/ui/origin-button";
+import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
 import { PortfolioIframe } from "../components/PortfolioIframe";
 import { useInView } from "../hooks/useInView";
@@ -99,12 +100,12 @@ export default function Portfolio() {
                   Explore a selection of our recent projects where design meets strategy and results speak louder than words.
                 </p>
 
-                <button
-                  type="button"
+                <AnimatedButton
                   onClick={() =>
                     projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
+                  fillColor="#8B0AB4"
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit"
                 >
                   Explore Our Work
                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -115,7 +116,7 @@ export default function Portfolio() {
                       fill="currentColor"
                     />
                   </svg>
-                </button>
+                </AnimatedButton>
               </div>
 
               {/* RIGHT — asymmetric project-tile collage */}

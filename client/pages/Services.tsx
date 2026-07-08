@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { OriginButton } from "../components/ui/origin-button";
+import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
 
@@ -116,12 +117,12 @@ export default function Services() {
           solutions that help your business grow and stand out.
         </p>
 
-        <button
-          type="button"
+        <AnimatedButton
           onClick={() =>
             servicesGridRef.current?.scrollIntoView({ behavior: "smooth" })
           }
-          className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] transition-colors w-fit"
+          fillColor="#8B0AB4"
+          className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit"
         >
           Explore Services
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -132,7 +133,7 @@ export default function Services() {
               fill="currentColor"
             />
           </svg>
-        </button>
+        </AnimatedButton>
       </div>
 
       {/* RIGHT — circle eclipse effect, bleeding exactly to the viewport edge */}
@@ -152,19 +153,19 @@ export default function Services() {
           </div>
 
           {/* Arrow badge — sits on the rim of the halo circle's top-right corner */}
-          <button
-            type="button"
+          <AnimatedButton
             onClick={() =>
               servicesGridRef.current?.scrollIntoView({ behavior: "smooth" })
             }
+            fillColor="#8B0AB4"
             aria-label="Explore services"
-            className="absolute top-0 right-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center z-30 hover:scale-105 transition-transform shadow-lg"
+            className="absolute top-0 right-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center z-30 hover:scale-105 shadow-lg"
             style={{ transform: "translate(20%, -20%)" }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
-          </button>
+          </AnimatedButton>
 
           {/* Dot grid — back to a larger, denser grid, anchored near the photo circle's lower-left rim */}
           <div className="hidden md:grid absolute bottom-6 -left-8 grid-cols-4 gap-[6px] opacity-60 pointer-events-none z-20">

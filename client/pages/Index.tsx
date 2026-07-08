@@ -4,6 +4,7 @@ import type React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
+import { AnimatedButton } from "../components/ui/animated-button";
 import { ContactFormCard } from "../components/ui/contact-form-card";
 
 const LOGO =
@@ -169,43 +170,13 @@ function PlayIcon() {
 }
 
 function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId: string }) {
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const [active, setActive] = useState(false);
-  const [origin, setOrigin] = useState({ x: 0, y: 0 });
-  const [coverSize, setCoverSize] = useState(0);
-
-  const measure = (x: number, y: number) => {
-    const node = btnRef.current;
-    if (!node) return;
-    const rect = node.getBoundingClientRect();
-    const d = Math.ceil(2 * Math.max(Math.hypot(x, y), Math.hypot(rect.width - x, y), Math.hypot(x, rect.height - y), Math.hypot(rect.width - x, rect.height - y)));
-    setCoverSize(d);
-    setOrigin({ x, y });
-  };
-
   return (
-    <button
-      ref={btnRef}
+    <AnimatedButton
       onClick={onClick}
-      onPointerEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); setActive(true); }}
-      onPointerLeave={() => setActive(false)}
-      onPointerMove={(e) => { if (!active) return; const r = e.currentTarget.getBoundingClientRect(); measure(e.clientX - r.left, e.clientY - r.top); }}
-      className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border border-[#ECECEC] overflow-hidden flex-shrink-0 hover:border-[#8B0AB4] transition-colors cursor-pointer select-none group"
+      fillColor="#8B0AB4"
+      className="w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border border-[#ECECEC] flex-shrink-0 hover:border-[#8B0AB4] group"
     >
-      {/* Fill circle */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute rounded-full"
-        style={{
-          width: coverSize, height: coverSize,
-          left: origin.x, top: origin.y,
-          backgroundColor: "#8B0AB4",
-          transform: `translate(-50%, -50%) scale(${active && coverSize > 0 ? 1 : 0})`,
-          transition: active ? "transform 0.5s cubic-bezier(0.16,1,0.3,1)" : "transform 0.35s cubic-bezier(0.16,1,0.3,1)",
-        }}
-      />
-      {/* Text + arrow together, centered */}
-      <span className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-1 group-hover:text-white transition-colors">
+      <span className="flex flex-col items-center justify-center gap-1 group-hover:text-white transition-colors">
         <span className="font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] group-hover:text-white transition-colors tracking-wide">
           Explore
         </span>
@@ -216,7 +187,7 @@ function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId:
           <defs><clipPath id={clipId}><rect width="11" height="16" fill="white" /></clipPath></defs>
         </svg>
       </span>
-    </button>
+    </AnimatedButton>
   );
 }
 
