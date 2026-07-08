@@ -294,9 +294,24 @@ export default function Contact() {
                   formRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
                 aria-label="Scroll to contact form"
-                className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors"
+                className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors overflow-hidden group"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute rounded-full"
+                  style={{
+                    width: 0,
+                    height: 0,
+                    left: "50%",
+                    top: "50%",
+                    backgroundColor: "#8B0AB4",
+                    opacity: 0.1,
+                    transform: "translate(-50%, -50%) scale(0)",
+                    transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                    zIndex: 0,
+                  }}
+                />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="relative z-10">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"

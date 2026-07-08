@@ -221,9 +221,24 @@ export default function Portfolio() {
                   projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
                 aria-label="Scroll to portfolio projects"
-                className="w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors"
+                className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors overflow-hidden group"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute rounded-full"
+                  style={{
+                    width: 0,
+                    height: 0,
+                    left: "50%",
+                    top: "50%",
+                    backgroundColor: "#8B0AB4",
+                    opacity: 0.1,
+                    transform: "translate(-50%, -50%) scale(0)",
+                    transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                    zIndex: 0,
+                  }}
+                />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="relative z-10">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -249,13 +264,28 @@ export default function Portfolio() {
                   setActiveMainCategory(cat.toLowerCase().replace(/\s+/g, "-"));
                   setActiveNiche("all");
                 }}
-                className={`font-kanit font-medium text-[13px] md:text-[14px] uppercase px-6 py-3 rounded-full transition-all ${
+                className={`relative font-kanit font-medium text-[13px] md:text-[14px] uppercase px-6 py-3 rounded-full transition-all overflow-hidden group ${
                   activeMainCategory === cat.toLowerCase().replace(/\s+/g, "-")
                     ? "bg-[#8B0AB4] text-white"
                     : "bg-white text-[#121212] border border-[#ECECEC] hover:border-[#8B0AB4]"
                 }`}
               >
-                {cat}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute rounded-full"
+                  style={{
+                    width: 0,
+                    height: 0,
+                    left: "50%",
+                    top: "50%",
+                    backgroundColor: "#8B0AB4",
+                    opacity: 0.1,
+                    transform: "translate(-50%, -50%) scale(0)",
+                    transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                    zIndex: 0,
+                  }}
+                />
+                <span className="relative z-10">{cat}</span>
               </button>
             ))}
           </div>
@@ -267,13 +297,28 @@ export default function Portfolio() {
                 <button
                   key={niche}
                   onClick={() => setActiveNiche(niche.toLowerCase())}
-                  className={`font-kanit font-medium text-[12px] md:text-[13px] uppercase px-5 py-2 rounded-full transition-all text-sm ${
+                  className={`relative font-kanit font-medium text-[12px] md:text-[13px] uppercase px-5 py-2 rounded-full transition-all text-sm overflow-hidden group ${
                     activeNiche === niche.toLowerCase()
                       ? "bg-[#8B0AB4] text-white"
                       : "bg-white text-[#121212] border border-[#ECECEC] hover:border-[#8B0AB4]"
                   }`}
                 >
-                  {niche}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute rounded-full"
+                    style={{
+                      width: 0,
+                      height: 0,
+                      left: "50%",
+                      top: "50%",
+                      backgroundColor: "#8B0AB4",
+                      opacity: 0.1,
+                      transform: "translate(-50%, -50%) scale(0)",
+                      transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                      zIndex: 0,
+                    }}
+                  />
+                  <span className="relative z-10">{niche}</span>
                 </button>
               ))}
             </div>
