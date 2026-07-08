@@ -41,17 +41,17 @@ export default function About() {
     {
       name: "Alex Thompson",
       role: "Creative Director",
-      image: "https://images.pexels.com/photos/37842959/pexels-photo-37842959.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2F14452e3d04e648af85a019469720ed5c?format=webp&width=800&height=1200",
     },
     {
       name: "Sarah Williams",
       role: "Lead Developer",
-      image: "https://images.pexels.com/photos/10041272/pexels-photo-10041272.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2F4897094158eb40fbb8b283c78b40fed2?format=webp&width=800&height=1200",
     },
     {
       name: "Marcus Johnson",
       role: "UX/UI Designer",
-      image: "https://images.pexels.com/photos/7163434/pexels-photo-7163434.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Fd262aa17ef624b1d94677905217b9bcb%2Fff642e5bc08b45e0834a84d65c6771f9?format=webp&width=800&height=1200",
     },
     {
       name: "Emma Davis",
