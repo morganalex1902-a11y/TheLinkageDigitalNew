@@ -62,7 +62,7 @@ export default function About() {
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
         <div className="max-w-[1400px] mx-auto px-6 pt-10 md:pt-14 lg:pt-20 pb-16 lg:pb-28">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-20">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-20 lg:justify-center">
             <div className="flex-1">
               <h1 className="hero-heading font-teko font-bold text-black uppercase">
                 <span className="hero-line block">About</span>
@@ -71,7 +71,7 @@ export default function About() {
               </h1>
               <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3" />
               <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px]" />
-              
+
               <div className="mt-10 md:mt-14">
                 <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[420px]">
                   We're a team of passionate designers, developers, and strategists dedicated to creating exceptional digital experiences that drive real business results.
@@ -86,11 +86,11 @@ export default function About() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 mt-10 lg:mt-0 lg:w-[400px] xl:w-[500px] hero-images-enter">
+            <div className="flex-shrink-0 mt-10 lg:mt-0 flex-1 flex justify-center hero-images-enter">
               <img
                 src="https://images.pexels.com/photos/3865639/pexels-photo-3865639.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Team working"
-                className="w-full h-auto object-cover rounded-lg"
+                className="w-full max-w-[500px] h-auto object-cover rounded-lg"
               />
             </div>
           </div>
@@ -101,11 +101,11 @@ export default function About() {
       <section ref={storyRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 flex justify-center">
               <img
                 src="https://images.pexels.com/photos/36765663/pexels-photo-36765663.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Our journey"
-                className="w-full h-auto object-cover rounded-lg"
+                className="w-full max-w-[500px] h-auto object-cover rounded-lg"
               />
             </div>
             <div className="order-1 lg:order-2">
