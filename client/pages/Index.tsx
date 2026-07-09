@@ -310,20 +310,6 @@ export default function Index() {
   const TESTIMONIALS = [
     {
       rating: 5.0,
-      text: "I had an awesome experience working with Bryan Davis. He built my website and completely exceeded my expectations. Bryan was easy to communicate with, quick to respond, and really cared about making sure everything looked and worked exactly how I wanted. The whole process was simple and the final website turned out amazing. If you need a great programmer, I highly recommend Bryan Davis at Linkage Digital.",
-      name: "Shay Veach",
-      role: "3 months ago",
-      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
-    },
-    {
-      rating: 5.0,
-      text: "I highly recommend Bryan Davis at The Linkage Digital. Professional, responsive, and extremely knowledgeable, Bryan made the entire process smooth and effective. His attention to detail and commitment to delivering real results truly set The Linkage Digital apart. Great experience from start to finish!",
-      name: "Tyler Murray",
-      role: "6 months ago",
-      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
-    },
-    {
-      rating: 5.0,
       text: "Alex and Saadi did an excellent job building my website design. The process was smooth, professional, and creative from start to finish. He really listened to my ideas, offered great suggestions, and delivered a clean, modern site that perfectly reflects my vision. Highly recommend his work!",
       name: "Jeriece Lovelace",
       role: "9 months ago",
@@ -352,17 +338,31 @@ export default function Index() {
     },
     {
       rating: 5.0,
-      text: "They did an amazing job for my business logo. Highly recommended!",
-      name: "Emanya khan",
-      role: "11 months ago",
-      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
-    },
-    {
-      rating: 5.0,
       text: "Great experience made my website really well really appreciate the hard work",
       name: "Paxley",
       role: "8 months ago",
       avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fda8953551ec54f8f9815eb5d31176953?format=webp&width=800&height=1200",
+    },
+    {
+      rating: 5.0,
+      text: "I had an awesome experience working with Bryan Davis. He built my website and completely exceeded my expectations. Bryan was easy to communicate with, quick to respond, and really cared about making sure everything looked and worked exactly how I wanted. The whole process was simple and the final website turned out amazing. If you need a great programmer, I highly recommend Bryan Davis at Linkage Digital.",
+      name: "Shay Veach",
+      role: "3 months ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "I highly recommend Bryan Davis at The Linkage Digital. Professional, responsive, and extremely knowledgeable, Bryan made the entire process smooth and effective. His attention to detail and commitment to delivering real results truly set The Linkage Digital apart. Great experience from start to finish!",
+      name: "Tyler Murray",
+      role: "6 months ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "They did an amazing job for my business logo. Highly recommended!",
+      name: "Emanya khan",
+      role: "11 months ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
     {
       rating: 5.0,
