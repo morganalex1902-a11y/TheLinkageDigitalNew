@@ -126,7 +126,7 @@ function MarqueeScroll() {
   );
 }
 
-function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
+function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
   // Duplicate images twice — animation moves by -50% so second half loops back to first
   const allImages = [...images, ...images];
@@ -137,30 +137,14 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: `${animationName} 50s linear infinite`,
+          animation: `${animationName} 20s linear infinite`,
           willChange: "transform",
         }}
       >
-        {(isMobile ? images.slice(0, 2) : allImages).map((item, i) => (
-          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)] bg-[#f0f0f0]">
-            {typeof item === "string" ? (
-              <>
-                <img src={item} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </>
-            ) : (
-              <>
-                <iframe
-                  src={item.url}
-                  className="w-full h-full border-0"
-                  loading="eager"
-                  title="Portfolio website"
-                  scrolling="no"
-                  style={{ overflow: "hidden" }}
-                />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </>
-            )}
+        {(isMobile ? images.slice(0, 2) : allImages).map((src, i) => (
+          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)]">
+            <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
         ))}
       </div>
@@ -930,10 +914,10 @@ export default function Index() {
 
           {/* Row 1 — infinite scroll right */}
           <PortfolioRow direction="right" images={[
-            { type: "iframe", url: "https://www.buscandoamoreterno.com/" },
-            { type: "iframe", url: "https://www.riveras-autodetailingllc.com/" },
-            { type: "iframe", url: "https://mindstrivewellness.com/" },
-            { type: "iframe", url: "https://tivo-auto-detailingg.vercel.app/services" },
+            "https://image.thum.io/get/width/600/crop/600/url/www.buscandoamoreterno.com",
+            "https://image.thum.io/get/width/600/crop/600/url/www.riveras-autodetailingllc.com",
+            "https://image.thum.io/get/width/600/crop/600/url/mindstrivewellness.com",
+            "https://image.thum.io/get/width/600/crop/600/url/tivo-auto-detailingg.vercel.app/services",
           ]} />
 
           {/* Row gap */}
@@ -941,10 +925,10 @@ export default function Index() {
 
           {/* Row 2 — infinite scroll left with stagger */}
           <PortfolioRow direction="left" images={[
-            { type: "iframe", url: "https://v-i-p-mobile-detailing-llc.vercel.app/" },
-            { type: "iframe", url: "https://www.sarajianlandscapingandlawncarellc.online/" },
-            { type: "iframe", url: "https://next-level-excavation-land-manageme.vercel.app/" },
-            { type: "iframe", url: "https://elite-lawn-rangers.vercel.app/" },
+            "https://image.thum.io/get/width/600/crop/600/url/v-i-p-mobile-detailing-llc.vercel.app",
+            "https://image.thum.io/get/width/600/crop/600/url/www.sarajianlandscapingandlawncarellc.online",
+            "https://image.thum.io/get/width/600/crop/600/url/next-level-excavation-land-manageme.vercel.app",
+            "https://image.thum.io/get/width/600/crop/600/url/elite-lawn-rangers.vercel.app",
           ]} stagger={-19.9} />
 
           {/* Center "PORTFOLIO" circle overlay */}
