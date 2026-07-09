@@ -80,12 +80,12 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
             height: coverSize,
             left: origin.x,
             top: origin.y,
-            backgroundColor: fillColor,
+            backgroundColor: `${fillColor}80`,
             transform: `translate(-50%, -50%) scale(${active && coverSize > 0 ? 1 : 0})`,
             transition: active
               ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)"
               : "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-            zIndex: 1,
+            zIndex: 0,
           }}
         />
         <span className="relative z-10 inline-flex items-center justify-center gap-2">
