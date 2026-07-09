@@ -1035,7 +1035,7 @@ export default function Index() {
           {/* Technology expertise */}
           <div className="mt-20 md:mt-28 lg:mt-32">
             <p className="font-kanit font-normal text-[#121212] text-[18px] md:text-[21px] text-center mb-10 md:mb-14">
-              Our Arolax Technology Expertise includes
+              Our Technology Expertise Includes
             </p>
 
             {/* Tech circles – overlapping on desktop */}
