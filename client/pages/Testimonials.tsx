@@ -169,10 +169,12 @@ export default function Testimonials() {
               </div>
 
               <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(1.6rem,3.5vw,2.8rem)] mb-3">
-                What Our Clients
-                <br />
-                <span className="text-[#8B0AB4]">Are Saying</span>
+                What Our Clients <span className="text-[#8B0AB4]">Are Saying</span>
               </h1>
+
+              <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[14px] leading-[1.5] max-w-[450px] mx-auto mb-3">
+                Real clients. Real growth. Real stories.
+              </p>
 
               <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[14px] leading-[1.5] max-w-[450px] mx-auto">
                 Discover why businesses trust The Linkage Digital to transform their digital presence.
