@@ -96,6 +96,7 @@ export default function SiteHeader() {
     { label: "Services", path: "/services" },
     { label: "Portfolio", path: "/portfolio" },
     { label: "Blog", path: "/blog" },
+    { label: "Testimonials", path: "/testimonials" },
     { label: "Contact", path: "/contact" },
   ];
 
@@ -185,6 +186,13 @@ export default function SiteHeader() {
             className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Blog
+          </OriginButton>
+          <OriginButton
+            onClick={() => navigate("/testimonials")}
+            fillColor="#8B0AB4"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+          >
+            Testimonials
           </OriginButton>
           <OriginButton
             onClick={() => navigate("/contact")}
