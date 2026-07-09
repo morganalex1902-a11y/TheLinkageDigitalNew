@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { OriginButton } from "./ui/origin-button";
-import { AnimatedButton } from "./ui/animated-button";
 
 const LOGO =
   "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
@@ -129,7 +128,7 @@ export default function SiteHeader() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <AnimatedButton
+          <OriginButton
             onClick={() => {
               navigate("/");
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -138,60 +137,62 @@ export default function SiteHeader() {
             className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Home
-          </AnimatedButton>
-          <AnimatedButton
+          </OriginButton>
+          <OriginButton
             onClick={() => navigate("/about")}
             fillColor="#8B0AB4"
             className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             About
-          </AnimatedButton>
+          </OriginButton>
           <div className="relative group">
-            <button
+            <OriginButton
               onClick={() => navigate("/services")}
-              className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors duration-200 leading-none"
+              fillColor="#8B0AB4"
+              className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
               Services
               <ChevronDown />
-            </button>
+            </OriginButton>
 
             {/* Desktop dropdown */}
             <div className="absolute left-0 mt-0 w-56 bg-white border border-[#ECECEC] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out pt-2">
               {services.map((service, index) => (
-                <button
+                <OriginButton
                   key={service.label}
                   onClick={() => {
                     navigate(service.path);
                     setServicesDropdownOpen(false);
                   }}
-                  className="w-full text-left px-5 py-3 font-kanit text-[14px] text-[#121212] hover:bg-[#FFE8F5] hover:text-[#8B0AB4] transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
+                  fillColor="#8B0AB4"
+                  className="w-full text-left px-5 py-3 font-kanit text-[14px] text-[#121212] hover:text-white first:rounded-t-lg last:rounded-b-lg"
                 >
                   {service.label}
-                </button>
+                </OriginButton>
               ))}
             </div>
           </div>
-          <AnimatedButton
+          <OriginButton
             onClick={() => navigate("/portfolio")}
             fillColor="#8B0AB4"
             className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Portfolio
-          </AnimatedButton>
-          <AnimatedButton
+          </OriginButton>
+          <OriginButton
             onClick={() => navigate("/blog")}
             fillColor="#8B0AB4"
             className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Blog
-          </AnimatedButton>
-          <AnimatedButton
+          </OriginButton>
+          <OriginButton
             onClick={() => navigate("/contact")}
             fillColor="#8B0AB4"
             className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
             Contact
-          </AnimatedButton>
+          </OriginButton>
         </nav>
 
         {/* Mobile menu button */}
@@ -227,28 +228,30 @@ export default function SiteHeader() {
             if (item.label === "Services") {
               return (
                 <div key={item.path}>
-                  <button
+                  <OriginButton
                     onClick={() => {
                       handleNavClick("/services");
                       setMobileServicesOpen(false);
                     }}
-                    className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:bg-[#FFE8F5] hover:text-[#8B0AB4] transition-colors flex items-center justify-between"
+                    fillColor="#8B0AB4"
+                    className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white flex items-center justify-between"
                   >
                     {item.label}
                     <span className={`transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`}>
                       ▼
                     </span>
-                  </button>
+                  </OriginButton>
                   {mobileServicesOpen && (
                     <div className="pl-4 space-y-1 bg-[#FFE8F5]/30 rounded-lg mt-1 mb-2">
                       {services.map((service, index) => (
-                        <button
+                        <OriginButton
                           key={service.label}
                           onClick={() => handleNavClick(service.path)}
-                          className="w-full text-left px-4 py-2 font-kanit text-[13px] text-[#555] hover:text-[#8B0AB4] hover:bg-white/50 rounded-lg transition-colors"
+                          fillColor="#8B0AB4"
+                          className="w-full text-left px-4 py-2 font-kanit text-[13px] text-[#555] hover:text-white rounded-lg"
                         >
                           {service.label}
-                        </button>
+                        </OriginButton>
                       ))}
                     </div>
                   )}
@@ -256,14 +259,14 @@ export default function SiteHeader() {
               );
             }
             return (
-              <AnimatedButton
+              <OriginButton
                 key={item.path}
                 onClick={() => handleNavClick(item.path)}
                 fillColor="#8B0AB4"
                 className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
               >
                 {item.label}
-              </AnimatedButton>
+              </OriginButton>
             );
           })}
           <OriginButton
