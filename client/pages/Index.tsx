@@ -376,6 +376,9 @@ export default function Index() {
   const handleNavClick = (path: string) => {
     navigate(path);
     setMobileMenuOpen(false);
+    if (path === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -392,7 +395,10 @@ export default function Index() {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <AnimatedButton
-              onClick={() => navigate("/")}
+              onClick={() => {
+                navigate("/");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
               fillColor="#8B0AB4"
               className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
             >
