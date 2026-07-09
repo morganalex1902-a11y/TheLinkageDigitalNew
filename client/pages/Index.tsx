@@ -128,8 +128,8 @@ function MarqueeScroll() {
 
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
-  // Duplicate images twice — animation moves by -50% so second half loops back to first
-  const allImages = [...images, ...images];
+  // Duplicate images 3 times to ensure smooth scrolling and loading
+  const allImages = [...images, ...images, ...images];
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
@@ -137,12 +137,12 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: `${animationName} 20s linear infinite`,
+          animation: `${animationName} 60s linear infinite`,
           willChange: "transform",
         }}
       >
         {(isMobile ? images.slice(0, 2) : allImages).map((item, i) => (
-          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)]">
+          <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)] bg-[#f0f0f0]">
             {typeof item === "string" ? (
               <>
                 <img src={item} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -153,7 +153,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
                 <iframe
                   src={item.url}
                   className="w-full h-full border-0"
-                  loading="lazy"
+                  loading="eager"
                   title="Portfolio website"
                   scrolling="no"
                   style={{ overflow: "hidden" }}
