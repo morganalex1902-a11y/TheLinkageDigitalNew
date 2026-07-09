@@ -128,12 +128,73 @@ function MarqueeScroll() {
 
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
-  // Duplicate images twice — animation moves by -50% so second half loops back to first
   const allImages = [...images, ...images];
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    const distance = touchStart - touchEnd;
+
+    if (Math.abs(distance) > 50) {
+      if (distance > 0) {
+        // Swiped left - next item
+        setMobileIndex((prev) => (prev + 1) % images.length);
+      } else {
+        // Swiped right - previous item
+        setMobileIndex((prev) => (prev - 1 + images.length) % images.length);
+      }
+    }
+  };
+
+  if (isMobile) {
+    return (
+      <div className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <div className="flex gap-[0.53vw]" style={{ transform: `translateX(-${mobileIndex * 100}%)`, transition: "transform 0.3s ease-out" }}>
+          {images.map((item, i) => (
+            <div key={i} className="relative flex-shrink-0 overflow-hidden w-full h-[clamp(150px,45vw,400px)]">
+              {typeof item === "string" ? (
+                <>
+                  <img src={item} alt="" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/30" />
+                </>
+              ) : (
+                <>
+                  <iframe
+                    src={item.url}
+                    className="w-full h-full border-0"
+                    loading="eager"
+                    title="Portfolio website"
+                    scrolling="no"
+                    style={{ overflow: "hidden" }}
+                  />
+                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        {/* Pagination dots */}
+        <div className="flex justify-center gap-2 mt-4">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setMobileIndex(i)}
+              className={`w-2 h-2 rounded-full transition-all ${i === mobileIndex ? "bg-[#8B0AB4] w-6" : "bg-[#ECECEC]"}`}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="overflow-hidden" style={{ marginLeft: isMobile ? 0 : `${stagger}vw` }}>
+    <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
       <div
         className="flex gap-[0.53vw]"
         style={{
@@ -141,7 +202,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
           willChange: "transform",
         }}
       >
-        {(isMobile ? images.slice(0, 2) : allImages).map((item, i) => (
+        {allImages.map((item, i) => (
           <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)]">
             {typeof item === "string" ? (
               <>
