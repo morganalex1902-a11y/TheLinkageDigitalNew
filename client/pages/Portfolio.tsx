@@ -26,10 +26,12 @@ export default function Portfolio() {
     { title: "Rivera's Auto Detailing LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/www.riveras-autodetailingllc.com", description: "Professional auto detailing services in your area.", website: "https://www.riveras-autodetailingllc.com/" },
     { title: "Mind Strive Wellness", type: "websites", niche: "Wellness & Therapy", image: "https://image.thum.io/get/width/600/crop/600/url/www.mindstrivewellness.com", description: "Premium wellness and therapy services supporting mental health and personal growth.", website: "https://mindstrivewellness.com/" },
     { title: "TiVo Auto Detailing", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/tivo-auto-detailingg.vercel.app/services", description: "Premium auto detailing services with proven results.", website: "https://tivo-auto-detailingg.vercel.app/services" },
+    { title: "V.I.P Mobile Detailing LLC", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/v-i-p-mobile-detailing-llc.vercel.app", description: "Premium mobile auto detailing and care services.", website: "https://v-i-p-mobile-detailing-llc.vercel.app/" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Landscaping
     { title: "Sarajian Landscaping", type: "websites", niche: "Landscaping", image: "https://image.thum.io/get/width/600/crop/600/url/www.sarajianlandscapingandlawncarellc.online", description: "Professional landscaping and lawn care services.", website: "https://www.sarajianlandscapingandlawncarellc.online/" },
     { title: "Next Level Excavation", type: "websites", niche: "Landscaping", image: "https://image.thum.io/get/width/600/crop/600/url/next-level-excavation-land-manageme.vercel.app", description: "Land management and excavation services.", website: "https://next-level-excavation-land-manageme.vercel.app/" },
+    { title: "Elite Lawn Rangers", type: "websites", niche: "Landscaping", image: "https://image.thum.io/get/width/600/crop/600/url/elite-lawn-rangers.vercel.app", description: "Professional lawn care and landscaping solutions.", website: "https://elite-lawn-rangers.vercel.app/" },
 
     // WEBSITE DESIGN & DEVELOPMENT - Junk Removal
     { title: "Haul All 515", type: "websites", niche: "Junk Removal", image: "https://image.thum.io/get/width/600/crop/600/url/www.haulall515.com", description: "Fast and efficient junk removal and hauling services.", website: "https://www.haulall515.com/" },
@@ -38,6 +40,7 @@ export default function Portfolio() {
     { title: "MidWash Night Auto Detailing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/midwash-night-auto-detailing.vercel.app", description: "Professional auto and property pressure washing.", website: "https://midwash-night-auto-detailing.vercel.app/" },
     { title: "Ti-Vo Detailing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/ti-vo-detailing.vercel.app", description: "Expert detailing and pressure washing services.", website: "https://ti-vo-detailing.vercel.app/" },
     { title: "Grime Goblins Power Washing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/www.grimegoblinspowerwashing.com", description: "Professional power washing and property cleaning services.", website: "https://www.grimegoblinspowerwashing.com/" },
+    { title: "DuoJet Power Washing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/duojet-power-washing.vercel.app", description: "Expert power washing and property cleaning services.", website: "https://duojet-power-washing.vercel.app/" },
 
     // DIGITAL MARKETING
     { title: "Social Media Campaign - E-Commerce Boost", type: "digital-marketing", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=600&q=80", description: "Multi-platform social media strategy resulting in 250% engagement increase.", website: "https://example.com/marketing-1" },
