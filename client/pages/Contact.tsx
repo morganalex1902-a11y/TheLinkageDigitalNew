@@ -461,9 +461,14 @@ export default function Contact() {
                     <h4 className="font-teko font-bold text-[#121212] uppercase text-[16px] mb-2">
                       Email
                     </h4>
-                    <a href="mailto:hello@thelinkagedigital.com" className="font-kanit text-[#8B0AB4] hover:text-[#7a0a94] transition-colors">
-                      hello@thelinkagedigital.com
-                    </a>
+                    <div className="space-y-2">
+                      <a href="mailto:sales@thelinkagedigital.com" className="block font-kanit text-[#8B0AB4] hover:text-[#7a0a94] transition-colors">
+                        sales@thelinkagedigital.com
+                      </a>
+                      <a href="mailto:info@linkagedigital.com" className="block font-kanit text-[#8B0AB4] hover:text-[#7a0a94] transition-colors">
+                        info@linkagedigital.com
+                      </a>
+                    </div>
                   </div>
 
                   <div className="bg-white p-6 md:p-7 rounded-lg border border-[#ECECEC] hover:border-[#8B0AB4] transition-colors">
@@ -471,8 +476,8 @@ export default function Contact() {
                     <h4 className="font-teko font-bold text-[#121212] uppercase text-[16px] mb-2">
                       Phone
                     </h4>
-                    <a href="tel:+15551234567" className="font-kanit text-[#8B0AB4] hover:text-[#7a0a94] transition-colors">
-                      +1 (555) 123-4567
+                    <a href="tel:+15122003815" className="font-kanit text-[#8B0AB4] hover:text-[#7a0a94] transition-colors">
+                      (512) 200-3815
                     </a>
                   </div>
 

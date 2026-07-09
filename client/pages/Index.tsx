@@ -1373,12 +1373,20 @@ export default function Index() {
             <br />
             With Us
           </h2>
-          <a
-            href="mailto:sales@thelinkagedigital.com"
-            className="font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
-          >
-            sales@thelinkagedigital.com
-          </a>
+          <div className="space-y-2">
+            <a
+              href="mailto:sales@thelinkagedigital.com"
+              className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
+            >
+              sales@thelinkagedigital.com
+            </a>
+            <a
+              href="mailto:info@linkagedigital.com"
+              className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
+            >
+              info@linkagedigital.com
+            </a>
+          </div>
         </div>
       </section>
     </div>

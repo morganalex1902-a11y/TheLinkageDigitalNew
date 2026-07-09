@@ -89,12 +89,17 @@ export default function Footer() {
                 <br />
                 Austin, TX 78731, United States
               </p>
-              <p className="font-poppins font-normal text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px]">
-                +1(512) 200-3815
-              </p>
-              <p className="font-poppins font-normal text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px]">
-                sales@thelinkagedigital.com
-              </p>
+              <a href="tel:+15122003815" className="block font-poppins font-normal text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px] hover:text-[#8B0AB4] transition-colors">
+                (512) 200-3815
+              </a>
+              <div className="space-y-2">
+                <a href="mailto:sales@thelinkagedigital.com" className="block font-poppins font-normal text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px] hover:text-[#8B0AB4] transition-colors">
+                  sales@thelinkagedigital.com
+                </a>
+                <a href="mailto:info@linkagedigital.com" className="block font-poppins font-normal text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px] hover:text-[#8B0AB4] transition-colors">
+                  info@linkagedigital.com
+                </a>
+              </div>
             </div>
           </div>
 
