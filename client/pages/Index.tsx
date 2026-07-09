@@ -126,25 +126,127 @@ function MarqueeScroll() {
   );
 }
 
-function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
+function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
-  // Duplicate images twice — animation moves by -50% so second half loops back to first
   const allImages = [...images, ...images];
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      setMobileIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isMobile, images.length]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    const distance = touchStart - touchEnd;
+
+    if (Math.abs(distance) > 50) {
+      if (distance > 0) {
+        // Swiped left - next item
+        setMobileIndex((prev) => (prev + 1) % images.length);
+      } else {
+        // Swiped right - previous item
+        setMobileIndex((prev) => (prev - 1 + images.length) % images.length);
+      }
+    }
+  };
+
+  if (isMobile) {
+    return (
+      <div className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <div
+          className="flex gap-[0.53vw]"
+          style={{
+            transform: `translateX(-${mobileIndex * 100}%)`,
+            transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
+          }}
+        >
+          {images.map((item, i) => (
+            <div key={i} className="relative flex-shrink-0 overflow-hidden w-full h-[clamp(150px,45vw,400px)]">
+              {typeof item === "string" ? (
+                <>
+                  <img src={item} alt="" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/30" />
+                </>
+              ) : (
+                <>
+                  <iframe
+                    src={item.url}
+                    className="w-full h-full border-0"
+                    loading="eager"
+                    title="Portfolio website"
+                    scrolling="no"
+                    style={{ overflow: "hidden" }}
+                  />
+                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        {/* Pagination dots with progress animation */}
+        <div className="flex justify-center gap-2 mt-4">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setMobileIndex(i)}
+              className={`relative h-2 rounded-full transition-all ${i === mobileIndex ? "bg-[#8B0AB4] w-8" : "bg-[#ECECEC] w-2"}`}
+            >
+              {i === mobileIndex && (
+                <div
+                  className="absolute inset-0 rounded-full bg-[#8B0AB4] opacity-30"
+                  style={{
+                    animation: "pulse 5s ease-in-out infinite"
+                  }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="overflow-hidden" style={{ marginLeft: isMobile ? 0 : `${stagger}vw` }}>
+    <div className="overflow-hidden" style={{ marginLeft: `${stagger}vw` }}>
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: isMobile ? "none" : `${animationName} 20s linear infinite`,
+          animation: `${animationName} 80s linear infinite`,
           willChange: "transform",
         }}
       >
-        {(isMobile ? images.slice(0, 2) : allImages).map((src, i) => (
+        {allImages.map((item, i) => (
           <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)]">
-            <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {typeof item === "string" ? (
+              <>
+                <img src={item} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </>
+            ) : (
+              <>
+                <iframe
+                  src={item.url}
+                  className="w-full h-full border-0"
+                  loading="eager"
+                  title="Portfolio website"
+                  scrolling="no"
+                  style={{ overflow: "hidden" }}
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </>
+            )}
           </div>
         ))}
       </div>
@@ -221,12 +323,12 @@ function PlayIcon() {
 
 function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId: string }) {
   return (
-    <AnimatedButton
+    <OriginButton
       onClick={onClick}
       fillColor="#8B0AB4"
       className="w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border border-[#ECECEC] flex-shrink-0 hover:border-[#8B0AB4] group"
     >
-      <span className="flex flex-col items-center justify-center gap-1 group-hover:text-white transition-colors">
+      <span className="flex flex-col items-center justify-center gap-1">
         <span className="font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] group-hover:text-white transition-colors tracking-wide">
           Explore
         </span>
@@ -237,7 +339,7 @@ function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId:
           <defs><clipPath id={clipId}><rect width="11" height="16" fill="white" /></clipPath></defs>
         </svg>
       </span>
-    </AnimatedButton>
+    </OriginButton>
   );
 }
 
@@ -914,10 +1016,10 @@ export default function Index() {
 
           {/* Row 1 — infinite scroll right */}
           <PortfolioRow direction="right" images={[
-            "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/5d8437229e206f54ccdbc766d6b0d34d1443c74f?width=1109",
+            { type: "iframe", url: "https://www.buscandoamoreterno.com/" },
+            { type: "iframe", url: "https://www.riveras-autodetailingllc.com/" },
+            { type: "iframe", url: "https://mindstrivewellness.com/" },
+            { type: "iframe", url: "https://tivo-auto-detailingg.vercel.app/services" },
           ]} />
 
           {/* Row gap */}
@@ -925,10 +1027,10 @@ export default function Index() {
 
           {/* Row 2 — infinite scroll left with stagger */}
           <PortfolioRow direction="left" images={[
-            "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/04c486d57c886aa65d7f3e62a6ff656882d3dd55?width=1109",
+            { type: "iframe", url: "https://v-i-p-mobile-detailing-llc.vercel.app/" },
+            { type: "iframe", url: "https://www.sarajianlandscapingandlawncarellc.online/" },
+            { type: "iframe", url: "https://next-level-excavation-land-manageme.vercel.app/" },
+            { type: "iframe", url: "https://elite-lawn-rangers.vercel.app/" },
           ]} stagger={-19.9} />
 
           {/* Center "PORTFOLIO" circle overlay */}
