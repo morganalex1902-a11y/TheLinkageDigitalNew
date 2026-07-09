@@ -128,8 +128,8 @@ function MarqueeScroll() {
 
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
-  // Duplicate images 3 times to ensure smooth scrolling and loading
-  const allImages = [...images, ...images, ...images];
+  // Duplicate images twice — animation moves by -50% so second half loops back to first
+  const allImages = [...images, ...images];
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
@@ -137,7 +137,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: `${animationName} 60s linear infinite`,
+          animation: `${animationName} 50s linear infinite`,
           willChange: "transform",
         }}
       >
