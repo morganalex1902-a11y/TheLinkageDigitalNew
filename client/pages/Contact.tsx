@@ -514,14 +514,14 @@ export default function Contact() {
                 </h4>
                 <div className="flex gap-4 flex-wrap">
                   {[
-                    { name: "Twitter", icon: "𝕏" },
-                    { name: "LinkedIn", icon: "in" },
-                    { name: "Facebook", icon: "f" },
-                    { name: "Instagram", icon: "📷" },
+                    { name: "Facebook", icon: "f", href: "https://www.facebook.com/thelinkagedigital/" },
+                    { name: "Instagram", icon: "📷", href: "https://www.instagram.com/thelinkagedigital/" },
                   ].map((social, i) => (
                     <a
                       key={i}
-                      href="#"
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-12 h-12 rounded-full border border-[#ECECEC] flex items-center justify-center hover:bg-[#8B0AB4] hover:border-[#8B0AB4] hover:text-white transition-all text-[#121212] font-medium text-[14px]"
                       title={social.name}
                     >
