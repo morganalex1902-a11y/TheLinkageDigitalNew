@@ -103,6 +103,9 @@ export default function SiteHeader() {
   const handleNavClick = (path: string) => {
     navigate(path);
     setMobileMenuOpen(false);
+    if (path === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const services = [
@@ -127,7 +130,10 @@ export default function SiteHeader() {
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           <AnimatedButton
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             fillColor="#8B0AB4"
             className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
           >
@@ -142,7 +148,7 @@ export default function SiteHeader() {
           </AnimatedButton>
           <div className="relative group">
             <button
-              onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+              onClick={() => navigate("/services")}
               className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors duration-200 leading-none"
             >
               Services
@@ -222,7 +228,10 @@ export default function SiteHeader() {
               return (
                 <div key={item.path}>
                   <button
-                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    onClick={() => {
+                      handleNavClick("/services");
+                      setMobileServicesOpen(false);
+                    }}
                     className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:bg-[#FFE8F5] hover:text-[#8B0AB4] transition-colors flex items-center justify-between"
                   >
                     {item.label}

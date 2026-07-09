@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
-import { DropdownMenu } from "../components/ui/dropdown-menu";
+import SiteHeader from "../components/SiteHeader";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -306,8 +306,6 @@ export default function Index() {
   const [testimonialDir, setTestimonialDir] = useState<"left" | "right">("right");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const TESTIMONIALS = [
     {
@@ -364,221 +362,10 @@ export default function Index() {
   const faqRef = useInView();
   const blogRef = useInView();
 
-  const navItems = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Services", path: "/services" },
-    { label: "Portfolio", path: "/portfolio" },
-    { label: "Blog", path: "/blog" },
-    { label: "Contact", path: "/contact" },
-  ];
-
-  const handleNavClick = (path: string) => {
-    navigate(path);
-    setMobileMenuOpen(false);
-    if (path === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white font-kanit">
-      {/* ── NAVBAR ── */}
-      <header id="site-header" className="border-b border-[#ECECEC] relative z-50 bg-white sticky top-0 transition-shadow duration-300">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 flex items-center justify-between h-[70px] sm:h-[87px]">
-          <img
-            src={LOGO}
-            alt="The Linkage Digital"
-            className="h-[48px] sm:h-[56px] md:h-[68px] lg:h-[78px] w-auto flex-shrink-0"
-          />
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <AnimatedButton
-              onClick={() => {
-                navigate("/");
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              fillColor="#8B0AB4"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
-            >
-              Home
-            </AnimatedButton>
-            <AnimatedButton
-              onClick={() => navigate("/about")}
-              fillColor="#8B0AB4"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
-            >
-              About
-            </AnimatedButton>
-            <DropdownMenu
-              fillColor="#8B0AB4"
-              trigger={
-                <OriginButton
-                  fillColor="#8B0AB4"
-                  className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
-                >
-                  Services
-                  <svg
-                    width="10"
-                    height="7"
-                    viewBox="0 0 10 7"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="flex-shrink-0"
-                  >
-                    <path
-                      d="M4.19092 5.84619L0.206543 1.86182C-0.0688477 1.58643 -0.0688477 1.14111 0.206543 0.868652L0.868652 0.206543C1.14404 -0.0688476 1.58936 -0.0688476 1.86182 0.206543L4.68604 3.03076L7.51025 0.206543C7.78564 -0.0688476 8.23096 -0.0688476 8.50342 0.206543L9.16553 0.868652C9.44092 1.14404 9.44092 1.58936 9.16553 1.86182L5.18115 5.84619C4.91162 6.12158 4.46631 6.12158 4.19092 5.84619Z"
-                      fill="#121212"
-                    />
-                  </svg>
-                </OriginButton>
-              }
-              items={[
-                { label: "Web Design", onClick: () => navigate("/services") },
-                { label: "App Development", onClick: () => navigate("/services") },
-                { label: "Brand Strategy", onClick: () => navigate("/services") },
-                { label: "Digital Marketing", onClick: () => navigate("/services") },
-              ]}
-            />
-            <AnimatedButton
-              onClick={() => navigate("/portfolio")}
-              fillColor="#8B0AB4"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
-            >
-              Portfolio
-            </AnimatedButton>
-            <AnimatedButton
-              onClick={() => navigate("/blog")}
-              fillColor="#8B0AB4"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
-            >
-              Blog
-            </AnimatedButton>
-            <AnimatedButton
-              onClick={() => navigate("/contact")}
-              fillColor="#8B0AB4"
-              className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
-            >
-              Contact
-            </AnimatedButton>
-          </nav>
-
-          {/* Contact Us button */}
-          <OriginButton
-            onClick={() => navigate("/contact")}
-            fillColor="#8B0AB4"
-            className="hidden md:block bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
-          >
-            Contact Us
-          </OriginButton>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 flex items-center justify-center"
-            aria-label="Toggle menu"
-          >
-            <MenuIcon isOpen={mobileMenuOpen} />
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-all ease-out ${
-            mobileMenuOpen ? "max-h-screen duration-500" : "max-h-0 duration-300"
-          }`}
-          style={{ background: "white" }}
-        >
-          <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
-            {navItems.map((item) => {
-              if (item.label === "Services") {
-                return (
-                  <div key={item.path}>
-                    <OriginButton
-                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      fillColor="#8B0AB4"
-                      className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white flex items-center justify-between"
-                    >
-                      <span>{item.label}</span>
-                      <svg
-                        width="10"
-                        height="7"
-                        viewBox="0 0 10 7"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="flex-shrink-0 transition-transform duration-300"
-                        style={{
-                          transform: mobileServicesOpen ? "rotate(180deg)" : "rotate(0deg)",
-                        }}
-                      >
-                        <path
-                          d="M4.19092 5.84619L0.206543 1.86182C-0.0688477 1.58643 -0.0688477 1.14111 0.206543 0.868652L0.868652 0.206543C1.14404 -0.0688476 1.58936 -0.0688476 1.86182 0.206543L4.68604 3.03076L7.51025 0.206543C7.78564 -0.0688476 8.23096 -0.0688476 8.50342 0.206543L9.16553 0.868652C9.44092 1.14404 9.44092 1.58936 9.16553 1.86182L5.18115 5.84619C4.91162 6.12158 4.46631 6.12158 4.19092 5.84619Z"
-                          fill="#121212"
-                        />
-                      </svg>
-                    </OriginButton>
-                    {/* Mobile Services Dropdown */}
-                    <div
-                      className={`overflow-hidden transition-all ease-out ${
-                        mobileServicesOpen ? "max-h-screen duration-500" : "max-h-0 duration-300"
-                      }`}
-                    >
-                      <div className="pl-4 pt-2 pb-2 space-y-1 bg-[#FFE8F5]/20 rounded-lg my-1">
-                        <OriginButton
-                          onClick={() => handleNavClick("/services")}
-                          fillColor="#8B0AB4"
-                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
-                        >
-                          Web Design
-                        </OriginButton>
-                        <OriginButton
-                          onClick={() => handleNavClick("/services")}
-                          fillColor="#8B0AB4"
-                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
-                        >
-                          App Development
-                        </OriginButton>
-                        <OriginButton
-                          onClick={() => handleNavClick("/services")}
-                          fillColor="#8B0AB4"
-                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
-                        >
-                          Brand Strategy
-                        </OriginButton>
-                        <OriginButton
-                          onClick={() => handleNavClick("/services")}
-                          fillColor="#8B0AB4"
-                          className="w-full text-left px-3 py-2 rounded font-kanit text-[12px] text-[#121212] hover:text-white justify-start"
-                        >
-                          Digital Marketing
-                        </OriginButton>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-              return (
-                <AnimatedButton
-                  key={item.path}
-                  onClick={() => handleNavClick(item.path)}
-                  fillColor="#8B0AB4"
-                  className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
-                >
-                  {item.label}
-                </AnimatedButton>
-              );
-            })}
-            <OriginButton
-              onClick={() => handleNavClick("/contact")}
-              fillColor="#8B0AB4"
-              className="w-full mt-4 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase px-4 py-3 rounded-lg tracking-wide hover:text-white"
-            >
-              Contact Us
-            </OriginButton>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* ── HERO ── */}
       <main className="relative overflow-hidden">
