@@ -309,25 +309,74 @@ export default function Index() {
 
   const TESTIMONIALS = [
     {
-      rating: 4.9,
-      text: "We full service digital agency that build's fascinating users experiences. Our team creates exceptional UI design and functionality that drives results.",
-      name: "Ceyhan Özçivit",
-      role: "Mid-Level Developer",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+      rating: 5.0,
+      text: "Alex and Saadi did an excellent job building my website design. The process was smooth, professional, and creative from start to finish. He really listened to my ideas, offered great suggestions, and delivered a clean, modern site that perfectly reflects my vision. Highly recommend his work!",
+      name: "Jeriece Lovelace",
+      role: "9 months ago",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F49cf2d55e7154c8e825da8cbaa58313f?format=webp&width=800&height=1200",
     },
     {
       rating: 5.0,
-      text: "The Linkage Digital transformed our online presence completely. Their strategic approach and creative execution exceeded all our expectations.",
-      name: "Sarah Johnson",
-      role: "Product Manager",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320",
+      text: "Thomas Randall reached out to me on Facebook he was very good about answering my questions and after receiving the information he requested the website was prepared quick time. I would definitely do business with and recommend their services to anyone who is in need of a website.",
+      name: "orlando patterson",
+      role: "4 months ago",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F11ee54a04aaf4028b2d95687da7116be?format=webp&width=800&height=1200",
     },
     {
-      rating: 4.8,
-      text: "Exceptional service from start to finish. The team understood our vision and delivered a stunning digital experience that our clients love.",
-      name: "Alex Martinez",
-      role: "Creative Director",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
+      rating: 5.0,
+      text: "Did a great job setting up my Website. Was super easy to work with!",
+      name: "Hadyn Whisenhunt",
+      role: "3 weeks ago",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fa993cba5ba76428987452eaa14a075fd?format=webp&width=800&height=1200",
+    },
+    {
+      rating: 5.0,
+      text: "Amazing and professional work honest people most of all they work with great passion!",
+      name: "German Valle",
+      role: "9 months ago",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fadad46230e704738b7eacdefca5cc2d1?format=webp&width=800&height=1200",
+    },
+    {
+      rating: 5.0,
+      text: "Great experience made my website really well really appreciate the hard work",
+      name: "Paxley",
+      role: "8 months ago",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fda8953551ec54f8f9815eb5d31176953?format=webp&width=800&height=1200",
+    },
+    {
+      rating: 5.0,
+      text: "I had an awesome experience working with Bryan Davis. He built my website and completely exceeded my expectations. Bryan was easy to communicate with, quick to respond, and really cared about making sure everything looked and worked exactly how I wanted. The whole process was simple and the final website turned out amazing. If you need a great programmer, I highly recommend Bryan Davis at Linkage Digital.",
+      name: "Shay Veach",
+      role: "3 months ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "I highly recommend Bryan Davis at The Linkage Digital. Professional, responsive, and extremely knowledgeable, Bryan made the entire process smooth and effective. His attention to detail and commitment to delivering real results truly set The Linkage Digital apart. Great experience from start to finish!",
+      name: "Tyler Murray",
+      role: "6 months ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "They did an amazing job for my business logo. Highly recommended!",
+      name: "Emanya khan",
+      role: "11 months ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Great job!!!!",
+      name: "Lucky Luciano",
+      role: "6 hours ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Bryan reached out to me on Facebook and helped me get an awesome website built for my business. Great communication, easy process, and a professional-looking result. Highly recommend working with him!",
+      name: "Blaze Chaney",
+      role: "3 weeks ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
   ];
   const navigate = useNavigate();
@@ -1373,12 +1422,20 @@ export default function Index() {
             <br />
             With Us
           </h2>
-          <a
-            href="mailto:sales@thelinkagedigital.com"
-            className="font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
-          >
-            sales@thelinkagedigital.com
-          </a>
+          <div className="space-y-2">
+            <a
+              href="mailto:sales@thelinkagedigital.com"
+              className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
+            >
+              sales@thelinkagedigital.com
+            </a>
+            <a
+              href="mailto:info@linkagedigital.com"
+              className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
+            >
+              info@linkagedigital.com
+            </a>
+          </div>
         </div>
       </section>
     </div>
