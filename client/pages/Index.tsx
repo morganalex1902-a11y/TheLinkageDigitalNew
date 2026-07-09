@@ -137,7 +137,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: isMobile ? "none" : `${animationName} 20s linear infinite`,
+          animation: `${animationName} 20s linear infinite`,
           willChange: "transform",
         }}
       >
