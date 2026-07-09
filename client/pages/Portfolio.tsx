@@ -102,12 +102,12 @@ export default function Portfolio() {
                   Explore a selection of our recent projects where design meets strategy and results speak louder than words.
                 </p>
 
-                <AnimatedButton
+                <OriginButton
                   onClick={() =>
                     projectsGridRef.current?.scrollIntoView({ behavior: "smooth" })
                   }
                   fillColor="#8B0AB4"
-                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit group"
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-white hover:border-[#8B0AB4] w-fit group"
                 >
                   <span className="relative z-10 inline-flex items-center gap-2">
                     Explore Our Work
@@ -117,10 +117,11 @@ export default function Portfolio() {
                         clipRule="evenodd"
                         d="M7.81733 4.91128C8.05053 4.62631 8.47053 4.58431 8.75547 4.81746L13.8676 9.0001H0.666667C0.298477 9.0001 0 8.70162 0 8.33343C0 7.96525 0.298477 7.66677 0.666667 7.66677H10.1324L7.9112 5.84941C7.6262 5.61625 7.5842 5.19624 7.81733 4.91128Z"
                         fill="currentColor"
+                        className="group-hover:text-white transition-colors"
                       />
                     </svg>
                   </span>
-                </AnimatedButton>
+                </OriginButton>
               </div>
 
               {/* RIGHT — asymmetric project-tile collage */}

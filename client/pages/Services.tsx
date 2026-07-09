@@ -206,24 +206,21 @@ export default function Services() {
           servicesGridRef.current?.scrollIntoView({ behavior: "smooth" })
         }
         aria-label="Scroll to services"
-        className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors overflow-hidden group"
+        className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-white transition-colors overflow-hidden group"
       >
         <span
           aria-hidden
-          className="pointer-events-none absolute rounded-full"
+          className="pointer-events-none absolute rounded-full bg-[#8B0AB4] group-hover:opacity-10 opacity-0 transition-opacity duration-300"
           style={{
-            width: 0,
-            height: 0,
+            width: 44,
+            height: 44,
             left: "50%",
             top: "50%",
-            backgroundColor: "#8B0AB4",
-            opacity: 0.1,
-            transform: "translate(-50%, -50%) scale(0)",
-            transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+            transform: "translate(-50%, -50%)",
             zIndex: 0,
           }}
         />
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="relative z-10">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="relative z-10 group-hover:text-white transition-colors">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
