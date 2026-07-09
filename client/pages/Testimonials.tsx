@@ -87,46 +87,26 @@ export default function Testimonials() {
 
       <main className="relative overflow-hidden">
         {/* ── HERO SECTION ── */}
-        <section className="bg-white relative overflow-hidden min-h-[calc(100vh-87px)] flex items-center">
-          <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-12 w-full">
+        <section className="bg-white relative overflow-hidden py-8 md:py-12">
+          <div className="max-w-[1400px] mx-auto px-6 w-full">
             <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-5">
+              <div className="flex items-center justify-center gap-3 mb-3">
                 <span className="w-8 h-[2px] bg-[#8B0AB4]" />
-                <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] md:text-[14px] uppercase tracking-wider">
+                <span className="font-kanit font-semibold text-[#8B0AB4] text-[12px] md:text-[13px] uppercase tracking-wider">
                   Testimonials
                 </span>
                 <span className="w-8 h-[2px] bg-[#8B0AB4]" />
               </div>
 
-              <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(1.8rem,4vw,3.5rem)] mb-5">
+              <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(1.6rem,3.5vw,2.8rem)] mb-3">
                 What Our Clients
                 <br />
                 <span className="text-[#8B0AB4]">Are Saying</span>
               </h1>
 
-              <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[15px] leading-[1.6] max-w-[480px] mx-auto mb-8">
-                Discover why businesses trust The Linkage Digital to transform their digital presence and deliver exceptional results.
+              <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[14px] leading-[1.5] max-w-[450px] mx-auto">
+                Discover why businesses trust The Linkage Digital to transform their digital presence.
               </p>
-            </div>
-
-            {/* Bottom row — scroll indicator */}
-            <div className="mt-14 md:mt-16 flex justify-center">
-              <button
-                onClick={() =>
-                  testimonialsRef.current?.scrollIntoView({ behavior: "smooth" })
-                }
-                aria-label="Scroll to testimonials"
-                className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors overflow-hidden group"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="relative z-10">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </button>
             </div>
           </div>
         </section>
