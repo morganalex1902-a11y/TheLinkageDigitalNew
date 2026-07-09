@@ -172,7 +172,7 @@ export default function Testimonials() {
                 What Our Clients <span className="text-[#8B0AB4]">Are Saying</span>
               </h1>
 
-              <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[17px] leading-[1.5] max-w-[450px] mx-auto mb-3">
+              <p className="font-kanit font-bold text-[#555] text-[15px] md:text-[17px] leading-[1.5] max-w-[450px] mx-auto mb-3">
                 Real clients. Real growth. Real stories.
               </p>
 
