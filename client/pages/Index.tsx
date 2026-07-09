@@ -126,7 +126,7 @@ function MarqueeScroll() {
   );
 }
 
-function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: string[]; stagger?: number }) {
+function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
   // Duplicate images twice — animation moves by -50% so second half loops back to first
   const allImages = [...images, ...images];
@@ -141,10 +141,24 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
           willChange: "transform",
         }}
       >
-        {(isMobile ? images.slice(0, 2) : allImages).map((src, i) => (
+        {(isMobile ? images.slice(0, 2) : allImages).map((item, i) => (
           <div key={i} className="relative flex-shrink-0 overflow-hidden group cursor-pointer w-[clamp(150px,45vw,400px)] h-[clamp(150px,45vw,400px)]">
-            <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {typeof item === "string" ? (
+              <>
+                <img src={item} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </>
+            ) : (
+              <>
+                <iframe
+                  src={item.url}
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  title="Portfolio website"
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </>
+            )}
           </div>
         ))}
       </div>
@@ -914,10 +928,10 @@ export default function Index() {
 
           {/* Row 1 — infinite scroll right */}
           <PortfolioRow direction="right" images={[
-            "https://api.builder.io/api/v1/image/assets/TEMP/95d3beb7b1ea67647bf7693b4384b99d5a183691?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/0056adf86d0fca6b1a9bb6269d30c8bf0157b088?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/9c4209cac949322ae9502c1e4b4fbb77d3bca27b?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/5d8437229e206f54ccdbc766d6b0d34d1443c74f?width=1109",
+            { type: "iframe", url: "https://builder.io" },
+            { type: "iframe", url: "https://vercel.com" },
+            { type: "iframe", url: "https://github.com" },
+            { type: "iframe", url: "https://www.figma.com" },
           ]} />
 
           {/* Row gap */}
@@ -925,10 +939,10 @@ export default function Index() {
 
           {/* Row 2 — infinite scroll left with stagger */}
           <PortfolioRow direction="left" images={[
-            "https://api.builder.io/api/v1/image/assets/TEMP/41ec2f417aeb3a45750cefd2ac08f6fd7b25b498?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/b4028287997747fae597eda36ff0158307421513?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/d0e90ec20b488b492b47e932efdd88fc492e6295?width=1109",
-            "https://api.builder.io/api/v1/image/assets/TEMP/04c486d57c886aa65d7f3e62a6ff656882d3dd55?width=1109",
+            { type: "iframe", url: "https://stripe.com" },
+            { type: "iframe", url: "https://nextjs.org" },
+            { type: "iframe", url: "https://react.dev" },
+            { type: "iframe", url: "https://tailwindcss.com" },
           ]} stagger={-19.9} />
 
           {/* Center "PORTFOLIO" circle overlay */}
