@@ -928,10 +928,10 @@ export default function Index() {
 
           {/* Row 1 — infinite scroll right */}
           <PortfolioRow direction="right" images={[
-            { type: "iframe", url: "https://builder.io" },
-            { type: "iframe", url: "https://vercel.com" },
-            { type: "iframe", url: "https://github.com" },
-            { type: "iframe", url: "https://www.figma.com" },
+            { type: "iframe", url: "https://www.buscandoamoreterno.com/" },
+            { type: "iframe", url: "https://www.riveras-autodetailingllc.com/" },
+            { type: "iframe", url: "https://mindstrivewellness.com/" },
+            { type: "iframe", url: "https://tivo-auto-detailingg.vercel.app/services" },
           ]} />
 
           {/* Row gap */}
@@ -939,10 +939,10 @@ export default function Index() {
 
           {/* Row 2 — infinite scroll left with stagger */}
           <PortfolioRow direction="left" images={[
-            { type: "iframe", url: "https://stripe.com" },
-            { type: "iframe", url: "https://nextjs.org" },
-            { type: "iframe", url: "https://react.dev" },
-            { type: "iframe", url: "https://tailwindcss.com" },
+            { type: "iframe", url: "https://v-i-p-mobile-detailing-llc.vercel.app/" },
+            { type: "iframe", url: "https://www.sarajianlandscapingandlawncarellc.online/" },
+            { type: "iframe", url: "https://next-level-excavation-land-manageme.vercel.app/" },
+            { type: "iframe", url: "https://elite-lawn-rangers.vercel.app/" },
           ]} stagger={-19.9} />
 
           {/* Center "PORTFOLIO" circle overlay */}
