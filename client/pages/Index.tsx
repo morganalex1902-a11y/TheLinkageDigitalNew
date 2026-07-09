@@ -323,23 +323,23 @@ function PlayIcon() {
 
 function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId: string }) {
   return (
-    <AnimatedButton
+    <OriginButton
       onClick={onClick}
       fillColor="#8B0AB4"
-      className="w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border border-[#ECECEC] flex-shrink-0 hover:border-[#8B0AB4] hover:text-white group"
+      className="w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border border-[#ECECEC] flex-shrink-0 hover:border-[#8B0AB4] group"
     >
-      <span className="flex flex-col items-center justify-center gap-1 transition-colors">
-        <span className="font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] transition-colors tracking-wide">
+      <span className="flex flex-col items-center justify-center gap-1">
+        <span className="font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] group-hover:text-white transition-colors tracking-wide">
           Explore
         </span>
         <svg width="10" height="14" viewBox="0 0 11 16" fill="none" className="group-hover:translate-y-0.5 transition-transform">
           <g clipPath={`url(#${clipId})`}>
-            <path d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z" fill="currentColor" className="text-[#121212] transition-colors" />
+            <path d="M2.74301 2.69653V3.7475H9.05901L0.736328 12.4653L1.44368 13.2062L9.76638 4.48844V11.1043H10.7697V2.69653H2.74301Z" fill="currentColor" className="text-[#121212] group-hover:text-white transition-colors" />
           </g>
           <defs><clipPath id={clipId}><rect width="11" height="16" fill="white" /></clipPath></defs>
         </svg>
       </span>
-    </AnimatedButton>
+    </OriginButton>
   );
 }
 
