@@ -151,9 +151,9 @@ export default function SiteHeader() {
 
             {/* Desktop dropdown */}
             <div className="absolute left-0 mt-0 w-56 bg-white border border-[#ECECEC] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out pt-2">
-              {services.map((service) => (
+              {services.map((service, index) => (
                 <button
-                  key={service.path}
+                  key={service.label}
                   onClick={() => {
                     navigate(service.path);
                     setServicesDropdownOpen(false);
@@ -232,9 +232,9 @@ export default function SiteHeader() {
                   </button>
                   {mobileServicesOpen && (
                     <div className="pl-4 space-y-1 bg-[#FFE8F5]/30 rounded-lg mt-1 mb-2">
-                      {services.map((service) => (
+                      {services.map((service, index) => (
                         <button
-                          key={service.path}
+                          key={service.label}
                           onClick={() => handleNavClick(service.path)}
                           className="w-full text-left px-4 py-2 font-kanit text-[13px] text-[#555] hover:text-[#8B0AB4] hover:bg-white/50 rounded-lg transition-colors"
                         >
