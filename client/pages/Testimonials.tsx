@@ -11,72 +11,142 @@ export default function Testimonials() {
   const TESTIMONIALS = [
     {
       rating: 5.0,
-      text: "Alex and Saadi did an excellent job building my website design. The process was smooth, professional, and creative from start to finish. He really listened to my ideas, offered great suggestions, and delivered a clean, modern site that perfectly reflects my vision. Highly recommend his work!",
-      name: "Jeriece Lovelace",
-      role: "9 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F49cf2d55e7154c8e825da8cbaa58313f?format=webp&width=800&height=1200",
+      text: "Great job!!!",
+      name: "Nicholas Bellavia",
+      role: "8 hours ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
     {
       rating: 5.0,
-      text: "Thomas Randall reached out to me on Facebook he was very good about answering my questions and after receiving the information he requested the website was prepared quick time. I would definitely do business with and recommend their services to anyone who is in need of a website.",
-      name: "orlando patterson",
-      role: "4 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F11ee54a04aaf4028b2d95687da7116be?format=webp&width=800&height=1200",
+      text: "Bryan Davis was able to convert a logo, and a couple banners to printable files for me so I can send them off to be used for signage and marketing material. This was incredibly helpful and will be a big part of helping grow my business. Great guy to work with, prompt communication, and very helpful with the revision process. Thanks Bryan!",
+      name: "William Baudendistel",
+      role: "A day ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
     {
       rating: 5.0,
-      text: "Did a great job setting up my Website. Was super easy to work with!",
+      text: "Great service at a great price. I would recommend to anyone who wants work done the right way. Bryan Davis was great!",
+      name: "Jayson Lupian",
+      role: "2 days ago",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Very quick responses with awesome editing skills, would highly recommend 👌 👏 👍",
+      name: "DebriCo LLC",
+      role: "Jul 1, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Linkage Digital is awesome. My mockup on canvas was awesome and their speed was great to which they delivered the product.",
+      name: "Chris M Cartmill",
+      role: "Jul 1, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Very responsive",
+      name: "MCPS",
+      role: "Jun 29, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Thank you for helping out",
+      name: "Evan",
+      role: "Jun 25, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Worked with me step by step and responded to all my questions really good work",
+      name: "Helmer Castaneda",
+      role: "Jun 25, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Very helpful and answered all my questions.",
+      name: "Joaquin Cruz",
+      role: "Jun 25, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Not going to lie at first I was a little skeptical but Bryan Davis and the guys at linkage digital have really proved me wrong. They have been building my website and adding new features, finally making it show up when people search junk removal! I couldn't be happier with this service. I would recommend this service to family and friends.",
+      name: "Robert Lee",
+      role: "Jun 23, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Walked me through every step of the way and explained every detail thoroughly! Couldn't be happier!",
+      name: "brenton clay",
+      role: "Jun 23, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Did an amazing job on my website is a quick responder made everything look professional and is very professional I'd highly recommend him for all website needs and is also very affordable",
+      name: "Chance Jeffery",
+      role: "Jun 23, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Exceptional service, was helped from beginning to end. Made it very easy",
+      name: "David Patrick",
+      role: "Jun 19, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Thelinkagedigital did wonderful with my website I was worried at first and thought these guys were going to scam me but no these guys are legit people helping small businesses create there own website, I would 100% recommend them for websites thank yall guys",
+      name: "Cris Rental",
+      role: "Jun 19, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Did a great job setting up website for me. Easy to work with!",
       name: "Hadyn Whisenhunt",
-      role: "3 weeks ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fa993cba5ba76428987452eaa14a075fd?format=webp&width=800&height=1200",
-    },
-    {
-      rating: 5.0,
-      text: "Amazing and professional work honest people most of all they work with great passion!",
-      name: "German Valle",
-      role: "9 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fadad46230e704738b7eacdefca5cc2d1?format=webp&width=800&height=1200",
-    },
-    {
-      rating: 5.0,
-      text: "Great experience made my website really well really appreciate the hard work",
-      name: "Paxley",
-      role: "8 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fda8953551ec54f8f9815eb5d31176953?format=webp&width=800&height=1200",
-    },
-    {
-      rating: 5.0,
-      text: "I had an awesome experience working with Bryan Davis. He built my website and completely exceeded my expectations. Bryan was easy to communicate with, quick to respond, and really cared about making sure everything looked and worked exactly how I wanted. The whole process was simple and the final website turned out amazing. If you need a great programmer, I highly recommend Bryan Davis at Linkage Digital.",
-      name: "Shay Veach",
-      role: "3 months ago",
+      role: "Jun 18, 2026",
       avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
     {
       rating: 5.0,
-      text: "I highly recommend Bryan Davis at The Linkage Digital. Professional, responsive, and extremely knowledgeable, Bryan made the entire process smooth and effective. His attention to detail and commitment to delivering real results truly set The Linkage Digital apart. Great experience from start to finish!",
-      name: "Tyler Murray",
-      role: "6 months ago",
+      text: "I had a great experience working with him on my website. He was professional, responsive, and easy to communicate with throughout the entire process. He listened to what I wanted, made changes quickly, and created a website that looks clean and professional. I'm very happy with the final result and would highly recommend him to anyone needing a website for their business. Thank you for your hard work!",
+      name: "Stella Chaney",
+      role: "Jun 18, 2026",
       avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
     {
       rating: 5.0,
-      text: "They did an amazing job for my business logo. Highly recommended!",
-      name: "Emanya khan",
-      role: "11 months ago",
+      text: "Very good communication patient and extremely helpful made everything perfect and efficient amazing service would definitely recommend",
+      name: "Jeremiah Perez",
+      role: "Jun 6, 2026",
       avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
     {
       rating: 5.0,
-      text: "Great job!!!!",
-      name: "Lucky Luciano",
-      role: "6 hours ago",
+      text: "Bryan Davis at The Linkage Digital reached out to us noticing we did not have a running website after we began running ads. I was skeptical at first but he offered to do a demo site for us at no cost. Once he showed us his work we just could not say no. It did an amazing job with very little info but it turned out better than I could have thought. He was very responsive throughout the entire process and always made sure we knew the next steps before we even got there. Definitely recommend The Linkage Digital for any web projects you may have. I will continue to use them for any future projects or additions needed.",
+      name: "David Burgess",
+      role: "Jun 4, 2026",
       avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
     {
       rating: 5.0,
-      text: "Bryan reached out to me on Facebook and helped me get an awesome website built for my business. Great communication, easy process, and a professional-looking result. Highly recommend working with him!",
-      name: "Blaze Chaney",
-      role: "3 weeks ago",
+      text: "Bryan came to me offering to build me a website for my pressure washing business, i've had countless others come to me before but his pricing was actually fair and understandable. He was very helpful and made sure all my questions and concerns were fulfilled!",
+      name: "SJ",
+      role: "Jun 3, 2026",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
+    },
+    {
+      rating: 5.0,
+      text: "Absolutely wonderful helped me with so much very knowledgeable great customer service and very fast response times with any questions you may need answers for my website looks better then I could have ever imagined use this company you won't be sorry.",
+      name: "William Martin",
+      role: "May 26, 2026",
       avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
     },
   ];
@@ -99,12 +169,14 @@ export default function Testimonials() {
               </div>
 
               <h1 className="font-teko font-bold text-[#121212] uppercase leading-[0.9] text-[clamp(1.6rem,3.5vw,2.8rem)] mb-3">
-                What Our Clients
-                <br />
-                <span className="text-[#8B0AB4]">Are Saying</span>
+                What Our Clients <span className="text-[#8B0AB4]">Are Saying</span>
               </h1>
 
-              <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[14px] leading-[1.5] max-w-[450px] mx-auto">
+              <p className="font-kanit font-bold text-[#555] text-[15px] md:text-[17px] leading-[1.5] max-w-[450px] mx-auto mb-3">
+                Real clients. Real growth. Real stories.
+              </p>
+
+              <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[17px] leading-[1.5] max-w-[450px] mx-auto">
                 Discover why businesses trust The Linkage Digital to transform their digital presence.
               </p>
             </div>
