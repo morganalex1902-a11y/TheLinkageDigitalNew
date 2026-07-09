@@ -133,6 +133,16 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
   const [mobileIndex, setMobileIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
 
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      setMobileIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isMobile, images.length]);
+
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX);
   };
@@ -155,7 +165,13 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
   if (isMobile) {
     return (
       <div className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <div className="flex gap-[0.53vw]" style={{ transform: `translateX(-${mobileIndex * 100}%)`, transition: "transform 0.3s ease-out" }}>
+        <div
+          className="flex gap-[0.53vw]"
+          style={{
+            transform: `translateX(-${mobileIndex * 100}%)`,
+            transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
+          }}
+        >
           {images.map((item, i) => (
             <div key={i} className="relative flex-shrink-0 overflow-hidden w-full h-[clamp(150px,45vw,400px)]">
               {typeof item === "string" ? (
@@ -179,14 +195,23 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
             </div>
           ))}
         </div>
-        {/* Pagination dots */}
+        {/* Pagination dots with progress animation */}
         <div className="flex justify-center gap-2 mt-4">
           {images.map((_, i) => (
             <button
               key={i}
               onClick={() => setMobileIndex(i)}
-              className={`w-2 h-2 rounded-full transition-all ${i === mobileIndex ? "bg-[#8B0AB4] w-6" : "bg-[#ECECEC]"}`}
-            />
+              className={`relative h-2 rounded-full transition-all ${i === mobileIndex ? "bg-[#8B0AB4] w-8" : "bg-[#ECECEC] w-2"}`}
+            >
+              {i === mobileIndex && (
+                <div
+                  className="absolute inset-0 rounded-full bg-[#8B0AB4] opacity-30"
+                  style={{
+                    animation: "pulse 5s ease-in-out infinite"
+                  }}
+                />
+              )}
+            </button>
           ))}
         </div>
       </div>
