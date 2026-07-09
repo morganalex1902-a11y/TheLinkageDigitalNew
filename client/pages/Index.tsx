@@ -327,7 +327,7 @@ export default function Index() {
       text: "Alex and Saadi did an excellent job building my website design. The process was smooth, professional, and creative from start to finish. He really listened to my ideas, offered great suggestions, and delivered a clean, modern site that perfectly reflects my vision. Highly recommend his work!",
       name: "Jeriece Lovelace",
       role: "9 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fa993cba5ba76428987452eaa14a075fd?format=webp&width=800&height=1200",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F49cf2d55e7154c8e825da8cbaa58313f?format=webp&width=800&height=1200",
     },
     {
       rating: 5.0,
@@ -341,14 +341,14 @@ export default function Index() {
       text: "Did a great job setting up my Website. Was super easy to work with!",
       name: "Hadyn Whisenhunt",
       role: "3 weeks ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fadad46230e704738b7eacdefca5cc2d1?format=webp&width=800&height=1200",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fa993cba5ba76428987452eaa14a075fd?format=webp&width=800&height=1200",
     },
     {
       rating: 5.0,
       text: "Amazing and professional work honest people most of all they work with great passion!",
       name: "German Valle",
       role: "9 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F49cf2d55e7154c8e825da8cbaa58313f?format=webp&width=800&height=1200",
+      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fadad46230e704738b7eacdefca5cc2d1?format=webp&width=800&height=1200",
     },
     {
       rating: 5.0,
