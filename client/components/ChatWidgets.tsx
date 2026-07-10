@@ -18,7 +18,7 @@ export default function ChatWidgets() {
   return (
     <>
       {/* WhatsApp Widget Button - Right side */}
-      <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-6 right-6 z-[9999]">
         <a
           href="https://wa.me/15123259923"
           target="_blank"
