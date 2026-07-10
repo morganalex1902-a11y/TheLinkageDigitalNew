@@ -12,56 +12,56 @@ export default function Blog() {
   const blogRef = useInView();
   const articlesGridRef = useInView();
 
-  const CATEGORIES = ["All", "Design", "Development", "Marketing", "Strategy"];
+  const CATEGORIES = ["All", "Design", "Development", "Marketing"];
 
   const ARTICLES = [
     {
-      title: "The Future of Web Design: Trends to Watch in 2024",
+      title: "Web Design Psychology: How Color and Typography Drive Conversions",
       category: "Design",
-      date: "March 15, 2024",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480",
-      excerpt: "Explore the latest trends in web design that are shaping the digital landscape.",
-      author: "Alex Thompson",
+      date: "December 18, 2024",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop",
+      excerpt: "Discover how strategic color choices and typography selection can significantly impact user behavior and increase conversion rates on your website.",
+      author: "The Linkage Team",
     },
     {
-      title: "Building Scalable Applications with React and Node.js",
+      title: "From Zero to Online: Building Your First Website in 2024",
       category: "Development",
-      date: "March 12, 2024",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910",
-      excerpt: "A comprehensive guide to building scalable web applications using modern technologies.",
-      author: "Sarah Williams",
+      date: "December 15, 2024",
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=800&fit=crop",
+      excerpt: "Everything you need to know about launching your first business website, from planning and design to deployment and optimization.",
+      author: "The Linkage Team",
     },
     {
-      title: "Content Marketing Strategies That Actually Work",
+      title: "The Complete Guide to SEO in 2025: Rankings That Stick",
       category: "Marketing",
-      date: "March 10, 2024",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/cebf100cfa2f8b5cd61f8901babba182a2278871?width=660",
-      excerpt: "Learn how to create content that engages your audience and drives conversions.",
-      author: "Emma Davis",
+      date: "December 12, 2024",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop",
+      excerpt: "Master the latest SEO techniques, including technical optimization, content strategy, and link building to dominate search results.",
+      author: "The Linkage Team",
     },
     {
-      title: "UX Best Practices: Creating User-Centric Designs",
+      title: "Branding 101: Creating a Logo That Stands Out",
       category: "Design",
-      date: "March 8, 2024",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240",
-      excerpt: "Essential UX principles that ensure your designs serve your users effectively.",
-      author: "Marcus Johnson",
+      date: "December 9, 2024",
+      image: "https://images.unsplash.com/photo-1460925895917-adf4e05526e5?w=1200&h=800&fit=crop",
+      excerpt: "Learn the principles of effective logo design and how to create a visual identity that resonates with your target audience and builds brand recognition.",
+      author: "The Linkage Team",
     },
     {
-      title: "DevOps Best Practices for Modern Teams",
+      title: "Digital Marketing Strategies That Deliver Real ROI",
+      category: "Marketing",
+      date: "December 6, 2024",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=800&fit=crop",
+      excerpt: "Explore proven digital marketing tactics including email campaigns, social media strategy, and paid advertising that generate measurable results.",
+      author: "The Linkage Team",
+    },
+    {
+      title: "Video Marketing 2024: Trends and Tools for Maximum Impact",
       category: "Development",
-      date: "March 5, 2024",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/74ad161ce9ae79bedd3125e55a7036ba67285e6e?width=320",
-      excerpt: "Streamline your development workflow with these essential DevOps practices.",
-      author: "Alex Thompson",
-    },
-    {
-      title: "Digital Transformation: A Strategic Guide",
-      category: "Strategy",
-      date: "March 1, 2024",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/606973b7a19e784fa309acebad1d2d62459e0d20?width=80",
-      excerpt: "Navigate your organization's digital transformation journey with confidence.",
-      author: "Sarah Williams",
+      date: "December 3, 2024",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
+      excerpt: "Harness the power of video content with the latest editing techniques, platform strategies, and production tools to engage your audience.",
+      author: "The Linkage Team",
     },
   ];
 
@@ -104,12 +104,12 @@ export default function Blog() {
                   development and digital growth.
                 </p>
 
-                <AnimatedButton
+                <OriginButton
                   onClick={() =>
                     articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                   }
                   fillColor="#8B0AB4"
-                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit"
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-white hover:border-white w-fit"
                 >
                   Read Our Blog
                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -120,7 +120,7 @@ export default function Blog() {
                       fill="currentColor"
                     />
                   </svg>
-                </AnimatedButton>
+                </OriginButton>
               </div>
 
               {/* RIGHT — overlapping article preview cards */}
@@ -205,28 +205,14 @@ export default function Blog() {
 
             {/* Bottom row — scroll indicator + view all link */}
             <div className="flex items-center justify-between mt-8 md:mt-10">
-              <button
+              <OriginButton
                 onClick={() =>
                   articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
                 aria-label="Scroll to articles"
-                className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors shrink-0 overflow-hidden group"
+                fillColor="#8B0AB4"
+                className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-white hover:text-white transition-colors shrink-0 overflow-hidden group"
               >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute rounded-full"
-                  style={{
-                    width: 0,
-                    height: 0,
-                    left: "50%",
-                    top: "50%",
-                    backgroundColor: "#8B0AB4",
-                    opacity: 0.1,
-                    transform: "translate(-50%, -50%) scale(0)",
-                    transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-                    zIndex: 0,
-                  }}
-                />
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="relative z-10">
                   <path
                     strokeLinecap="round"
@@ -235,14 +221,14 @@ export default function Blog() {
                     d="M19 14l-7 7m0 0l-7-7m7 7V3"
                   />
                 </svg>
-              </button>
+              </OriginButton>
 
-              <AnimatedButton
+              <OriginButton
                 onClick={() =>
                   articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
                 fillColor="#8B0AB4"
-                className="inline-flex items-center gap-2 font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#121212] hover:text-[#8B0AB4]"
+                className="inline-flex items-center gap-2 font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#121212] hover:text-white"
               >
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                   <path
@@ -253,7 +239,7 @@ export default function Blog() {
                   />
                 </svg>
                 View All Articles
-              </AnimatedButton>
+              </OriginButton>
             </div>
           </div>
         </section>
