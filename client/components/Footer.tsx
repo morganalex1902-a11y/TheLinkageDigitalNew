@@ -111,7 +111,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <span className="font-teko font-normal text-white uppercase text-[17px] md:text-[20px] lg:text-[22px]">
-            © 2024-25 Crowdyflow Agency
+            © 2024-25 The Linkage Digital
           </span>
 
           {/* Center links */}
