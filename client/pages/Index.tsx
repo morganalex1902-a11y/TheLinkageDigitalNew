@@ -1460,17 +1460,16 @@ export default function Index() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
             {[
               {
-                title: "Arolax Development Tech Agency We Talent Meet Opportunity",
-                excerpt: "We lead by the design philosophy that every deal only visually..",
+                title: "Web Design Trends 2024: Building Websites That Convert",
+                excerpt: "Discover the latest web design trends transforming digital experiences. From AI-powered personalization to mobile-first design, learn what's driving conversions.",
               },
               {
-                title: "Arolax Selected 32+ Best Web Agency And Development Tool",
-                excerpt: "We lead by the design philosophy that every deal only visually..",
+                title: "The Complete Guide to Local SEO for Service Businesses",
+                excerpt: "Master local SEO and dominate your geographic market. We break down Google Business optimization, local citations, and ranking strategies.",
               },
               {
-                title: "Arolax Selected 32+ Best Web Agency And Development Tool",
-                excerpt:
-                  "Welcome to Arolax Agency Theme Sites. This is your first post. Edit or delete it, then start writing!",
+                title: "Branding Essentials: Building a Memorable Digital Identity",
+                excerpt: "Your brand is more than a logo. Learn how strategic branding, consistent messaging, and visual identity create lasting customer connections.",
               },
             ].map((post, i) => (
               <Link
