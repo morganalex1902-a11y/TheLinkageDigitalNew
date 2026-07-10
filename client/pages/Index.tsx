@@ -1512,29 +1512,83 @@ export default function Index() {
       </section>
 
       {/* ── CONTACT CTA ── */}
-      <section className="bg-[#FFE8F5] py-14 md:py-28 lg:py-36 text-center">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          <p className="font-kanit font-semibold text-[#8B0AB4] text-[14px] md:text-[16px] uppercase tracking-[4px] mb-4 md:mb-6">
-            👋&nbsp; Hello !
-          </p>
-          <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.5rem,10vw,12rem)] mb-6 md:mb-8">
-            Let's Talk
-            <br />
-            With Us
-          </h2>
-          <div className="space-y-2">
-            <a
-              href="mailto:sales@thelinkagedigital.com"
-              className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
-            >
-              sales@thelinkagedigital.com
-            </a>
-            <a
-              href="mailto:info@linkagedigital.com"
-              className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
-            >
-              info@linkagedigital.com
-            </a>
+      <section className="bg-[#FFE8F5] py-14 md:py-28 lg:py-36">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* LEFT — Contact Form */}
+            <div className="bg-white/30 backdrop-blur-md rounded-xl p-8 md:p-10 lg:p-12">
+              <h3 className="font-teko font-bold text-[#121212] uppercase text-[24px] md:text-[28px] mb-2">
+                Send us a Message
+              </h3>
+              <p className="font-kanit text-[#555] text-[14px] md:text-[15px] mb-8">
+                We'd love to hear from you. Fill out the form below and we'll get back to you shortly.
+              </p>
+
+              <form className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Tell us about your project"
+                    rows={5}
+                    className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors resize-none"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-[#8B0AB4] text-white font-kanit font-semibold text-[14px] md:text-[15px] uppercase px-6 py-3 md:py-4 rounded-lg hover:bg-[#7a0a94] transition-colors mt-2"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            {/* RIGHT — Contact Info */}
+            <div className="text-center lg:text-left">
+              <p className="font-kanit font-semibold text-[#8B0AB4] text-[14px] md:text-[16px] uppercase tracking-[4px] mb-4 md:mb-6">
+                👋&nbsp; Hello !
+              </p>
+              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2.5rem,10vw,5rem)] mb-6 md:mb-8">
+                Let's Talk
+                <br />
+                With Us
+              </h2>
+              <div className="space-y-3">
+                <a
+                  href="mailto:sales@thelinkagedigital.com"
+                  className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[18px] lg:text-[20px] hover:text-[#8B0AB4] transition-colors"
+                >
+                  sales@thelinkagedigital.com
+                </a>
+                <a
+                  href="mailto:info@linkagedigital.com"
+                  className="block font-kanit font-normal text-[#121212] text-[16px] md:text-[18px] lg:text-[20px] hover:text-[#8B0AB4] transition-colors"
+                >
+                  info@linkagedigital.com
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
