@@ -35,8 +35,7 @@ export default function Footer() {
               className="h-[65px] md:h-[80px] lg:h-[90px] w-auto mb-6"
             />
             <p className="font-poppins font-light text-white text-[14px] md:text-[15px] leading-[1.85] tracking-[0.32px] max-w-[380px]">
-              A modern agency template to showcase your brand, services, and
-              portfolio with a clean, responsive design.
+              A full-service digital agency that builds fascinating user experiences.
             </p>
           </div>
 
@@ -112,7 +111,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <span className="font-teko font-normal text-white uppercase text-[17px] md:text-[20px] lg:text-[22px]">
-            © 2024-25 Crowdyflow Agency
+            © 2024-25 The Linkage Digital
           </span>
 
           {/* Center links */}
