@@ -1331,7 +1331,6 @@ export default function Index() {
                 Questions
               </h2>
               <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[16px] leading-[1.55] max-w-[280px]">
-                Frequently asked question (FAQ) pages to find answars.
               </p>
             </div>
 
