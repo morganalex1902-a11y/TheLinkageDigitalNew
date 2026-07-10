@@ -18,20 +18,20 @@ export default function ChatWidgets() {
   return (
     <>
       {/* WhatsApp Widget Button - Left on mobile, Right on desktop */}
-      <div className="fixed bottom-6 left-6 md:left-auto md:right-6 z-[9999]">
+      <div className="fixed bottom-6 left-6 md:left-auto md:right-6 z-[9999] animate-bounce">
         <a
           href="https://wa.me/15123259923"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+          className="flex items-center justify-center w-24 h-24 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
           title="Chat on WhatsApp"
         >
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2Fc9eb1ef2d46349c996d329a3c104d50e%2F7ce5f36b770744d79a6d3295b1e927df?format=webp&width=800&height=1200"
             alt="WhatsApp"
-            width="28"
-            height="28"
+            width="56"
+            height="56"
             className="object-contain"
           />
         </a>
