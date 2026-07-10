@@ -131,36 +131,52 @@ export default function Contact() {
 
   const FAQ = [
     {
-      q: "What is your typical project timeline?",
-      a: "Project timelines vary based on scope and complexity. Most web design projects take 8-12 weeks, while full-stack applications range from 4-6 months. We provide detailed timelines in our proposal.",
+      q: "How can professional web design and development improve my online visibility?",
+      a: "A well-designed website with proper SEO foundation increases organic search rankings, improves user experience, and builds credibility. The Linkage Digital creates responsive, fast-loading websites optimized for search engines and conversions, helping businesses rank higher for local and national searches.",
     },
     {
-      q: "Do you work with startups and large enterprises?",
-      a: "Yes! We work with everyone from early-stage startups to established enterprises. Our flexible approach means we can scale our team and resources to match your needs.",
+      q: "What's the difference between DIY web design and professional web design services?",
+      a: "DIY platforms lack customization and professional SEO optimization. The Linkage Digital builds custom websites using modern frameworks like React, ensuring superior performance, security, mobile responsiveness, and search engine visibility that DIY tools can't match.",
     },
     {
-      q: "What's included in your support packages?",
-      a: "Our support packages include bug fixes, security updates, performance optimization, content updates, and feature enhancements. We offer plans ranging from basic (emergency support) to comprehensive (24/7 support).",
+      q: "How much does professional web design cost?",
+      a: "Web design costs vary based on complexity. Simple 5-page websites start around $3,000-$5,000, while e-commerce and custom applications range $8,000-$25,000+. We offer transparent pricing with no hidden fees. Contact us for a custom quote tailored to your needs.",
     },
     {
-      q: "Do you offer retainer-based services?",
-      a: "Absolutely. Many clients prefer retainer arrangements for ongoing work. We can structure custom retainer packages based on your monthly needs.",
+      q: "Can you help with branding and logo design for my business?",
+      a: "Yes! The Linkage Digital offers complete branding services including logo design, brand identity development, color palette selection, and typography guidelines. We ensure your brand is cohesive across web and marketing materials, strengthening customer recognition and trust.",
     },
     {
-      q: "Can you help with existing projects or migrations?",
-      a: "Yes, we specialize in audits, improvements, redesigns, and migrations. Whether you need to migrate from an old platform or improve an existing site, we can help.",
+      q: "How does SEO optimization improve my search engine rankings?",
+      a: "Our SEO optimization includes technical site speed improvements, keyword research, on-page optimization, local SEO setup (Google Business Profile), schema markup, and content strategy. Businesses typically see improved rankings within 3-6 months for targeted keywords.",
     },
     {
-      q: "What's your process for handling project changes?",
-      a: "We use an agile approach that accommodates changes. Scope changes are tracked, and we discuss impact on timeline and budget before implementing.",
+      q: "Do you provide digital marketing services beyond web design?",
+      a: "Absolutely. The Linkage Digital offers digital marketing services including PPC advertising, social media management, email marketing, and content strategy. We integrate these with your website to create a comprehensive online presence that drives qualified leads.",
     },
     {
-      q: "Do you provide training on the platforms you build?",
-      a: "Yes, we provide comprehensive training to your team on how to manage and update your new platform. We also create detailed documentation.",
+      q: "Can you create video editing and motion graphics for my business?",
+      a: "Yes, our video editing and motion graphics team creates professional promotional videos, product demos, explainer videos, and social media content. Video content significantly increases engagement and is essential for modern digital marketing strategies.",
     },
     {
-      q: "What are your payment terms?",
-      a: "Typically we work on 50% upfront, 50% on completion. For larger projects, we can structure milestone-based payments. We accept all major payment methods.",
+      q: "How do I know The Linkage Digital is a legitimate, trustworthy digital agency?",
+      a: "We provide verifiable client portfolios, case studies with measurable results, client testimonials, and transparent pricing. We're committed to clear communication, deliver on deadlines, and provide ongoing support. We work with startups to Fortune 500 companies, and we're happy to provide references.",
+    },
+    {
+      q: "What is your web design and development process?",
+      a: "Our process includes discovery/consultation, strategy, wireframing, design, development, testing, and deployment. We use agile methodology to keep you informed at every stage with regular updates and opportunities for feedback. Most projects take 8-12 weeks depending on scope.",
+    },
+    {
+      q: "Do you offer ongoing website maintenance and support?",
+      a: "Yes, we provide flexible support packages including security updates, performance monitoring, backup management, content updates, and feature enhancements. We offer retainer packages starting at $500/month, ensuring your website stays secure, fast, and current.",
+    },
+    {
+      q: "How important is mobile-responsive design for my business website?",
+      a: "Critical. Over 60% of web traffic is mobile, and Google prioritizes mobile-friendly sites in search rankings. All our websites are fully responsive, optimized for phones, tablets, and desktops, ensuring you don't lose potential customers on any device.",
+    },
+    {
+      q: "Can you help with local SEO for my business?",
+      a: "Yes, we specialize in local SEO including Google Business Profile optimization, local keyword targeting, location-specific content, and local link building. This is essential for service-based businesses looking to attract customers in their geographic area.",
     },
   ];
 
