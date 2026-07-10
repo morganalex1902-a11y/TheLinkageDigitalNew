@@ -35,8 +35,7 @@ export default function Footer() {
               className="h-[65px] md:h-[80px] lg:h-[90px] w-auto mb-6"
             />
             <p className="font-poppins font-light text-white text-[14px] md:text-[15px] leading-[1.85] tracking-[0.32px] max-w-[380px]">
-              A modern agency template to showcase your brand, services, and
-              portfolio with a clean, responsive design.
+              A full-service digital agency that builds fascinating user experiences.
             </p>
           </div>
 
