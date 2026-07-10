@@ -1355,7 +1355,7 @@ export default function Index() {
                 },
                 {
                   q: "How long does a typical web design project take?",
-                  a: "Most web design projects take 8-12 weeks, while custom full-stack applications range from 4-6 months. Timeline depends on scope and complexity. We use agile methodology to keep you informed at every stage with regular updates and feedback opportunities.",
+                  a: "Most web design projects take 1 week, while custom full-stack applications range from 4-6 months. Timeline depends on scope and complexity. We use agile methodology to keep you informed at every stage with regular updates and feedback opportunities.",
                 },
                 {
                   q: "What makes The Linkage Digital different from other agencies?",
@@ -1363,11 +1363,11 @@ export default function Index() {
                 },
                 {
                   q: "Do you offer ongoing support and maintenance?",
-                  a: "Absolutely. We provide flexible support packages including security updates, performance monitoring, content updates, and feature enhancements. Our retainer plans start at $500/month, ensuring your website stays secure, fast, and competitive.",
+                  a: "Absolutely. We provide flexible support packages including security updates, performance monitoring, content updates, and feature enhancements. Our retainer plans start at $200/month, ensuring your website stays secure, fast, and competitive.",
                 },
                 {
                   q: "What's your typical project cost range?",
-                  a: "Web design costs vary based on complexity. Simple 5-page websites start around $3,000-$5,000, while e-commerce and custom applications range $8,000-$25,000+. We offer transparent pricing with no hidden fees and custom quotes for your specific needs.",
+                  a: "Web design costs vary based on complexity. Simple 5-page websites start around $300-$500, while e-commerce and custom applications range $8,000-$25,000+. We offer transparent pricing with no hidden fees and custom quotes for your specific needs.",
                 },
               ].map((item, i) => (
                 <div key={i} className="border-t border-[#ECECEC]">
