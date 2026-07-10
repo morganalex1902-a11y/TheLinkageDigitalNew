@@ -17,9 +17,8 @@ export default function ChatWidgets() {
 
   return (
     <>
-      {/* WhatsApp Widget Button */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
-        {/* WhatsApp Button */}
+      {/* WhatsApp Widget Button - Right side */}
+      <div className="fixed bottom-6 right-6 z-40">
         <a
           href="https://wa.me/15123259923"
           target="_blank"
@@ -42,10 +41,17 @@ export default function ChatWidgets() {
             />
           </svg>
         </a>
-
-        {/* Tawk.to is loaded separately via script and will appear automatically */}
-        {/* The Tawk.to widget will be injected by their script */}
       </div>
+
+      {/* Tawk.to Widget - Left side */}
+      {/* The Tawk.to widget will be injected by their script on the left side */}
+      <style>{`
+        /* Reposition Tawk.to iframe to the left side */
+        iframe[src*="tawk.to"] {
+          left: 24px !important;
+          right: auto !important;
+        }
+      `}</style>
     </>
   );
 }
