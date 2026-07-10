@@ -24,16 +24,10 @@ export default function ChatWidgets() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="flex items-center justify-center w-24 h-24 rounded-full transition-all duration-300 hover:scale-110"
+          className="flex items-center justify-center w-24 h-24 rounded-full bg-green-500 transition-all duration-300 hover:scale-110 hover:bg-green-600"
           title="Chat on WhatsApp"
         >
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2Fc9eb1ef2d46349c996d329a3c104d50e%2F7ce5f36b770744d79a6d3295b1e927df?format=webp&width=800&height=1200"
-            alt="WhatsApp"
-            width="56"
-            height="56"
-            className="object-contain"
-          />
+          <MessageCircle size={56} className="text-white" />
         </a>
       </div>
 
