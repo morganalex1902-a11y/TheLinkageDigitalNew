@@ -1041,13 +1041,19 @@ export default function Index() {
               width: "clamp(100px, 22.4vw, 420px)",
               height: "clamp(100px, 22.4vw, 420px)",
               backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2Fdf7e75028bff4b959bd5bdef48ded5a3%2Fd717cc8f23b342e3b1529ecf85bfcc00?format=webp&width=800&height=1200')",
-              backgroundSize: "40%",
+              backgroundSize: "55%",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
           >
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.85) 100%)",
+              }}
+            />
             <span
-              className="font-teko font-bold text-[#8B0AB4] uppercase"
+              className="font-teko font-bold text-[#8B0AB4] uppercase relative z-10"
               style={{ fontSize: "clamp(0.85rem, 2.13vw, 2.5rem)" }}
             >
               Portfolio
