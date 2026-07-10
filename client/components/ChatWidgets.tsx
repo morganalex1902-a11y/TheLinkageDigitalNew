@@ -24,7 +24,7 @@ export default function ChatWidgets() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="flex items-center justify-center w-24 h-24 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
+          className="flex items-center justify-center w-24 h-24 rounded-full transition-all duration-300 hover:scale-110"
           title="Chat on WhatsApp"
         >
           <img
