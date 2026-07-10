@@ -27,7 +27,7 @@ export default function ChatWidgets() {
           className="flex items-center justify-center w-24 h-24 rounded-full bg-green-500 transition-all duration-300 hover:scale-110 hover:bg-green-600"
           title="Chat on WhatsApp"
         >
-          <MessageCircle size={56} className="text-white" />
+          <MessageCircle size={48} className="text-white" />
         </a>
       </div>
 
