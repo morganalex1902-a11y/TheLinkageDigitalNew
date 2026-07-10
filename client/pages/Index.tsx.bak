@@ -1340,35 +1340,35 @@ export default function Index() {
               {[
                 {
                   q: "How can professional web design improve my online visibility?",
-                  a: "A well-designed website with proper SEO foundation increases organic search rankings and builds credibility. The Linkage Digital creates responsive, fast-loading websites optimized for search engines, helping you rank higher for local and national searches.",
+                  a: "Overcomplicate thing heve calling it’s good to know or more info. sometimes people put the frequently asked question section on their contact page but you can create your own page and put it right in your on website navigation menu or website footer so it’s easy to find.",
                 },
                 {
-                  q: "What's included in your digital marketing services?",
-                  a: "We offer PPC advertising, social media management, email marketing, content strategy, and video marketing. These services integrate seamlessly with your website to create a comprehensive online presence that drives qualified leads and converts visitors into customers.",
+                  q: "Reflects your audience’s need?",
+                  a: "Understanding your audience’s needs is fundamental to creating effective content and services. Research your target market and tailor your messaging to address their specific pain points and goals.",
                 },
                 {
-                  q: "How does local SEO help my business?",
-                  a: "Local SEO optimization includes Google Business Profile setup, location-specific keywords, local link building, and location-based content. This is essential for service businesses looking to attract customers in their geographic area and dominate local search results.",
+                  q: "What is a statement of work in project management?",
+                  a: "A statement of work (SOW) is a formal document that defines the scope, timeline, and deliverables of a project. It establishes clear expectations between the client and service provider.",
                 },
                 {
-                  q: "Can you design a custom logo and complete branding package?",
-                  a: "Yes, we specialize in logo design and full brand identity development including color palettes, typography, brand guidelines, and cohesive visual assets. Strong branding builds customer recognition, trust, and differentiates you from competitors.",
+                  q: "When is an FAQ page appropriate?",
+                  a: "An FAQ page is appropriate when you frequently receive the same questions from customers, when your product or service is complex, or when you want to reduce support requests and improve user experience.",
                 },
                 {
-                  q: "How long does a typical web design project take?",
-                  a: "Most web design projects take 8-12 weeks, while custom full-stack applications range from 4-6 months. Timeline depends on scope and complexity. We use agile methodology to keep you informed at every stage with regular updates and feedback opportunities.",
+                  q: "What questions belong on an FAQ page?",
+                  a: "Include questions that your customers actually ask most often. Focus on topics like pricing, process, timelines, deliverables, and any common concerns that arise during your sales or onboarding process.",
                 },
                 {
-                  q: "What makes The Linkage Digital different from other agencies?",
-                  a: "We combine strategic design, technical expertise, and SEO knowledge to deliver results. We focus on user experience, performance, and conversions—not just aesthetics. Our team has proven experience with startups and enterprise clients, backed by verifiable case studies and client testimonials.",
+                  q: "Align with your brand look and feel?",
+                  a: "Your FAQ page should match your overall brand identity including typography, color palette, and tone of voice. Consistency across all touchpoints builds trust and recognition with your audience.",
                 },
                 {
-                  q: "Do you offer ongoing support and maintenance?",
-                  a: "Absolutely. We provide flexible support packages including security updates, performance monitoring, content updates, and feature enhancements. Our retainer plans start at $500/month, ensuring your website stays secure, fast, and competitive.",
+                  q: "How to become an agile project manager?",
+                  a: "Start by learning agile principles and frameworks like Scrum and Kanban. Gain practical experience on agile teams, pursue certifications like PMI-ACP or CSM, and develop strong communication and collaboration skills.",
                 },
                 {
-                  q: "What's your typical project cost range?",
-                  a: "Web design costs vary based on complexity. Simple 5-page websites start around $3,000-$5,000, while e-commerce and custom applications range $8,000-$25,000+. We offer transparent pricing with no hidden fees and custom quotes for your specific needs.",
+                  q: "How to manage agile teams?",
+                  a: "Effective agile team management involves facilitating daily standups, removing blockers, fostering collaboration, and continuously improving processes through retrospectives. Focus on empowering the team rather than micromanaging.",
                 },
               ].map((item, i) => (
                 <div key={i} className="border-t border-[#ECECEC]">
