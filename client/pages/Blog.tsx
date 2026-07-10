@@ -104,12 +104,12 @@ export default function Blog() {
                   development and digital growth.
                 </p>
 
-                <AnimatedButton
+                <OriginButton
                   onClick={() =>
                     articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                   }
                   fillColor="#8B0AB4"
-                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-[#8B0AB4] hover:border-[#8B0AB4] w-fit"
+                  className="inline-flex items-center gap-2 font-kanit font-semibold text-[13px] md:text-[14px] uppercase text-[#121212] border-b-2 border-[#121212] pb-1 hover:text-white hover:border-white w-fit"
                 >
                   Read Our Blog
                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -120,7 +120,7 @@ export default function Blog() {
                       fill="currentColor"
                     />
                   </svg>
-                </AnimatedButton>
+                </OriginButton>
               </div>
 
               {/* RIGHT — overlapping article preview cards */}
@@ -205,28 +205,14 @@ export default function Blog() {
 
             {/* Bottom row — scroll indicator + view all link */}
             <div className="flex items-center justify-between mt-8 md:mt-10">
-              <button
+              <OriginButton
                 onClick={() =>
                   articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
                 aria-label="Scroll to articles"
-                className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-[#8B0AB4] hover:text-[#8B0AB4] transition-colors shrink-0 overflow-hidden group"
+                fillColor="#8B0AB4"
+                className="relative w-11 h-11 rounded-full border border-[#ECECEC] flex items-center justify-center text-[#121212] hover:border-white hover:text-white transition-colors shrink-0 overflow-hidden group"
               >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute rounded-full"
-                  style={{
-                    width: 0,
-                    height: 0,
-                    left: "50%",
-                    top: "50%",
-                    backgroundColor: "#8B0AB4",
-                    opacity: 0.1,
-                    transform: "translate(-50%, -50%) scale(0)",
-                    transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-                    zIndex: 0,
-                  }}
-                />
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="relative z-10">
                   <path
                     strokeLinecap="round"
@@ -235,14 +221,14 @@ export default function Blog() {
                     d="M19 14l-7 7m0 0l-7-7m7 7V3"
                   />
                 </svg>
-              </button>
+              </OriginButton>
 
-              <AnimatedButton
+              <OriginButton
                 onClick={() =>
                   articlesGridRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
                 fillColor="#8B0AB4"
-                className="inline-flex items-center gap-2 font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#121212] hover:text-[#8B0AB4]"
+                className="inline-flex items-center gap-2 font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#121212] hover:text-white"
               >
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                   <path
@@ -253,7 +239,7 @@ export default function Blog() {
                   />
                 </svg>
                 View All Articles
-              </AnimatedButton>
+              </OriginButton>
             </div>
           </div>
         </section>
