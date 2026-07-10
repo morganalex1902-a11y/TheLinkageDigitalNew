@@ -16,6 +16,7 @@ import Testimonials from "./pages/Testimonials";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ChatWidgets from "./components/ChatWidgets";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <ChatWidgets />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
