@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
@@ -14,6 +15,22 @@ export default function Portfolio() {
   const portfolioRef = useInView();
   const projectsGridRef = useInView();
   const statsGridRef = useInView();
+
+  useSEO({
+    title: "Portfolio - Web Design & Development Projects USA | The Linkage Digital",
+    description: "Explore our portfolio of successful web design, app development, digital marketing, and branding projects. See how we've helped businesses across the USA grow their digital presence.",
+    keywords: "portfolio, web design projects, app development examples, digital marketing case studies, website design showcase, branding work",
+    ogTitle: "Portfolio - Web Design & Development Projects",
+    ogDescription: "View our award-winning portfolio featuring web design, app development, and digital marketing projects for businesses nationwide.",
+    canonicalUrl: "https://thelinkagedigital.com/portfolio",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Portfolio",
+      "description": "Portfolio of web design, app development, and digital marketing projects",
+      "url": "https://thelinkagedigital.com/portfolio",
+    }
+  });
 
   const MAIN_CATEGORIES = ["Websites", "Digital Marketing", "Graphic Design", "Mobile Apps"];
   const WEB_NICHES = ["All", "Auto Detailing", "Landscaping", "Junk Removal", "Construction", "Pressure Washing", "Wellness & Therapy"];

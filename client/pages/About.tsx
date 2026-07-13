@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
@@ -13,6 +14,22 @@ export default function About() {
   const teamRef = useInView();
   const valuesGridRef = useInView();
   const teamGridRef = useInView();
+
+  useSEO({
+    title: "About The Linkage Digital - Award-Winning Digital Agency USA",
+    description: "Learn about The Linkage Digital, a full-service digital agency based in Texas specializing in web design, app development, and digital marketing. Meet our expert team dedicated to your success.",
+    keywords: "about us, digital agency Texas, web design company, app development team, digital marketing agency USA, creative team",
+    ogTitle: "About The Linkage Digital",
+    ogDescription: "Discover The Linkage Digital's story, values, and expert team dedicated to delivering exceptional digital solutions.",
+    canonicalUrl: "https://thelinkagedigital.com/about",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About The Linkage Digital",
+      "description": "About The Linkage Digital - full-service digital agency",
+      "url": "https://thelinkagedigital.com/about",
+    }
+  });
 
   const VALUES = [
     {

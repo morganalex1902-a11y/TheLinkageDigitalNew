@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
@@ -7,6 +8,22 @@ export default function Testimonials() {
   const navigate = useNavigate();
   const testimonialsRef = useInView();
   const ctaRef = useInView();
+
+  useSEO({
+    title: "Client Testimonials - Reviews from USA Businesses | The Linkage Digital",
+    description: "Read what our clients say about our web design, app development, and digital marketing services. 5-star reviews from successful businesses across the USA.",
+    keywords: "client testimonials, reviews, web design reviews, app development reviews, digital marketing feedback, client success stories",
+    ogTitle: "Client Testimonials - The Linkage Digital",
+    ogDescription: "See what satisfied clients from across the USA say about our digital services and solutions.",
+    canonicalUrl: "https://thelinkagedigital.com/testimonials",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Testimonials",
+      "description": "Client testimonials and reviews for The Linkage Digital services",
+      "url": "https://thelinkagedigital.com/testimonials",
+    }
+  });
 
   const TESTIMONIALS = [
     {

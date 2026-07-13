@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
@@ -11,6 +12,22 @@ export default function Blog() {
 
   const blogRef = useInView();
   const articlesGridRef = useInView();
+
+  useSEO({
+    title: "Blog - Web Design, Development & Digital Marketing Tips | The Linkage Digital",
+    description: "Read our blog for latest insights on web design, app development, SEO, digital marketing, and branding strategies to grow your business online.",
+    keywords: "web design blog, development tips, digital marketing insights, SEO guide, branding advice, design trends, technology news",
+    ogTitle: "Blog - Digital Marketing & Web Design Insights",
+    ogDescription: "Discover expert tips and insights on web design, development, and digital marketing to help your business succeed online.",
+    canonicalUrl: "https://thelinkagedigital.com/blog",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "The Linkage Digital Blog",
+      "description": "Blog featuring insights on web design, development, and digital marketing",
+      "url": "https://thelinkagedigital.com/blog",
+    }
+  });
 
   const CATEGORIES = ["All", "Design", "Development", "Marketing"];
 

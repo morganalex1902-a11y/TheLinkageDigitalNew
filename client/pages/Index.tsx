@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import type React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
+import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
@@ -117,7 +118,7 @@ function MarqueeScroll() {
           <img
             key={i}
             src={src}
-            alt=""
+            alt="Client brand logo"
             className="h-[50px] md:h-[60px] lg:h-[70px] w-auto flex-shrink-0 object-contain mx-8 md:mx-12 lg:mx-16"
           />
         ))}
@@ -513,6 +514,23 @@ export default function Index() {
   const faqRef = useInView();
   const blogRef = useInView();
 
+  useSEO({
+    title: "The Linkage Digital — Web Design, App Development & Digital Marketing USA",
+    description: "Professional web design, app development, digital marketing, and video editing services in Texas and across the USA. Full-service digital agency specializing in branding, SEO optimization, and creative solutions.",
+    keywords: "web design USA, app development, digital marketing services USA, web development Texas, branding agency, SEO optimization, video editing, digital agency",
+    ogTitle: "The Linkage Digital — Web Design & App Development Services",
+    ogDescription: "Full-service digital agency in Texas. Expert web design, app development, digital marketing, and video editing for businesses nationwide.",
+    ogImage: "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=1200",
+    canonicalUrl: "https://thelinkagedigital.com/",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "The Linkage Digital - Web Design, App Development & Digital Marketing",
+      "description": "Professional web design, app development, digital marketing, and video editing services across the USA",
+      "url": "https://thelinkagedigital.com/",
+      "image": "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=1200",
+    }
+  });
 
   return (
     <div className="min-h-screen bg-white font-kanit">

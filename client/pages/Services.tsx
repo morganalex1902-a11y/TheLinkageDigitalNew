@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
@@ -13,6 +14,26 @@ export default function Services() {
   const processRef = useInView();
   const servicesGridRef = useInView();
   const processGridRef = useInView();
+
+  useSEO({
+    title: "Professional Digital Services - Web Design, App Development & Marketing USA",
+    description: "Comprehensive digital services including web design, app development, mobile apps, e-commerce solutions, branding, and digital marketing across the USA and Texas.",
+    keywords: "web design services USA, app development company, mobile app development, e-commerce solutions, brand strategy, digital marketing services USA, web development Texas",
+    ogTitle: "Digital Services - Web Design, Development & Marketing",
+    ogDescription: "Expert digital services including web design, app development, e-commerce, branding, and digital marketing for businesses across the USA.",
+    canonicalUrl: "https://thelinkagedigital.com/services",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Digital Services",
+      "description": "Comprehensive digital services including web design, app development, and digital marketing",
+      "url": "https://thelinkagedigital.com/services",
+      "isPartOf": {
+        "@type": "Website",
+        "name": "The Linkage Digital"
+      }
+    }
+  });
 
   const SERVICES = [
     {
@@ -147,7 +168,7 @@ export default function Services() {
           <div className="absolute bottom-0 left-0 w-[85%] h-[85%] rounded-full overflow-hidden z-10 shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
-              alt="Our team collaborating on a project"
+              alt="Diverse team collaborating on digital design and development projects"
               className="w-full h-full object-cover grayscale"
             />
           </div>
