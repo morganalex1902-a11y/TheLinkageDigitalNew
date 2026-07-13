@@ -1,0 +1,96 @@
+export const siteUrl = "https://thelinkagedigital.com";
+
+export const services = [
+  {
+    slug: "web-design-development",
+    title: "Web Design & Development",
+    description: "Responsive, conversion-focused websites that give your business a credible digital foundation.",
+    keywords: "web design services, web development company, responsive website design, UX design",
+    features: ["Responsive website design", "User experience strategy", "Custom development", "Performance optimization"],
+  },
+  {
+    slug: "branding-logo-design",
+    title: "Branding & Logo Design",
+    description: "Distinctive visual identities and brand systems that make your business recognizable and consistent.",
+    keywords: "branding agency, logo design services, visual identity design, brand strategy",
+    features: ["Logo design", "Brand positioning", "Visual identity", "Brand guidelines"],
+  },
+  {
+    slug: "digital-marketing",
+    title: "Digital Marketing",
+    description: "Data-led digital marketing programs designed to connect your brand with the right audience.",
+    keywords: "digital marketing agency, content marketing, paid advertising, social media marketing",
+    features: ["Content strategy", "Paid media campaigns", "Social media marketing", "Conversion reporting"],
+  },
+  {
+    slug: "seo-optimization",
+    title: "SEO Optimization",
+    description: "Practical search engine optimization that improves technical health, content relevance, and discoverability.",
+    keywords: "SEO services, search engine optimization, local SEO, technical SEO",
+    features: ["Technical SEO audits", "Keyword research", "On-page optimization", "Local SEO strategy"],
+  },
+  {
+    slug: "video-editing-motion",
+    title: "Video Editing & Motion",
+    description: "Polished video editing and motion design that helps your brand communicate clearly across digital channels.",
+    keywords: "video editing services, motion graphics, animated video production, brand video",
+    features: ["Video editing", "Motion graphics", "Social video assets", "Campaign creative"],
+  },
+] as const;
+
+export const articles = [
+  {
+    slug: "web-design-psychology-color-typography-conversions",
+    title: "Web Design Psychology: How Color and Typography Drive Conversions",
+    category: "Design",
+    date: "2024-12-18",
+    displayDate: "December 18, 2024",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop",
+    excerpt: "Discover how strategic color choices and typography selection can influence user behavior and increase website conversions.",
+  },
+  {
+    slug: "building-your-first-business-website",
+    title: "From Zero to Online: Building Your First Website",
+    category: "Development",
+    date: "2024-12-15",
+    displayDate: "December 15, 2024",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=800&fit=crop",
+    excerpt: "A practical guide to launching a business website, from planning and design through deployment and optimization.",
+  },
+  {
+    slug: "complete-guide-seo-rankings-that-stick",
+    title: "The Complete Guide to SEO: Rankings That Stick",
+    category: "Marketing",
+    date: "2024-12-12",
+    displayDate: "December 12, 2024",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop",
+    excerpt: "Learn the foundations of technical optimization, content strategy, and authority building for sustainable search visibility.",
+  },
+  {
+    slug: "creating-a-logo-that-stands-out",
+    title: "Branding 101: Creating a Logo That Stands Out",
+    category: "Design",
+    date: "2024-12-09",
+    displayDate: "December 9, 2024",
+    image: "https://images.unsplash.com/photo-1460925895917-adf4e05526e5?w=1200&h=800&fit=crop",
+    excerpt: "Learn the principles of an effective logo and visual identity that customers remember and trust.",
+  },
+  {
+    slug: "digital-marketing-strategies-that-deliver-roi",
+    title: "Digital Marketing Strategies That Deliver Real ROI",
+    category: "Marketing",
+    date: "2024-12-06",
+    displayDate: "December 6, 2024",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781?w=1200&h=800&fit=crop",
+    excerpt: "Explore measurable marketing tactics across email, social media, and paid advertising.",
+  },
+  {
+    slug: "video-marketing-trends-and-tools",
+    title: "Video Marketing: Trends and Tools for Maximum Impact",
+    category: "Development",
+    date: "2024-12-03",
+    displayDate: "December 3, 2024",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
+    excerpt: "Use video content, editing techniques, and channel strategy to create engagement that supports your goals.",
+  },
+] as const;

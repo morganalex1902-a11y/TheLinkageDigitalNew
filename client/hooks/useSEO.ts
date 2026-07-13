@@ -8,66 +8,38 @@ interface SEOConfig {
   ogDescription?: string;
   ogImage?: string;
   canonicalUrl?: string;
-  schema?: Record<string, unknown>;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 export function useSEO(config: SEOConfig) {
   useEffect(() => {
-    // Update title
     document.title = config.title;
 
-    // Update meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement("meta");
-      metaDescription.setAttribute("name", "description");
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute("content", config.description);
-
-    // Update meta keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement("meta");
-      metaKeywords.setAttribute("name", "keywords");
-      document.head.appendChild(metaKeywords);
-    }
-    metaKeywords.setAttribute("content", config.keywords);
-
-    // Update Open Graph tags
-    const updateOGTag = (property: string, content: string) => {
-      let tag = document.querySelector(`meta[property="${property}"]`);
+    const updateMeta = (selector: string, attribute: "name" | "property", value: string, content: string) => {
+      let tag = document.querySelector<HTMLMetaElement>(selector);
       if (!tag) {
         tag = document.createElement("meta");
-        tag.setAttribute("property", property);
+        tag.setAttribute(attribute, value);
         document.head.appendChild(tag);
       }
       tag.setAttribute("content", content);
     };
 
-    updateOGTag("og:title", config.ogTitle || config.title);
-    updateOGTag("og:description", config.ogDescription || config.description);
+    updateMeta('meta[name="description"]', "name", "description", config.description);
+    updateMeta('meta[name="keywords"]', "name", "keywords", config.keywords);
+    updateMeta('meta[property="og:title"]', "property", "og:title", config.ogTitle || config.title);
+    updateMeta('meta[property="og:description"]', "property", "og:description", config.ogDescription || config.description);
+    updateMeta('meta[property="og:url"]', "property", "og:url", config.canonicalUrl || window.location.href);
+    updateMeta('meta[name="twitter:title"]', "name", "twitter:title", config.ogTitle || config.title);
+    updateMeta('meta[name="twitter:description"]', "name", "twitter:description", config.ogDescription || config.description);
+
     if (config.ogImage) {
-      updateOGTag("og:image", config.ogImage);
+      updateMeta('meta[property="og:image"]', "property", "og:image", config.ogImage);
+      updateMeta('meta[name="twitter:image"]', "name", "twitter:image", config.ogImage);
     }
 
-    // Update Twitter tags
-    const updateTwitterTag = (name: string, content: string) => {
-      let tag = document.querySelector(`meta[name="${name}"]`);
-      if (!tag) {
-        tag = document.createElement("meta");
-        tag.setAttribute("name", name);
-        document.head.appendChild(tag);
-      }
-      tag.setAttribute("content", content);
-    };
-
-    updateTwitterTag("twitter:title", config.ogTitle || config.title);
-    updateTwitterTag("twitter:description", config.ogDescription || config.description);
-
-    // Update canonical URL
     if (config.canonicalUrl) {
-      let canonical = document.querySelector('link[rel="canonical"]');
+      let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
       if (!canonical) {
         canonical = document.createElement("link");
         canonical.setAttribute("rel", "canonical");
@@ -76,15 +48,13 @@ export function useSEO(config: SEOConfig) {
       canonical.setAttribute("href", config.canonicalUrl);
     }
 
-    // Add structured data (JSON-LD)
-    if (config.schema) {
-      let schemaScript = document.querySelector('script[type="application/ld+json"]');
-      if (!schemaScript) {
-        schemaScript = document.createElement("script");
-        schemaScript.setAttribute("type", "application/ld+json");
-        document.head.appendChild(schemaScript);
-      }
-      schemaScript.textContent = JSON.stringify(config.schema);
+    let schemaScript = document.querySelector<HTMLScriptElement>('script[data-route-schema="true"]');
+    if (!schemaScript) {
+      schemaScript = document.createElement("script");
+      schemaScript.type = "application/ld+json";
+      schemaScript.dataset.routeSchema = "true";
+      document.head.appendChild(schemaScript);
     }
+    schemaScript.textContent = JSON.stringify(config.schema || {});
   }, [config]);
 }
