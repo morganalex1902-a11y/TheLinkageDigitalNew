@@ -76,9 +76,7 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
 }
 
 export default function SiteHeader() {
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   useEffect(() => {
@@ -100,12 +98,8 @@ export default function SiteHeader() {
     { label: "Contact", path: "/contact" },
   ];
 
-  const handleNavClick = (path: string) => {
-    navigate(path);
+  const handleNavClick = () => {
     setMobileMenuOpen(false);
-    if (path === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
   };
 
   const services = [
@@ -122,85 +116,71 @@ export default function SiteHeader() {
         <Link to="/">
           <img
             src={LOGO}
-            alt="The Linkage Digital"
+            alt="The Linkage Digital - Web Design and Digital Services"
             className="h-[48px] sm:h-[56px] md:h-[68px] lg:h-[78px] w-auto flex-shrink-0"
           />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <OriginButton
-            onClick={() => {
-              navigate("/");
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            fillColor="#8B0AB4"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main navigation">
+          <Link
+            to="/"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] leading-none transition-colors"
           >
             Home
-          </OriginButton>
-          <OriginButton
-            onClick={() => navigate("/about")}
-            fillColor="#8B0AB4"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+          </Link>
+          <Link
+            to="/about"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] leading-none transition-colors"
           >
             About
-          </OriginButton>
+          </Link>
           <div className="relative group">
-            <OriginButton
-              onClick={() => navigate("/services")}
-              fillColor="#8B0AB4"
-              className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+            <Link
+              to="/services"
+              className="flex items-center gap-1 font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] leading-none transition-colors"
             >
               Services
               <ChevronDown />
-            </OriginButton>
+            </Link>
 
             {/* Desktop dropdown */}
             <div className="absolute left-0 mt-0 w-56 bg-white border border-[#ECECEC] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out pt-2">
-              {services.map((service, index) => (
-                <OriginButton
+              {services.map((service) => (
+                <Link
                   key={service.label}
-                  onClick={() => {
-                    navigate(service.path);
-                    setServicesDropdownOpen(false);
-                  }}
-                  fillColor="#8B0AB4"
-                  className="w-full text-left px-5 py-3 font-kanit text-[14px] text-[#121212] hover:text-white first:rounded-t-lg last:rounded-b-lg"
+                  to={service.path}
+                  className="block w-full text-left px-5 py-3 font-kanit text-[14px] text-[#121212] hover:text-white hover:bg-[#8B0AB4] first:rounded-t-lg last:rounded-b-lg transition-colors"
                 >
                   {service.label}
-                </OriginButton>
+                </Link>
               ))}
             </div>
           </div>
-          <OriginButton
-            onClick={() => navigate("/portfolio")}
-            fillColor="#8B0AB4"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+          <Link
+            to="/portfolio"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] leading-none transition-colors"
           >
             Portfolio
-          </OriginButton>
-          <OriginButton
-            onClick={() => navigate("/blog")}
-            fillColor="#8B0AB4"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+          </Link>
+          <Link
+            to="/blog"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] leading-none transition-colors"
           >
             Blog
-          </OriginButton>
-          <OriginButton
-            onClick={() => navigate("/testimonials")}
-            fillColor="#8B0AB4"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+          </Link>
+          <Link
+            to="/testimonials"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] leading-none transition-colors"
           >
             Testimonials
-          </OriginButton>
-          <OriginButton
-            onClick={() => navigate("/contact")}
-            fillColor="#8B0AB4"
-            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-white leading-none"
+          </Link>
+          <Link
+            to="/contact"
+            className="font-teko text-[20px] lg:text-[22px] uppercase text-[#121212] hover:text-[#8B0AB4] leading-none transition-colors"
           >
             Contact
-          </OriginButton>
+          </Link>
         </nav>
 
         {/* Mobile menu button */}
@@ -214,13 +194,12 @@ export default function SiteHeader() {
 
         {/* Contact Us button - Hidden on mobile when menu is open */}
         <div className={`hidden md:block transition-opacity duration-300 ${mobileMenuOpen ? "md:block" : ""}`}>
-          <OriginButton
-            onClick={() => navigate("/contact")}
-            fillColor="#8B0AB4"
-            className="bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:text-white"
+          <Link
+            to="/contact"
+            className="inline-block bg-[#262629] text-white font-kanit font-medium text-[13px] md:text-[15px] lg:text-[17px] uppercase px-5 md:px-7 lg:px-9 py-3 lg:py-4 whitespace-nowrap tracking-wide hover:bg-[#8B0AB4] transition-colors"
           >
             Contact Us
-          </OriginButton>
+          </Link>
         </div>
       </div>
 
@@ -231,35 +210,34 @@ export default function SiteHeader() {
         }`}
         style={{ background: "white" }}
       >
-        <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]">
+        <nav className="px-4 py-4 space-y-2 border-t border-[#ECECEC]" aria-label="Mobile navigation">
           {navItems.map((item) => {
             if (item.label === "Services") {
               return (
                 <div key={item.path}>
-                  <OriginButton
-                    onClick={() => {
-                      handleNavClick("/services");
-                      setMobileServicesOpen(false);
-                    }}
-                    fillColor="#8B0AB4"
-                    className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white flex items-center justify-between"
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-[#8B0AB4] flex items-center justify-between transition-colors"
                   >
                     {item.label}
                     <span className={`transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`}>
                       ▼
                     </span>
-                  </OriginButton>
+                  </button>
                   {mobileServicesOpen && (
                     <div className="pl-4 space-y-1 bg-[#FFE8F5]/30 rounded-lg mt-1 mb-2">
-                      {services.map((service, index) => (
-                        <OriginButton
+                      {services.map((service) => (
+                        <Link
                           key={service.label}
-                          onClick={() => handleNavClick(service.path)}
-                          fillColor="#8B0AB4"
-                          className="w-full text-left px-4 py-2 font-kanit text-[13px] text-[#555] hover:text-white rounded-lg"
+                          to={service.path}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setMobileServicesOpen(false);
+                          }}
+                          className="block w-full text-left px-4 py-2 font-kanit text-[13px] text-[#555] hover:text-[#8B0AB4] rounded-lg transition-colors"
                         >
                           {service.label}
-                        </OriginButton>
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -267,23 +245,23 @@ export default function SiteHeader() {
               );
             }
             return (
-              <OriginButton
+              <Link
                 key={item.path}
-                onClick={() => handleNavClick(item.path)}
-                fillColor="#8B0AB4"
-                className="w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-white justify-start"
+                to={item.path}
+                onClick={handleNavClick}
+                className="block w-full text-left px-4 py-3 rounded-lg font-teko text-[16px] uppercase text-[#121212] hover:text-[#8B0AB4] transition-colors"
               >
                 {item.label}
-              </OriginButton>
+              </Link>
             );
           })}
-          <OriginButton
-            onClick={() => handleNavClick("/contact")}
-            fillColor="#8B0AB4"
-            className="w-full mt-4 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase px-4 py-3 rounded-lg tracking-wide hover:text-white"
+          <Link
+            to="/contact"
+            onClick={handleNavClick}
+            className="block w-full mt-4 bg-[#262629] text-white font-kanit font-medium text-[13px] uppercase px-4 py-3 rounded-lg tracking-wide hover:bg-[#8B0AB4] text-center transition-colors"
           >
             Contact Us
-          </OriginButton>
+          </Link>
         </nav>
       </div>
     </header>

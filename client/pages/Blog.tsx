@@ -20,13 +20,23 @@ export default function Blog() {
     ogTitle: "Blog - Digital Marketing & Web Design Insights",
     ogDescription: "Discover expert tips and insights on web design, development, and digital marketing to help your business succeed online.",
     canonicalUrl: "https://thelinkagedigital.com/blog",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "The Linkage Digital Blog",
-      "description": "Blog featuring insights on web design, development, and digital marketing",
-      "url": "https://thelinkagedigital.com/blog",
-    }
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "The Linkage Digital Blog",
+        "description": "Blog featuring insights on web design, development, and digital marketing",
+        "url": "https://thelinkagedigital.com/blog",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thelinkagedigital.com" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://thelinkagedigital.com/blog" }
+        ]
+      }
+    ]
   });
 
   const CATEGORIES = ["All", "Design", "Development", "Marketing"];

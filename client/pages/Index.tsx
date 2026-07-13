@@ -177,7 +177,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
             <div key={i} className="relative flex-shrink-0 overflow-hidden w-full h-[clamp(150px,45vw,400px)]">
               {typeof item === "string" ? (
                 <>
-                  <img src={item} alt="" className="w-full h-full object-cover" />
+                  <img src={item} alt="Portfolio project showcase" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/30" />
                 </>
               ) : (
@@ -522,14 +522,42 @@ export default function Index() {
     ogDescription: "Full-service digital agency in Texas. Expert web design, app development, digital marketing, and video editing for businesses nationwide.",
     ogImage: "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=1200",
     canonicalUrl: "https://thelinkagedigital.com/",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "The Linkage Digital - Web Design, App Development & Digital Marketing",
-      "description": "Professional web design, app development, digital marketing, and video editing services across the USA",
-      "url": "https://thelinkagedigital.com/",
-      "image": "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=1200",
-    }
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "The Linkage Digital",
+        "url": "https://thelinkagedigital.com",
+        "logo": "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=500",
+        "description": "Full-service digital agency specializing in web design, app development, digital marketing, and video editing",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "5900 Balcones Dr Ste 10429",
+          "addressLocality": "Austin",
+          "addressRegion": "TX",
+          "postalCode": "78731",
+          "addressCountry": "US"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Customer Service",
+          "telephone": "+15122003815",
+          "email": "sales@thelinkagedigital.com"
+        },
+        "sameAs": [
+          "https://www.facebook.com/thelinkagedigital/",
+          "https://www.instagram.com/thelinkagedigital/"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "The Linkage Digital - Web Design, App Development & Digital Marketing",
+        "description": "Professional web design, app development, digital marketing, and video editing services across the USA",
+        "url": "https://thelinkagedigital.com/",
+        "image": "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=1200",
+      }
+    ]
   });
 
   return (
@@ -666,7 +694,7 @@ export default function Index() {
         {/* Bottom-left blob decoration */}
         <img
           src={INTRO_SHAPE}
-          alt=""
+          alt="Decorative shape element"
           className="hidden lg:block absolute bottom-0 left-0 w-[410px] pointer-events-none select-none"
         />
       </main>
@@ -703,7 +731,7 @@ export default function Index() {
             {/* Decorative react-shape (top-right) */}
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/1804a4d3e15f8c2216251a890d0be577b72d7c89?width=284"
-              alt=""
+              alt="Decorative accent element"
               className="hidden lg:block w-[130px] xl:w-[142px] flex-shrink-0 mt-6"
             />
           </div>
@@ -769,7 +797,7 @@ export default function Index() {
               <div className="relative lg:absolute lg:right-0 lg:-top-10 bg-[#F9F9F9] p-6 md:p-8 lg:p-10 lg:w-[65%] z-10">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/29d2818d5b277ff727f65d90516ef514b52db1c9?width=54"
-                  alt=""
+                  alt="Process icon"
                   className="w-7 h-6 mb-4"
                 />
                 <p className="font-kanit font-normal text-[#555] text-[15px] md:text-[18px] leading-[1.5] mb-4">
@@ -802,7 +830,7 @@ export default function Index() {
           <div className="absolute top-0 left-0 w-16 md:w-20 h-16 md:h-20 bg-[#8B0AB4]" />
           <img
             src={BRAND_CORNER}
-            alt=""
+            alt="Decorative brand corner background"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
@@ -820,7 +848,7 @@ export default function Index() {
             {/* 3D character peeking above the heading */}
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/a03b2a33c768d1dfef5dfb6f28f1b06f4587f107?width=186"
-              alt=""
+              alt="Decorative star icon"
               className="w-[70px] md:w-[93px] h-auto -mb-3 md:-mb-4 relative z-10"
             />
             {/* Heading */}
@@ -1078,7 +1106,7 @@ export default function Index() {
           <div className="text-center mb-14 md:mb-20">
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/a03b2a33c768d1dfef5dfb6f28f1b06f4587f107?width=186"
-              alt=""
+              alt="Decorative star accent"
               className="w-[60px] md:w-[80px] h-auto mx-auto -mb-2 relative z-10"
             />
             <h2 className="font-teko font-bold uppercase leading-[0.92] text-[clamp(2rem,5.5vw,5rem)] text-[#121212]">

@@ -22,17 +22,27 @@ export default function Services() {
     ogTitle: "Digital Services - Web Design, Development & Marketing",
     ogDescription: "Expert digital services including web design, app development, e-commerce, branding, and digital marketing for businesses across the USA.",
     canonicalUrl: "https://thelinkagedigital.com/services",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Digital Services",
-      "description": "Comprehensive digital services including web design, app development, and digital marketing",
-      "url": "https://thelinkagedigital.com/services",
-      "isPartOf": {
-        "@type": "Website",
-        "name": "The Linkage Digital"
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Digital Services",
+        "description": "Comprehensive digital services including web design, app development, and digital marketing",
+        "url": "https://thelinkagedigital.com/services",
+        "isPartOf": {
+          "@type": "Website",
+          "name": "The Linkage Digital"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thelinkagedigital.com" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://thelinkagedigital.com/services" }
+        ]
       }
-    }
+    ]
   });
 
   const SERVICES = [

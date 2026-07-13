@@ -23,13 +23,23 @@ export default function Portfolio() {
     ogTitle: "Portfolio - Web Design & Development Projects",
     ogDescription: "View our award-winning portfolio featuring web design, app development, and digital marketing projects for businesses nationwide.",
     canonicalUrl: "https://thelinkagedigital.com/portfolio",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Portfolio",
-      "description": "Portfolio of web design, app development, and digital marketing projects",
-      "url": "https://thelinkagedigital.com/portfolio",
-    }
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Portfolio",
+        "description": "Portfolio of web design, app development, and digital marketing projects",
+        "url": "https://thelinkagedigital.com/portfolio",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thelinkagedigital.com" },
+          { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://thelinkagedigital.com/portfolio" }
+        ]
+      }
+    ]
   });
 
   const MAIN_CATEGORIES = ["Websites", "Digital Marketing", "Graphic Design", "Mobile Apps"];
