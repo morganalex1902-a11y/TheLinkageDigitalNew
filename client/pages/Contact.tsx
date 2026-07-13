@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
@@ -26,6 +27,22 @@ export default function Contact() {
   const processGridRef = useInView();
   const testimonialsGridRef = useInView();
   const faqListRef = useInView();
+
+  useSEO({
+    title: "Contact The Linkage Digital - Web Design & Digital Services USA",
+    description: "Get in touch with The Linkage Digital for web design, app development, and digital marketing services. Located in Texas, serving businesses across the USA. Call +15122003815 or send us an inquiry.",
+    keywords: "contact digital agency, web design company contact, app development services contact, digital marketing agency, get in touch",
+    ogTitle: "Contact The Linkage Digital",
+    ogDescription: "Reach out to The Linkage Digital for your digital project. Expert web design, app development, and marketing services.",
+    canonicalUrl: "https://thelinkagedigital.com/contact",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact The Linkage Digital",
+      "description": "Contact page for The Linkage Digital digital agency",
+      "url": "https://thelinkagedigital.com/contact",
+    }
+  });
 
   const SERVICES_CHECKBOX = [
     "Web Design",

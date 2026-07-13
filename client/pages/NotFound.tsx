@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useSEO } from "../hooks/useSEO";
 
 const NotFound = () => {
   const location = useLocation();
@@ -10,6 +11,13 @@ const NotFound = () => {
       location.pathname,
     );
   }, [location.pathname]);
+
+  useSEO({
+    title: "Page Not Found - The Linkage Digital",
+    description: "The page you're looking for doesn't exist. Return to The Linkage Digital home page to explore our web design and digital services.",
+    keywords: "404, page not found",
+    canonicalUrl: "https://thelinkagedigital.com/404",
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
