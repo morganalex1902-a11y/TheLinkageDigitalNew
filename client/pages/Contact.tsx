@@ -35,13 +35,40 @@ export default function Contact() {
     ogTitle: "Contact The Linkage Digital",
     ogDescription: "Reach out to The Linkage Digital for your digital project. Expert web design, app development, and marketing services.",
     canonicalUrl: "https://thelinkagedigital.com/contact",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "Contact The Linkage Digital",
-      "description": "Contact page for The Linkage Digital digital agency",
-      "url": "https://thelinkagedigital.com/contact",
-    }
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact The Linkage Digital",
+        "description": "Contact page for The Linkage Digital digital agency",
+        "url": "https://thelinkagedigital.com/contact",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "The Linkage Digital",
+        "image": "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=500",
+        "description": "Full-service digital agency",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "5900 Balcones Dr Ste 10429",
+          "addressLocality": "Austin",
+          "addressRegion": "TX",
+          "postalCode": "78731",
+          "addressCountry": "US"
+        },
+        "telephone": "+15122003815",
+        "url": "https://thelinkagedigital.com"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thelinkagedigital.com" },
+          { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://thelinkagedigital.com/contact" }
+        ]
+      }
+    ]
   });
 
   const SERVICES_CHECKBOX = [

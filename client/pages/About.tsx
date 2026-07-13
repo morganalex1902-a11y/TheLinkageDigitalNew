@@ -22,13 +22,23 @@ export default function About() {
     ogTitle: "About The Linkage Digital",
     ogDescription: "Discover The Linkage Digital's story, values, and expert team dedicated to delivering exceptional digital solutions.",
     canonicalUrl: "https://thelinkagedigital.com/about",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "About The Linkage Digital",
-      "description": "About The Linkage Digital - full-service digital agency",
-      "url": "https://thelinkagedigital.com/about",
-    }
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About The Linkage Digital",
+        "description": "About The Linkage Digital - full-service digital agency",
+        "url": "https://thelinkagedigital.com/about",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thelinkagedigital.com" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://thelinkagedigital.com/about" }
+        ]
+      }
+    ]
   });
 
   const VALUES = [
