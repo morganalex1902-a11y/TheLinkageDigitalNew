@@ -504,8 +504,8 @@ export default function Contact() {
                       Office
                     </h4>
                     <p className="font-kanit text-[#555]">
-                      123 Digital Street<br />
-                      Tech City, TC 12345<br />
+                      5900 Balcones Dr Ste 10429,<br />
+                      Austin, TX 78731,<br />
                       United States
                     </p>
                   </div>
