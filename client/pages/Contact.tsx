@@ -148,27 +148,24 @@ export default function Contact() {
 
   const TESTIMONIALS = [
     {
-      name: "John Smith",
-      company: "TechStartup Inc.",
-      role: "CEO",
-      text: "The Linkage Digital completely transformed our digital presence. Their team was professional, responsive, and delivered beyond our expectations.",
-      initial: "JS",
+      name: "William Baudendistel",
+      role: "A day ago",
+      text: "Bryan Davis was able to convert a logo, and a couple banners to printable files for me so I can send them off to be used for signage and marketing material. This was incredibly helpful and will be a big part of helping grow my business. Great guy to work with, prompt communication, and very helpful with the revision process. Thanks Bryan!",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
       rating: 5,
     },
     {
-      name: "Sarah Mitchell",
-      company: "E-Commerce Solutions",
-      role: "Founder",
-      text: "Working with them was fantastic. They understood our vision immediately and delivered a platform that increased our sales by 45%.",
-      initial: "SM",
+      name: "Robert Lee",
+      role: "Jun 23, 2026",
+      text: "Not going to lie at first I was a little skeptical but Bryan Davis and the guys at linkage digital have really proved me wrong. They have been building my website and adding new features, finally making it show up when people search junk removal! I couldn't be happier with this service. I would recommend this service to family and friends.",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
       rating: 5,
     },
     {
-      name: "Marcus Johnson",
-      company: "Digital Marketing Co.",
-      role: "Director",
-      text: "Exceptional service from start to finish. The attention to detail and commitment to quality is unmatched. Highly recommend!",
-      initial: "MJ",
+      name: "Stella Chaney",
+      role: "Jun 18, 2026",
+      text: "I had a great experience working with him on my website. He was professional, responsive, and easy to communicate with throughout the entire process. He listened to what I wanted, made changes quickly, and created a website that looks clean and professional. I'm very happy with the final result and would highly recommend him to anyone needing a website for their business.",
+      avatar: "https://www.gstatic.com/images/branding/product/1x/avatar_square_grey_48dp.png",
       rating: 5,
     },
   ];
@@ -673,19 +670,6 @@ export default function Contact() {
           <div ref={testimonialsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-stagger">
             {TESTIMONIALS.map((testimonial, i) => (
               <div key={i} className="bg-[#F9F9F9] p-8 md:p-10 rounded-lg border border-[#ECECEC] hover:border-[#8B0AB4] transition-colors">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-full bg-[#8B0AB4] flex items-center justify-center flex-shrink-0">
-                    <span className="font-teko font-bold text-white text-[16px]">
-                      {testimonial.initial}
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="font-teko font-bold text-[#121212] uppercase text-[14px]">
-                      {testimonial.name}
-                    </h4>
-                    <p className="font-kanit text-[#555] text-[12px]">{testimonial.role} at {testimonial.company}</p>
-                  </div>
-                </div>
                 <div className="flex gap-1 mb-4">
                   {Array(testimonial.rating)
                     .fill(0)
@@ -693,9 +677,22 @@ export default function Contact() {
                       <span key={j} className="text-[#8B0AB4]">★</span>
                     ))}
                 </div>
-                <p className="font-kanit text-[#555] text-[15px] leading-[1.6]">
+                <p className="font-kanit text-[#555] text-[15px] leading-[1.6] mb-6">
                   "{testimonial.text}"
                 </p>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+                  />
+                  <div>
+                    <h4 className="font-teko font-bold text-[#121212] uppercase text-[13px]">
+                      {testimonial.name}
+                    </h4>
+                    <p className="font-kanit text-[#999] text-[11px]">{testimonial.role}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
