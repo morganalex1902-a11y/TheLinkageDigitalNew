@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { OriginButton } from "./ui/origin-button";
 
 const LOGO =
@@ -109,11 +109,11 @@ export default function SiteHeader() {
   };
 
   const services = [
-    { label: "Web Design & Development", path: "/services" },
-    { label: "Branding & Logo Design", path: "/services" },
-    { label: "Digital Marketing", path: "/services" },
-    { label: "SEO Optimization", path: "/services" },
-    { label: "Video Editing & Motion", path: "/services" },
+    { label: "Web Design & Development", path: "/services/web-design-development" },
+    { label: "Branding & Logo Design", path: "/services/branding-logo-design" },
+    { label: "Digital Marketing", path: "/services/digital-marketing" },
+    { label: "SEO Optimization", path: "/services/seo-optimization" },
+    { label: "Video Editing & Motion", path: "/services/video-editing-motion" },
   ];
 
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
@@ -30,6 +30,14 @@ export default function Blog() {
   });
 
   const CATEGORIES = ["All", "Design", "Development", "Marketing"];
+  const ARTICLE_URLS = [
+    "/blog/web-design-psychology-color-typography-conversions",
+    "/blog/building-your-first-business-website",
+    "/blog/complete-guide-seo-rankings-that-stick",
+    "/blog/creating-a-logo-that-stands-out",
+    "/blog/digital-marketing-strategies-that-deliver-roi",
+    "/blog/video-marketing-trends-and-tools",
+  ];
 
   const ARTICLES = [
     {
@@ -353,8 +361,8 @@ export default function Blog() {
                   <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[15px] leading-[1.6] mb-5">
                     {article.excerpt}
                   </p>
-                  <a
-                    href="#"
+                  <Link
+                    to={ARTICLE_URLS[i]}
                     className="inline-flex items-center gap-2 font-kanit font-medium text-[13px] uppercase text-[#8B0AB4] hover:text-[#1C1D20] transition-colors group-hover:gap-3"
                   >
                     Read More
@@ -372,7 +380,7 @@ export default function Blog() {
                         fill="currentColor"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

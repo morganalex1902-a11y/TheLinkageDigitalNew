@@ -1478,20 +1478,23 @@ export default function Index() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
             {[
               {
-                title: "Web Design Trends 2024: Building Websites That Convert",
-                excerpt: "Discover the latest web design trends transforming digital experiences. From AI-powered personalization to mobile-first design, learn what's driving conversions.",
+                title: "Web Design Psychology: How Color and Typography Drive Conversions",
+                excerpt: "Discover how strategic color choices and typography selection can influence user behavior and website conversions.",
+                url: "/blog/web-design-psychology-color-typography-conversions",
               },
               {
-                title: "The Complete Guide to Local SEO for Service Businesses",
-                excerpt: "Master local SEO and dominate your geographic market. We break down Google Business optimization, local citations, and ranking strategies.",
+                title: "The Complete Guide to SEO: Rankings That Stick",
+                excerpt: "Learn the foundations of technical optimization, content strategy, and authority building for sustainable search visibility.",
+                url: "/blog/complete-guide-seo-rankings-that-stick",
               },
               {
-                title: "Branding Essentials: Building a Memorable Digital Identity",
-                excerpt: "Your brand is more than a logo. Learn how strategic branding, consistent messaging, and visual identity create lasting customer connections.",
+                title: "Branding 101: Creating a Logo That Stands Out",
+                excerpt: "Learn the principles of an effective logo and visual identity that customers remember and trust.",
+                url: "/blog/creating-a-logo-that-stands-out",
               },
             ].map((post, i) => (
               <Link
-                to="/blog"
+                to={post.url}
                 key={i}
                 className="bg-[#1e2029] p-6 md:p-7 lg:p-8 flex flex-col justify-between min-h-[270px] md:min-h-[300px] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
               >
