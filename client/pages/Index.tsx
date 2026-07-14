@@ -7,6 +7,7 @@ import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
+import { submitToWeb3Forms } from "../lib/web3forms";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -409,6 +410,7 @@ export default function Index() {
   const [testimonialDir, setTestimonialDir] = useState<"left" | "right">("right");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [contactSubmitted, setContactSubmitted] = useState(false);
 
   const TESTIMONIALS = [
     {
@@ -559,6 +561,16 @@ export default function Index() {
       }
     ]
   });
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const sent = await submitToWeb3Forms(new FormData(e.currentTarget));
+    if (!sent) return;
+
+    e.currentTarget.reset();
+    setContactSubmitted(true);
+    setTimeout(() => setContactSubmitted(false), 3000);
+  };
 
   return (
     <div className="min-h-screen bg-white font-kanit">
@@ -1573,10 +1585,11 @@ export default function Index() {
                 We'd love to hear from you. Fill out the form below and we'll get back to you shortly.
               </p>
 
-              <form className="space-y-4">
+              <form onSubmit={handleContactSubmit} className="space-y-4">
                 <div>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Your Name"
                     className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
                     required
@@ -1585,6 +1598,7 @@ export default function Index() {
                 <div>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Your Email"
                     className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
                     required
@@ -1593,12 +1607,14 @@ export default function Index() {
                 <div>
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="Phone Number"
                     className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
                   />
                 </div>
                 <div>
                   <textarea
+                    name="message"
                     placeholder="Tell us about your project"
                     rows={5}
                     className="w-full px-4 py-3 md:py-4 font-kanit text-[14px] md:text-[15px] bg-white border border-[#DDD] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors resize-none"
@@ -1608,7 +1624,7 @@ export default function Index() {
                   type="submit"
                   className="w-full bg-[#8B0AB4] text-white font-kanit font-semibold text-[14px] md:text-[15px] uppercase px-6 py-3 md:py-4 rounded-lg hover:bg-[#7a0a94] transition-colors mt-2"
                 >
-                  Send Message
+                  {contactSubmitted ? "Message Sent!" : "Send Message"}
                 </button>
               </form>
             </div>

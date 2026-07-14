@@ -3,16 +3,19 @@ import { MessageCircle } from "lucide-react";
 
 export default function ChatWidgets() {
   useEffect(() => {
-    // Load Tawk.to script
-    const Tawk_API: any = {};
-    const Tawk_LoadStart = new Date();
-    
-    const s1 = document.createElement("script");
-    s1.async = true;
-    s1.src = "https://embed.tawk.to/684ad4edc3b32f1912961f53/1itiaadft";
-    s1.charset = "UTF-8";
-    s1.setAttribute("crossorigin", "*");
-    document.head.appendChild(s1);
+    if (new URLSearchParams(window.location.search).has("builder.preview")) return;
+    if (document.querySelector('script[data-tawk-widget="true"]')) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://embed.tawk.to/684ad4edc3b32f1912961f53/1itiaadft";
+    script.charset = "UTF-8";
+    script.dataset.tawkWidget = "true";
+    document.head.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
   }, []);
 
   return (
