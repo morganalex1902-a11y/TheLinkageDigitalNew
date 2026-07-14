@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { MessageCircle } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function ChatWidgets() {
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function ChatWidgets() {
           className="flex items-center justify-center w-14 h-14 rounded-full bg-green-500 transition-all duration-300 hover:scale-110 hover:bg-green-600"
           title="Chat on WhatsApp"
         >
-          <MessageCircle size={28} className="text-white" />
+          <FaWhatsapp size={28} className="text-white" aria-hidden="true" />
         </a>
       </div>
 
