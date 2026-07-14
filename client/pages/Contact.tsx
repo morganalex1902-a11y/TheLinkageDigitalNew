@@ -595,6 +595,36 @@ export default function Contact() {
               </div>
             </div>
           </div>
+
+          <div className="mt-12 md:mt-16">
+            <div className="flex flex-col gap-3 mb-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <span className="font-kanit font-semibold text-[#8B0AB4] text-[13px] uppercase tracking-wider">
+                  Visit Our Office
+                </span>
+                <h2 className="font-teko font-bold text-[#121212] uppercase text-[28px] md:text-[36px] leading-[1.1] mt-2">
+                  Find The Linkage Digital
+                </h2>
+              </div>
+              <a
+                href="https://maps.app.goo.gl/y4eKWUuNjfRG2LVd6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-kanit font-semibold text-[13px] uppercase text-[#8B0AB4] hover:text-[#7a0a94] transition-colors w-fit"
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+            <div className="overflow-hidden rounded-xl border border-[#ECECEC] bg-white">
+              <iframe
+                title="The Linkage Digital office location"
+                src="https://www.google.com/maps?q=5900%20Balcones%20Dr%20Ste%2010429%2C%20Austin%2C%20TX%2078731&z=17&output=embed"
+                className="block w-full h-[320px] md:h-[440px] border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
