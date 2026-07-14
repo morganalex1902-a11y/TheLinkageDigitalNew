@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 const styles = `
   @keyframes slideUpIn {
@@ -63,13 +64,12 @@ export function ContactFormCard() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // API call would go here
-      console.log("Form submitted:", formData);
-      setFormData({ email: "", message: "" });
+      const sent = await submitToWeb3Forms(new FormData(e.currentTarget));
+      if (sent) setFormData({ email: "", message: "" });
     } finally {
       setIsSubmitting(false);
     }

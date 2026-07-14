@@ -5,6 +5,7 @@ import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
+import { submitToWeb3Forms } from "../lib/web3forms";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -240,9 +241,11 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    const sent = await submitToWeb3Forms(new FormData(e.currentTarget));
+    if (!sent) return;
+
     setSubmitted(true);
     setTimeout(() => {
       setFormData({
@@ -471,6 +474,8 @@ export default function Contact() {
                       <label key={service} className="flex items-center gap-3 cursor-pointer">
                         <input
                           type="checkbox"
+                          name="services"
+                          value={service}
                           checked={formData.services.includes(service)}
                           onChange={() => handleServiceToggle(service)}
                           className="w-5 h-5 border border-[#ECECEC] rounded accent-[#8B0AB4]"
