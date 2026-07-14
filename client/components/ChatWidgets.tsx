@@ -20,8 +20,7 @@ export default function ChatWidgets() {
 
   return (
     <>
-      {/* WhatsApp Widget Button - Left on mobile, Right on desktop */}
-      <div className="fixed bottom-6 left-6 md:left-auto md:right-6 z-[9999] animate-bounce">
+      <div className="fixed bottom-6 left-6 z-[9999] animate-bounce md:hidden">
         <a
           href="https://wa.me/15123259923"
           target="_blank"
