@@ -8,6 +8,7 @@ import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
 import { submitToWeb3Forms } from "../lib/web3forms";
+import { ArrowUpRight, Star } from "lucide-react";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -1368,6 +1369,25 @@ export default function Index() {
                   direction="right"
                 />
               </div>
+
+              <a
+                href="https://g.page/r/Cag41J8P2sE5EAE/review"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Review The Linkage Digital on Google"
+                className="group mt-5 inline-flex items-center gap-2 rounded-full border border-[#E7D1ED] bg-[#FCF8FD] p-1.5 pl-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#8B0AB4] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B0AB4] focus-visible:ring-offset-2"
+              >
+                <span className="flex items-center gap-1.5 font-kanit text-[11px] font-semibold uppercase tracking-wider text-[#555]">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#8B0AB4] shadow-sm">
+                    <Star size={12} fill="currentColor" aria-hidden="true" />
+                  </span>
+                  Loved our work?
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#8B0AB4] px-3 py-2 font-kanit text-[11px] font-semibold uppercase tracking-wider text-white transition-colors group-hover:bg-[#720895]">
+                  Review us on Google
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </span>
+              </a>
             </div>
 
           </div>

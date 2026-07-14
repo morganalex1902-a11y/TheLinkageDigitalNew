@@ -3,6 +3,7 @@ import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
+import { ArrowUpRight, Star } from "lucide-react";
 
 export default function Testimonials() {
   const navigate = useNavigate();
@@ -207,6 +208,29 @@ export default function Testimonials() {
                 Discover why businesses trust The Linkage Digital to transform their digital presence.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-6 pb-8 md:pb-12">
+          <div className="max-w-[1400px] mx-auto flex justify-center">
+            <a
+              href="https://g.page/r/Cag41J8P2sE5EAE/review"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Review The Linkage Digital on Google"
+              className="group inline-flex items-center gap-3 rounded-full border border-[#E7D1ED] bg-[#FCF8FD] p-1.5 pl-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#8B0AB4] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B0AB4] focus-visible:ring-offset-2"
+            >
+              <span className="flex items-center gap-1.5 font-kanit text-[12px] font-semibold uppercase tracking-wider text-[#555]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#8B0AB4] shadow-sm">
+                  <Star size={14} fill="currentColor" aria-hidden="true" />
+                </span>
+                Loved our work?
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#8B0AB4] px-4 py-2.5 font-kanit text-[12px] font-semibold uppercase tracking-wider text-white transition-colors group-hover:bg-[#720895]">
+                Review us on Google
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </span>
+            </a>
           </div>
         </section>
 
