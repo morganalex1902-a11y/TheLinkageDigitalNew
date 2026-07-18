@@ -3,7 +3,6 @@ import { FaWhatsapp } from "react-icons/fa";
 
 export default function ChatWidgets() {
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).has("builder.preview")) return;
     if (document.querySelector('script[data-tawk-widget="true"]')) return;
 
     const script = document.createElement("script");
