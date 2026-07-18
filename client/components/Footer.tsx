@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
-const FOOTER_LOGO =
-  "https://api.builder.io/api/v1/image/assets/TEMP/f6b0535e5973547e6cfe0dd5821532366a17ac51?width=416";
+const FOOTER_LOGO = "/images/footer-logo.webp";
 
 const DISCOVER_LINKS = [
   { label: "Home", to: "/" },

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { OriginButton } from "./ui/origin-button";
 
-const LOGO =
-  "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=800";
+const LOGO = "/images/logo-header.webp";
 
 function ChevronDown() {
   return (
