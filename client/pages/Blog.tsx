@@ -78,7 +78,7 @@ export default function Blog() {
       title: "Branding 101: Creating a Logo That Stands Out",
       category: "Design",
       date: "December 9, 2024",
-      image: "https://images.unsplash.com/photo-1460925895917-adf4e05526e5?w=1200&h=800&fit=crop",
+      image: "/images/brand-logo-1.webp",
       excerpt: "Learn the principles of effective logo design and how to create a visual identity that resonates with your target audience and builds brand recognition.",
       author: "The Linkage Team",
     },

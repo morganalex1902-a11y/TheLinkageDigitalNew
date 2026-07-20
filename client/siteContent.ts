@@ -72,7 +72,7 @@ export const articles = [
     category: "Design",
     date: "2024-12-09",
     displayDate: "December 9, 2024",
-    image: "https://images.unsplash.com/photo-1460925895917-adf4e05526e5?w=1200&h=800&fit=crop",
+    image: "/images/brand-logo-1.webp",
     excerpt: "Learn the principles of an effective logo and visual identity that customers remember and trust.",
   },
   {
