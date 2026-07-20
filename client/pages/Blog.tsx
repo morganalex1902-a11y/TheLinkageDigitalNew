@@ -170,7 +170,7 @@ export default function Blog() {
                 {/* Left card — TRENDS (9:16 aspect ratio, tightly packed) */}
                 <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md -rotate-2 block" style={{ aspectRatio: "9/16", left: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5 } as React.CSSProperties}>
                   <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/14f15595d9a4595dee97127a1990c57d87db0f6c?width=1480"
+                    src="/images/blog-1.webp"
                     alt="Top Web Design Trends to Watch in 2024"
                     className="w-full h-full object-cover grayscale"
                   />
@@ -193,7 +193,7 @@ export default function Blog() {
                 {/* Middle card — STRATEGY (featured, centered and largest) */}
                 <div className="absolute w-[28%] sm:w-[30%] md:w-[28%] lg:w-[28%] rounded-xl overflow-hidden shadow-2xl block" style={{ aspectRatio: "9/16", left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 20 }}>
                   <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910"
+                    src="/images/brand-corner.webp"
                     alt="Building Brands with Purpose and Impact"
                     className="w-full h-full object-cover"
                   />
@@ -216,7 +216,7 @@ export default function Blog() {
                 {/* Right card — TIPS (9:16 aspect ratio, tightly packed) */}
                 <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md rotate-2 block" style={{ aspectRatio: "9/16", right: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5 }}>
                   <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/606973b7a19e784fa309acebad1d2d62459e0d20?width=80"
+                    src="/images/dashboard-team.webp"
                     alt="How to Improve Your Website Performance"
                     className="w-full h-full object-cover grayscale"
                   />
