@@ -388,10 +388,10 @@ const TABS = [
 ];
 
 const TECH_ITEMS = [
-  { name: "WordPress", src: "https://api.builder.io/api/v1/image/assets/TEMP/cff6b7ef129c522b03ad0aaf693172c53c4eeacf?width=200" },
-  { name: "React.js",  src: "https://api.builder.io/api/v1/image/assets/TEMP/c9918d860144666cf53a02a3c0a645deaf4ad1b1?width=200" },
-  { name: "Node.js",   src: "https://api.builder.io/api/v1/image/assets/TEMP/69d15ec1de37aea7268ec7aa8ea08e7445728784?width=200" },
-  { name: "Flutter",   src: "https://api.builder.io/api/v1/image/assets/TEMP/0d4faef2a9ab37ad34ad69931fee4bac497056ac?width=160" },
+  { name: "WordPress", src: "/images/tech-wordpress.webp" },
+  { name: "React.js",  src: "/images/tech-react.webp" },
+  { name: "Node.js",   src: "/images/tech-node.webp" },
+  { name: "Flutter",   src: "/images/tech-flutter.webp" },
   { name: "Redux",     src: null },
 ];
 
@@ -409,35 +409,35 @@ export default function Index() {
       text: "Alex and Saadi did an excellent job building my website design. The process was smooth, professional, and creative from start to finish. He really listened to my ideas, offered great suggestions, and delivered a clean, modern site that perfectly reflects my vision. Highly recommend his work!",
       name: "Jeriece Lovelace",
       role: "9 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F49cf2d55e7154c8e825da8cbaa58313f?format=webp&width=800&height=1200",
+      avatar: "/images/avatar-1.webp",
     },
     {
       rating: 5.0,
       text: "Thomas Randall reached out to me on Facebook he was very good about answering my questions and after receiving the information he requested the website was prepared quick time. I would definitely do business with and recommend their services to anyone who is in need of a website.",
       name: "orlando patterson",
       role: "4 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2F11ee54a04aaf4028b2d95687da7116be?format=webp&width=800&height=1200",
+      avatar: "/images/avatar-2.webp",
     },
     {
       rating: 5.0,
       text: "Did a great job setting up my Website. Was super easy to work with!",
       name: "Hadyn Whisenhunt",
       role: "3 weeks ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fa993cba5ba76428987452eaa14a075fd?format=webp&width=800&height=1200",
+      avatar: "/images/avatar-3.webp",
     },
     {
       rating: 5.0,
       text: "Amazing and professional work honest people most of all they work with great passion!",
       name: "German Valle",
       role: "9 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fadad46230e704738b7eacdefca5cc2d1?format=webp&width=800&height=1200",
+      avatar: "/images/avatar-4.webp",
     },
     {
       rating: 5.0,
       text: "Great experience made my website really well really appreciate the hard work",
       name: "Paxley",
       role: "8 months ago",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2Fc70ebb3e5225486399c19406cd27bb43%2Fda8953551ec54f8f9815eb5d31176953?format=webp&width=800&height=1200",
+      avatar: "/images/avatar-5.webp",
     },
     {
       rating: 5.0,
@@ -632,7 +632,7 @@ export default function Index() {
               <div className="flex items-center justify-center pt-6 lg:pt-4 hero-images-enter">
                 {/* Left: red duotone shape — positioned lower, behind */}
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/ec7816648020414088a761bd92dfb350?format=webp&width=800&height=1200"
+                  src="/images/team-photo.webp"
                   alt="Our team"
                   className="flex-shrink-0 relative z-0 object-contain"
                   style={{
@@ -652,7 +652,7 @@ export default function Index() {
                   }}
                 >
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets/37fe508629794307b44d873859aad7cf/37ff1df5edad4ccc800ecabb937bd016?format=webp&width=800&height=1200"
+                    src="/images/team-member.webp"
                     alt="Team member"
                     className="w-full h-full object-contain"
                   />
@@ -733,7 +733,7 @@ export default function Index() {
             </div>
             {/* Decorative react-shape (top-right) */}
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/1804a4d3e15f8c2216251a890d0be577b72d7c89?width=284"
+              src="/images/accent-1.webp"
               alt="Decorative accent element"
               className="hidden lg:block w-[130px] xl:w-[142px] flex-shrink-0 mt-6"
             />
@@ -747,7 +747,7 @@ export default function Index() {
               {/* Customer stat widget */}
               <div>
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/2ac29ce1c1c25b4a7061cf388b087767fd7967d8?width=240"
+                  src="/images/clients-img.webp"
                   alt="Happy clients"
                   className="h-[50px] w-auto mb-5"
                 />
@@ -769,7 +769,7 @@ export default function Index() {
               </div>
               {/* Team photo */}
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/cebf100cfa2f8b5cd61f8901babba182a2278871?width=660"
+                src="/images/team-working.webp"
                 alt="Team working"
                 className="w-full max-w-[330px] h-[180px] md:h-[209px] object-cover"
               />
@@ -791,7 +791,7 @@ export default function Index() {
               {/* Office image */}
               <div className="overflow-hidden h-[300px] md:h-[380px] lg:h-[455px]">
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/53a7e1e500fa7f5bf705363b6c052995e6bca45a?width=910"
+                  src="/images/office.webp"
                   alt="Office"
                   className="w-full h-full object-cover object-center"
                 />
@@ -799,7 +799,7 @@ export default function Index() {
               {/* White stat card – overlaps right portion of image on desktop */}
               <div className="relative lg:absolute lg:right-0 lg:-top-10 bg-[#F9F9F9] p-6 md:p-8 lg:p-10 lg:w-[65%] z-10">
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/29d2818d5b277ff727f65d90516ef514b52db1c9?width=54"
+                  src="/images/process-icon.webp"
                   alt="Process icon"
                   className="w-7 h-6 mb-4"
                 />
@@ -850,7 +850,7 @@ export default function Index() {
           <div className="flex flex-col items-center text-center mb-14 md:mb-20">
             {/* 3D character peeking above the heading */}
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/a03b2a33c768d1dfef5dfb6f28f1b06f4587f107?width=186"
+              src="/images/star-icon.webp"
               alt="Decorative star icon"
               className="w-[70px] md:w-[93px] h-auto -mb-3 md:-mb-4 relative z-10"
             />
@@ -1012,7 +1012,7 @@ export default function Index() {
             {/* Tab panel image */}
             <div>
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Feaa719c761d64fc58dbfe871f4fb5f8e%2Fe6c2f37c15ae41b5b4880182ef260f71?format=webp&width=800&height=1200"
+                src="/images/dashboard-team.webp"
                 alt="Dashboard and team"
                 className="w-full h-auto object-cover"
               />
@@ -1108,7 +1108,7 @@ export default function Index() {
           {/* Header */}
           <div className="text-center mb-14 md:mb-20">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/a03b2a33c768d1dfef5dfb6f28f1b06f4587f107?width=186"
+              src="/images/star-icon.webp"
               alt="Decorative star accent"
               className="w-[60px] md:w-[80px] h-auto mx-auto -mb-2 relative z-10"
             />
@@ -1552,7 +1552,7 @@ export default function Index() {
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-10 rounded-full overflow-hidden bg-[#333] flex-shrink-0">
                     <img
-                      src="https://api.builder.io/api/v1/image/assets/TEMP/a03b2a33c768d1dfef5dfb6f28f1b06f4587f107?width=186"
+                      src="/images/star-icon.webp"
                       alt="Admin"
                       className="w-full h-full object-cover"
                     />

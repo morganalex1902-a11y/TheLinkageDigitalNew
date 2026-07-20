@@ -28,7 +28,7 @@ export default function BlogArticle() {
         dateModified: seoArticle.date,
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
         author: { "@type": "Organization", name: "The Linkage Digital", url: siteUrl },
-        publisher: { "@type": "Organization", name: "The Linkage Digital", logo: { "@type": "ImageObject", url: "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=500" } },
+        publisher: { "@type": "Organization", name: "The Linkage Digital", logo: { "@type": "ImageObject", url: `${siteUrl}/logo.webp` } },
       },
       {
         "@context": "https://schema.org",
