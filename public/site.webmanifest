@@ -3,14 +3,10 @@
   "short_name": "The Linkage Digital",
   "icons": [
     {
-      "src": "/logo.webp",
+      "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/webp"
-    },
-    {
-      "src": "/logo.webp",
-      "sizes": "any",
-      "type": "image/webp"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ],
   "theme_color": "#ffffff",
