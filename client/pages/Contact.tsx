@@ -13,6 +13,7 @@ export default function Contact() {
     name: "",
     email: "",
     company: "",
+    phone: "",
     budget: "",
     services: [] as string[],
     message: "",
@@ -252,6 +253,7 @@ export default function Contact() {
         name: "",
         email: "",
         company: "",
+        phone: "",
         budget: "",
         services: [],
         message: "",
@@ -445,6 +447,22 @@ export default function Contact() {
                       className="w-full px-6 py-4 font-kanit text-[14px] md:text-[15px] border border-[#ECECEC] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
                     />
                   </div>
+                  <div>
+                    <label className="block font-kanit font-semibold text-[#121212] text-[13px] uppercase mb-3 tracking-wider">
+                      Contact Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="(555) 123-4567"
+                      className="w-full px-6 py-4 font-kanit text-[14px] md:text-[15px] border border-[#ECECEC] rounded-lg focus:outline-none focus:border-[#8B0AB4] focus:ring-1 focus:ring-[#8B0AB4]/20 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-kanit font-semibold text-[#121212] text-[13px] uppercase mb-3 tracking-wider">
                       Project Budget
