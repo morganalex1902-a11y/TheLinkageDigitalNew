@@ -18,13 +18,21 @@ const COMPANY_LINKS = [
   { label: "Portfolio", to: "/portfolio" },
 ];
 
+const LEGAL_LINKS = [
+  { label: "Terms & Conditions", to: "/terms-and-conditions" },
+  { label: "Refund Policy", to: "/refund-policy" },
+  { label: "Cancellation Policy", to: "/cancellation-policy" },
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Contact Us", to: "/contact" },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-[#171717]">
 
       {/* ── Main footer columns ── */}
       <div className="max-w-[1320px] mx-auto px-6 pt-14 md:pt-16 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-10 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[2fr_1fr_1fr_1.25fr_1.5fr] gap-10 lg:gap-6">
 
           {/* Col 1: Logo + description */}
           <div>
@@ -76,7 +84,26 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: Contact */}
+          {/* Col 4: Legal & Policies */}
+          <div>
+            <h4 className="font-quicksand font-normal text-white text-[17px] md:text-[19px] mb-5 tracking-[0.16px]">
+              Legal & Policies
+            </h4>
+            <ul className="space-y-4">
+              {LEGAL_LINKS.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    to={item.to}
+                    className="font-poppins font-light text-white text-[14px] md:text-[15px] leading-[1.5] tracking-[0.32px] hover:text-[#8B0AB4] transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 5: Contact */}
           <div>
             <h4 className="font-quicksand font-normal text-white text-[17px] md:text-[19px] mb-5 tracking-[0.16px]">
               Contact
@@ -115,13 +142,16 @@ export default function Footer() {
 
           {/* Center links */}
           <div className="flex items-center gap-5 md:gap-7 lg:gap-9">
-            {["Career", "Privacy", "Terms & Condition"].map((label) => (
+            {[
+              { label: "Privacy", to: "/privacy-policy" },
+              { label: "Terms & Conditions", to: "/terms-and-conditions" },
+            ].map((item) => (
               <Link
-                key={label}
-                to="/contact"
+                key={item.label}
+                to={item.to}
                 className="font-teko font-normal text-white uppercase text-[17px] md:text-[20px] lg:text-[22px] hover:text-[#8B0AB4] transition-colors"
               >
-                {label}
+                {item.label}
               </Link>
             ))}
           </div>
