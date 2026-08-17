@@ -113,10 +113,18 @@ export default function Portfolio() {
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
     { title: "Grime Goblins Power Washing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/www.grimegoblinspowerwashing.com", description: "Professional power washing and property cleaning services.", website: "https://www.grimegoblinspowerwashing.com/" },
 
-    { title: "Branding & Logo Design", type: "branding", niche: "Brand Identity", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80", description: "Distinctive visual identities built to make businesses memorable.", website: "/services/branding-logo-design" },
-    { title: "Digital Marketing", type: "digital-marketing", niche: "Campaign Strategy", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=1200&q=80", description: "Strategic digital campaigns that turn attention into measurable growth.", website: "/services/digital-marketing" },
-    { title: "SEO Optimization", type: "seo-optimization", niche: "Search Visibility", image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&q=80", description: "Search-focused strategies that help the right customers find you.", website: "/services/seo-optimization" },
-    { title: "Video Editing & Motion", type: "video-editing-motion", niche: "Motion & Video", image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80", description: "Engaging edits and motion graphics designed for modern audiences.", website: "/services/video-editing-motion" },
+    { title: "Brand Identity System", type: "branding", niche: "Brand Identity", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80", description: "Sample logo, color, and typography system for a growing brand.", website: "/services/branding-logo-design" },
+    { title: "Logo Suite & Guidelines", type: "branding", niche: "Logo Design", image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200&q=80", description: "Placeholder logo suite showing how a complete identity is presented.", website: "/services/branding-logo-design" },
+    { title: "Social Brand Toolkit", type: "branding", niche: "Brand Collateral", image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=1200&q=80", description: "Sample branded templates for consistent social and marketing content.", website: "/services/branding-logo-design" },
+    { title: "Local Growth Campaign", type: "digital-marketing", niche: "Campaign Strategy", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=1200&q=80", description: "Placeholder campaign dashboard for a local service business.", website: "/services/digital-marketing" },
+    { title: "Social Content Strategy", type: "digital-marketing", niche: "Social Media", image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&q=80", description: "Sample content system showing a coordinated multi-platform rollout.", website: "/services/digital-marketing" },
+    { title: "Email Conversion Funnel", type: "digital-marketing", niche: "Email Marketing", image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&q=80", description: "Placeholder funnel layout for nurturing leads into customers.", website: "/services/digital-marketing" },
+    { title: "Local Search Visibility", type: "seo-optimization", niche: "Local SEO", image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&q=80", description: "Sample ranking report layout for a location-based business.", website: "/services/seo-optimization" },
+    { title: "Technical SEO Foundation", type: "seo-optimization", niche: "Technical SEO", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80", description: "Placeholder technical audit card for performance and crawlability work.", website: "/services/seo-optimization" },
+    { title: "Content Authority Plan", type: "seo-optimization", niche: "Content Strategy", image: "https://images.unsplash.com/photo-1456324504439-367CEE3b3c32?w=1200&q=80", description: "Sample content roadmap designed to build long-term search authority.", website: "/services/seo-optimization" },
+    { title: "Brand Launch Film", type: "video-editing-motion", niche: "Video Editing", image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80", description: "Placeholder video case study for a polished brand introduction.", website: "/services/video-editing-motion" },
+    { title: "Social Motion Kit", type: "video-editing-motion", niche: "Motion Graphics", image: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1200&q=80", description: "Sample animated templates built for short-form social content.", website: "/services/video-editing-motion" },
+    { title: "Product Explainer Video", type: "video-editing-motion", niche: "Explainer Video", image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1200&q=80", description: "Placeholder storyboard and edit direction for a clear product story.", website: "/services/video-editing-motion" },
   ];
 
   const MAIN_CATEGORIES = [
@@ -406,13 +414,22 @@ export default function Portfolio() {
                 className="group overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-white flex-shrink-0 min-h-[220px]">
-                  <iframe
-                    src={project.website}
-                    title={`${project.title} website hero`}
-                    className="h-full w-full border-0 pointer-events-none"
-                    loading="lazy"
-                    scrolling="no"
-                  />
+                  {project.type === "websites" ? (
+                    <iframe
+                      src={project.website}
+                      title={`${project.title} website hero`}
+                      className="h-full w-full border-0 pointer-events-none"
+                      loading="lazy"
+                      scrolling="no"
+                    />
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} placeholder preview`}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  )}
                 </div>
                 <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
                   <p className="font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#8B0AB4] mb-2 tracking-wider">
