@@ -4,7 +4,6 @@ import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
-import { PortfolioIframe } from "../components/PortfolioIframe";
 import { useInView } from "../hooks/useInView";
 
 export default function Portfolio() {
@@ -410,12 +409,13 @@ export default function Portfolio() {
                 rel="noopener noreferrer"
                 className="group overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
-                <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-[#ECECEC] flex-shrink-0 min-h-[220px]">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} website preview`}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
+                <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-white flex-shrink-0 min-h-[220px]">
+                  <iframe
+                    src={project.website}
+                    title={`${project.title} website hero`}
+                    className="h-full w-full border-0 pointer-events-none"
+                    loading="eager"
+                    scrolling="no"
                   />
                 </div>
                 <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
