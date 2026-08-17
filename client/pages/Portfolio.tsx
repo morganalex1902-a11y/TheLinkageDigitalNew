@@ -113,11 +113,19 @@ export default function Portfolio() {
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
     { title: "Grime Goblins Power Washing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/www.grimegoblinspowerwashing.com", description: "Professional power washing and property cleaning services.", website: "https://www.grimegoblinspowerwashing.com/" },
 
+    { title: "Branding & Logo Design", type: "branding", niche: "Brand Identity", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80", description: "Distinctive visual identities built to make businesses memorable.", website: "/services/branding-logo-design" },
+    { title: "Digital Marketing", type: "digital-marketing", niche: "Campaign Strategy", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=1200&q=80", description: "Strategic digital campaigns that turn attention into measurable growth.", website: "/services/digital-marketing" },
+    { title: "SEO Optimization", type: "seo-optimization", niche: "Search Visibility", image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&q=80", description: "Search-focused strategies that help the right customers find you.", website: "/services/seo-optimization" },
+    { title: "Video Editing & Motion", type: "video-editing-motion", niche: "Motion & Video", image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80", description: "Engaging edits and motion graphics designed for modern audiences.", website: "/services/video-editing-motion" },
   ];
 
-  const MAIN_CATEGORIES = ["Websites", "Digital Marketing", "Graphic Design", "Mobile Apps"].filter((category) =>
-    PROJECTS.some((project) => project.type === category.toLowerCase().replace(/\s+/g, "-"))
-  );
+  const MAIN_CATEGORIES = [
+    { label: "Web Design & Development", value: "websites" },
+    { label: "Branding & Logo Design", value: "branding" },
+    { label: "Digital Marketing", value: "digital-marketing" },
+    { label: "SEO Optimization", value: "seo-optimization" },
+    { label: "Video Editing & Motion", value: "video-editing-motion" },
+  ];
 
   const getFilteredProjects = () => {
     let filtered = PROJECTS.filter((p) => p.type === activeMainCategory);
@@ -322,13 +330,13 @@ export default function Portfolio() {
           <div className="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-10">
             {MAIN_CATEGORIES.map((cat) => (
               <button
-                key={cat}
+                key={cat.value}
                 onClick={() => {
-                  setActiveMainCategory(cat.toLowerCase().replace(/\s+/g, "-"));
+                  setActiveMainCategory(cat.value);
                   setActiveNiche("all");
                 }}
                 className={`relative font-kanit font-medium text-[13px] md:text-[14px] uppercase px-6 py-3 rounded-full transition-all overflow-hidden group ${
-                  activeMainCategory === cat.toLowerCase().replace(/\s+/g, "-")
+                  activeMainCategory === cat.value
                     ? "bg-[#8B0AB4] text-white"
                     : "bg-white text-[#121212] border border-[#ECECEC] hover:border-[#8B0AB4]"
                 }`}
@@ -348,7 +356,7 @@ export default function Portfolio() {
                     zIndex: 0,
                   }}
                 />
-                <span className="relative z-10">{cat}</span>
+                <span className="relative z-10">{cat.label}</span>
               </button>
             ))}
           </div>
