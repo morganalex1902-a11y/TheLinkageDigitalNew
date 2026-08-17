@@ -41,7 +41,6 @@ export default function Portfolio() {
     ]
   });
 
-  const MAIN_CATEGORIES = ["Websites", "Digital Marketing", "Graphic Design", "Mobile Apps"];
   const WEB_NICHES = ["All", "Auto Detailing", "Landscaping", "Junk Removal", "Construction", "Pressure Washing", "Wellness & Therapy", "Property Services", "Restoration", "Digital Services", "Religious Organization", "Retail & Fashion", "Cleaning Services", "Towing & Roadside", "Home Services", "Entertainment & Publishing", "Fitness & Athletics", "Logging & Trucking", "Vehicle Registration", "Dating & Social"];
 
   const PROJECTS = [
@@ -115,21 +114,11 @@ export default function Portfolio() {
     // WEBSITE DESIGN & DEVELOPMENT - Pressure Washing
     { title: "Grime Goblins Power Washing", type: "websites", niche: "Pressure Washing", image: "https://image.thum.io/get/width/600/crop/600/url/www.grimegoblinspowerwashing.com", description: "Professional power washing and property cleaning services.", website: "https://www.grimegoblinspowerwashing.com/" },
 
-    // DIGITAL MARKETING
-    { title: "Social Media Campaign - E-Commerce Boost", type: "digital-marketing", image: "https://images.unsplash.com/photo-1460925895917-adf4e565c479?w=600&q=80", description: "Multi-platform social media strategy resulting in 250% engagement increase.", website: "https://example.com/marketing-1" },
-    { title: "SEO Optimization - Local Dominance", type: "digital-marketing", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", description: "Achieved first-page rankings for 15+ high-intent keywords.", website: "https://example.com/marketing-2" },
-    { title: "Email Marketing Funnel", type: "digital-marketing", image: "https://images.unsplash.com/photo-1563486835-86a717a0a0a6?w=600&q=80", description: "Automated email sequences with 45% conversion rate.", website: "https://example.com/marketing-3" },
-
-    // GRAPHIC DESIGN
-    { title: "Brand Identity Package", type: "graphic-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80", description: "Complete logo, color palette, and brand guidelines.", website: "https://example.com/design-1" },
-    { title: "Print Marketing Collateral", type: "graphic-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80", description: "Business cards, brochures, and packaging design.", website: "https://example.com/design-2" },
-    { title: "Social Media Graphics", type: "graphic-design", image: "https://images.unsplash.com/photo-1545235617-7a424c7556c7?w=600&q=80", description: "Custom templates and branded assets for social platforms.", website: "https://example.com/design-3" },
-
-    // MOBILE APPS
-    { title: "Service Booking App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=600&q=80", description: "iOS/Android app for service scheduling and payments.", website: "https://example.com/app-1" },
-    { title: "Loyalty Program App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80", description: "Customer rewards and points tracking application.", website: "https://example.com/app-2" },
-    { title: "Marketplace App", type: "mobile-apps", image: "https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=600&q=80", description: "Full-featured mobile marketplace with payments.", website: "https://example.com/app-3" },
   ];
+
+  const MAIN_CATEGORIES = ["Websites", "Digital Marketing", "Graphic Design", "Mobile Apps"].filter((category) =>
+    PROJECTS.some((project) => project.type === category.toLowerCase().replace(/\s+/g, "-"))
+  );
 
   const getFilteredProjects = () => {
     let filtered = PROJECTS.filter((p) => p.type === activeMainCategory);
@@ -414,7 +403,7 @@ export default function Portfolio() {
                     src={project.website}
                     title={`${project.title} website hero`}
                     className="h-full w-full border-0 pointer-events-none"
-                    loading="eager"
+                    loading="lazy"
                     scrolling="no"
                   />
                 </div>
