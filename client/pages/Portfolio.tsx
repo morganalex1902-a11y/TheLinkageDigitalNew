@@ -405,50 +405,70 @@ export default function Portfolio() {
 
           {/* Projects grid */}
           <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {filteredProjects.map((project) => (
-              <a
-                key={`${project.title.replace(/\s+/g, "-").toLowerCase()}`}
-                href={project.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-white flex-shrink-0 min-h-[220px]">
-                  {project.type === "websites" ? (
-                    <iframe
-                      src={project.website}
-                      title={`${project.title} website hero`}
-                      className="h-full w-full border-0 pointer-events-none"
-                      loading="lazy"
-                      scrolling="no"
-                    />
-                  ) : (
-                    <img
-                      src={project.image}
-                      alt={`${project.title} placeholder preview`}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  )}
-                </div>
-                <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
-                  <p className="font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#8B0AB4] mb-2 tracking-wider">
-                    {project.niche || "Design & Development"}
-                  </p>
-                  <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[24px] leading-[1.1] mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[15px] leading-[1.6] mb-4">
-                    {project.description}
-                  </p>
-                  <div className="mt-auto pt-4 border-t border-[#ECECEC]">
-                    <p className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider">
-                      Click to visit →
-                    </p>
+            {filteredProjects.map((project) => {
+              const cardKey = project.title.replace(/\s+/g, "-").toLowerCase();
+              const cardContent = (
+                <>
+                  <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-white flex-shrink-0 min-h-[220px]">
+                    {project.type === "websites" ? (
+                      <iframe
+                        src={project.website}
+                        title={`${project.title} website hero`}
+                        className="h-full w-full border-0 pointer-events-none"
+                        loading="lazy"
+                        scrolling="no"
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={`${project.title} placeholder preview`}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
+                  <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
+                    <p className="font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#8B0AB4] mb-2 tracking-wider">
+                      {project.niche || "Design & Development"}
+                    </p>
+                    <h3 className="font-teko font-bold text-[#121212] uppercase text-[20px] md:text-[24px] leading-[1.1] mb-3">
+                      {project.title}
+                    </h3>
+                    <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[15px] leading-[1.6] mb-4">
+                      {project.description}
+                    </p>
+                    <div className="mt-auto pt-4 border-t border-[#ECECEC]">
+                      <p className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider">
+                        {project.type === "websites" ? "Click to visit →" : "Sample layout"}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              );
+
+              if (project.type === "websites") {
+                return (
+                  <a
+                    key={cardKey}
+                    href={project.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
+                  >
+                    {cardContent}
+                  </a>
+                );
+              }
+
+              return (
+                <div
+                  key={cardKey}
+                  className="group overflow-hidden rounded-lg flex flex-col h-full bg-white shadow-sm"
+                >
+                  {cardContent}
                 </div>
-              </a>
-            ))}
+              );
+            })}
           </div>
 
           {filteredProjects.length === 0 && (
