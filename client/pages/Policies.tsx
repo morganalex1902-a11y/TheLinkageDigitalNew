@@ -335,47 +335,139 @@ const REFUND: PolicyDocument = {
 const CANCELLATION: PolicyDocument = {
   eyebrow: "Legal & Policies",
   title: "Cancellation Policy",
-  description: "How project cancellations, deposits, completed work, and committed expenses are handled.",
+  description: "How The Linkage Digital handles cancellations for custom digital, creative, marketing, and advertising services.",
   path: "/cancellation-policy",
+  intro: "This Cancellation Policy explains how cancellations of services provided by The Linkage Digital (\"The Linkage Digital,\" \"we,\" \"us,\" or \"our\") are handled. Our services include website development, website design, website modifications and add-ons, digital marketing, Google Ads management, strategy, creative services, and other related digital services. This policy should be read together with our Refund Policy and Terms and Conditions.",
+  lastUpdated: "August 21, 2026",
   sections: [
     {
-      title: "1. How to request cancellation",
+      title: "1. Cancellation requests",
       paragraphs: [
-        "To request cancellation, contact us in writing at sales@thelinkagedigital.com. Please include the project name, the services you wish to cancel, and the effective date you are requesting. A cancellation request is not complete until we confirm receipt.",
-        "We will review the current project status, work completed, payment history, and third-party commitments, then explain the next steps and any amounts that remain due or may be eligible for review under our Refund Policy.",
+        "A Client may request cancellation of a service by contacting us in writing.",
+        "Cancellation requests may be submitted through the communication channel normally being used for the project, including:",
+      ],
+      bullets: [
+        "SMS or business messaging",
+        "WhatsApp",
+        "Facebook Messenger",
+        "Email",
+        "Other written communication channels used by The Linkage Digital",
+      ],
+      afterBullets: [
+        "For clarity, The Linkage Digital does not require every customer to sign a separate formal contract or receive a separate contract by email for a service to be purchased or for project communications to occur.",
+        "Invoices, payment records, payment links, written communications, project instructions, approvals, revisions, and other documented communications may be used to establish and document the services requested and the parties' communications concerning the project, subject to applicable law.",
       ],
     },
     {
-      title: "2. Cancellation before work begins",
+      title: "2. Seven-day refund request period",
       paragraphs: [
-        "If cancellation is received before work begins and before third-party commitments are made, we will review any deposit under our Refund Policy. Any administrative, payment-processing, or committed third-party expenses may be deducted where applicable.",
+        "Refund requests are generally subject to the **7-calendar-day refund request period** described in our Refund Policy.",
+        "The 7-day period begins on the applicable payment date.",
+        "A cancellation request submitted within seven days does not automatically result in a full refund.",
+        "Please refer to our Refund Policy for the detailed rules governing refund eligibility.",
       ],
     },
     {
-      title: "3. Cancellation after work starts",
+      title: "3. Cancellation before work begins",
       paragraphs: [
-        "If a project is cancelled after work has started, Client remains responsible for fees covering work completed through the effective cancellation date, together with approved expenses and third-party costs. We will not be required to continue work after cancellation.",
-        "Deposits are applied to completed work and committed capacity. Whether any unused portion is refundable depends on the project stage and the value of work already performed.",
+        "If a Client requests cancellation before work has started and before non-refundable third-party expenses have been incurred or committed, we may approve a refund in accordance with our Refund Policy.",
+        "Reasonable administrative or transaction costs already incurred may be deducted where applicable.",
       ],
     },
     {
-      title: "4. Cancellation after substantial completion",
+      title: "4. Cancellation after work begins",
       paragraphs: [
-        "When substantial work has been completed, including approved milestones, delivered concepts, built functionality, launched assets, or performed campaign services, payments for that work are generally non-refundable. Any remaining unpaid balance for completed work remains due.",
-        "Where appropriate, we may provide completed, paid-for deliverables in their current state after all amounts due have been received, subject to the ownership terms in the applicable agreement.",
+        "Our services are often custom and may begin shortly after payment.",
+        "Once we begin discovery, planning, research, design, development, account setup, marketing preparation, campaign setup, content preparation, production, or other project work, cancellation does not automatically entitle the Client to a full refund.",
+        "The amount, if any, that may be refunded will be determined based on:",
+      ],
+      bullets: [
+        "Work already performed",
+        "Deliverables already prepared or delivered",
+        "Client-requested revisions or additional work",
+        "Project management and consultation time",
+        "Third-party expenses",
+        "Advertising or media expenses",
+        "Other reasonable costs incurred or committed for the project",
       ],
     },
     {
-      title: "5. Third-party expenses",
+      title: "5. Initial concepts and project demonstrations",
       paragraphs: [
-        "Domains, hosting, software, paid plugins, licenses, advertising spend, stock assets, and other external services are subject to their own provider terms. Costs already paid, committed, or used are not refundable by us unless the provider returns them.",
+        "Where appropriate, we may provide an initial concept, design, draft, demonstration, sample, website work, campaign setup, strategy, or other preliminary work for Client review.",
+        "Once such work has been prepared or performed, the Client's decision not to continue with the project does not automatically create a right to a full refund.",
+        "The Client may provide feedback or request revisions according to the agreed scope communicated for the project.",
       ],
     },
     {
-      title: "6. Suspension or cancellation by The Linkage Digital",
+      title: "6. Completed services",
       paragraphs: [
-        "We may suspend or cancel a project if Client fails to provide required materials or approvals, does not pay invoices when due, becomes unresponsive for an extended period, asks us to undertake unlawful or inappropriate work, or materially breaches an agreement with us.",
-        "If we suspend a project, delivery dates may change. If a project remains inactive or unpaid, we may close it after reasonable notice. Client remains responsible for completed work and committed costs.",
+        "Services that have been completed, delivered, launched, published, or substantially performed are generally non-refundable.",
+        "This includes completed website work, completed designs, completed marketing work, campaign management already performed, delivered creative assets, reports, strategy work, and other services already provided.",
+      ],
+    },
+    {
+      title: "7. Third-party costs",
+      paragraphs: [
+        "Third-party expenses are generally non-refundable once purchased, committed, or used.",
+        "These may include:",
+      ],
+      bullets: [
+        "Domains",
+        "Hosting",
+        "Email services",
+        "Software subscriptions",
+        "Plugins",
+        "Themes",
+        "Stock assets",
+        "Fonts",
+        "Software licenses",
+        "Advertising spend",
+        "Google Ads or other media purchases",
+        "Sponsored placements",
+        "External contractors",
+        "Third-party integrations",
+        "Other approved third-party services",
+      ],
+      afterBullets: [
+        "If a third party independently provides a refund, we may pass that refund through to the Client where appropriate.",
+      ],
+    },
+    {
+      title: "8. Client inactivity",
+      paragraphs: [
+        "Clients are expected to provide timely feedback, approvals, content, access, credentials, and other information necessary for project completion.",
+        "If a Client becomes unresponsive or fails to provide necessary information for an extended period, project timelines may be delayed.",
+        "Client inactivity does not automatically create a right to a refund for work already performed or costs already incurred.",
+      ],
+    },
+    {
+      title: "9. Marketing and advertising cancellations",
+      paragraphs: [
+        "If marketing or advertising services are cancelled after campaign setup, management, optimization, creative preparation, strategy, or other work has begun, fees for services already performed are generally non-refundable.",
+        "Advertising spend already paid to advertising platforms may also be non-refundable depending on the applicable platform's policies.",
+      ],
+    },
+    {
+      title: "10. Cancellation confirmation",
+      paragraphs: [
+        "When a cancellation is approved, we may confirm the cancellation and any applicable refund amount through the communication channel used for the project.",
+        "The Client should retain the cancellation confirmation for their records.",
+      ],
+    },
+    {
+      title: "11. Payment disputes",
+      paragraphs: [
+        "If a Client has a concern regarding a payment, cancellation, refund, or service, we encourage the Client to contact us directly so that we have an opportunity to review and resolve the matter.",
+        "Nothing in this policy prevents a Client from exercising rights available under applicable law.",
+      ],
+    },
+    {
+      title: "12. Contact",
+      paragraphs: [
+        "Cancellation and refund requests may be submitted to:",
+        "sales@thelinkagedigital.com",
+        "or through the written communication channel being used for the relevant project.",
       ],
     },
   ],
@@ -585,18 +677,22 @@ const PRIVACY: PolicyDocument = {
 
 function renderPolicyText(text: string) {
   const email = "sales@thelinkagedigital.com";
-  const parts = text.split(email);
+  const parts = text.split(/(\*\*[^*]+\*\*|sales@thelinkagedigital\.com)/g);
 
-  return parts.map((part, index) => (
-    <span key={`${part}-${index}`}>
-      {part}
-      {index < parts.length - 1 && (
-        <a href="mailto:sales@thelinkagedigital.com" className="font-medium text-[#8B0AB4] underline underline-offset-2 hover:text-[#121212]">
+  return parts.map((part, index) => {
+    if (!part) return null;
+    if (part === email) {
+      return (
+        <a key={`${part}-${index}`} href="mailto:sales@thelinkagedigital.com" className="font-medium text-[#8B0AB4] underline underline-offset-2 hover:text-[#121212]">
           {email}
         </a>
-      )}
-    </span>
-  ));
+      );
+    }
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={`${part}-${index}`}>{part.slice(2, -2)}</strong>;
+    }
+    return <span key={`${part}-${index}`}>{part}</span>;
+  });
 }
 
 function PolicyPage({ document }: { document: PolicyDocument }) {
