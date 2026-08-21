@@ -26,92 +26,242 @@ const LAST_UPDATED = "August 10, 2026";
 
 const TERMS: PolicyDocument = {
   eyebrow: "Legal & Policies",
-  title: "Terms & Conditions",
-  description: "The terms that apply when you engage The Linkage Digital for digital, creative, and marketing services.",
+  title: "Terms and Conditions",
+  description: "The terms that govern the purchase and use of The Linkage Digital's website, marketing, creative, and related digital services.",
   path: "/terms-and-conditions",
+  intro: "These Terms and Conditions (\"Terms\") govern the purchase and use of services provided by The Linkage Digital (\"The Linkage Digital,\" \"we,\" \"us,\" or \"our\"). Our services may include website design and development, website modifications and add-ons, digital marketing, Google Ads management, strategy, creative services, consulting, and related digital services. By purchasing our services, submitting payment, requesting or authorizing work, or otherwise proceeding with a project, you acknowledge that you have had an opportunity to review these Terms and the policies referenced below.",
+  lastUpdated: "August 21, 2026",
   sections: [
     {
-      title: "1. Acceptance and services",
+      title: "1. Agreement and project communications",
       paragraphs: [
-        "These Terms & Conditions apply to services provided by The Linkage Digital (\"we\", \"us\", or \"our\"). By accepting a proposal, statement of work, invoice, or other written agreement, you (\"Client\") agree to these terms together with any project-specific terms we provide.",
-        "Our services may include website design and development, website maintenance, branding and graphic design, search engine optimization, social media marketing and management, digital advertising, video editing, creative services, domain registration, hosting, and other digital or creative services agreed in writing.",
+        "The Linkage Digital does not require every Client to sign a separate formal contract or receive a separate contract by email before providing services.",
+        "Depending on the project, the details of the services may be documented through a combination of:",
+      ],
+      bullets: [
+        "Invoices",
+        "Payment links",
+        "Payment records",
+        "SMS or business messaging",
+        "WhatsApp",
+        "Facebook Messenger",
+        "Email, where used",
+        "Website forms",
+        "Written project instructions",
+        "Customer requests",
+        "Client approvals",
+        "Revision requests",
+        "Deliverables and project materials",
+        "Other written communications concerning the services",
+      ],
+      afterBullets: [
+        "These records may be used to document the services requested, project scope, instructions, approvals, payments, revisions, and other communications between the Client and The Linkage Digital, subject to applicable law.",
+        "The absence of a separately signed contract does not by itself mean that no agreement or understanding existed between the parties.",
       ],
     },
     {
-      title: "2. Purchasing services and project scope",
+      title: "2. Payment and commencement of services",
       paragraphs: [
-        "Services are purchased through an accepted proposal, statement of work, service package, or written confirmation from us. The agreed document will identify the scope, deliverables, fees, payment schedule, and any project-specific assumptions.",
-        "Work outside the agreed scope is a change request. We will explain the expected impact on fees, timing, and deliverables before beginning that additional work. We are not required to perform out-of-scope work until the change is approved in writing.",
+        "Certain services require an upfront payment before work begins.",
+        "Once payment has been received, The Linkage Digital may begin work immediately.",
+        "Work may include discovery, planning, research, strategy, design, development, account setup, campaign preparation, content preparation, creative production, marketing setup, or other activities related to the requested service.",
+        "An upfront payment is not automatically refundable merely because the Client later decides not to continue with the project.",
+        "Refunds and cancellations are governed by our Refund Policy and Cancellation Policy.",
       ],
     },
     {
-      title: "3. Client responsibilities",
+      title: "3. Scope of services",
       paragraphs: [
-        "A successful project depends on timely collaboration. Client is responsible for supplying accurate content, images, brand materials, credentials, platform access, approvals, and other information reasonably needed for the work. Client represents that it has the necessary rights to all materials it provides.",
-        "Client will designate an authorized contact who can give consolidated feedback and approvals. Delayed, incomplete, or changing information may affect the project schedule and may require a revised scope or timeline.",
+        "The services provided will be based on the service purchased and the scope communicated between the Client and The Linkage Digital.",
+        "Project scope may be documented through invoices, payment descriptions, payment links, written communications, project instructions, and other records.",
+        "Additional work outside the agreed scope may require an additional payment.",
       ],
     },
     {
-      title: "4. Timelines and approvals",
+      title: "4. Client responsibilities",
       paragraphs: [
-        "Project dates are estimates unless a written agreement expressly states otherwise. We will use reasonable efforts to meet agreed milestones, but delivery depends on timely Client feedback, third-party services, and other factors outside our control.",
-        "If approvals, content, access, or feedback are delayed, we may pause the work and adjust delivery dates. Work may also be delayed by technical issues, third-party platform changes, force majeure events, or requests that materially alter the original scope.",
+        "The Client agrees to provide information, content, approvals, access, credentials, materials, and other cooperation reasonably necessary to perform the services.",
+        "The Client is responsible for ensuring that information and materials provided to The Linkage Digital are accurate and that the Client has the necessary rights or permissions to use those materials.",
+        "Delays caused by missing information, delayed approvals, unavailable access, or other Client-related issues may affect project timelines.",
       ],
     },
     {
-      title: "5. Revisions and change requests",
+      title: "5. Website development services",
       paragraphs: [
-        "Any included revision rounds will be described in the applicable proposal or statement of work. Revisions should address the approved direction and scope. Requests for a new direction, additional features, new pages, or materially different creative work may be treated as change requests.",
-        "We may quote additional fees or timelines for change requests. Feedback delivered after a milestone has been approved may require rework and may be billed separately.",
+        "Website-development services may include design, development, configuration, integrations, content placement, testing, revisions, and launch activities depending on the purchased service.",
+        "The exact features and deliverables depend on the scope communicated for the applicable project.",
+        "Third-party software, hosting, plugins, themes, domains, integrations, and other services may be subject to separate terms imposed by their respective providers.",
       ],
     },
     {
-      title: "6. Fees and payment",
+      title: "6. Marketing and advertising services",
       paragraphs: [
-        "Client will pay the fees and deposits stated in the accepted proposal or invoice. Deposits reserve project capacity and allow work to begin. Unless otherwise agreed in writing, invoices are due on receipt and final deliverables may be withheld until all outstanding balances are paid.",
-        "Client is responsible for applicable taxes, bank charges, and approved third-party costs. If an invoice remains unpaid, we may pause work, suspend access to services we manage, or require payment before resuming. Late payments may delay delivery.",
+        "Marketing services may include strategy, campaign setup, creative preparation, management, optimization, reporting, and related services.",
+        "Advertising platforms such as Google, Meta, or other third parties operate independently from The Linkage Digital.",
+        "We do not guarantee specific advertising results, including:",
+      ],
+      bullets: [
+        "Sales",
+        "Revenue",
+        "Leads",
+        "Clicks",
+        "Impressions",
+        "Conversions",
+        "Rankings",
+        "Advertising approval",
+        "Specific return on advertising spend",
+      ],
+      afterBullets: [
+        "Unless a specific written guarantee has been expressly agreed upon, marketing performance depends on numerous factors outside our control.",
+        "Advertising spend paid to third-party platforms is separate from our service fees where applicable.",
       ],
     },
     {
-      title: "7. Ownership and intellectual property",
+      title: "7. Initial concepts, drafts, and revisions",
       paragraphs: [
-        "Client retains ownership of materials it supplies. Upon full payment of all amounts due, Client receives ownership of the final project-specific deliverables identified in the agreement, excluding third-party materials and our pre-existing tools, methods, templates, code libraries, processes, and know-how.",
-        "We retain ownership of our pre-existing and reusable materials. To the extent they are incorporated into a final deliverable, Client receives a non-exclusive right to use them only as part of that deliverable. We may display completed work in our portfolio unless Client and we agree otherwise in writing.",
+        "Where applicable, The Linkage Digital may provide an initial concept, draft, design, demonstration, sample, strategy, campaign setup, or other preliminary work for Client review.",
+        "The Client may provide feedback and revision requests within the agreed scope.",
+        "Additional revisions or work outside the agreed scope may require an additional charge.",
+        "Approval or acceptance communicated through SMS, WhatsApp, Facebook Messenger, email, or another written communication channel may be retained as part of the project record.",
       ],
     },
     {
-      title: "8. Third-party services and platforms",
+      title: "8. Client approvals",
       paragraphs: [
-        "Websites and campaigns may rely on third-party services such as hosting providers, domain registrars, payment processors, plugins, software licenses, stock assets, analytics tools, advertising platforms, and integrations. Their availability, policies, pricing, and performance are controlled by the applicable third party.",
-        "Where Client purchases or approves third-party services, Client is responsible for their ongoing fees and compliance with their terms. We are not responsible for outages, data loss, policy changes, account suspensions, or other actions by third parties.",
+        "The Client is responsible for reviewing project materials and providing timely feedback.",
+        "When a Client approves a concept, design, draft, content, campaign direction, or other project milestone, The Linkage Digital may proceed based on that approval.",
+        "Changes requested after approval may be treated as revisions or additional work depending on the circumstances and agreed scope.",
       ],
     },
     {
-      title: "9. Launch and delivery",
+      title: "9. Payments",
       paragraphs: [
-        "Before launch, Client is responsible for reviewing the final deliverables and confirming that content, functionality, and legal notices meet Client's requirements. Client remains responsible for its business operations, product claims, accessibility obligations, privacy disclosures, and regulatory compliance.",
-        "After a website or campaign is launched, requests for updates are handled under the agreed maintenance or support arrangement, if any. Delivery, launch, or handover does not include ongoing support unless it is expressly included in writing.",
+        "The Client agrees to pay the applicable amount displayed on the invoice, payment link, or other purchase method used for the service.",
+        "Payments may be processed through third-party payment processors such as Stripe.",
+        "A payment may be treated as authorization to begin the applicable service where the service is intended to commence after payment.",
       ],
     },
     {
-      title: "10. Limitation of liability",
+      title: "10. Refunds and cancellations",
       paragraphs: [
-        "To the fullest extent permitted by law, The Linkage Digital is not liable for indirect, incidental, special, consequential, or punitive damages, including lost profits, lost data, lost business opportunities, or interruption of business arising from our services.",
-        "Our total liability for a claim related to services is limited to the fees actually paid by Client for the specific services giving rise to that claim during the three months before the event giving rise to the claim. Nothing in these terms limits liability that cannot legally be limited.",
+        "Refunds and cancellations are governed by our current Refund Policy and Cancellation Policy.",
+        "The Client should review those policies before purchasing services.",
+        "Our Refund Policy generally provides a **7-calendar-day period for submitting refund requests**, subject to the conditions and exceptions described in that policy.",
+        "Work that has already been performed, delivered, completed, launched, or substantially performed may be non-refundable.",
+        "Third-party expenses may also be non-refundable.",
       ],
     },
     {
-      title: "11. Refusal, suspension, and termination",
+      title: "11. Third-party services",
       paragraphs: [
-        "We may refuse, pause, or end services where a request is unlawful, unsafe, abusive, infringes another person's rights, creates a conflict of interest, requires undisclosed work, or where Client materially breaches these terms or fails to pay amounts due.",
-        "Either party may end an ongoing project by written notice, subject to payment for work completed, committed costs, and any applicable cancellation terms. Sections intended to survive termination, including payment, intellectual property, and liability provisions, will continue to apply.",
+        "We may use or recommend third-party services, platforms, software, hosting providers, advertising platforms, domain registrars, plugins, integrations, contractors, or other providers.",
+        "The Linkage Digital is not responsible for outages, policy changes, account suspensions, pricing changes, technical failures, or other actions taken by third-party providers.",
+        "Clients may be required to maintain their own accounts with third-party providers where applicable.",
       ],
     },
     {
-      title: "12. Governing law and resolving concerns",
+      title: "12. Client materials and intellectual property",
       paragraphs: [
-        "These terms are governed by the laws of the State of Texas, without regard to conflict-of-law principles. Any dispute will first be addressed through good-faith discussion. If it cannot be resolved informally, the parties agree to the exclusive jurisdiction of the state and federal courts located in Texas, unless applicable law requires otherwise.",
-        "For questions, concerns, or disputes, please contact us at sales@thelinkagedigital.com or call (512) 200-3815. Please include enough information for us to identify the relevant project and respond promptly.",
+        "The Client represents that it has the necessary rights or authorization to provide text, images, logos, videos, trademarks, documents, credentials, or other materials supplied to The Linkage Digital.",
+        "The Client remains responsible for materials it provides.",
+        "Unless otherwise agreed, third-party assets such as stock images, fonts, plugins, themes, software, and licenses remain subject to their respective licensing terms.",
+      ],
+    },
+    {
+      title: "13. Website launch and hosting",
+      paragraphs: [
+        "Where The Linkage Digital assists with hosting, domains, software, or website launch, the Client remains responsible for maintaining any third-party accounts and subscriptions that are registered in the Client's name.",
+        "Failure to renew hosting, domains, software, or other third-party services may result in interruption or loss of service.",
+      ],
+    },
+    {
+      title: "14. Communications and electronic records",
+      paragraphs: [
+        "The Client acknowledges that project-related communications may occur through SMS, WhatsApp, Facebook Messenger, email, telephone followed by written confirmation, or other communication platforms.",
+        "Where permitted by applicable law, written communications may be retained as business records.",
+        "These records may include:",
+      ],
+      bullets: [
+        "Requests",
+        "Instructions",
+        "Approvals",
+        "Revision requests",
+        "Payment discussions",
+        "Project updates",
+        "Deliverable discussions",
+        "Cancellation requests",
+        "Refund discussions",
+        "Other project-related communications",
+      ],
+    },
+    {
+      title: "15. Confidentiality",
+      paragraphs: [
+        "We will use reasonable measures to protect confidential information provided to us for the purpose of performing services.",
+        "However, information transmitted through third-party communication platforms may also be subject to the privacy and security practices of those platforms.",
+      ],
+    },
+    {
+      title: "16. No guarantee of uninterrupted service",
+      paragraphs: [
+        "We do not guarantee that websites, marketing campaigns, software, advertising platforms, hosting services, or third-party integrations will operate without interruption.",
+        "Technical problems, platform changes, outages, security incidents, third-party restrictions, and other events outside our reasonable control may affect service availability.",
+      ],
+    },
+    {
+      title: "17. Limitation of liability",
+      paragraphs: [
+        "To the extent permitted by applicable law, The Linkage Digital will not be responsible for indirect, incidental, special, consequential, or other losses arising from the use of our services where such liability cannot reasonably be attributed to our direct actions.",
+        "Nothing in these Terms excludes or limits liability that cannot legally be excluded or limited under applicable law.",
+      ],
+    },
+    {
+      title: "18. Force majeure",
+      paragraphs: [
+        "We are not responsible for delays or failures caused by circumstances beyond our reasonable control, including significant technical outages, third-party platform failures, natural disasters, government actions, internet disruptions, labor disruptions, or other events outside our reasonable control.",
+      ],
+    },
+    {
+      title: "19. Disputes and concerns",
+      paragraphs: [
+        "If you have a concern about a service, payment, deliverable, refund, or cancellation, please contact us directly so that we have an opportunity to review the matter.",
+        "We encourage Clients to raise concerns promptly and provide relevant information or documentation so that we can investigate and respond.",
+        "Nothing in these Terms prevents a Client from exercising rights available under applicable law.",
+      ],
+    },
+    {
+      title: "20. Privacy Policy",
+      paragraphs: [
+        "Use of our website and services may involve the collection and processing of personal information.",
+        "Our Privacy Policy explains how we collect, use, disclose, and protect personal information.",
+      ],
+    },
+    {
+      title: "21. Refund Policy",
+      paragraphs: [
+        "Refunds are governed by our current Refund Policy.",
+        "Clients should review the Refund Policy before purchasing services.",
+      ],
+    },
+    {
+      title: "22. Changes to these Terms",
+      paragraphs: [
+        "We may update these Terms from time to time.",
+        "The version of these Terms displayed on our website at the time of a new purchase will generally apply to that purchase, subject to applicable law and any specific written terms that may apply to the relevant service.",
+      ],
+    },
+    {
+      title: "23. Severability",
+      paragraphs: [
+        "If any provision of these Terms is determined to be invalid or unenforceable, the remaining provisions will remain in effect to the extent permitted by applicable law.",
+      ],
+    },
+    {
+      title: "24. Contact",
+      paragraphs: [
+        "For questions regarding these Terms, please contact:",
+        "The Linkage Digital",
+        "Email: sales@thelinkagedigital.com",
       ],
     },
   ],
