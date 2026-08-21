@@ -5,6 +5,7 @@ type PolicySection = {
   title: string;
   paragraphs: string[];
   bullets?: string[];
+  afterBullets?: string[];
 };
 
 type PolicyDocument = {
@@ -12,7 +13,13 @@ type PolicyDocument = {
   title: string;
   description: string;
   path: string;
+  intro?: string;
   sections: PolicySection[];
+  lastUpdated?: string;
+  closing?: {
+    organization: string;
+    contact: string;
+  };
 };
 
 const LAST_UPDATED = "August 10, 2026";
@@ -113,55 +120,213 @@ const TERMS: PolicyDocument = {
 const REFUND: PolicyDocument = {
   eyebrow: "Legal & Policies",
   title: "Refund Policy",
-  description: "A clear explanation of how we review refund requests for digital and creative services.",
+  description: "How The Linkage Digital reviews refund requests for custom digital, creative, marketing, and advertising services.",
   path: "/refund-policy",
+  intro: "Please read this policy carefully before purchasing or using our services.",
+  lastUpdated: "August 21, 2026",
+  closing: {
+    organization: "The Linkage Digital",
+    contact: "sales@thelinkagedigital.com",
+  },
   sections: [
     {
       title: "1. Our approach",
       paragraphs: [
-        "Digital agency work is custom, time-based, and often begins with planning, research, design, technical setup, or platform commitments. Refund decisions therefore depend on the service purchased, the project stage, work already completed, and costs already committed.",
-        "We review requests fairly and in good faith. This policy does not guarantee a refund for every service or circumstance.",
+        "The Linkage Digital provides custom digital services, including website design and development, website improvements and add-ons, digital marketing, Google Ads management, strategy, creative services, and related services.",
+        "Our services are custom, time-based, and may require us to begin work, allocate personnel, purchase third-party services, or make other commitments shortly after payment is received.",
+        "Refund eligibility therefore depends on the service purchased, the stage of the project, work already performed or delivered, client approvals or feedback, and costs already incurred or committed.",
+        "We review refund requests fairly and in good faith. Submitting a refund request within the applicable 7-day period does not automatically guarantee a refund.",
+        "Nothing in this policy limits any rights or remedies that cannot legally be waived under applicable law.",
       ],
     },
     {
-      title: "2. Services not yet started",
+      title: "2. 7-day refund request period",
       paragraphs: [
-        "If you request a refund before work has started and before we have committed non-refundable third-party expenses, we will review the request and may refund amounts paid, less any reasonable administrative or transaction charges already incurred.",
-        "A project is considered started when we begin discovery, planning, research, design, development, account setup, strategy, production, or any other work connected with your scope.",
+        "Refund requests must generally be submitted within 7 calendar days of the applicable payment date.",
+        "To be considered timely, a refund request must be submitted in writing to sales@thelinkagedigital.com within 7 calendar days of the payment for which the refund is being requested.",
+        "After the 7-day period has passed, refunds are generally not available, except where we determine an exception is appropriate or where a refund or other remedy is required by applicable law.",
+        "The 7-day period is a refund-request period only. It does not mean that every payment is automatically refundable during those seven days.",
+        "Refund eligibility remains subject to the service status, work performed, deliverables provided, third-party expenses, and other provisions of this policy.",
       ],
     },
     {
-      title: "3. Partially completed services",
+      title: "3. Upfront payments and commencement of work",
       paragraphs: [
-        "When work has started but is not complete, any refund is assessed based on the value of work performed and expenses incurred through the cancellation date. This can include discovery, meetings, research, concepts, design, development, content preparation, campaign setup, reporting, and project management.",
-        "If a refund is approved, we will communicate the calculation and any amount remaining after completed work and non-refundable costs are deducted.",
+        "Certain services require an upfront payment before work begins.",
+        "An upfront payment authorizes and enables The Linkage Digital to begin the agreed project or service. Once payment has been received, we may immediately begin activities including discovery, planning, research, strategy, design, development, account setup, campaign preparation, content preparation, production, or other work associated with the agreed scope.",
+        "Where applicable, we may provide the Client with an initial concept, design, draft, demonstration, sample, strategy, campaign setup, website work, or other preliminary deliverable for review and feedback.",
+        "An upfront payment is not automatically refundable merely because the Client later decides not to continue with the project.",
+        "Once work has commenced, any approved refund may be reduced to account for work already performed and costs already incurred or committed.",
       ],
     },
     {
-      title: "4. Completed services",
+      title: "4. Services not yet started",
       paragraphs: [
-        "Fees for completed, delivered, launched, published, or otherwise performed services are generally non-refundable. This includes completed design or development milestones, strategy work, completed creative assets, launched websites, campaign management already performed, and delivered reports or video work.",
-        "If you believe a delivered item does not match the agreed scope, please contact us promptly. We will review the concern against the written scope and, where appropriate, address it through the agreed revision process.",
+        "If a refund is requested within the applicable 7-day period, before work has started, and before we have committed non-refundable third-party expenses, we may approve a refund of amounts paid, less any reasonable administrative, processing, or transaction charges already incurred.",
+        "A project is considered started when we begin discovery, planning, research, design, development, account setup, strategy, production, campaign preparation, content preparation, or any other work connected with the agreed scope.",
       ],
     },
     {
-      title: "5. Third-party costs",
+      title: "5. Initial concepts, drafts, demonstrations, and client review",
       paragraphs: [
-        "Third-party costs are non-refundable once purchased, committed, or used, unless the third party independently provides a refund. These may include:",
+        "For website-development and digital-service projects, we may provide an initial concept, draft, mockup, design, demonstration, campaign setup, strategy, or other preliminary work for the Client's review.",
+        "The purpose of providing an initial deliverable is to allow the Client to review the direction of the project and provide feedback or requested revisions in accordance with the agreed scope.",
+        "The presentation of an initial concept, draft, demonstration, or other project work does not create an automatic right to a full refund.",
+        "If the Client requests cancellation after work has commenced or after project materials have been prepared or presented, any refund will be evaluated based on the work performed and costs incurred through the cancellation date.",
+        "Where the agreed scope includes revisions, reasonable revisions will be handled in accordance with that scope.",
+      ],
+    },
+    {
+      title: "6. Partially completed services",
+      paragraphs: [
+        "When work has started but is not complete, any refund will be assessed based on the value of work performed and expenses incurred through the cancellation date.",
+        "This may include, without limitation:",
+      ],
+      bullets: [
+        "Discovery and project planning",
+        "Client meetings and consultations",
+        "Research and strategy",
+        "Website architecture and planning",
+        "Design concepts and mockups",
+        "Website development",
+        "Website customization and add-ons",
+        "Content preparation",
+        "Search engine optimization work",
+        "Google Ads or other advertising campaign setup",
+        "Marketing strategy and campaign preparation",
+        "Account and platform setup",
+        "Creative production",
+        "Reporting and analysis",
+        "Project management",
+        "Revisions or other work performed at the Client's request",
+      ],
+      afterBullets: [
+        "If a refund is approved, we will communicate the applicable calculation and any amount remaining after completed work and non-refundable costs are deducted.",
+      ],
+    },
+    {
+      title: "7. Completed, delivered, or substantially performed services",
+      paragraphs: [
+        "Fees for services that have been completed, delivered, launched, published, or substantially performed are generally non-refundable.",
+        "This includes, without limitation:",
+      ],
+      bullets: [
+        "Completed website-development milestones",
+        "Completed website designs",
+        "Delivered website pages or features",
+        "Website add-ons or integrations that have been completed",
+        "Completed strategy work",
+        "Completed marketing work",
+        "Advertising campaign setup or management already performed",
+        "Completed creative assets",
+        "Delivered reports",
+        "Completed video or other media work",
+        "Services that have already been provided or consumed",
+      ],
+      afterBullets: [
+        "If you believe a delivered item does not match the agreed scope, please contact us promptly so that we can review the concern against the written scope and, where appropriate, address it through the applicable revision, correction, or remediation process.",
+      ],
+    },
+    {
+      title: "8. Client approvals and feedback",
+      paragraphs: [
+        "Clients are responsible for reviewing project materials and providing timely feedback, approvals, content, access credentials, and other information reasonably necessary for completion of the agreed services.",
+        "Where a Client approves a concept, design, draft, campaign direction, or other project milestone, work may proceed based on that approval.",
+        "Delays caused by missing Client information, approvals, feedback, content, or access do not automatically create a right to a refund.",
+      ],
+    },
+    {
+      title: "9. Third-party costs",
+      paragraphs: [
+        "Third-party costs are non-refundable once purchased, committed, or used, unless the relevant third party independently provides a refund.",
+        "These costs may include:",
       ],
       bullets: [
         "Domain registration, renewal, transfer, and redemption fees",
         "Hosting, email, software, subscription, and platform fees",
         "Paid plugins, themes, stock assets, fonts, and software licenses",
-        "Advertising spend, media purchases, and sponsored placements",
-        "External contractors, services, integrations, or transaction fees approved by Client",
+        "Advertising spend",
+        "Google Ads or other media purchases",
+        "Sponsored placements",
+        "External contractors",
+        "Third-party services and integrations",
+        "Transaction or payment-processing fees",
+        "Other third-party expenses approved by the Client",
+      ],
+      afterBullets: [
+        "Where these costs have already been incurred or committed on the Client's behalf, they may be deducted from any approved refund.",
       ],
     },
     {
-      title: "6. Requesting a refund",
+      title: "10. Marketing and advertising services",
       paragraphs: [
-        "Send refund requests in writing to sales@thelinkagedigital.com with your name, business name, project name, invoice or payment reference, and a short explanation of the request. We may request further information to complete our review.",
-        "We aim to acknowledge refund requests within five business days and will provide a decision or a status update as soon as reasonably possible. Approved refunds are returned to the original payment method where practical and are typically processed within 10 business days after approval; your financial institution may take additional time to post the funds.",
+        "Payments for marketing services may cover planning, strategy, campaign setup, account configuration, creative preparation, management, optimization, reporting, and other work performed by The Linkage Digital.",
+        "Advertising spend paid to Google, Meta, or another advertising platform is separate from our service fees where applicable.",
+        "Advertising results, including leads, sales, clicks, impressions, conversions, or revenue, are not guaranteed unless expressly stated in a separate written agreement.",
+        "Once marketing work or campaign management has been performed, the corresponding service fees are generally non-refundable.",
+        "Unused third-party advertising funds may be subject to the policies and refund procedures of the relevant advertising platform.",
+      ],
+    },
+    {
+      title: "11. Cancellation after work has started",
+      paragraphs: [
+        "If the Client chooses to cancel a project or service after work has started, cancellation does not automatically entitle the Client to a full refund.",
+        "We may retain or deduct amounts corresponding to:",
+      ],
+      bullets: [
+        "Work already performed",
+        "Deliverables already created or provided",
+        "Services already delivered",
+        "Approved revisions or additional work",
+        "Third-party costs already incurred or committed",
+        "Advertising or media spend already used or committed",
+        "Reasonable administrative or transaction costs already incurred",
+      ],
+      afterBullets: [
+        "Any approved refund will be calculated in accordance with this policy.",
+      ],
+    },
+    {
+      title: "12. Requesting a refund",
+      paragraphs: [
+        "Refund requests must be submitted in writing to sales@thelinkagedigital.com.",
+        "Please include:",
+      ],
+      bullets: [
+        "Your full name",
+        "Business name, if applicable",
+        "Project or service name",
+        "Invoice or payment reference",
+        "Date of payment",
+        "Amount paid",
+        "A short explanation of the refund request",
+      ],
+      afterBullets: [
+        "We may request additional information or documentation necessary to review the request.",
+        "We aim to acknowledge refund requests within five business days and will provide a decision or status update as soon as reasonably possible.",
+        "Approved refunds are returned to the original payment method where practical and are typically processed within 10 business days after approval.",
+        "Your bank, card issuer, or financial institution may require additional time to post the refund.",
+      ],
+    },
+    {
+      title: "13. Payment disputes and billing concerns",
+      paragraphs: [
+        "If you have a concern about a payment, service, deliverable, or project, please contact us directly at sales@thelinkagedigital.com so that we have an opportunity to review and resolve the matter.",
+        "We are committed to reviewing legitimate billing and service concerns fairly and in good faith.",
+        "Nothing in this section prevents a Client from exercising any rights available under applicable law.",
+      ],
+    },
+    {
+      title: "14. Separate written agreements",
+      paragraphs: [
+        "If a separate written agreement, proposal, statement of work, order form, or service agreement contains specific refund, cancellation, or payment terms that expressly apply to the purchased service, those terms may govern to the extent they conflict with this general Refund Policy.",
+      ],
+    },
+    {
+      title: "15. Policy changes",
+      paragraphs: [
+        "We may update this Refund Policy from time to time to reflect changes to our services, business practices, or applicable requirements.",
+        "The version of this policy displayed on our website at the time of a new purchase will generally apply to that purchase, subject to applicable law and any separate written agreement governing the services.",
       ],
     },
   ],
@@ -291,6 +456,22 @@ const PRIVACY: PolicyDocument = {
   ],
 };
 
+function renderPolicyText(text: string) {
+  const email = "sales@thelinkagedigital.com";
+  const parts = text.split(email);
+
+  return parts.map((part, index) => (
+    <span key={`${part}-${index}`}>
+      {part}
+      {index < parts.length - 1 && (
+        <a href="mailto:sales@thelinkagedigital.com" className="font-medium text-[#8B0AB4] underline underline-offset-2 hover:text-[#121212]">
+          {email}
+        </a>
+      )}
+    </span>
+  ));
+}
+
 function PolicyPage({ document }: { document: PolicyDocument }) {
   useSEO({
     title: `${document.title} | The Linkage Digital`,
@@ -322,8 +503,8 @@ function PolicyPage({ document }: { document: PolicyDocument }) {
 
         <section className="bg-[#F9F9F9] py-10 md:py-14">
           <div className="max-w-[1100px] mx-auto px-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-kanit text-[#555] text-sm md:text-base">Please read this policy carefully before using our services.</p>
-            <p className="font-kanit text-[#555] text-sm md:text-base"><span className="font-medium text-[#121212]">Last updated:</span> {LAST_UPDATED}</p>
+            <p className="font-kanit text-[#555] text-sm md:text-base">{document.intro ?? "Please read this policy carefully before using our services."}</p>
+            <p className="font-kanit text-[#555] text-sm md:text-base"><span className="font-medium text-[#121212]">Last updated:</span> {document.lastUpdated ?? LAST_UPDATED}</p>
           </div>
         </section>
 
@@ -337,7 +518,7 @@ function PolicyPage({ document }: { document: PolicyDocument }) {
                 <div className="space-y-4">
                   {section.paragraphs.map((paragraph) => (
                     <p key={paragraph} className="font-kanit text-[#555] text-[15px] leading-[1.75] md:text-base">
-                      {paragraph}
+                      {renderPolicyText(paragraph)}
                     </p>
                   ))}
                 </div>
@@ -351,10 +532,30 @@ function PolicyPage({ document }: { document: PolicyDocument }) {
                     ))}
                   </ul>
                 )}
+                {section.afterBullets && (
+                  <div className="mt-5 space-y-4">
+                    {section.afterBullets.map((paragraph) => (
+                      <p key={paragraph} className="font-kanit text-[#555] text-[15px] leading-[1.75] md:text-base">
+                        {renderPolicyText(paragraph)}
+                      </p>
+                    ))}
+                  </div>
+                )}
               </article>
             ))}
           </div>
         </section>
+
+        {document.closing && (
+          <section className="bg-[#F9F9F9] border-t border-[#ECECEC] py-12 md:py-16">
+            <div className="max-w-[900px] mx-auto px-6">
+              <p className="font-teko font-bold text-[#121212] uppercase text-3xl leading-none md:text-4xl">{document.closing.organization}</p>
+              <p className="font-teko font-bold text-[#8B0AB4] uppercase text-2xl leading-none mt-2 md:text-3xl">{document.title}</p>
+              <p className="font-kanit text-[#555] text-[15px] mt-5 md:text-base"><span className="font-medium text-[#121212]">Last updated:</span> {document.lastUpdated ?? LAST_UPDATED}</p>
+              <p className="font-kanit text-[#555] text-[15px] mt-2 md:text-base"><span className="font-medium text-[#121212]">Refund requests:</span> <a href="mailto:sales@thelinkagedigital.com" className="font-medium text-[#8B0AB4] underline underline-offset-2 hover:text-[#121212]">{document.closing.contact}</a></p>
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
