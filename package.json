@@ -13,6 +13,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@clerk/react": "^6.19.4",
     "@supabase/supabase-js": "^2.119.2",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",

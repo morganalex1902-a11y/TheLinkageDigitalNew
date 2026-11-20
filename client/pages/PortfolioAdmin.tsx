@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import type { Session } from "@supabase/supabase-js";
+import { SignIn, useAuth, useClerk } from "@clerk/react";
 import { ArrowLeft, ExternalLink, LogOut, Plus, Search, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { BASE_PORTFOLIO_PROJECTS, getPortfolioProjectId, type PortfolioProject, type PortfolioType } from "@/lib/portfolio";
-import { supabase } from "@/lib/supabase";
+import { createSupabaseClient } from "@/lib/supabase";
 
 type Entry = PortfolioProject & {
   id: string;
@@ -58,15 +58,12 @@ function isWebsiteLink(value: string) {
 }
 
 export default function PortfolioAdmin() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [authReady, setAuthReady] = useState(false);
+  const { isLoaded, isSignedIn, getToken } = useAuth();
+  const { signOut } = useClerk();
+  const supabase = useMemo(() => createSupabaseClient(() => getToken()), [getToken]);
   const [access, setAccess] = useState<"checking" | "allowed" | "denied">("checking");
   const [entries, setEntries] = useState<Entry[]>([]);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [authNotice, setAuthNotice] = useState("");
-  const [passwordRecovery, setPasswordRecovery] = useState(false);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [showHidden, setShowHidden] = useState(true);
@@ -76,25 +73,8 @@ export default function PortfolioAdmin() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
-    void supabase.auth.getSession().then(({ data }) => {
-      if (!mounted) return;
-      setSession(data.session);
-      setAuthReady(true);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, nextSession) => {
-      setSession(nextSession);
-      setPasswordRecovery(event === "PASSWORD_RECOVERY");
-      setAuthReady(true);
-    });
-    return () => {
-      mounted = false;
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!session) {
+    if (!isLoaded) return;
+    if (!isSignedIn) {
       setAccess("denied");
       setEntries([]);
       return;
@@ -176,7 +156,7 @@ export default function PortfolioAdmin() {
     return () => {
       cancelled = true;
     };
-  }, [session?.user.id]);
+  }, [getToken, isLoaded, isSignedIn, supabase]);
 
   const visibleEntries = useMemo(() => entries.filter((entry) => {
     const matchesSearch = `${entry.title} ${entry.website} ${entry.niche}`.toLowerCase().includes(search.toLowerCase());
@@ -202,40 +182,6 @@ export default function PortfolioAdmin() {
       hide_from_portfolio: entry.hide_from_portfolio,
     });
     setFormOpen(true);
-  };
-
-  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setAuthNotice("");
-    const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
-    if (error) toast.error(error.message);
-  };
-
-  const handlePasswordReset = async () => {
-    if (!email.trim()) {
-      toast.error("Enter your admin email first.");
-      return;
-    }
-    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-      redirectTo: `${window.location.origin}/admin/portfolio`,
-    });
-    if (error) {
-      toast.error(error.message);
-      return;
-    }
-    setAuthNotice("If an account exists for that email, a password reset link is on its way.");
-  };
-
-  const handlePasswordUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const { error } = await supabase.auth.updateUser({ password });
-    if (error) {
-      toast.error(error.message);
-      return;
-    }
-    setPasswordRecovery(false);
-    setPassword("");
-    toast.success("Password updated.");
   };
 
   const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -296,45 +242,32 @@ export default function PortfolioAdmin() {
     toast.success("Portfolio item deleted.");
   };
 
-  if (!authReady || (session && access === "checking")) {
+  if (!isLoaded || (isSignedIn && access === "checking")) {
     return <div className="grid min-h-screen place-items-center bg-[#f8f6f9] font-kanit text-[#695f70]">Loading portfolio admin…</div>;
   }
 
-  if (session && passwordRecovery && access === "allowed") {
-    return (
-      <main className="grid min-h-screen place-items-center bg-[#f8f6f9] px-5 py-12 font-kanit">
-        <form onSubmit={handlePasswordUpdate} className="w-full max-w-md rounded-3xl border border-[#ece6ef] bg-white p-7 shadow-xl shadow-[#351342]/5 sm:p-10">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B0AB4]">The Linkage Digital</p>
-          <h1 className="font-teko text-5xl font-bold uppercase leading-none text-[#121212]">Set new password</h1>
-          <label className="mt-7 block space-y-2 text-xs font-medium uppercase tracking-wide text-[#49414e]">New password<Input type="password" autoComplete="new-password" minLength={8} required value={password} onChange={(event) => setPassword(event.target.value)} className="h-12 rounded-xl border-[#e5dce9]" /></label>
-          <button className="mt-5 w-full rounded-xl bg-[#8B0AB4] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#751096]" type="submit">Update password</button>
-        </form>
-      </main>
-    );
-  }
-
-  if (!session || access === "denied") {
+  if (!isSignedIn || access === "denied") {
     return (
       <main className="grid min-h-screen place-items-center bg-[#f8f6f9] px-5 py-12 font-kanit">
         <section className="w-full max-w-md rounded-3xl border border-[#ece6ef] bg-white p-7 shadow-xl shadow-[#351342]/5 sm:p-10">
           <Link to="/" className="mb-8 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-[#8B0AB4]"><ArrowLeft size={15} /> Back to website</Link>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B0AB4]">The Linkage Digital</p>
           <h1 className="font-teko text-5xl font-bold uppercase leading-none text-[#121212]">Portfolio admin</h1>
-          {!session && <>
-            <p className="mt-4 text-sm leading-relaxed text-[#716879]">Sign in with the admin account created in Supabase.</p>
-            <form onSubmit={handleSignIn} className="mt-7 space-y-4">
-              <label className="block space-y-2 text-xs font-medium uppercase tracking-wide text-[#49414e]" htmlFor="admin-email">Email address<Input id="admin-email" type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" className="h-12 rounded-xl border-[#e5dce9]" /></label>
-              <label className="block space-y-2 text-xs font-medium uppercase tracking-wide text-[#49414e]" htmlFor="admin-password">Password<Input id="admin-password" type="password" autoComplete="current-password" required value={password} onChange={(event) => setPassword(event.target.value)} className="h-12 rounded-xl border-[#e5dce9]" /></label>
-              <button className="w-full rounded-xl bg-[#8B0AB4] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#751096]" type="submit">Sign in</button>
-            </form>
-            <div className="mt-4 flex justify-end text-xs">
-              <button type="button" onClick={() => void handlePasswordReset()} className="text-[#716879] hover:underline">Forgot password?</button>
+          {!isSignedIn && <>
+            <p className="mt-4 text-sm leading-relaxed text-[#716879]">Sign in with Clerk. Only the authorized admin account can manage portfolio entries.</p>
+            <div className="mt-7 flex justify-center">
+              <SignIn
+                routing="hash"
+                appearance={{
+                  variables: { colorPrimary: "#8B0AB4" },
+                  elements: { card: "border-0 shadow-none", rootBox: "w-full", headerTitle: "font-teko uppercase" },
+                }}
+              />
             </div>
-            {authNotice && <p role="status" className="mt-4 rounded-xl bg-[#f4eaf8] p-4 text-sm text-[#5c246b]">{authNotice}</p>}
           </>}
-          {session && access === "denied" && <div className="mt-6 rounded-2xl bg-[#fff4f3] p-5 text-sm text-[#9a3535]">
+          {isSignedIn && access === "denied" && <div className="mt-6 rounded-2xl bg-[#fff4f3] p-5 text-sm text-[#9a3535]">
             <p>This account does not have portfolio admin access.</p>
-            <button type="button" onClick={() => void supabase.auth.signOut()} className="mt-4 font-semibold underline">Sign out</button>
+            <button type="button" onClick={() => void signOut()} className="mt-4 font-semibold underline">Sign out</button>
           </div>}
         </section>
       </main>
@@ -351,7 +284,7 @@ export default function PortfolioAdmin() {
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-[#e7ddea] px-3 py-2 text-xs font-medium text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4] sm:px-4"><ExternalLink size={14} /> <span className="hidden sm:inline">View public portfolio</span><span className="sm:hidden">Preview</span></Link>
-            <button onClick={() => void supabase.auth.signOut()} aria-label="Sign out" className="rounded-full border border-[#e7ddea] p-2.5 text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><LogOut size={17} /></button>
+            <button onClick={() => void signOut()} aria-label="Sign out" className="rounded-full border border-[#e7ddea] p-2.5 text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><LogOut size={17} /></button>
           </div>
         </div>
       </header>
