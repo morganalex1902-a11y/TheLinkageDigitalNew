@@ -98,8 +98,8 @@ export default function Portfolio() {
     { title: "TheeJunkGuys", type: "websites", niche: "Junk Removal", image: "https://image.thum.io/get/width/600/crop/600/url/theejunkguys.com", description: "Junk removal, light demolition, and seasonal installation services.", website: "https://theejunkguys.com" },
     { title: "Nedzpur Production", type: "websites", niche: "Digital Services", image: "https://image.thum.io/get/width/600/crop/600/url/nedzpurproduction.com", description: "Full-stack IT services and software development.", website: "https://nedzpurproduction.com" },
     { title: "Pure Heart Athletics", type: "websites", niche: "Fitness & Athletics", image: "https://image.thum.io/get/width/600/crop/600/url/pureheartathletic.com", description: "Volleyball and basketball athletic training.", website: "https://pureheartathletic.com" },
-    { title: "Panda Window Cleaning", type: "websites", niche: "Cleaning Services", image: "https://image.thum.io/get/width/600/crop/600/url/panda-windowcleaning.com", description: "Residential and commercial window-cleaning services.", website: "https://panda-windowcleaning.com" },
-    { title: "Shawn's Detailing", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/shaunsdetailing.com", description: "Mobile car and boat detailing.", website: "https://shaunsdetailing.com" },
+    { title: "Panda Window Cleaning", type: "websites", niche: "Cleaning Services", image: "https://image.thum.io/get/width/600/crop/600/url/panda-windowcleaning.com", description: "Residential and commercial window-cleaning services.", website: "https://panda-windowcleaning.com", hideFromPortfolio: true },
+    { title: "Shawn's Detailing", type: "websites", niche: "Auto Detailing", image: "https://image.thum.io/get/width/600/crop/600/url/shaunsdetailing.com", description: "Mobile car and boat detailing.", website: "https://shaunsdetailing.com", hideFromPortfolio: true },
     { title: "ASTJ Services", type: "websites", niche: "Cleaning Services", image: "https://image.thum.io/get/width/600/crop/600/url/astjservices.com", description: "Professional residential and commercial cleaning.", website: "https://astjservices.com" },
     { title: "C. Benjamin Logging & Trucking", type: "websites", niche: "Logging & Trucking", image: "https://image.thum.io/get/width/600/crop/600/url/cbenjaminlogging.com", description: "Logging and trucking services.", website: "https://cbenjaminlogging.com" },
 
@@ -137,7 +137,10 @@ export default function Portfolio() {
 
   const getFilteredProjects = () => {
     let filtered = PROJECTS.filter(
-      (p) => p.type === activeMainCategory && /^https?:\/\//i.test(p.website),
+      (p) =>
+        p.type === activeMainCategory &&
+        /^https?:\/\//i.test(p.website) &&
+        !p.hideFromPortfolio,
     );
 
     if (activeMainCategory === "websites" && activeNiche !== "all") {
@@ -412,22 +415,12 @@ export default function Portfolio() {
               const cardContent = (
                 <>
                   <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-white flex-shrink-0 min-h-[220px]">
-                    {project.type === "websites" ? (
-                      <iframe
-                        src={project.website}
-                        title={`${project.title} website hero`}
-                        className="h-full w-full border-0 pointer-events-none"
-                        loading="lazy"
-                        scrolling="no"
-                      />
-                    ) : (
-                      <img
-                        src={project.image}
-                        alt={`${project.title} placeholder preview`}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    )}
+                    <img
+                      src={project.image}
+                      alt={`${project.title} website preview`}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
                     <p className="font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#8B0AB4] mb-2 tracking-wider">
