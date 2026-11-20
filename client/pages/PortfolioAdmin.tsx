@@ -1,0 +1,430 @@
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import type { Session } from "@supabase/supabase-js";
+import { ArrowLeft, ExternalLink, LogOut, Plus, Search, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { BASE_PORTFOLIO_PROJECTS, getPortfolioProjectId, type PortfolioProject, type PortfolioType } from "@/lib/portfolio";
+import { supabase } from "@/lib/supabase";
+
+type Entry = PortfolioProject & {
+  id: string;
+  hide_from_portfolio: boolean;
+};
+
+type FormValues = Omit<PortfolioProject, "hideFromPortfolio"> & {
+  hide_from_portfolio: boolean;
+};
+
+const categories: { label: string; value: PortfolioType }[] = [
+  { label: "Web Design & Development", value: "websites" },
+  { label: "Branding & Logo Design", value: "branding" },
+  { label: "Digital Marketing", value: "digital-marketing" },
+  { label: "SEO Optimization", value: "seo-optimization" },
+  { label: "Video Editing & Motion", value: "video-editing-motion" },
+];
+
+const emptyForm: FormValues = {
+  title: "",
+  type: "websites",
+  niche: "",
+  image: "",
+  description: "",
+  website: "",
+  hide_from_portfolio: false,
+};
+
+function isHttpUrl(value: string) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function isWebsiteLink(value: string) {
+  if (value.startsWith("/") && !value.startsWith("//") && !value.includes("\\")) return true;
+  return isHttpUrl(value);
+}
+
+export default function PortfolioAdmin() {
+  const [session, setSession] = useState<Session | null>(null);
+  const [authReady, setAuthReady] = useState(false);
+  const [access, setAccess] = useState<"checking" | "allowed" | "denied">("checking");
+  const [entries, setEntries] = useState<Entry[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [authNotice, setAuthNotice] = useState("");
+  const [passwordRecovery, setPasswordRecovery] = useState(false);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("all");
+  const [showHidden, setShowHidden] = useState(true);
+  const [formOpen, setFormOpen] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [form, setForm] = useState<FormValues>(emptyForm);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    void supabase.auth.getSession().then(({ data }) => {
+      if (!mounted) return;
+      setSession(data.session);
+      setAuthReady(true);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, nextSession) => {
+      setSession(nextSession);
+      setPasswordRecovery(event === "PASSWORD_RECOVERY");
+      setAuthReady(true);
+    });
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!session) {
+      setAccess("denied");
+      setEntries([]);
+      return;
+    }
+
+    let cancelled = false;
+    setAccess("checking");
+    setLoading(true);
+
+    const loadEntries = async () => {
+      const { data: isAdmin, error: accessError } = await supabase.rpc("is_portfolio_admin");
+      if (cancelled) return;
+      if (accessError || !isAdmin) {
+        setAccess("denied");
+        setLoading(false);
+        return;
+      }
+
+      setAccess("allowed");
+      const { data: config, error: configError } = await supabase
+        .from("portfolio_config")
+        .select("initialized")
+        .eq("id", "main")
+        .maybeSingle();
+      if (configError) {
+        setLoading(false);
+        toast.error("Could not load portfolio settings.");
+        return;
+      }
+
+      if (!config?.initialized) {
+        const initialEntries = BASE_PORTFOLIO_PROJECTS
+          .map((project) => ({
+            id: getPortfolioProjectId(project.title),
+            title: project.title,
+            type: project.type,
+            niche: project.niche,
+            image: project.image,
+            description: project.description,
+            website: project.website,
+            hide_from_portfolio: project.hideFromPortfolio ?? false,
+          }));
+        const { error: seedError } = await supabase
+          .from("portfolio_entries")
+          .upsert(initialEntries, { onConflict: "id" });
+        if (seedError) {
+          if (!cancelled) {
+            setLoading(false);
+            toast.error("Could not initialize the portfolio data.");
+          }
+          return;
+        }
+        const { error: initializeError } = await supabase
+          .from("portfolio_config")
+          .upsert({ id: "main", initialized: true });
+        if (initializeError) {
+          if (!cancelled) {
+            setLoading(false);
+            toast.error("Could not finish initializing the portfolio.");
+          }
+          return;
+        }
+      }
+
+      const { data, error } = await supabase
+        .from("portfolio_entries")
+        .select("id, title, type, niche, image, description, website, hide_from_portfolio")
+        .order("title", { ascending: true });
+      if (cancelled) return;
+      if (error) {
+        toast.error("Could not load portfolio entries.");
+      } else {
+        setEntries(data as Entry[]);
+      }
+      setLoading(false);
+    };
+
+    void loadEntries();
+    return () => {
+      cancelled = true;
+    };
+  }, [session?.user.id]);
+
+  const visibleEntries = useMemo(() => entries.filter((entry) => {
+    const matchesSearch = `${entry.title} ${entry.website} ${entry.niche}`.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = category === "all" || entry.type === category;
+    return matchesSearch && matchesCategory && (showHidden || !entry.hide_from_portfolio);
+  }), [category, entries, search, showHidden]);
+
+  const openCreate = () => {
+    setEditingId(null);
+    setForm(emptyForm);
+    setFormOpen(true);
+  };
+
+  const openEdit = (entry: Entry) => {
+    setEditingId(entry.id);
+    setForm({
+      title: entry.title,
+      type: entry.type,
+      niche: entry.niche,
+      image: entry.image,
+      description: entry.description,
+      website: entry.website,
+      hide_from_portfolio: entry.hide_from_portfolio,
+    });
+    setFormOpen(true);
+  };
+
+  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setAuthNotice("");
+    const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    if (error) toast.error(error.message);
+  };
+
+  const handlePasswordReset = async () => {
+    if (!email.trim()) {
+      toast.error("Enter your admin email first.");
+      return;
+    }
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${window.location.origin}/admin/portfolio`,
+    });
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    setAuthNotice("If an account exists for that email, a password reset link is on its way.");
+  };
+
+  const handlePasswordUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const { error } = await supabase.auth.updateUser({ password });
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    setPasswordRecovery(false);
+    setPassword("");
+    toast.success("Password updated.");
+  };
+
+  const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const title = form.title.trim();
+    const website = form.website.trim();
+    const image = form.image.trim();
+    if (!title || !form.niche.trim() || !form.description.trim()) {
+      toast.error("Complete all required fields.");
+      return;
+    }
+    if (!isWebsiteLink(website) || !isHttpUrl(image)) {
+      toast.error("Enter a valid website link and an http or https image URL.");
+      return;
+    }
+
+    const id = editingId ?? getPortfolioProjectId(title);
+    if (!id) {
+      toast.error("Add a project title before saving.");
+      return;
+    }
+    const payload = {
+      id,
+      title,
+      type: form.type,
+      niche: form.niche.trim(),
+      image,
+      description: form.description.trim(),
+      website,
+      hide_from_portfolio: form.hide_from_portfolio,
+    };
+
+    setSaving(true);
+    const request = editingId
+      ? supabase.from("portfolio_entries").update(payload).eq("id", editingId)
+      : supabase.from("portfolio_entries").insert(payload);
+    const { error } = await request;
+    setSaving(false);
+    if (error) {
+      toast.error(error.code === "23505" ? "A project with that title already exists." : error.message);
+      return;
+    }
+    setEntries((current) => editingId
+      ? current.map((entry) => entry.id === editingId ? payload as Entry : entry)
+      : [...current, payload as Entry].sort((a, b) => a.title.localeCompare(b.title)));
+    setFormOpen(false);
+    toast.success(editingId ? "Portfolio item updated." : "Portfolio item added.");
+  };
+
+  const handleDelete = async (entry: Entry) => {
+    if (!window.confirm(`Delete “${entry.title}” from the portfolio?`)) return;
+    const { error } = await supabase.from("portfolio_entries").delete().eq("id", entry.id);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    setEntries((current) => current.filter((item) => item.id !== entry.id));
+    toast.success("Portfolio item deleted.");
+  };
+
+  if (!authReady || (session && access === "checking")) {
+    return <div className="grid min-h-screen place-items-center bg-[#f8f6f9] font-kanit text-[#695f70]">Loading portfolio admin…</div>;
+  }
+
+  if (session && passwordRecovery && access === "allowed") {
+    return (
+      <main className="grid min-h-screen place-items-center bg-[#f8f6f9] px-5 py-12 font-kanit">
+        <form onSubmit={handlePasswordUpdate} className="w-full max-w-md rounded-3xl border border-[#ece6ef] bg-white p-7 shadow-xl shadow-[#351342]/5 sm:p-10">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B0AB4]">The Linkage Digital</p>
+          <h1 className="font-teko text-5xl font-bold uppercase leading-none text-[#121212]">Set new password</h1>
+          <label className="mt-7 block space-y-2 text-xs font-medium uppercase tracking-wide text-[#49414e]">New password<Input type="password" autoComplete="new-password" minLength={8} required value={password} onChange={(event) => setPassword(event.target.value)} className="h-12 rounded-xl border-[#e5dce9]" /></label>
+          <button className="mt-5 w-full rounded-xl bg-[#8B0AB4] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#751096]" type="submit">Update password</button>
+        </form>
+      </main>
+    );
+  }
+
+  if (!session || access === "denied") {
+    return (
+      <main className="grid min-h-screen place-items-center bg-[#f8f6f9] px-5 py-12 font-kanit">
+        <section className="w-full max-w-md rounded-3xl border border-[#ece6ef] bg-white p-7 shadow-xl shadow-[#351342]/5 sm:p-10">
+          <Link to="/" className="mb-8 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-[#8B0AB4]"><ArrowLeft size={15} /> Back to website</Link>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B0AB4]">The Linkage Digital</p>
+          <h1 className="font-teko text-5xl font-bold uppercase leading-none text-[#121212]">Portfolio admin</h1>
+          {!session && <>
+            <p className="mt-4 text-sm leading-relaxed text-[#716879]">Sign in with the admin account created in Supabase.</p>
+            <form onSubmit={handleSignIn} className="mt-7 space-y-4">
+              <label className="block space-y-2 text-xs font-medium uppercase tracking-wide text-[#49414e]" htmlFor="admin-email">Email address<Input id="admin-email" type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" className="h-12 rounded-xl border-[#e5dce9]" /></label>
+              <label className="block space-y-2 text-xs font-medium uppercase tracking-wide text-[#49414e]" htmlFor="admin-password">Password<Input id="admin-password" type="password" autoComplete="current-password" required value={password} onChange={(event) => setPassword(event.target.value)} className="h-12 rounded-xl border-[#e5dce9]" /></label>
+              <button className="w-full rounded-xl bg-[#8B0AB4] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#751096]" type="submit">Sign in</button>
+            </form>
+            <div className="mt-4 flex justify-end text-xs">
+              <button type="button" onClick={() => void handlePasswordReset()} className="text-[#716879] hover:underline">Forgot password?</button>
+            </div>
+            {authNotice && <p role="status" className="mt-4 rounded-xl bg-[#f4eaf8] p-4 text-sm text-[#5c246b]">{authNotice}</p>}
+          </>}
+          {session && access === "denied" && <div className="mt-6 rounded-2xl bg-[#fff4f3] p-5 text-sm text-[#9a3535]">
+            <p>This account does not have portfolio admin access.</p>
+            <button type="button" onClick={() => void supabase.auth.signOut()} className="mt-4 font-semibold underline">Sign out</button>
+          </div>}
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-[#f8f6f9] font-kanit text-[#121212]">
+      <header className="border-b border-[#eae4ed] bg-white">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 sm:px-8">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8B0AB4]">The Linkage Digital</p>
+            <h1 className="font-teko text-3xl font-bold uppercase leading-none sm:text-4xl">Portfolio Admin</h1>
+          </div>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-[#e7ddea] px-3 py-2 text-xs font-medium text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4] sm:px-4"><ExternalLink size={14} /> <span className="hidden sm:inline">View public portfolio</span><span className="sm:hidden">Preview</span></Link>
+            <button onClick={() => void supabase.auth.signOut()} aria-label="Sign out" className="rounded-full border border-[#e7ddea] p-2.5 text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><LogOut size={17} /></button>
+          </div>
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-[1440px] px-5 py-8 sm:px-8 sm:py-10">
+        <div className="mb-7 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p className="text-sm text-[#77707c]">Manage projects shown on the public portfolio page.</p>
+            <p className="mt-2 text-xs text-[#978d9c]">{entries.length} items · Changes publish immediately</p>
+          </div>
+          <button onClick={openCreate} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B0AB4] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#8B0AB4]/15 transition hover:bg-[#751096]"><Plus size={17} /> Add portfolio item</button>
+        </div>
+
+        <section className="overflow-hidden rounded-2xl border border-[#eae4ed] bg-white shadow-sm">
+          <div className="flex flex-col gap-3 border-b border-[#eee8f0] p-4 sm:flex-row sm:items-center sm:p-5">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#a096a5]" size={17} />
+              <Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search projects" className="h-11 rounded-xl border-[#ece6ef] pl-10" />
+            </div>
+            <select value={category} onChange={(event) => setCategory(event.target.value)} className="h-11 rounded-xl border border-[#ece6ef] bg-white px-3 text-sm outline-none focus:border-[#8B0AB4]">
+              <option value="all">All categories</option>
+              {categories.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+            </select>
+            <label className="inline-flex items-center gap-2 whitespace-nowrap px-1 text-sm text-[#625969]"><input type="checkbox" checked={showHidden} onChange={(event) => setShowHidden(event.target.checked)} className="accent-[#8B0AB4]" /> Include hidden</label>
+          </div>
+
+          {loading ? <div className="p-10 text-center text-sm text-[#766b7b]">Loading projects…</div> : visibleEntries.length === 0 ? <div className="p-12 text-center text-sm text-[#766b7b]">No portfolio items match your filters.</div> : (
+            <div className="divide-y divide-[#f0ebf2]">
+              {visibleEntries.map((entry) => (
+                <article key={entry.id} className="grid gap-4 p-4 sm:grid-cols-[88px_minmax(0,1fr)_auto] sm:items-center sm:gap-5 sm:p-5">
+                  <img src={entry.image} alt="" className="h-20 w-24 rounded-xl bg-[#f2edf4] object-cover" loading="lazy" />
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="font-semibold">{entry.title}</h2>
+                      {entry.hide_from_portfolio && <span className="rounded-full bg-[#f4edf6] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-[#81698a]">Hidden</span>}
+                    </div>
+                    <p className="mt-1 text-xs text-[#8a808f]">{categories.find((item) => item.value === entry.type)?.label} · {entry.niche}</p>
+                    <a href={entry.website} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex max-w-full items-center gap-1 truncate text-xs text-[#8B0AB4] hover:underline"><span className="truncate">{entry.website}</span><ExternalLink className="shrink-0" size={12} /></a>
+                  </div>
+                  <div className="flex gap-2 sm:justify-end">
+                    <button onClick={() => openEdit(entry)} className="rounded-full border border-[#e7ddea] px-4 py-2 text-xs font-medium transition hover:border-[#8B0AB4] hover:text-[#8B0AB4]">Edit</button>
+                    <button onClick={() => void handleDelete(entry)} aria-label={`Delete ${entry.title}`} className="rounded-full border border-[#f0dede] p-2 text-[#a74a4a] transition hover:bg-[#fff4f3]"><Trash2 size={16} /></button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+      </div>
+
+      <Dialog open={formOpen} onOpenChange={setFormOpen}>
+        <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto rounded-2xl border-[#eae4ed] bg-white p-0">
+          <form onSubmit={handleSave}>
+            <DialogHeader className="border-b border-[#eee8f0] px-6 py-5 pr-14 text-left">
+              <DialogTitle className="font-teko text-3xl font-bold uppercase">{editingId ? "Edit portfolio item" : "Add portfolio item"}</DialogTitle>
+              <DialogDescription>Update the project details shown on the public portfolio.</DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 px-6 py-5 sm:grid-cols-2">
+              <label className="space-y-1.5 text-xs font-medium text-[#514957]">Project title<Input required maxLength={120} value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="Project name" /></label>
+              <label className="space-y-1.5 text-xs font-medium text-[#514957]">Category<select value={form.type} onChange={(event) => setForm({ ...form, type: event.target.value as PortfolioType })} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#8B0AB4]">{categories.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
+              <label className="space-y-1.5 text-xs font-medium text-[#514957]">Industry / niche<Input required maxLength={80} value={form.niche} onChange={(event) => setForm({ ...form, niche: event.target.value })} placeholder="e.g. Landscaping" /></label>
+              <label className="space-y-1.5 text-xs font-medium text-[#514957]">Website URL<Input required value={form.website} onChange={(event) => setForm({ ...form, website: event.target.value })} placeholder="https://example.com" /></label>
+              <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Image URL<Input required value={form.image} onChange={(event) => setForm({ ...form, image: event.target.value })} placeholder="https://example.com/image.jpg" /></label>
+              <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Description<Textarea required maxLength={500} rows={3} value={form.description} onChange={(event) => setForm({ ...form, description: event.target.value })} placeholder="Briefly describe the project" /></label>
+              <label className="inline-flex items-center gap-2 text-sm text-[#625969] sm:col-span-2"><input type="checkbox" checked={form.hide_from_portfolio} onChange={(event) => setForm({ ...form, hide_from_portfolio: event.target.checked })} className="accent-[#8B0AB4]" /> Keep this item hidden from the public portfolio</label>
+            </div>
+            <DialogFooter className="border-t border-[#eee8f0] px-6 py-4">
+              <button type="button" onClick={() => setFormOpen(false)} className="rounded-full border border-[#e7ddea] px-5 py-2.5 text-sm text-[#625969]">Cancel</button>
+              <button disabled={saving} type="submit" className="rounded-full bg-[#8B0AB4] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#751096] disabled:opacity-60">{saving ? "Saving…" : editingId ? "Save changes" : "Add project"}</button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </main>
+  );
+}
