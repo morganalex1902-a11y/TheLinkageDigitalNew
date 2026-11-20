@@ -122,9 +122,10 @@ function MarqueeScroll() {
 
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
-  const allImages = [...images, ...images];
+  const allImages = [...images, ...images, ...images];
   const [isMobile, setIsMobile] = useState(false);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const mobileDirection = useRef(1);
   const [touchStart, setTouchStart] = useState(0);
 
   useEffect(() => {
@@ -139,7 +140,14 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     if (!isMobile) return;
 
     const interval = setInterval(() => {
-      setMobileIndex((prev) => (prev + 1) % images.length);
+      setMobileIndex((prev) => {
+        const next = prev + mobileDirection.current;
+        if (next >= images.length || next < 0) {
+          mobileDirection.current *= -1;
+          return prev + mobileDirection.current;
+        }
+        return next;
+      });
     }, 5000);
 
     return () => clearInterval(interval);
@@ -168,7 +176,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     return (
       <div className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         <div
-          className="flex gap-[0.53vw]"
+          className="flex"
           style={{
             transform: `translateX(-${mobileIndex * 100}%)`,
             transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -225,7 +233,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: `${animationName} 80s linear infinite`,
+          animation: `${animationName} 38s ease-in-out infinite alternate`,
           willChange: "transform",
         }}
       >
