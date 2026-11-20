@@ -61,7 +61,7 @@ export default function PortfolioAdmin() {
   const { isLoaded, isSignedIn, getToken } = useAuth();
   const { signOut } = useClerk();
   const supabase = useMemo(() => createSupabaseClient(() => getToken()), [getToken]);
-  const [access, setAccess] = useState<"checking" | "allowed" | "denied">("checking");
+  const [access, setAccess] = useState<"checking" | "allowed" | "denied" | "configuration-error">("checking");
   const [entries, setEntries] = useState<Entry[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -87,7 +87,12 @@ export default function PortfolioAdmin() {
     const loadEntries = async () => {
       const { data: isAdmin, error: accessError } = await supabase.rpc("is_portfolio_admin");
       if (cancelled) return;
-      if (accessError || !isAdmin) {
+      if (accessError) {
+        setAccess("configuration-error");
+        setLoading(false);
+        return;
+      }
+      if (!isAdmin) {
         setAccess("denied");
         setLoading(false);
         return;
@@ -267,6 +272,10 @@ export default function PortfolioAdmin() {
           </>}
           {isSignedIn && access === "denied" && <div className="mt-6 rounded-2xl bg-[#fff4f3] p-5 text-sm text-[#9a3535]">
             <p>This account does not have portfolio admin access.</p>
+            <button type="button" onClick={() => void signOut()} className="mt-4 font-semibold underline">Sign out</button>
+          </div>}
+          {isSignedIn && access === "configuration-error" && <div className="mt-6 rounded-2xl bg-[#fff4f3] p-5 text-sm leading-relaxed text-[#9a3535]">
+            <p>Supabase could not validate this Clerk session. Add this Clerk instance under Supabase Authentication → Third-Party Auth, then confirm Clerk tokens include <code>role: authenticated</code> and an <code>email</code> claim matching the signed-in account.</p>
             <button type="button" onClick={() => void signOut()} className="mt-4 font-semibold underline">Sign out</button>
           </div>}
         </section>
