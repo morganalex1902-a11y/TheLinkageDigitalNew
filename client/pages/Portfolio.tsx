@@ -136,7 +136,9 @@ export default function Portfolio() {
   ];
 
   const getFilteredProjects = () => {
-    let filtered = PROJECTS.filter((p) => p.type === activeMainCategory);
+    let filtered = PROJECTS.filter(
+      (p) => p.type === activeMainCategory && /^https?:\/\//i.test(p.website),
+    );
 
     if (activeMainCategory === "websites" && activeNiche !== "all") {
       filtered = filtered.filter((p) =>
