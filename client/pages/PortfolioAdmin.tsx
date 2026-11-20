@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SignIn, useAuth, useClerk } from "@clerk/react";
-import { ArrowLeft, ExternalLink, LogOut, Plus, Search, Trash2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, LogOut, Plus, Search, Trash2, Upload } from "lucide-react";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -21,7 +21,8 @@ type Entry = PortfolioProject & {
   hide_from_portfolio: boolean;
 };
 
-type FormValues = Omit<PortfolioProject, "hideFromPortfolio"> & {
+type FormValues = Omit<PortfolioProject, "hideFromPortfolio" | "video"> & {
+  video: string;
   hide_from_portfolio: boolean;
 };
 
@@ -38,6 +39,7 @@ const emptyForm: FormValues = {
   type: "websites",
   niche: "",
   image: "",
+  video: "",
   description: "",
   website: "",
   hide_from_portfolio: false,
@@ -71,6 +73,7 @@ export default function PortfolioAdmin() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormValues>(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState<"image" | "video" | null>(null);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -118,6 +121,7 @@ export default function PortfolioAdmin() {
             type: project.type,
             niche: project.niche,
             image: project.image,
+            video: project.video ?? null,
             description: project.description,
             website: project.website,
             hide_from_portfolio: project.hideFromPortfolio ?? false,
@@ -146,7 +150,7 @@ export default function PortfolioAdmin() {
 
       const { data, error } = await supabase
         .from("portfolio_entries")
-        .select("id, title, type, niche, image, description, website, hide_from_portfolio")
+        .select("id, title, type, niche, image, video, description, website, hide_from_portfolio")
         .order("title", { ascending: true });
       if (cancelled) return;
       if (error) {
@@ -182,6 +186,7 @@ export default function PortfolioAdmin() {
       type: entry.type,
       niche: entry.niche,
       image: entry.image,
+      video: entry.video ?? "",
       description: entry.description,
       website: entry.website,
       hide_from_portfolio: entry.hide_from_portfolio,
@@ -189,17 +194,63 @@ export default function PortfolioAdmin() {
     setFormOpen(true);
   };
 
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>, resourceType: "image" | "video") => {
+    const input = event.currentTarget;
+    const file = input.files?.[0];
+    input.value = "";
+    if (!file) return;
+
+    const maxSize = resourceType === "image" ? 20 * 1024 * 1024 : 100 * 1024 * 1024;
+    if (!file.type.startsWith(`${resourceType}/`) || file.size > maxSize) {
+      toast.error(resourceType === "image" ? "Choose an image up to 20 MB." : "Choose a video up to 100 MB.");
+      return;
+    }
+
+    setUploading(resourceType);
+    try {
+      const token = await getToken();
+      if (!token) throw new Error("Sign in again before uploading media.");
+      const signatureResponse = await fetch("/api/cloudinary/signature", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ resourceType }),
+      });
+      const signatureData = await signatureResponse.json();
+      if (!signatureResponse.ok) throw new Error(signatureData.error ?? "Could not authorize the upload.");
+
+      const uploadData = new FormData();
+      uploadData.append("file", file);
+      uploadData.append("api_key", signatureData.apiKey);
+      uploadData.append("timestamp", String(signatureData.timestamp));
+      uploadData.append("folder", signatureData.folder);
+      uploadData.append("signature", signatureData.signature);
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${signatureData.cloudName}/${resourceType}/upload`, {
+        method: "POST",
+        body: uploadData,
+      });
+      const result = await response.json();
+      if (!response.ok || !result.secure_url) throw new Error(result.error?.message ?? "Cloudinary upload failed.");
+      setForm((current) => ({ ...current, [resourceType]: result.secure_url }));
+      toast.success(resourceType === "image" ? "Image uploaded." : "Video uploaded.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Media upload failed.");
+    } finally {
+      setUploading(null);
+    }
+  };
+
   const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const title = form.title.trim();
     const website = form.website.trim();
     const image = form.image.trim();
+    const video = form.video.trim();
     if (!title || !form.niche.trim() || !form.description.trim()) {
       toast.error("Complete all required fields.");
       return;
     }
-    if (!isWebsiteLink(website) || !isHttpUrl(image)) {
-      toast.error("Enter a valid website link and an http or https image URL.");
+    if (!isWebsiteLink(website) || !isHttpUrl(image) || (video && !isHttpUrl(video))) {
+      toast.error("Enter a valid website link and http or https media URLs.");
       return;
     }
 
@@ -214,6 +265,7 @@ export default function PortfolioAdmin() {
       type: form.type,
       niche: form.niche.trim(),
       image,
+      video: video || null,
       description: form.description.trim(),
       website,
       hide_from_portfolio: form.hide_from_portfolio,
@@ -356,13 +408,32 @@ export default function PortfolioAdmin() {
               <label className="space-y-1.5 text-xs font-medium text-[#514957]">Category<select value={form.type} onChange={(event) => setForm({ ...form, type: event.target.value as PortfolioType })} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#8B0AB4]">{categories.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
               <label className="space-y-1.5 text-xs font-medium text-[#514957]">Industry / niche<Input required maxLength={80} value={form.niche} onChange={(event) => setForm({ ...form, niche: event.target.value })} placeholder="e.g. Landscaping" /></label>
               <label className="space-y-1.5 text-xs font-medium text-[#514957]">Website URL<Input required value={form.website} onChange={(event) => setForm({ ...form, website: event.target.value })} placeholder="https://example.com" /></label>
-              <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Image URL<Input required value={form.image} onChange={(event) => setForm({ ...form, image: event.target.value })} placeholder="https://example.com/image.jpg" /></label>
+              <div className="space-y-2 text-xs font-medium text-[#514957] sm:col-span-2">
+                <label className="block">Project image</label>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <Input required value={form.image} onChange={(event) => setForm({ ...form, image: event.target.value })} placeholder="Image URL" />
+                  <label className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7ddea] px-4 text-xs hover:border-[#8B0AB4]">
+                    <Upload size={15} /> {uploading === "image" ? "Uploading…" : "Upload image"}
+                    <input className="sr-only" type="file" accept="image/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "image")} />
+                  </label>
+                </div>
+              </div>
+              <div className="space-y-2 text-xs font-medium text-[#514957] sm:col-span-2">
+                <label className="block">Project video (optional)</label>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <Input value={form.video} onChange={(event) => setForm({ ...form, video: event.target.value })} placeholder="Video URL" />
+                  <label className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7ddea] px-4 text-xs hover:border-[#8B0AB4]">
+                    <Upload size={15} /> {uploading === "video" ? "Uploading…" : "Upload video"}
+                    <input className="sr-only" type="file" accept="video/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "video")} />
+                  </label>
+                </div>
+              </div>
               <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Description<Textarea required maxLength={500} rows={3} value={form.description} onChange={(event) => setForm({ ...form, description: event.target.value })} placeholder="Briefly describe the project" /></label>
               <label className="inline-flex items-center gap-2 text-sm text-[#625969] sm:col-span-2"><input type="checkbox" checked={form.hide_from_portfolio} onChange={(event) => setForm({ ...form, hide_from_portfolio: event.target.checked })} className="accent-[#8B0AB4]" /> Keep this item hidden from the public portfolio</label>
             </div>
             <DialogFooter className="border-t border-[#eee8f0] px-6 py-4">
               <button type="button" onClick={() => setFormOpen(false)} className="rounded-full border border-[#e7ddea] px-5 py-2.5 text-sm text-[#625969]">Cancel</button>
-              <button disabled={saving} type="submit" className="rounded-full bg-[#8B0AB4] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#751096] disabled:opacity-60">{saving ? "Saving…" : editingId ? "Save changes" : "Add project"}</button>
+              <button disabled={saving || uploading !== null} type="submit" className="rounded-full bg-[#8B0AB4] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#751096] disabled:opacity-60">{uploading ? "Uploading…" : saving ? "Saving…" : editingId ? "Save changes" : "Add project"}</button>
             </DialogFooter>
           </form>
         </DialogContent>

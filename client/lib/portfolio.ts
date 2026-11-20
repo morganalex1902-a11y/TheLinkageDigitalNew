@@ -5,6 +5,7 @@ export interface PortfolioProject {
   type: PortfolioType;
   niche: string;
   image: string;
+  video?: string;
   description: string;
   website: string;
   hideFromPortfolio?: boolean;

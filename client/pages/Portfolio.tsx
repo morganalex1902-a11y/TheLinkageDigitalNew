@@ -30,7 +30,7 @@ export default function Portfolio() {
 
       const { data, error } = await supabase
         .from("portfolio_entries")
-        .select("title, type, niche, image, description, website, hide_from_portfolio")
+        .select("title, type, niche, image, video, description, website, hide_from_portfolio")
         .eq("deleted", false)
         .eq("hide_from_portfolio", false)
         .order("title", { ascending: true });
@@ -40,6 +40,7 @@ export default function Portfolio() {
         type: entry.type,
         niche: entry.niche,
         image: entry.image,
+        video: entry.video ?? undefined,
         description: entry.description,
         website: entry.website,
         hideFromPortfolio: entry.hide_from_portfolio,
@@ -365,12 +366,23 @@ export default function Portfolio() {
               const cardContent = (
                 <>
                   <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-white flex-shrink-0 min-h-[220px]">
-                    <img
-                      src={project.image}
-                      alt={`${project.title} website preview`}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
+                    {project.video ? (
+                      <video
+                        src={project.video}
+                        poster={project.image}
+                        aria-label={`${project.title} project video`}
+                        controls
+                        preload="metadata"
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={`${project.title} website preview`}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                   <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
                     <p className="font-kanit font-medium text-[12px] md:text-[13px] uppercase text-[#8B0AB4] mb-2 tracking-wider">
@@ -383,15 +395,19 @@ export default function Portfolio() {
                       {project.description}
                     </p>
                     <div className="mt-auto pt-4 border-t border-[#ECECEC]">
-                      <p className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider">
-                        {project.type === "websites" ? "Click to visit →" : "Sample layout"}
-                      </p>
+                      {project.type === "websites" && project.video ? (
+                        <a href={project.website} target="_blank" rel="noopener noreferrer" className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider hover:text-[#8B0AB4]">Visit website →</a>
+                      ) : (
+                        <p className="font-kanit text-[11px] md:text-[12px] text-[#999] uppercase tracking-wider">
+                          {project.type === "websites" ? "Click to visit →" : "Sample layout"}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </>
               );
 
-              if (project.type === "websites") {
+              if (project.type === "websites" && !project.video) {
                 return (
                   <a
                     key={cardKey}
