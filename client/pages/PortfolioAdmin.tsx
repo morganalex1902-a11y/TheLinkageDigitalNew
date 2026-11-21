@@ -256,8 +256,8 @@ export default function PortfolioAdmin() {
       toast.error("Complete all required fields.");
       return;
     }
-    if (!isWebsiteLink(website) || !isHttpUrl(image) || (video && !isHttpUrl(video))) {
-      toast.error("Enter a valid website link and http or https media URLs.");
+    if (!isWebsiteLink(website) || (image && !isHttpUrl(image)) || (video && !isHttpUrl(video))) {
+      toast.error("Enter a valid website link and valid http or https media URLs when provided.");
       return;
     }
 
@@ -383,7 +383,7 @@ export default function PortfolioAdmin() {
             <div className="divide-y divide-[#f0ebf2]">
               {visibleEntries.map((entry) => (
                 <article key={entry.id} className="grid gap-4 p-4 sm:grid-cols-[88px_minmax(0,1fr)_auto] sm:items-center sm:gap-5 sm:p-5">
-                  <img src={entry.image} alt="" className="h-20 w-24 rounded-xl bg-[#f2edf4] object-cover" loading="lazy" />
+                  {entry.image ? <img src={entry.image} alt="" className="h-20 w-24 rounded-xl bg-[#f2edf4] object-cover" loading="lazy" /> : <div aria-label="No project image" className="h-20 w-24 rounded-xl bg-[#f2edf4]" />}
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <h2 className="font-semibold">{entry.title}</h2>
@@ -418,7 +418,7 @@ export default function PortfolioAdmin() {
               <div className="space-y-2 text-xs font-medium text-[#514957] sm:col-span-2">
                 <label className="block">Project image</label>
                 <div className="flex flex-col gap-2 sm:flex-row">
-                  <Input required value={form.image} onChange={(event) => setForm({ ...form, image: event.target.value })} placeholder="Image URL" />
+                  <Input value={form.image} onChange={(event) => setForm({ ...form, image: event.target.value })} placeholder="Image URL (optional)" />
                   <label className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7ddea] px-4 text-xs hover:border-[#8B0AB4]">
                     <Upload size={15} /> {uploading === "image" ? "Uploading…" : "Upload image"}
                     <input className="sr-only" type="file" accept="image/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "image")} />

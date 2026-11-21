@@ -377,19 +377,21 @@ export default function Portfolio() {
                     {project.video ? (
                       <video
                         src={project.video}
-                        poster={project.image}
+                        poster={project.image || undefined}
                         aria-label={`${project.title} project video`}
                         controls
                         preload="metadata"
                         className="h-full w-full object-cover"
                       />
-                    ) : (
+                    ) : project.image ? (
                       <img
                         src={project.image}
                         alt={`${project.title} website preview`}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
+                    ) : (
+                      <div aria-label="No project image" className="h-full w-full bg-[#f2edf4]" />
                     )}
                   </div>
                   <div className="bg-white p-6 md:p-8 flex-grow flex flex-col">
