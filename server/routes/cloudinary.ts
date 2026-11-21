@@ -29,8 +29,13 @@ export const handleCloudinarySignature: RequestHandler = async (req, res) => {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });
   const { data: isAdmin, error: accessError } = await supabase.rpc("is_portfolio_admin");
-  if (accessError || !isAdmin) {
-    res.status(403).json({ error: "Portfolio admin access is required." });
+  if (accessError) {
+    console.error("Supabase rejected the Clerk token for Cloudinary signing:", accessError.code);
+    res.status(502).json({ error: "Supabase could not verify this Clerk session. Configure Clerk under Supabase Authentication → Third-Party Auth, and include role: authenticated and the user's email in Clerk session tokens." });
+    return;
+  }
+  if (!isAdmin) {
+    res.status(403).json({ error: "This Clerk account does not have portfolio admin access." });
     return;
   }
 
