@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import PortfolioAdmin from "./pages/PortfolioAdmin";
 import BlogAdmin from "./pages/BlogAdmin";
+import AdminDashboard from "./pages/AdminDashboard";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -35,6 +36,7 @@ export const App = () => {
       {!isAdminRoute && <ChatWidgets />}
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/portfolio" element={<PortfolioAdmin />} />
         <Route path="/admin/blog" element={<BlogAdmin />} />
         <Route path="/about" element={<About />} />

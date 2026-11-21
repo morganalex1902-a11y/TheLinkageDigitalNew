@@ -351,6 +351,7 @@ export default function PortfolioAdmin() {
             <h1 className="font-teko text-3xl font-bold uppercase leading-none sm:text-4xl">Portfolio Admin</h1>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
+            <Link to="/admin" className="inline-flex items-center rounded-full border border-[#e7ddea] px-3 py-2 text-xs font-medium text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4] sm:px-4">Dashboard</Link>
             <Link to="/admin/blog" className="inline-flex items-center rounded-full border border-[#e7ddea] px-3 py-2 text-xs font-medium text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4] sm:px-4">Blog admin</Link>
             <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-[#e7ddea] px-3 py-2 text-xs font-medium text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4] sm:px-4"><ExternalLink size={14} /> <span className="hidden sm:inline">View public portfolio</span><span className="sm:hidden">Preview</span></Link>
             <button onClick={() => void signOut()} aria-label="Sign out" className="rounded-full border border-[#e7ddea] p-2.5 text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><LogOut size={17} /></button>
