@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { BASE_BLOG_POSTS, blogCategories, formatBlogDate, type BlogPost } from "@/lib/blog";
+import { supabase } from "@/lib/supabase";
 import { Link, useNavigate } from "react-router-dom";
 import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
@@ -9,6 +11,20 @@ import { useInView } from "../hooks/useInView";
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [articles, setArticles] = useState<BlogPost[]>(BASE_BLOG_POSTS);
+
+  useEffect(() => {
+    let cancelled = false;
+    const loadPosts = async () => {
+      const { data: config } = await supabase.from("blog_config").select("initialized").eq("id", "main").maybeSingle();
+      if (cancelled || !config?.initialized) return;
+      const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).order("published_at", { ascending: false });
+      if (cancelled || error || !data) return;
+      setArticles(data as BlogPost[]);
+    };
+    void loadPosts();
+    return () => { cancelled = true; };
+  }, []);
 
   const blogRef = useInView();
   const articlesGridRef = useInView();
@@ -39,68 +55,9 @@ export default function Blog() {
     ]
   });
 
-  const CATEGORIES = ["All", "Design", "Development", "Marketing"];
-  const ARTICLE_URLS = [
-    "/blog/web-design-psychology-color-typography-conversions",
-    "/blog/building-your-first-business-website",
-    "/blog/complete-guide-seo-rankings-that-stick",
-    "/blog/creating-a-logo-that-stands-out",
-    "/blog/digital-marketing-strategies-that-deliver-roi",
-    "/blog/video-marketing-trends-and-tools",
-  ];
+  const CATEGORIES = ["All", ...blogCategories];
 
-  const ARTICLES = [
-    {
-      title: "Web Design Psychology: How Color and Typography Drive Conversions",
-      category: "Design",
-      date: "December 18, 2024",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop",
-      excerpt: "Discover how strategic color choices and typography selection can significantly impact user behavior and increase conversion rates on your website.",
-      author: "The Linkage Team",
-    },
-    {
-      title: "From Zero to Online: Building Your First Website in 2024",
-      category: "Development",
-      date: "December 15, 2024",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=800&fit=crop",
-      excerpt: "Everything you need to know about launching your first business website, from planning and design to deployment and optimization.",
-      author: "The Linkage Team",
-    },
-    {
-      title: "The Complete Guide to SEO in 2025: Rankings That Stick",
-      category: "Marketing",
-      date: "December 12, 2024",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop",
-      excerpt: "Master the latest SEO techniques, including technical optimization, content strategy, and link building to dominate search results.",
-      author: "The Linkage Team",
-    },
-    {
-      title: "Branding 101: Creating a Logo That Stands Out",
-      category: "Design",
-      date: "December 9, 2024",
-      image: "/images/brand-logo-1.webp",
-      excerpt: "Learn the principles of effective logo design and how to create a visual identity that resonates with your target audience and builds brand recognition.",
-      author: "The Linkage Team",
-    },
-    {
-      title: "Digital Marketing Strategies That Deliver Real ROI",
-      category: "Marketing",
-      date: "December 6, 2024",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=800&fit=crop",
-      excerpt: "Explore proven digital marketing tactics including email campaigns, social media strategy, and paid advertising that generate measurable results.",
-      author: "The Linkage Team",
-    },
-    {
-      title: "Video Marketing 2024: Trends and Tools for Maximum Impact",
-      category: "Development",
-      date: "December 3, 2024",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
-      excerpt: "Harness the power of video content with the latest editing techniques, platform strategies, and production tools to engage your audience.",
-      author: "The Linkage Team",
-    },
-  ];
-
-  const filteredArticles = ARTICLES.filter((article) => {
+  const filteredArticles = articles.filter((article) => {
     const categoryMatch =
       selectedCategory === "all" ||
       article.category.toLowerCase() === selectedCategory.toLowerCase();
@@ -343,17 +300,17 @@ export default function Blog() {
 
           {/* Articles grid */}
           <div ref={articlesGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 reveal-stagger">
-            {filteredArticles.map((article, i) => (
+            {filteredArticles.map((article) => (
               <div
-                key={i}
+                key={article.slug}
                 className="group cursor-pointer bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <div className="relative overflow-hidden h-[220px] md:h-[250px] lg:h-[280px] bg-[#ECECEC]">
-                  <img
+                  {article.image ? <img
                     src={article.image}
                     alt={article.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  /> : <div className="h-full w-full bg-[#f2edf4]" />}
                   <div className="absolute top-4 left-4">
                     <span className="bg-[#8B0AB4] text-white font-kanit font-semibold text-[11px] md:text-[12px] uppercase px-4 py-2 rounded-full">
                       {article.category}
@@ -363,7 +320,7 @@ export default function Blog() {
 
                 <div className="p-6 md:p-7">
                   <p className="font-kanit font-normal text-[#999] text-[12px] md:text-[13px] uppercase tracking-wider mb-2">
-                    {article.date} • By {article.author}
+                    {formatBlogDate(article.published_at)} • By {article.author}
                   </p>
                   <h3 className="font-teko font-bold text-[#121212] uppercase text-[18px] md:text-[20px] leading-[1.2] mb-3 group-hover:text-[#8B0AB4] transition-colors">
                     {article.title}
@@ -372,7 +329,7 @@ export default function Blog() {
                     {article.excerpt}
                   </p>
                   <Link
-                    to={ARTICLE_URLS[i]}
+                    to={`/blog/${article.slug}`}
                     className="inline-flex items-center gap-2 font-kanit font-medium text-[13px] uppercase text-[#8B0AB4] hover:text-[#1C1D20] transition-colors group-hover:gap-3"
                   >
                     Read More

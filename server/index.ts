@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleSitemap } from "./routes/sitemap";
+import { handleCloudinarySignature } from "./routes/cloudinary";
 
 export function createServer() {
   const app = express();
@@ -19,6 +20,7 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+  app.post("/api/cloudinary/signature", handleCloudinarySignature);
 
   // SEO routes
   app.get("/sitemap.xml", handleSitemap);

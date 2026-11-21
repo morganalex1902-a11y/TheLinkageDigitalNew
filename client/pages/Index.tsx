@@ -9,6 +9,7 @@ import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
 import { submitToWeb3Forms } from "../lib/web3forms";
 import { ArrowUpRight, Star } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -121,9 +122,10 @@ function MarqueeScroll() {
 
 function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | "right"; images: (string | { type: "iframe"; url: string })[]; stagger?: number }) {
   const animationName = direction === "right" ? "portfolioRight" : "portfolioLeft";
-  const allImages = [...images, ...images];
+  const allImages = [...images, ...images, ...images];
   const [isMobile, setIsMobile] = useState(false);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const mobileDirection = useRef(1);
   const [touchStart, setTouchStart] = useState(0);
 
   useEffect(() => {
@@ -138,7 +140,14 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     if (!isMobile) return;
 
     const interval = setInterval(() => {
-      setMobileIndex((prev) => (prev + 1) % images.length);
+      setMobileIndex((prev) => {
+        const next = prev + mobileDirection.current;
+        if (next >= images.length || next < 0) {
+          mobileDirection.current *= -1;
+          return prev + mobileDirection.current;
+        }
+        return next;
+      });
     }, 5000);
 
     return () => clearInterval(interval);
@@ -167,7 +176,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
     return (
       <div className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         <div
-          className="flex gap-[0.53vw]"
+          className="flex"
           style={{
             transform: `translateX(-${mobileIndex * 100}%)`,
             transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -224,7 +233,7 @@ function PortfolioRow({ direction, images, stagger = 0 }: { direction: "left" | 
       <div
         className="flex gap-[0.53vw]"
         style={{
-          animation: `${animationName} 80s linear infinite`,
+          animation: `${animationName} 38s ease-in-out infinite alternate`,
           willChange: "transform",
         }}
       >
@@ -484,6 +493,7 @@ export default function Index() {
     },
   ];
   const navigate = useNavigate();
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const header = document.getElementById("site-header");
@@ -576,55 +586,48 @@ export default function Index() {
       <SiteHeader />
 
       {/* ── HERO ── */}
-      <main className="relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-8 md:pt-14 lg:pt-16 pb-12 md:pb-16 lg:pb-28">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-20">
+      <main className="relative overflow-hidden bg-[#faf7fc]">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-48 h-[560px] w-[560px] rounded-full bg-[#e9d3f2] opacity-60 blur-[100px]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-48 -left-40 h-[400px] w-[400px] rounded-full bg-[#f1d7e8] opacity-60 blur-[100px]" />
+        <div className="relative mx-auto max-w-[1400px] px-5 pb-12 pt-12 sm:px-8 md:pb-16 md:pt-16 lg:px-10 lg:pb-20 lg:pt-20">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-20">
 
             {/* LEFT: text */}
-            <div className="flex-1 min-w-0 text-center lg:text-left">
-              <div className="flex items-end gap-2 md:gap-3 lg:justify-start justify-center">
-                <h1 className="hero-heading font-teko font-bold text-black uppercase">
-                  <span className="hero-line block">Linking</span>
-                  <span className="hero-line block" style={{ color: "#8B0AB4" }}>Brands</span>
-                  <span className="hero-line block">To The</span>
+            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: "easeOut" }} className="min-w-0 flex-1 text-center lg:text-left">
+              <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[#dfc9e7] bg-white/70 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-[#762095] sm:text-xs"><span className="h-2 w-2 rounded-full bg-[#8B0AB4]" /> Your digital growth partner</div>
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:justify-center md:gap-5 lg:justify-start">
+                <h1 className="font-teko text-[clamp(4.3rem,9vw,9.5rem)] font-bold uppercase leading-[0.78] tracking-[-0.025em] text-[#17131a]">
+                  <span className="block">Linking</span>
+                  <span className="block text-[#8B0AB4]">Brands</span>
+                  <span className="block">To The</span>
                 </h1>
 
                 {/* Purple pill with "NEW AGE" text */}
-                <div
-                  className="flex-shrink-0 relative bg-[#8B0AB4] overflow-visible z-10 animate-float"
-                  style={{ borderRadius: "3rem", width: "clamp(3.8rem,6.2vw,7rem)", height: "clamp(4.5rem,7.5vw,8.5rem)" }}
-                >
-                  <span className="success-text font-teko font-normal text-black uppercase absolute left-1/2 top-1/2">
-                    NEW-AGE
-                  </span>
-                </div>
+                <div className="relative z-10 mb-1 flex-shrink-0 -rotate-3 rounded-full bg-[#8B0AB4] px-4 py-3 text-xs font-medium uppercase tracking-[0.12em] text-white sm:px-5 sm:text-sm">NEW-AGE <ArrowUpRight className="ml-1 inline h-4 w-4" /></div>
               </div>
 
               {/* Purple underlines */}
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-3 mx-auto lg:mx-0" />
-              <div className="w-[282px] max-w-full h-px bg-[#8B0AB4] mt-[3px] mx-auto lg:mx-0" />
+              <div className="mx-auto mt-8 h-px w-24 bg-[#8B0AB4] lg:mx-0" />
 
               {/* Scroll icon + description + CTA */}
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-10 md:mt-14 lg:mt-16 relative z-10">
+              <div className="relative z-10 mt-8 flex flex-col items-center gap-6 lg:items-start">
                 <OriginButton
                   fillColor="#8B0AB4"
-                  className="w-8 h-14 md:w-10 md:h-16 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white hidden sm:flex items-center justify-center flex-shrink-0"
+                  className="hidden"
                 >
                   <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 animate-bounce">
                     <path d="M4 0V10M0.5 7.5L4 11L7.5 7.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
                   </svg>
                 </OriginButton>
                 <div className="text-center lg:text-left">
-                  <p className="text-[#555] font-kanit font-normal text-base md:text-[18px] lg:text-[20px] leading-[1.55] max-w-[360px]">
-                    We are a full-service digital agency that builds fascinating user
-                    experiences. our team creates and exceptional UI design and
-                    functionality.
+                  <p className="max-w-[490px] text-base leading-relaxed text-[#62596a] md:text-lg">
+                    We are a full-service digital agency creating captivating experiences, thoughtful design, and powerful functionality for ambitious brands.
                   </p>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-center gap-2 lg:justify-start">
                     <OriginButton
                       onClick={() => navigate("/contact")}
                       fillColor="#8B0AB4"
-                      className="group mt-6 md:mt-8 font-kanit font-medium text-[13px] md:text-[14px] uppercase text-[#1C1D20] border-b border-[#1C1D20] pb-0.5 tracking-wider hover:text-white hover:border-[#8B0AB4] px-3 py-2 transition-colors"
+                      className="group mt-6 rounded-full bg-[#19151c] px-7 py-4 text-xs font-medium uppercase tracking-[0.1em] text-white transition-colors hover:bg-[#8B0AB4] md:mt-8"
                     >
                       Get Started Now
                     </OriginButton>
@@ -632,12 +635,13 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* RIGHT: images + video + customers */}
-            <div className="relative flex-shrink-0 mt-10 lg:mt-0 lg:w-[430px] xl:w-[500px]">
+            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.8, delay: reduceMotion ? 0 : 0.2, ease: "easeOut" }} className="relative mx-auto mt-12 w-full max-w-[570px] flex-shrink-0 overflow-hidden rounded-[2rem] bg-[#e9d9ef] px-5 pb-5 pt-6 sm:rounded-[3rem] sm:px-8 sm:pb-8 lg:mt-0 lg:w-[430px] xl:w-[500px]">
+              <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[40%] h-[75%] w-[75%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/60" />
               {/* Pill images */}
-              <div className="flex items-center justify-center pt-6 lg:pt-4 hero-images-enter">
+              <div className="relative flex items-center justify-center pt-6 lg:pt-4">
                 {/* Left: red duotone shape — positioned lower, behind */}
                 <img
                   src="/images/team-photo.webp"
@@ -679,10 +683,10 @@ export default function Index() {
               </div>
 
               {/* Arrow + customers */}
-              <div className="mt-4 md:mt-6 pl-2 md:pl-4 hero-bottom-enter">
+              <div className="relative mt-4 rounded-[1.5rem] border border-white/70 bg-white/80 p-5 shadow-[0_12px_40px_rgba(70,25,80,0.08)] backdrop-blur-sm md:mt-6">
                 <OriginButton
                   fillColor="#8B0AB4"
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#ECECEC] hover:border-[#8B0AB4] text-[#121212] hover:text-white mb-2 md:mb-3 flex items-center justify-center"
+                  className="hidden"
                 >
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
                     <path d="M5 0V8.5M5 8.5L1.25 4.75M5 8.5L8.75 4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#121212] group-hover:text-white transition-colors" />
@@ -695,31 +699,32 @@ export default function Index() {
                   </span>
                   <span className="text-[#999]"> customers</span>
                   <br />
-                  <span className="text-[#999]">word-wide</span>
+                  <span className="text-[#999]">worldwide</span>
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
+          <div className="mt-12 flex items-center justify-between border-t border-[#ded1e2] pt-5 text-[10px] font-medium uppercase tracking-[0.2em] text-[#87798e] md:mt-16"><span>Strategy · Design · Development</span><span className="hidden sm:block">Made for what's next ↓</span></div>
         </div>
 
         {/* Bottom-left blob decoration */}
         <img
           src={INTRO_SHAPE}
           alt="Decorative shape element"
-          className="hidden lg:block absolute bottom-0 left-0 w-[410px] pointer-events-none select-none"
+          className="hidden"
         />
       </main>
 
       {/* ── WHO WE ARE SECTION ── */}
-      <section ref={whoRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 overflow-hidden reveal">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+      <section ref={whoRef as React.RefObject<HTMLElement>} className="overflow-hidden bg-white py-16 md:py-24 lg:py-32 reveal">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
 
           {/* Heading row */}
-          <div className="flex items-start justify-between mb-10 lg:mb-14">
+          <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.65 }} className="mb-12 flex items-start justify-between border-b border-[#eee7f0] pb-10 lg:mb-16 lg:pb-14">
             <div className="flex-1 min-w-0">
               {/* Line 1: label + "Have a brilliant" */}
               <div className="flex items-baseline gap-2 sm:gap-4 md:gap-8 flex-wrap">
-                <span className="font-kanit font-bold text-[11px] sm:text-[13px] md:text-[16px] uppercase text-[#121212] whitespace-nowrap">
+                <span className="rounded-full border border-[#ead9ef] bg-[#faf5fc] px-4 py-2 font-kanit text-[10px] font-medium uppercase tracking-[0.14em] text-[#8B0AB4] whitespace-nowrap">
                   01 Who We Are
                 </span>
                 <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.5rem,4vw,5rem)]">
@@ -745,7 +750,7 @@ export default function Index() {
               alt="Decorative accent element"
               className="hidden lg:block w-[130px] xl:w-[142px] flex-shrink-0 mt-6"
             />
-          </div>
+          </motion.div>
 
           {/* Content grid: Stats | Description | Office */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1.3fr_1.5fr] gap-8 lg:gap-10 items-start">
@@ -779,7 +784,7 @@ export default function Index() {
               <img
                 src="/images/team-working.webp"
                 alt="Team working"
-                className="w-full max-w-[330px] h-[180px] md:h-[209px] object-cover"
+                className="h-[180px] w-full max-w-[330px] rounded-[1.5rem] object-cover md:h-[209px]"
               />
             </div>
 
@@ -797,7 +802,7 @@ export default function Index() {
             {/* ── RIGHT: Office image + stat card ── */}
             <div className="md:col-span-2 lg:col-span-1 relative overflow-visible">
               {/* Office image */}
-              <div className="overflow-hidden h-[300px] md:h-[380px] lg:h-[455px]">
+              <div className="h-[300px] overflow-hidden rounded-[2rem] md:h-[380px] lg:h-[455px]">
                 <img
                   src="/images/office.webp"
                   alt="Office"
@@ -805,7 +810,7 @@ export default function Index() {
                 />
               </div>
               {/* White stat card – overlaps right portion of image on desktop */}
-              <div className="relative lg:absolute lg:right-0 lg:-top-10 bg-[#F9F9F9] p-6 md:p-8 lg:p-10 lg:w-[65%] z-10">
+              <div className="relative z-10 -mt-8 ml-auto w-[90%] rounded-[1.5rem] bg-[#f8f2fa] p-6 md:p-8 lg:absolute lg:-top-10 lg:right-0 lg:mt-0 lg:w-[65%] lg:p-10">
                 <img
                   src="/images/process-icon.webp"
                   alt="Process icon"

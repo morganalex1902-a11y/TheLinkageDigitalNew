@@ -2,11 +2,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
+import PortfolioAdmin from "./pages/PortfolioAdmin";
+import BlogAdmin from "./pages/BlogAdmin";
+import AdminDashboard from "./pages/AdminDashboard";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -20,15 +23,22 @@ import ChatWidgets from "./components/ChatWidgets";
 
 const queryClient = new QueryClient();
 
-export const App = () => (
+export const App = () => {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <ScrollToTop />
-      <ChatWidgets />
+      {!isAdminRoute && <ChatWidgets />}
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/portfolio" element={<PortfolioAdmin />} />
+        <Route path="/admin/blog" element={<BlogAdmin />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
@@ -44,7 +54,8 @@ export const App = () => (
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {!isAdminRoute && <Footer />}
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
