@@ -208,7 +208,7 @@ export default function PortfolioAdmin() {
     setFormOpen(true);
   };
 
-  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>, resourceType: "image" | "video") => {
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>, resourceType: "image" | "video", batchIndex?: number) => {
     const input = event.currentTarget;
     const file = input.files?.[0];
     input.value = "";
@@ -244,7 +244,11 @@ export default function PortfolioAdmin() {
       });
       const result = await response.json();
       if (!response.ok || !result.secure_url) throw new Error(result.error?.message ?? "Cloudinary upload failed.");
-      setForm((current) => ({ ...current, [resourceType]: result.secure_url }));
+      if (batchIndex === undefined) {
+        setForm((current) => ({ ...current, [resourceType]: result.secure_url }));
+      } else {
+        setBatchForms((current) => current.map((item, index) => index === batchIndex ? { ...item, [resourceType]: result.secure_url } : item));
+      }
       toast.success(resourceType === "image" ? "Image uploaded." : "Video uploaded.");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Media upload failed.");
@@ -510,8 +514,8 @@ export default function PortfolioAdmin() {
                   <label className="space-y-1.5 text-xs font-medium text-[#514957]">Category<select value={item.type} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, type: event.target.value as PortfolioType } : value))} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#8B0AB4]">{categories.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
                   <label className="space-y-1.5 text-xs font-medium text-[#514957]">Industry / niche<Input required maxLength={80} value={item.niche} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, niche: event.target.value } : value))} placeholder="e.g. Landscaping" /></label>
                   <label className="space-y-1.5 text-xs font-medium text-[#514957]">Website URL<Input required value={item.website} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, website: event.target.value } : value))} placeholder="https://example.com" /></label>
-                  <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Image URL (optional)<Input value={item.image} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, image: event.target.value } : value))} placeholder="https://…" /></label>
-                  {videoColumnAvailable && <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Video URL (optional)<Input value={item.video} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, video: event.target.value } : value))} placeholder="https://…" /></label>}
+                  <div className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2"><label className="block">Project image (optional)</label><div className="flex flex-col gap-2 sm:flex-row"><Input value={item.image} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, image: event.target.value } : value))} placeholder="Image URL" /><label className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7ddea] px-4 text-xs hover:border-[#8B0AB4]"><Upload size={15} />{uploading === "image" ? "Uploading…" : "Upload image"}<input className="sr-only" type="file" accept="image/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "image", index)} /></label></div></div>
+                  {videoColumnAvailable && <div className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2"><label className="block">Project video (optional)</label><div className="flex flex-col gap-2 sm:flex-row"><Input value={item.video} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, video: event.target.value } : value))} placeholder="Video URL" /><label className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7ddea] px-4 text-xs hover:border-[#8B0AB4]"><Upload size={15} />{uploading === "video" ? "Uploading…" : "Upload video"}<input className="sr-only" type="file" accept="video/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "video", index)} /></label></div></div>}
                   <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Description<Textarea required maxLength={500} rows={2} value={item.description} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, description: event.target.value } : value))} placeholder="Briefly describe the project" /></label>
                   <label className="inline-flex items-center gap-2 text-sm text-[#625969] sm:col-span-2"><input type="checkbox" checked={item.hide_from_portfolio} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, hide_from_portfolio: event.target.checked } : value))} className="accent-[#8B0AB4]" /> Keep this item hidden from the public portfolio</label>
                 </div>

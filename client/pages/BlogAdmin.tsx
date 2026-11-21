@@ -116,7 +116,7 @@ export default function BlogAdmin() {
     setFormOpen(true);
   };
 
-  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>, resourceType: "image" | "video") => {
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>, resourceType: "image" | "video", batchIndex?: number) => {
     const input = event.currentTarget;
     const file = input.files?.[0];
     input.value = "";
@@ -147,7 +147,11 @@ export default function BlogAdmin() {
       const response = await fetch(`https://api.cloudinary.com/v1_1/${signatureData.cloudName}/${resourceType}/upload`, { method: "POST", body: uploadData });
       const result = await response.json();
       if (!response.ok || !result.secure_url) throw new Error(result.error?.message ?? "Cloudinary upload failed.");
-      setForm((current) => ({ ...current, [resourceType]: result.secure_url }));
+      if (batchIndex === undefined) {
+        setForm((current) => ({ ...current, [resourceType]: result.secure_url }));
+      } else {
+        setBatchForms((current) => current.map((item, index) => index === batchIndex ? { ...item, [resourceType]: result.secure_url } : item));
+      }
       toast.success(resourceType === "image" ? "Cover image uploaded." : "Video uploaded.");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Media upload failed.");
@@ -341,8 +345,8 @@ export default function BlogAdmin() {
                   <label className="space-y-1.5 text-xs font-medium text-[#514957]">Author<Input required maxLength={100} value={item.author} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, author: event.target.value } : value))} /></label>
                   <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Excerpt<Textarea required maxLength={300} rows={2} value={item.excerpt} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, excerpt: event.target.value } : value))} placeholder="Short summary shown on the blog list" /></label>
                   <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Article content<Textarea required rows={6} value={item.content} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, content: event.target.value } : value))} placeholder="Write the article. Separate paragraphs with a blank line." /></label>
-                  <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Cover image URL (optional)<Input value={item.image} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, image: event.target.value } : value))} placeholder="https://…" /></label>
-                  <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Video URL (optional)<Input value={item.video ?? ""} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, video: event.target.value } : value))} placeholder="https://…" /></label>
+                  <div className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2"><label className="block">Cover image (optional)</label><div className="flex flex-col gap-2 sm:flex-row"><Input value={item.image} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, image: event.target.value } : value))} placeholder="Image URL" /><label className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7ddea] px-4 text-xs hover:border-[#8B0AB4]"><Upload size={15} />{uploading === "image" ? "Uploading…" : "Upload image"}<input className="sr-only" type="file" accept="image/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "image", index)} /></label></div></div>
+                  <div className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2"><label className="block">Video (optional)</label><div className="flex flex-col gap-2 sm:flex-row"><Input value={item.video ?? ""} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, video: event.target.value } : value))} placeholder="Video URL" /><label className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7ddea] px-4 text-xs hover:border-[#8B0AB4]"><Upload size={15} />{uploading === "video" ? "Uploading…" : "Upload video"}<input className="sr-only" type="file" accept="video/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "video", index)} /></label></div></div>
                   <label className="inline-flex items-center gap-2 text-sm text-[#625969] sm:col-span-2"><input type="checkbox" checked={item.published} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, published: event.target.checked } : value))} className="accent-[#8B0AB4]" /> Publish this post</label>
                 </div>
               </section>)}
