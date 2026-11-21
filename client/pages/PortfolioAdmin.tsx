@@ -70,6 +70,8 @@ export default function PortfolioAdmin() {
   const [category, setCategory] = useState("all");
   const [showHidden, setShowHidden] = useState(true);
   const [formOpen, setFormOpen] = useState(false);
+  const [batchOpen, setBatchOpen] = useState(false);
+  const [batchForms, setBatchForms] = useState<FormValues[]>([{ ...emptyForm }]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormValues>(emptyForm);
   const [saving, setSaving] = useState(false);
@@ -186,6 +188,11 @@ export default function PortfolioAdmin() {
     setFormOpen(true);
   };
 
+  const openBatchCreate = () => {
+    setBatchForms([{ ...emptyForm }, { ...emptyForm }]);
+    setBatchOpen(true);
+  };
+
   const openEdit = (entry: Entry) => {
     setEditingId(entry.id);
     setForm({
@@ -295,6 +302,51 @@ export default function PortfolioAdmin() {
     toast.success(editingId ? "Portfolio item updated." : "Portfolio item added.");
   };
 
+  const handleBatchSave = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const payloads = batchForms.map((item) => {
+      const title = item.title.trim();
+      const website = item.website.trim();
+      const image = item.image.trim();
+      const video = item.video.trim();
+      return {
+        id: getPortfolioProjectId(title),
+        title,
+        type: item.type,
+        niche: item.niche.trim(),
+        image,
+        ...(videoColumnAvailable ? { video: video || null } : {}),
+        description: item.description.trim(),
+        website,
+        hide_from_portfolio: item.hide_from_portfolio,
+      };
+    });
+    if (payloads.some((item) => !item.id || !item.niche || !item.description || !isWebsiteLink(item.website))) {
+      toast.error("Complete each project’s title, niche, description, and valid website link.");
+      return;
+    }
+    if (payloads.some((item) => (item.image && !isHttpUrl(item.image)) || ("video" in item && item.video && !isHttpUrl(item.video)))) {
+      toast.error("Use valid http or https URLs for optional media.");
+      return;
+    }
+    const ids = payloads.map((item) => item.id);
+    if (new Set(ids).size !== ids.length || ids.some((id) => entries.some((entry) => entry.id === id))) {
+      toast.error("Each project needs a unique title that is not already in the portfolio.");
+      return;
+    }
+
+    setSaving(true);
+    const { error } = await supabase.from("portfolio_entries").insert(payloads);
+    setSaving(false);
+    if (error) {
+      toast.error(error.code === "23505" ? "A project with that title already exists." : error.message);
+      return;
+    }
+    setEntries((current) => [...current, ...payloads as Entry[]].sort((a, b) => a.title.localeCompare(b.title)));
+    setBatchOpen(false);
+    toast.success(`${payloads.length} portfolio items added.`);
+  };
+
   const handleDelete = async (entry: Entry) => {
     if (!window.confirm(`Delete “${entry.title}” from the portfolio?`)) return;
     const { error } = await supabase.from("portfolio_entries").delete().eq("id", entry.id);
@@ -364,7 +416,7 @@ export default function PortfolioAdmin() {
             <p className="text-sm text-[#77707c]">Manage projects shown on the public portfolio page.</p>
             <p className="mt-2 text-xs text-[#978d9c]">{entries.length} items · Changes publish immediately</p>
           </div>
-          <button onClick={openCreate} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B0AB4] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#8B0AB4]/15 transition hover:bg-[#751096]"><Plus size={17} /> Add portfolio item</button>
+          <div className="flex flex-wrap gap-2"><button onClick={openCreate} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B0AB4] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#8B0AB4]/15 transition hover:bg-[#751096]"><Plus size={17} /> Add portfolio item</button><button onClick={openBatchCreate} className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e7ddea] bg-white px-5 py-3 text-sm font-semibold text-[#514957] transition hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><Plus size={17} /> Add multiple</button></div>
         </div>
 
         <section className="overflow-hidden rounded-2xl border border-[#eae4ed] bg-white shadow-sm">
@@ -443,6 +495,30 @@ export default function PortfolioAdmin() {
               <button type="button" onClick={() => setFormOpen(false)} className="rounded-full border border-[#e7ddea] px-5 py-2.5 text-sm text-[#625969]">Cancel</button>
               <button disabled={saving || uploading !== null} type="submit" className="rounded-full bg-[#8B0AB4] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#751096] disabled:opacity-60">{uploading ? "Uploading…" : saving ? "Saving…" : editingId ? "Save changes" : "Add project"}</button>
             </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={batchOpen} onOpenChange={setBatchOpen}>
+        <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto rounded-2xl border-[#eae4ed] bg-white p-0">
+          <form onSubmit={handleBatchSave}>
+            <DialogHeader className="border-b border-[#eee8f0] px-6 py-5 pr-14 text-left"><DialogTitle className="font-teko text-3xl font-bold uppercase">Add multiple projects</DialogTitle><DialogDescription>Add each project’s details below. Optional images and videos can be entered as URLs.</DialogDescription></DialogHeader>
+            <div className="space-y-4 px-6 py-5">
+              {batchForms.map((item, index) => <section key={index} className="rounded-2xl border border-[#eee8f0] p-4 sm:p-5">
+                <div className="mb-4 flex items-center justify-between"><h3 className="font-semibold">Project {index + 1}</h3>{batchForms.length > 2 && <button type="button" onClick={() => setBatchForms((current) => current.filter((_, itemIndex) => itemIndex !== index))} className="text-xs text-[#a74a4a] hover:underline">Remove</button>}</div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="space-y-1.5 text-xs font-medium text-[#514957]">Project title<Input required maxLength={120} value={item.title} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, title: event.target.value } : value))} placeholder="Project name" /></label>
+                  <label className="space-y-1.5 text-xs font-medium text-[#514957]">Category<select value={item.type} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, type: event.target.value as PortfolioType } : value))} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#8B0AB4]">{categories.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
+                  <label className="space-y-1.5 text-xs font-medium text-[#514957]">Industry / niche<Input required maxLength={80} value={item.niche} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, niche: event.target.value } : value))} placeholder="e.g. Landscaping" /></label>
+                  <label className="space-y-1.5 text-xs font-medium text-[#514957]">Website URL<Input required value={item.website} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, website: event.target.value } : value))} placeholder="https://example.com" /></label>
+                  <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Image URL (optional)<Input value={item.image} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, image: event.target.value } : value))} placeholder="https://…" /></label>
+                  {videoColumnAvailable && <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Video URL (optional)<Input value={item.video} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, video: event.target.value } : value))} placeholder="https://…" /></label>}
+                  <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Description<Textarea required maxLength={500} rows={2} value={item.description} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, description: event.target.value } : value))} placeholder="Briefly describe the project" /></label>
+                  <label className="inline-flex items-center gap-2 text-sm text-[#625969] sm:col-span-2"><input type="checkbox" checked={item.hide_from_portfolio} onChange={(event) => setBatchForms((current) => current.map((value, itemIndex) => itemIndex === index ? { ...value, hide_from_portfolio: event.target.checked } : value))} className="accent-[#8B0AB4]" /> Keep this item hidden from the public portfolio</label>
+                </div>
+              </section>)}
+              <button type="button" onClick={() => setBatchForms((current) => [...current, { ...emptyForm }])} className="inline-flex items-center gap-2 rounded-full border border-[#e7ddea] px-4 py-2.5 text-sm font-medium text-[#514957] hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><Plus size={16} /> Add another project</button>
+            </div>
+            <DialogFooter className="border-t border-[#eee8f0] px-6 py-4"><button type="button" onClick={() => setBatchOpen(false)} className="rounded-full border border-[#e7ddea] px-5 py-2.5 text-sm text-[#625969]">Cancel</button><button disabled={saving} type="submit" className="rounded-full bg-[#8B0AB4] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#751096] disabled:opacity-60">{saving ? "Saving…" : `Save ${batchForms.length} projects`}</button></DialogFooter>
           </form>
         </DialogContent>
       </Dialog>
