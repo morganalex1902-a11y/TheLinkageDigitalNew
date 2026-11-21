@@ -18,6 +18,7 @@ export default function BlogAdmin() {
   const [access, setAccess] = useState<"checking" | "allowed" | "denied" | "configuration-error">("checking");
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(false);
+  const [storageUnavailable, setStorageUnavailable] = useState(false);
   const [search, setSearch] = useState("");
   const [formOpen, setFormOpen] = useState(false);
   const [batchOpen, setBatchOpen] = useState(false);
@@ -60,10 +61,12 @@ export default function BlogAdmin() {
         .eq("id", "main")
         .maybeSingle();
       if (configError) {
+        setStorageUnavailable(true);
         setLoading(false);
-        toast.error("Blog storage is not set up. Apply the blog database migration first.");
+        toast.error("Blog storage is unavailable. Apply the blog CMS schema in Supabase.");
         return;
       }
+      setStorageUnavailable(false);
 
       if (!config?.initialized) {
         const seedPosts = BASE_BLOG_POSTS.map((post) => ({ ...post, id: post.slug }));
@@ -302,12 +305,14 @@ export default function BlogAdmin() {
       </header>
       <div className="mx-auto max-w-[1440px] px-5 py-8 sm:px-8 sm:py-10">
         <div className="mb-7 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <div><p className="text-sm text-[#77707c]">Create and publish articles using one shared layout.</p><p className="mt-2 text-xs text-[#978d9c]">{posts.length} posts · Drafts stay private</p></div>
-          <div className="flex flex-wrap gap-2"><button onClick={openCreate} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B0AB4] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#8B0AB4]/15 hover:bg-[#751096]"><Plus size={17} /> Add blog post</button><button onClick={openBatchCreate} className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e7ddea] bg-white px-5 py-3 text-sm font-semibold text-[#514957] hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><Plus size={17} /> Add multiple</button></div>
+          <div><p className="text-sm text-[#77707c]">Create and publish articles using one shared layout.</p><p className="mt-2 text-xs text-[#978d9c]">{storageUnavailable ? "Blog database setup required" : `${posts.length} posts · Drafts stay private`}</p></div>
+          <div className="flex flex-wrap gap-2"><button disabled={storageUnavailable} onClick={openCreate} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B0AB4] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#8B0AB4]/15 hover:bg-[#751096]"><Plus size={17} /> Add blog post</button><button disabled={storageUnavailable} onClick={openBatchCreate} className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e7ddea] bg-white px-5 py-3 text-sm font-semibold text-[#514957] hover:border-[#8B0AB4] hover:text-[#8B0AB4]"><Plus size={17} /> Add multiple</button></div>
         </div>
         <section className="overflow-hidden rounded-2xl border border-[#eae4ed] bg-white shadow-sm">
+          {storageUnavailable ? <div className="p-8 text-sm leading-relaxed text-[#766b7b]"><h2 className="font-semibold text-[#514957]">Blog database setup is required</h2><p className="mt-2">Run <code className="rounded bg-[#f4edf6] px-1.5 py-0.5">blog-cms-schema.sql</code> in the connected Supabase project’s SQL Editor, then reload this page.</p></div> : <>
           <div className="border-b border-[#eee8f0] p-4 sm:p-5"><div className="relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#a096a5]" size={17} /><Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search blog posts" className="h-11 rounded-xl border-[#ece6ef] pl-10" /></div></div>
           {loading ? <div className="p-10 text-center text-sm text-[#766b7b]">Loading posts…</div> : filteredPosts.length === 0 ? <div className="p-12 text-center text-sm text-[#766b7b]">No posts match your search.</div> : <div className="divide-y divide-[#f0ebf2]">{filteredPosts.map((post) => <article key={post.slug} className="grid gap-4 p-4 sm:grid-cols-[88px_minmax(0,1fr)_auto] sm:items-center sm:gap-5 sm:p-5">{post.image ? <img src={post.image} alt="" className="h-20 w-24 rounded-xl bg-[#f2edf4] object-cover" loading="lazy" /> : <div className="h-20 w-24 rounded-xl bg-[#f2edf4]" />}<div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><h2 className="font-semibold">{post.title}</h2><span className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide ${post.published ? "bg-green-50 text-green-700" : "bg-[#f4edf6] text-[#81698a]"}`}>{post.published ? "Published" : "Draft"}</span></div><p className="mt-1 text-xs text-[#8a808f]">{post.category} · {formatBlogDate(post.published_at)} · /blog/{post.slug}</p><p className="mt-2 truncate text-xs text-[#716879]">{post.excerpt}</p></div><div className="flex gap-2 sm:justify-end"><Link to={`/blog/${post.slug}`} target="_blank" className="rounded-full border border-[#e7ddea] px-4 py-2 text-xs font-medium hover:border-[#8B0AB4] hover:text-[#8B0AB4]">Preview</Link><button onClick={() => openEdit(post)} className="rounded-full border border-[#e7ddea] px-4 py-2 text-xs font-medium hover:border-[#8B0AB4] hover:text-[#8B0AB4]">Edit</button><button onClick={() => void handleDelete(post)} aria-label={`Delete ${post.title}`} className="rounded-full border border-[#f0dede] p-2 text-[#a74a4a] hover:bg-[#fff4f3]"><Trash2 size={16} /></button></div></article>)}</div>}
+          </>}
         </section>
       </div>
       <Dialog open={formOpen} onOpenChange={setFormOpen}>
