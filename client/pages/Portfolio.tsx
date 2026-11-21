@@ -28,19 +28,27 @@ export default function Portfolio() {
         .maybeSingle();
       if (cancelled || !config?.initialized) return;
 
-      const { data, error } = await supabase
+      let result = await supabase
         .from("portfolio_entries")
         .select("title, type, niche, image, video, description, website, hide_from_portfolio")
         .eq("deleted", false)
         .eq("hide_from_portfolio", false)
         .order("title", { ascending: true });
-      if (cancelled || error || !data) return;
-      setProjects(data.map((entry) => ({
+      if (result.error && ["42703", "PGRST204"].includes(result.error.code)) {
+        result = await supabase
+          .from("portfolio_entries")
+          .select("title, type, niche, image, description, website, hide_from_portfolio")
+          .eq("deleted", false)
+          .eq("hide_from_portfolio", false)
+          .order("title", { ascending: true }) as typeof result;
+      }
+      if (cancelled || result.error || !result.data) return;
+      setProjects(result.data.map((entry) => ({
         title: entry.title,
         type: entry.type,
         niche: entry.niche,
         image: entry.image,
-        video: entry.video ?? undefined,
+        video: "video" in entry ? entry.video ?? undefined : undefined,
         description: entry.description,
         website: entry.website,
         hideFromPortfolio: entry.hide_from_portfolio,

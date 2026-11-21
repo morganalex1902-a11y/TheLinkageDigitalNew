@@ -74,6 +74,7 @@ export default function PortfolioAdmin() {
   const [form, setForm] = useState<FormValues>(emptyForm);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState<"image" | "video" | null>(null);
+  const [videoColumnAvailable, setVideoColumnAvailable] = useState(true);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -121,7 +122,6 @@ export default function PortfolioAdmin() {
             type: project.type,
             niche: project.niche,
             image: project.image,
-            video: project.video ?? null,
             description: project.description,
             website: project.website,
             hide_from_portfolio: project.hideFromPortfolio ?? false,
@@ -148,15 +148,22 @@ export default function PortfolioAdmin() {
         }
       }
 
-      const { data, error } = await supabase
+      let result = await supabase
         .from("portfolio_entries")
         .select("id, title, type, niche, image, video, description, website, hide_from_portfolio")
         .order("title", { ascending: true });
+      if (result.error && ["42703", "PGRST204"].includes(result.error.code)) {
+        setVideoColumnAvailable(false);
+        result = await supabase
+          .from("portfolio_entries")
+          .select("id, title, type, niche, image, description, website, hide_from_portfolio")
+          .order("title", { ascending: true }) as typeof result;
+      }
       if (cancelled) return;
-      if (error) {
+      if (result.error) {
         toast.error("Could not load portfolio entries.");
       } else {
-        setEntries(data as Entry[]);
+        setEntries(result.data as Entry[]);
       }
       setLoading(false);
     };
@@ -265,7 +272,7 @@ export default function PortfolioAdmin() {
       type: form.type,
       niche: form.niche.trim(),
       image,
-      video: video || null,
+      ...(videoColumnAvailable ? { video: video || null } : {}),
       description: form.description.trim(),
       website,
       hide_from_portfolio: form.hide_from_portfolio,
@@ -418,7 +425,7 @@ export default function PortfolioAdmin() {
                   </label>
                 </div>
               </div>
-              <div className="space-y-2 text-xs font-medium text-[#514957] sm:col-span-2">
+              {videoColumnAvailable ? <div className="space-y-2 text-xs font-medium text-[#514957] sm:col-span-2">
                 <label className="block">Project video (optional)</label>
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <Input value={form.video} onChange={(event) => setForm({ ...form, video: event.target.value })} placeholder="Video URL" />
@@ -427,7 +434,7 @@ export default function PortfolioAdmin() {
                     <input className="sr-only" type="file" accept="video/*" disabled={uploading !== null} onChange={(event) => void handleUpload(event, "video")} />
                   </label>
                 </div>
-              </div>
+              </div> : <p className="rounded-xl bg-[#f8f6f9] p-3 text-xs text-[#766b7b] sm:col-span-2">Video uploads will be available after the video column is added to Supabase.</p>}
               <label className="space-y-1.5 text-xs font-medium text-[#514957] sm:col-span-2">Description<Textarea required maxLength={500} rows={3} value={form.description} onChange={(event) => setForm({ ...form, description: event.target.value })} placeholder="Briefly describe the project" /></label>
               <label className="inline-flex items-center gap-2 text-sm text-[#625969] sm:col-span-2"><input type="checkbox" checked={form.hide_from_portfolio} onChange={(event) => setForm({ ...form, hide_from_portfolio: event.target.checked })} className="accent-[#8B0AB4]" /> Keep this item hidden from the public portfolio</label>
             </div>
