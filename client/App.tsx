@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import PortfolioAdmin from "./pages/PortfolioAdmin";
+import BlogAdmin from "./pages/BlogAdmin";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -35,6 +36,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/admin/portfolio" element={<PortfolioAdmin />} />
+        <Route path="/admin/blog" element={<BlogAdmin />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />

@@ -1,21 +1,57 @@
+import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import { useSEO } from "../hooks/useSEO";
-import { articles, siteUrl } from "../siteContent";
+import { BASE_BLOG_POSTS, formatBlogDate, type BlogPost } from "@/lib/blog";
+import { supabase } from "@/lib/supabase";
+import { siteUrl } from "../siteContent";
 
 export default function BlogArticle() {
   const { slug } = useParams();
-  const article = articles.find((item) => item.slug === slug);
-  const seoArticle = article || articles[0];
-  const url = `${siteUrl}/blog/${seoArticle.slug}`;
+  const [posts, setPosts] = useState<BlogPost[]>(BASE_BLOG_POSTS);
+  const [article, setArticle] = useState<BlogPost | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
+  useEffect(() => {
+    let cancelled = false;
+    setLoaded(false);
+    const loadArticle = async () => {
+      const { data: config } = await supabase.from("blog_config").select("initialized").eq("id", "main").maybeSingle();
+      if (!config?.initialized) {
+        if (!cancelled) {
+          const legacyPosts = BASE_BLOG_POSTS;
+          setPosts(legacyPosts);
+          setArticle(legacyPosts.find((post) => post.slug === slug) ?? null);
+          setLoaded(true);
+        }
+        return;
+      }
+
+      const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).order("published_at", { ascending: false });
+      if (cancelled) return;
+      if (error || !data) {
+        setArticle(null);
+        setLoaded(true);
+        return;
+      }
+      const publishedPosts = data as BlogPost[];
+      setPosts(publishedPosts);
+      setArticle(publishedPosts.find((post) => post.slug === slug) ?? null);
+      setLoaded(true);
+    };
+    void loadArticle();
+    return () => { cancelled = true; };
+  }, [slug]);
+
+  const seoArticle = article ?? BASE_BLOG_POSTS[0];
+  const url = `${siteUrl}/blog/${slug ?? ""}`;
   useSEO({
     title: `${seoArticle.title} | The Linkage Digital`,
     description: seoArticle.excerpt,
     keywords: `${seoArticle.category.toLowerCase()} insights, digital agency blog, ${seoArticle.title.toLowerCase()}`,
     ogTitle: seoArticle.title,
     ogDescription: seoArticle.excerpt,
-    ogImage: seoArticle.image,
+    ogImage: seoArticle.image || undefined,
     canonicalUrl: url,
     schema: [
       {
@@ -23,11 +59,11 @@ export default function BlogArticle() {
         "@type": "BlogPosting",
         headline: seoArticle.title,
         description: seoArticle.excerpt,
-        image: seoArticle.image,
-        datePublished: seoArticle.date,
-        dateModified: seoArticle.date,
+        ...(seoArticle.image ? { image: seoArticle.image } : {}),
+        datePublished: seoArticle.published_at,
+        dateModified: seoArticle.published_at,
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
-        author: { "@type": "Organization", name: "The Linkage Digital", url: siteUrl },
+        author: { "@type": "Person", name: seoArticle.author },
         publisher: { "@type": "Organization", name: "The Linkage Digital", logo: { "@type": "ImageObject", url: `${siteUrl}/logo.webp` } },
       },
       {
@@ -42,32 +78,31 @@ export default function BlogArticle() {
     ],
   });
 
+  if (!loaded) return <div className="grid min-h-screen place-items-center bg-white font-kanit text-[#695f70]">Loading article…</div>;
   if (!article) return <Navigate to="/blog" replace />;
 
-  const related = articles.filter((item) => item.slug !== article.slug).slice(0, 3);
+  const related = posts.filter((post) => post.slug !== article.slug).slice(0, 3);
+  const paragraphs = article.content.split(/\n\s*\n/).filter(Boolean);
 
   return (
     <div className="min-h-screen bg-white font-kanit">
       <SiteHeader />
       <main>
         <article>
-          <header className="max-w-[900px] mx-auto px-6 pt-14 md:pt-20 pb-10">
-            <nav aria-label="Breadcrumb" className="text-sm text-[#555] mb-8"><Link to="/" className="hover:text-[#8B0AB4]">Home</Link><span className="mx-2">/</span><Link to="/blog" className="hover:text-[#8B0AB4]">Blog</Link><span className="mx-2">/</span><span>{article.category}</span></nav>
-            <p className="text-[#8B0AB4] uppercase tracking-wider text-sm font-semibold">{article.category} · {article.displayDate}</p>
-            <h1 className="font-teko font-bold text-[#121212] uppercase text-[clamp(3rem,7vw,6rem)] leading-[.9] mt-5">{article.title}</h1>
-            <p className="text-[#555] text-lg md:text-xl leading-relaxed mt-6 max-w-3xl">{article.excerpt}</p>
+          <header className="mx-auto max-w-[900px] px-6 pb-10 pt-14 md:pt-20">
+            <nav aria-label="Breadcrumb" className="mb-8 text-sm text-[#555]"><Link to="/" className="hover:text-[#8B0AB4]">Home</Link><span className="mx-2">/</span><Link to="/blog" className="hover:text-[#8B0AB4]">Blog</Link><span className="mx-2">/</span><span>{article.category}</span></nav>
+            <p className="text-sm font-semibold uppercase tracking-wider text-[#8B0AB4]">{article.category} · {formatBlogDate(article.published_at)}</p>
+            <h1 className="mt-5 font-teko text-[clamp(3rem,7vw,6rem)] font-bold uppercase leading-[.9] text-[#121212]">{article.title}</h1>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#555] md:text-xl">{article.excerpt}</p>
+            <p className="mt-4 text-sm text-[#777]">By {article.author}</p>
           </header>
-          <figure className="max-w-[1200px] mx-auto px-6"><img src={article.image} alt={`Illustration for ${article.title}`} className="w-full aspect-[16/8] object-cover" /><figcaption className="text-sm text-[#666] mt-2">The Linkage Digital insight on {article.category.toLowerCase()}.</figcaption></figure>
-          <div className="max-w-[760px] mx-auto px-6 py-14 md:py-20 text-[#333] text-lg leading-relaxed space-y-6">
-            <p>Strong digital work starts with clarity: know the audience, remove friction, and give people a compelling next step. This is the lens we use when planning digital experiences for growing businesses.</p>
-            <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl leading-none">Put the audience first</h2>
-            <p>Use research, real customer questions, and performance data to focus every decision. A clear message and consistent visual system make it easier for visitors to understand your value and take action.</p>
-            <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl leading-none">Create a measurable plan</h2>
-            <p>Prioritize the improvements that support a specific goal, then monitor how people engage with the experience. Iteration turns a one-time launch into a dependable growth channel.</p>
+          {article.video ? <figure className="mx-auto max-w-[1200px] px-6"><video src={article.video} poster={article.image || undefined} controls preload="metadata" className="aspect-[16/8] w-full bg-black object-contain" /></figure> : article.image ? <figure className="mx-auto max-w-[1200px] px-6"><img src={article.image} alt={`Illustration for ${article.title}`} className="aspect-[16/8] w-full object-cover" /></figure> : null}
+          <div className="mx-auto max-w-[760px] space-y-6 px-6 py-14 text-lg leading-relaxed text-[#333] md:py-20">
+            {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
             <p>Need support applying these ideas to your business? <Link to="/contact" className="text-[#8B0AB4] underline underline-offset-4">Speak with The Linkage Digital</Link>.</p>
           </div>
         </article>
-        <section className="bg-[#F9F9F9] py-14 md:py-20"><div className="max-w-[1100px] mx-auto px-6"><h2 className="font-teko font-bold text-[#121212] uppercase text-4xl mb-8">More insights</h2><div className="grid md:grid-cols-3 gap-5">{related.map((item) => <Link key={item.slug} to={`/blog/${item.slug}`} className="bg-white p-6 hover:shadow-md transition-shadow"><p className="text-[#8B0AB4] uppercase text-xs font-semibold">{item.category}</p><h3 className="font-teko font-bold uppercase text-2xl leading-none mt-3">{item.title}</h3><p className="text-[#555] text-sm mt-4">{item.excerpt}</p></Link>)}</div></div></section>
+        {related.length > 0 && <section className="bg-[#F9F9F9] py-14 md:py-20"><div className="mx-auto max-w-[1100px] px-6"><h2 className="mb-8 font-teko text-4xl font-bold uppercase text-[#121212]">More insights</h2><div className="grid gap-5 md:grid-cols-3">{related.map((post) => <Link key={post.slug} to={`/blog/${post.slug}`} className="bg-white p-6 transition-shadow hover:shadow-md"><p className="text-xs font-semibold uppercase text-[#8B0AB4]">{post.category}</p><h3 className="mt-3 font-teko text-2xl font-bold uppercase leading-none">{post.title}</h3><p className="mt-4 text-sm text-[#555]">{post.excerpt}</p></Link>)}</div></div></section>}
       </main>
     </div>
   );
