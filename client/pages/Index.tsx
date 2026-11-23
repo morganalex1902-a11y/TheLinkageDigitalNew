@@ -1101,12 +1101,13 @@ export default function Index() {
               height: "clamp(100px, 22.4vw, 420px)",
             }}
           >
-            <span
-              className="font-teko font-bold text-[#8B0AB4] uppercase"
+            <a
+              href="/portfolio"
+              className="pointer-events-auto font-teko font-bold text-[#8B0AB4] uppercase"
               style={{ fontSize: "clamp(0.85rem, 2.13vw, 2.5rem)" }}
             >
               Portfolio
-            </span>
+            </a>
           </div>
         </div>
       </section>
