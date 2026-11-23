@@ -333,37 +333,28 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {/* Niche filter buttons (only show for Websites category) */}
           {activeMainCategory === "websites" && (
-            <div className="flex flex-wrap gap-3 md:gap-4 mb-12 md:mb-16 lg:mb-20">
-              {WEB_NICHES.map((niche) => (
-                <button
-                  key={niche}
-                  onClick={() => setActiveNiche(niche.toLowerCase())}
-                  className={`relative font-kanit font-medium text-[12px] md:text-[13px] uppercase px-5 py-2 rounded-full transition-all text-sm overflow-hidden group ${
-                    activeNiche === niche.toLowerCase()
-                      ? "bg-[#8B0AB4] text-white"
-                      : "bg-white text-[#121212] border border-[#ECECEC] hover:border-[#8B0AB4]"
-                  }`}
+            <div className="mb-12 md:mb-16 lg:mb-20 max-w-sm">
+              <label htmlFor="portfolio-industry-filter" className="mb-2 block font-kanit text-sm font-medium text-[#333]">
+                Filter projects by industry
+              </label>
+              <div className="relative">
+                <select
+                  id="portfolio-industry-filter"
+                  value={activeNiche}
+                  onChange={(event) => setActiveNiche(event.target.value)}
+                  className="w-full appearance-none rounded-xl border border-[#ECECEC] bg-white px-4 py-3 pr-11 font-kanit text-sm text-[#121212] shadow-sm transition-colors hover:border-[#8B0AB4] focus:border-[#8B0AB4] focus:outline-none focus:ring-2 focus:ring-[#8B0AB4]/20"
                 >
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute rounded-full"
-                    style={{
-                      width: 0,
-                      height: 0,
-                      left: "50%",
-                      top: "50%",
-                      backgroundColor: "#8B0AB4",
-                      opacity: 0.1,
-                      transform: "translate(-50%, -50%) scale(0)",
-                      transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-                      zIndex: 0,
-                    }}
-                  />
-                  <span className="relative z-10">{niche}</span>
-                </button>
-              ))}
+                  {WEB_NICHES.map((niche) => (
+                    <option key={niche} value={niche.toLowerCase()}>
+                      {niche === "All" ? "All industries" : niche}
+                    </option>
+                  ))}
+                </select>
+                <svg aria-hidden="true" className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#555]" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.22 7.47a.75.75 0 0 1 1.06 0L10 11.19l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 8.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                </svg>
+              </div>
             </div>
           )}
 
