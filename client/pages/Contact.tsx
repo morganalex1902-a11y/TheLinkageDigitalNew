@@ -7,6 +7,21 @@ import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
 import { submitToWeb3Forms } from "../lib/web3forms";
 
+const CONTACT_LOCAL_FAQS = [
+  {
+    q: "Does The Linkage Digital work with Austin businesses and clients across the United States?",
+    a: "Yes. Based in Austin, Texas, The Linkage Digital supports local businesses and organizations across the United States. Contact us to discuss your web design, branding, SEO, or digital marketing needs.",
+  },
+  {
+    q: "What should I include when requesting a digital marketing or website quote?",
+    a: "Share your business website, target audience, goals, preferred services, and any timing or budget details you already know. For Austin-area businesses, include the locations and services you want local customers to find online.",
+  },
+  {
+    q: "Can I meet with The Linkage Digital in Austin, Texas?",
+    a: "The Linkage Digital is based at 5900 Balcones Dr Ste 10429, Austin, TX 78731. Contact the team to discuss your project and arrange the best way to connect.",
+  },
+] as const;
+
 export default function Contact() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -44,6 +59,15 @@ export default function Contact() {
         "name": "Contact The Linkage Digital",
         "description": "Contact page for The Linkage Digital digital agency",
         "url": "https://thelinkagedigital.com/contact",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": CONTACT_LOCAL_FAQS.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
       },
       {
         "@context": "https://schema.org",
@@ -221,6 +245,7 @@ export default function Contact() {
       q: "Can you help with local SEO for my business?",
       a: "Yes, we specialize in local SEO including Google Business Profile optimization, local keyword targeting, location-specific content, and local link building. This is essential for service-based businesses looking to attract customers in their geographic area.",
     },
+    ...CONTACT_LOCAL_FAQS,
   ];
 
   const handleChange = (

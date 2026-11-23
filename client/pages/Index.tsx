@@ -412,6 +412,33 @@ const TECH_ITEMS = [
   { name: "Redux",     src: null },
 ];
 
+const HOME_FAQS = [
+  {
+    q: "Does The Linkage Digital provide web design for businesses in Austin, Texas?",
+    a: "Yes. The Linkage Digital is based in Austin, Texas and creates responsive, conversion-focused websites for Austin-area businesses and organizations across the United States. Projects are tailored to your goals, audience, and the services you want customers to find online.",
+  },
+  {
+    q: "How can local SEO help my Austin business appear in Google searches?",
+    a: "Local SEO helps relevant customers discover a business in nearby search results. Work can include improving location and service pages, technical SEO, local keyword research, and Google Business Profile guidance so Austin-area businesses can strengthen their visibility in Google Search and Maps.",
+  },
+  {
+    q: "Do you work with businesses outside Austin?",
+    a: "Yes. The Linkage Digital works with businesses in Austin and throughout the United States. Website design, branding, SEO, digital marketing, and video projects can be planned and delivered remotely.",
+  },
+  {
+    q: "What digital marketing services are available for Austin businesses?",
+    a: "Austin businesses can get support with web design and development, branding and logo design, SEO optimization, digital marketing, and video editing and motion graphics. The right mix depends on your audience, goals, and current online presence.",
+  },
+  {
+    q: "Can you help an Austin business improve its Google Business Profile?",
+    a: "The Linkage Digital can provide local SEO guidance that includes Google Business Profile optimization, accurate business information, service-area content, and location-relevant website pages. These improvements support local discovery but do not guarantee specific rankings.",
+  },
+  {
+    q: "How do I get started with a website or SEO project in Austin?",
+    a: "Contact The Linkage Digital with your business goals, target customers, and the services you need. The team will discuss a suitable next step for your Austin, Texas business or your organization elsewhere in the United States.",
+  },
+] as const;
+
 export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -528,9 +555,9 @@ export default function Index() {
   useSEO({
     title: "The Linkage Digital — Web Design, App Development & Digital Marketing USA",
     description: "Professional web design, app development, digital marketing, and video editing services in Texas and across the USA. Full-service digital agency specializing in branding, SEO optimization, and creative solutions.",
-    keywords: "web design USA, app development, digital marketing services USA, web development Texas, branding agency, SEO optimization, video editing, digital agency",
+    keywords: "Austin web design, Austin local SEO, digital marketing Austin TX, web design USA, app development, web development Texas, branding agency, SEO optimization, video editing",
     ogTitle: "The Linkage Digital — Web Design & App Development Services",
-    ogDescription: "Full-service digital agency in Texas. Expert web design, app development, digital marketing, and video editing for businesses nationwide.",
+    ogDescription: "Austin, Texas digital agency for web design, local SEO, app development, digital marketing, and video editing for businesses nationwide.",
     ogImage: "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=1200",
     canonicalUrl: "https://thelinkagedigital.com/",
     schema: [
@@ -559,6 +586,15 @@ export default function Index() {
           "https://www.facebook.com/thelinkagedigital/",
           "https://www.instagram.com/thelinkagedigital/"
         ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": HOME_FAQS.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
       },
       {
         "@context": "https://schema.org",
@@ -1415,40 +1451,7 @@ export default function Index() {
 
             {/* Right: accordion */}
             <div>
-              {[
-                {
-                  q: "How can professional web design improve my online visibility?",
-                  a: "A well-designed website with proper SEO foundation increases organic search rankings and builds credibility. The Linkage Digital creates responsive, fast-loading websites optimized for search engines, helping you rank higher for local and national searches.",
-                },
-                {
-                  q: "What's included in your digital marketing services?",
-                  a: "We offer PPC advertising, social media management, email marketing, content strategy, and video marketing. These services integrate seamlessly with your website to create a comprehensive online presence that drives qualified leads and converts visitors into customers.",
-                },
-                {
-                  q: "How does local SEO help my business?",
-                  a: "Local SEO optimization includes Google Business Profile setup, location-specific keywords, local link building, and location-based content. This is essential for service businesses looking to attract customers in their geographic area and dominate local search results.",
-                },
-                {
-                  q: "Can you design a custom logo and complete branding package?",
-                  a: "Yes, we specialize in logo design and full brand identity development including color palettes, typography, brand guidelines, and cohesive visual assets. Strong branding builds customer recognition, trust, and differentiates you from competitors.",
-                },
-                {
-                  q: "How long does a typical web design project take?",
-                  a: "Most web design projects take 1 week, while custom full-stack applications range from 4-6 months. Timeline depends on scope and complexity. We use agile methodology to keep you informed at every stage with regular updates and feedback opportunities.",
-                },
-                {
-                  q: "What makes The Linkage Digital different from other agencies?",
-                  a: "We combine strategic design, technical expertise, and SEO knowledge to deliver results. We focus on user experience, performance, and conversions—not just aesthetics. Our team has proven experience with startups and enterprise clients, backed by verifiable case studies and client testimonials.",
-                },
-                {
-                  q: "Do you offer ongoing support and maintenance?",
-                  a: "Absolutely. We provide flexible support packages including security updates, performance monitoring, content updates, and feature enhancements. Our retainer plans start at $200/month, ensuring your website stays secure, fast, and competitive.",
-                },
-                {
-                  q: "What's your typical project cost range?",
-                  a: "Web design costs vary based on complexity. Simple 5-page websites start around $300-$500, while e-commerce and custom applications range $8,000-$25,000+. We offer transparent pricing with no hidden fees and custom quotes for your specific needs.",
-                },
-              ].map((item, i) => (
+              {HOME_FAQS.map((item, i) => (
                 <div key={i} className="border-t border-[#ECECEC]">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -1490,7 +1493,7 @@ export default function Index() {
                   {/* Answer (animated open/close) */}
                   <div
                     className="overflow-hidden transition-all duration-300 ease-in-out"
-                    style={{ maxHeight: openFaq === i ? "200px" : "0px", opacity: openFaq === i ? 1 : 0 }}
+                    style={{ maxHeight: openFaq === i ? "400px" : "0px", opacity: openFaq === i ? 1 : 0 }}
                   >
                     <div className="pb-6 pr-8">
                       <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[15px] leading-[1.7]">
