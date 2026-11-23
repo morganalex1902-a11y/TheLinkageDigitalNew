@@ -15,16 +15,24 @@ export function getPortfolioProjectId(title: string) {
   return title.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-export function getPortfolioImage(image: string, website: string, type: PortfolioType) {
-  if (image) {
-    return image.replace(
+export function getPortfolioImage(image: string | null | undefined, website: string, type: PortfolioType) {
+  const customImage = image?.trim();
+  if (customImage) {
+    return customImage.replace(
       /^https:\/\/image\.thum\.io\/get\/width\/600\/crop\/600\/url\//,
       "https://image.thum.io/get/width/600/crop/600/https://",
     );
   }
-  return type === "websites" && /^https?:\/\//i.test(website)
-    ? `https://image.thum.io/get/width/600/crop/600/${website}`
-    : "";
+  if (type !== "websites" || !website.trim()) return "";
+
+  const siteUrl = /^https?:\/\//i.test(website) ? website : `https://${website}`;
+  try {
+    const parsedUrl = new URL(siteUrl);
+    if (!["http:", "https:"].includes(parsedUrl.protocol)) return "";
+    return `https://image.thum.io/get/width/600/crop/600/${parsedUrl.href}`;
+  } catch {
+    return "";
+  }
 }
 
 export const BASE_PORTFOLIO_PROJECTS: PortfolioProject[] = [
