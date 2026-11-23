@@ -10,6 +10,7 @@ import SiteHeader from "../components/SiteHeader";
 import { submitToWeb3Forms } from "../lib/web3forms";
 import { ArrowUpRight, Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -474,6 +475,7 @@ export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const TESTIMONIALS = [
     {
@@ -648,6 +650,22 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-white font-kanit">
       <SiteHeader />
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="w-[calc(100%-2rem)] max-w-[500px] gap-0 overflow-hidden border-0 bg-black p-0">
+          <DialogTitle className="sr-only">Watch our introduction video</DialogTitle>
+          <DialogDescription className="sr-only">The Linkage Digital introduction video plays below.</DialogDescription>
+          <div className="aspect-[9/16] max-h-[85vh] w-full">
+            <iframe
+              src="https://www.youtube.com/embed/O7_-p8rzoaA?autoplay=1&playsinline=1"
+              title="The Linkage Digital introduction video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="h-full w-full"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* ── HERO ── */}
       <main className="relative overflow-hidden bg-[#faf7fc]">
@@ -734,7 +752,7 @@ export default function Index() {
                   />
                   {/* Play button sits just outside the bottom-right curve */}
                   <div className="absolute -right-7 sm:-right-10 bottom-[38%] flex flex-col items-center gap-1">
-                    <button className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
+                    <button type="button" onClick={() => setIsVideoOpen(true)} aria-label="Play The Linkage Digital introduction video" className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
                       <PlayIcon />
                     </button>
                     <span className="font-kanit font-medium text-[8px] sm:text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
