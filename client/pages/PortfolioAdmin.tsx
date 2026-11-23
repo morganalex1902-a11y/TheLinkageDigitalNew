@@ -229,7 +229,8 @@ export default function PortfolioAdmin() {
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ resourceType }),
       });
-      const signatureData = await signatureResponse.json();
+      const signatureData = await signatureResponse.json().catch(() => null);
+      if (!signatureData) throw new Error(`Upload authorization service returned an unexpected response (HTTP ${signatureResponse.status}). Check the server logs.`);
       if (!signatureResponse.ok) throw new Error(signatureData.error ?? "Could not authorize the upload.");
 
       const uploadData = new FormData();
@@ -242,7 +243,8 @@ export default function PortfolioAdmin() {
         method: "POST",
         body: uploadData,
       });
-      const result = await response.json();
+      const result = await response.json().catch(() => null);
+      if (!result) throw new Error(`Cloudinary returned an unexpected response (HTTP ${response.status}).`);
       if (!response.ok || !result.secure_url) throw new Error(result.error?.message ?? "Cloudinary upload failed.");
       if (batchIndex === undefined) {
         setForm((current) => ({ ...current, [resourceType]: result.secure_url }));
