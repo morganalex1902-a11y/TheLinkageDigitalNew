@@ -437,6 +437,34 @@ const HOME_FAQS = [
     q: "How do I get started with a website or SEO project in Austin?",
     a: "Contact The Linkage Digital with your business goals, target customers, and the services you need. The team will discuss a suitable next step for your Austin, Texas business or your organization elsewhere in the United States.",
   },
+  {
+    q: "What do SEO, AEO, and GEO mean for my business?",
+    a: "SEO helps your website become more discoverable in traditional search results. AEO, or answer engine optimization, focuses on making information clear and useful for question-based searches. GEO, or generative engine optimization, focuses on presenting accurate, well-organized information that generative search tools can interpret. These practices support discoverability, but no agency can guarantee rankings or AI citations.",
+  },
+  {
+    q: "How can I make my website content useful for Google and AI answer tools?",
+    a: "Start with accurate information about your business, services, service areas, and expertise. Organize pages with descriptive headings, answer common customer questions directly, keep business details consistent, and use structured data when it accurately describes visible content. Clear, helpful content supports search understanding but does not guarantee a particular result or citation.",
+  },
+  {
+    q: "Can The Linkage Digital guarantee first-page Google rankings?",
+    a: "No. Search rankings depend on many factors, including competition, content relevance, website quality, and search engine changes. The Linkage Digital focuses on sound technical SEO, useful content, and measurable improvements rather than promising a specific position.",
+  },
+  {
+    q: "How long does SEO take to show results?",
+    a: "SEO timelines vary based on your website, competition, target searches, and the work involved. Some technical improvements can be made quickly, while meaningful changes in organic visibility often take sustained effort. The Linkage Digital can help define priorities and monitor progress without promising a fixed timeline.",
+  },
+  {
+    q: "How much does a website or digital marketing project cost?",
+    a: "Project pricing depends on scope, functionality, content needs, selected services, and ongoing campaign requirements. Share your goals and priorities through the contact form to discuss the project and request a tailored estimate.",
+  },
+  {
+    q: "Which digital services are right for my business?",
+    a: "The right mix depends on your goals. A new business may prioritize branding and a website; a business seeking local discovery may focus on local SEO; and a company promoting campaigns may consider paid ads, social content, or video. The Linkage Digital can discuss your audience, current presence, and priorities before recommending next steps.",
+  },
+  {
+    q: "How can I measure whether digital marketing is working?",
+    a: "Choose measures that connect to your goals, such as qualified inquiries, calls, form submissions, sales, relevant website traffic, or campaign engagement. The right metrics depend on the channel and objective, so reporting should focus on meaningful outcomes rather than traffic alone.",
+  },
 ] as const;
 
 export default function Index() {
@@ -1446,6 +1474,7 @@ export default function Index() {
                 Questions
               </h2>
               <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[16px] leading-[1.55] max-w-[280px]">
+                Answers about web design, branding, SEO, and digital marketing for Austin businesses and organizations across the United States.
               </p>
             </div>
 
@@ -1454,6 +1483,8 @@ export default function Index() {
               {HOME_FAQS.map((item, i) => (
                 <div key={i} className="border-t border-[#ECECEC]">
                   <button
+                    aria-expanded={openFaq === i}
+                    aria-controls={`home-faq-answer-${i}`}
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                     className="relative w-full flex items-center justify-between gap-4 py-5 md:py-6 text-left group overflow-hidden"
                   >
@@ -1492,6 +1523,8 @@ export default function Index() {
 
                   {/* Answer (animated open/close) */}
                   <div
+                    id={`home-faq-answer-${i}`}
+                    aria-hidden={openFaq !== i}
                     className="overflow-hidden transition-all duration-300 ease-in-out"
                     style={{ maxHeight: openFaq === i ? "400px" : "0px", opacity: openFaq === i ? 1 : 0 }}
                   >
