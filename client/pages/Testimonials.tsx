@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import SiteHeader from "../components/SiteHeader";
+import TrustpilotWidget from "../components/TrustpilotWidget";
 import { useInView } from "../hooks/useInView";
 import { ArrowUpRight, Star } from "lucide-react";
 
@@ -237,6 +238,9 @@ export default function Testimonials() {
         {/* ── TESTIMONIALS GRID SECTION ── */}
         <section ref={testimonialsRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden">
           <div className="max-w-[1400px] mx-auto px-6">
+            <div className="mb-10">
+              <TrustpilotWidget />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {TESTIMONIALS.map((testimonial, i) => (
                 <div
