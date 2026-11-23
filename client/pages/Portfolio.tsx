@@ -5,7 +5,7 @@ import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
 import { useInView } from "../hooks/useInView";
-import { BASE_PORTFOLIO_PROJECTS, type PortfolioProject } from "../lib/portfolio";
+import { BASE_PORTFOLIO_PROJECTS, getPortfolioImage, type PortfolioProject } from "../lib/portfolio";
 import { supabase } from "../lib/supabase";
 
 export default function Portfolio() {
@@ -371,21 +371,22 @@ export default function Portfolio() {
           <div ref={projectsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {filteredProjects.map((project) => {
               const cardKey = project.title.replace(/\s+/g, "-").toLowerCase();
+              const image = getPortfolioImage(project.image, project.website, project.type);
               const cardContent = (
                 <>
                   <div className="relative overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] bg-white flex-shrink-0 min-h-[220px]">
                     {project.video ? (
                       <video
                         src={project.video}
-                        poster={project.image || undefined}
+                        poster={image || undefined}
                         aria-label={`${project.title} project video`}
                         controls
                         preload="metadata"
                         className="h-full w-full object-cover"
                       />
-                    ) : project.image ? (
+                    ) : image ? (
                       <img
-                        src={project.image}
+                        src={image}
                         alt={`${project.title} website preview`}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
