@@ -11,6 +11,69 @@ import { submitToWeb3Forms } from "../lib/web3forms";
 import { ArrowUpRight, Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import type { IconType } from "react-icons";
+import {
+  SiAppwrite,
+  SiCloudflare,
+  SiCloudinary,
+  SiClaude,
+  SiClerk,
+  SiConvex,
+  SiDjango,
+  SiDocker,
+  SiDrizzle,
+  SiExpo,
+  SiExpress,
+  SiFastapi,
+  SiFirebase,
+  SiFigma,
+  SiFlutter,
+  SiFramer,
+  SiGithub,
+  SiGithubactions,
+  SiGooglegemini,
+  SiGoogleanalytics,
+  SiGooglemaps,
+  SiGraphql,
+  SiGsap,
+  SiHostinger,
+  SiJsonwebtokens,
+  SiMapbox,
+  SiMui,
+  SiNextdotjs,
+  SiMongoose,
+  SiMysql,
+  SiNetlify,
+  SiNestjs,
+  SiNodedotjs,
+  SiPaypal,
+  SiPostgresql,
+  SiPosthog,
+  SiPostman,
+  SiPrisma,
+  SiRailway,
+  SiRazorpay,
+  SiReact,
+  SiReactquery,
+  SiRedis,
+  SiRedux,
+  SiRender,
+  SiResend,
+  SiSanity,
+  SiSentry,
+  SiShadcnui,
+  SiShopify,
+  SiSocketdotio,
+  SiStrapi,
+  SiStripe,
+  SiSupabase,
+  SiTailwindcss,
+  SiTrpc,
+  SiVercel,
+  SiVite,
+  SiWoocommerce,
+  SiWordpress,
+} from "react-icons/si";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -424,12 +487,83 @@ const TAB_IMAGES = [
   },
 ];
 
-const TECH_ITEMS = [
-  { name: "WordPress", src: "/images/tech-wordpress.webp" },
-  { name: "React.js",  src: "/images/tech-react.webp" },
-  { name: "Node.js",   src: "/images/tech-node.webp" },
-  { name: "Flutter",   src: "/images/tech-flutter.webp" },
-  { name: "Redux",     src: null },
+const TECH_ITEMS: { name: string; Icon?: IconType; src?: string; monogram?: string; color?: string }[] = [
+  { name: "WordPress", Icon: SiWordpress, color: "#21759B" },
+  { name: "React.js", Icon: SiReact, color: "#61DAFB" },
+  { name: "Node.js", Icon: SiNodedotjs, color: "#339933" },
+  { name: "Flutter", Icon: SiFlutter, color: "#02569B" },
+  { name: "Redux", Icon: SiRedux, color: "#764ABC" },
+  { name: "Next.js", Icon: SiNextdotjs },
+  { name: "Vite", Icon: SiVite, color: "#646CFF" },
+  { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "shadcn/ui", Icon: SiShadcnui },
+  { name: "Material UI", Icon: SiMui, color: "#007FFF" },
+  { name: "Framer Motion", Icon: SiFramer, color: "#0055FF" },
+  { name: "GSAP", Icon: SiGsap, color: "#88CE02" },
+  { name: "Zustand", monogram: "Z" },
+  { name: "React Query", Icon: SiReactquery, color: "#FF4154" },
+  { name: "Express.js", Icon: SiExpress },
+  { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
+  { name: "FastAPI", Icon: SiFastapi, color: "#009688" },
+  { name: "Django", Icon: SiDjango, color: "#092E20" },
+  { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+  { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
+  { name: "Redis", Icon: SiRedis, color: "#DC382D" },
+  { name: "Firebase Firestore", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "Prisma", Icon: SiPrisma, color: "#2D3748" },
+  { name: "Mongoose", Icon: SiMongoose, color: "#880000" },
+  { name: "Drizzle", Icon: SiDrizzle },
+  { name: "Clerk", Icon: SiClerk, color: "#6C47FF" },
+  { name: "Firebase Auth", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "NextAuth / Auth.js", Icon: SiNextdotjs },
+  { name: "Supabase Auth", Icon: SiSupabase, color: "#3FCF8E" },
+  { name: "JWT", Icon: SiJsonwebtokens },
+  { name: "Firebase", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "Appwrite", Icon: SiAppwrite, color: "#F02E65" },
+  { name: "Convex", Icon: SiConvex },
+  { name: "Cloudinary", Icon: SiCloudinary, color: "#3448C5" },
+  { name: "AWS S3", monogram: "S3", color: "#FF9900" },
+  { name: "UploadThing", monogram: "UT", color: "#7C3AED" },
+  { name: "Firebase Storage", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "Stripe", Icon: SiStripe, color: "#635BFF" },
+  { name: "Razorpay", Icon: SiRazorpay, color: "#0C2451" },
+  { name: "PayPal", Icon: SiPaypal, color: "#003087" },
+  { name: "JazzCash / Easypaisa", monogram: "J/E", color: "#168A52" },
+  { name: "Resend", Icon: SiResend },
+  { name: "Nodemailer", monogram: "N" },
+  { name: "EmailJS", monogram: "@" },
+  { name: "Twilio", monogram: "T", color: "#F22F46" },
+  { name: "Sanity", Icon: SiSanity, color: "#F03E2F" },
+  { name: "Strapi", Icon: SiStrapi, color: "#4945FF" },
+  { name: "Shopify", Icon: SiShopify, color: "#7AB55C" },
+  { name: "WooCommerce", Icon: SiWoocommerce, color: "#96588A" },
+  { name: "React Native", Icon: SiReact, color: "#61DAFB" },
+  { name: "Expo", Icon: SiExpo },
+  { name: "REST API", monogram: "REST" },
+  { name: "GraphQL", Icon: SiGraphql, color: "#E10098" },
+  { name: "tRPC", Icon: SiTrpc, color: "#398CCB" },
+  { name: "Socket.io", Icon: SiSocketdotio },
+  { name: "Vercel", Icon: SiVercel },
+  { name: "Netlify", Icon: SiNetlify, color: "#00C7B7" },
+  { name: "Render", Icon: SiRender, color: "#46E3B7" },
+  { name: "Railway", Icon: SiRailway, color: "#0B0D0E" },
+  { name: "Cloudflare", Icon: SiCloudflare, color: "#F38020" },
+  { name: "AWS", monogram: "AWS", color: "#FF9900" },
+  { name: "Hostinger", Icon: SiHostinger, color: "#673DE6" },
+  { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+  { name: "Git / GitHub", Icon: SiGithub },
+  { name: "GitHub Actions", Icon: SiGithubactions },
+  { name: "Postman", Icon: SiPostman, color: "#FF6C37" },
+  { name: "Figma", Icon: SiFigma, color: "#F24E1E" },
+  { name: "Sentry", Icon: SiSentry, color: "#362D59" },
+  { name: "OpenAI API", monogram: "AI" },
+  { name: "Claude API", Icon: SiClaude },
+  { name: "Gemini API", Icon: SiGooglegemini, color: "#8E75B2" },
+  { name: "Vercel AI SDK", Icon: SiVercel },
+  { name: "Google Analytics", Icon: SiGoogleanalytics, color: "#E37400" },
+  { name: "PostHog", Icon: SiPosthog, color: "#F9BD2B" },
+  { name: "Google Maps API", Icon: SiGooglemaps, color: "#4285F4" },
+  { name: "Mapbox", Icon: SiMapbox, color: "#4264FB" },
 ];
 
 const HOME_FAQS = [
@@ -1054,7 +1188,7 @@ export default function Index() {
       </section>
 
       {/* ── EMPOWERING SKILLS SECTION ── */}
-      <section ref={empowerRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
+      <section id="empowering-skills" ref={empowerRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
           {/* Heading + description row */}
@@ -1143,21 +1277,24 @@ export default function Index() {
               Our Technology Expertise Includes
             </p>
 
-            {/* Tech circles – overlapping on desktop */}
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-0">
-              {TECH_ITEMS.map((tech, i) => (
-                <div
-                  key={tech.name}
-                  className={`flex-shrink-0 w-[130px] h-[130px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] xl:w-[298px] xl:h-[298px] rounded-full border border-[#ECECEC] bg-white flex flex-col items-center justify-center gap-1 sm:gap-2 lg:gap-3 ${
-                    i > 0 ? "sm:-ml-4 md:-ml-6 lg:-ml-10 xl:-ml-12" : ""
-                  }`}
-                >
-                  {tech.src ? (
+            <div className="tech-marquee-viewport" role="region" aria-label="Technology expertise" tabIndex={0}>
+              <div className="tech-marquee-track flex w-max">
+                {TECH_ITEMS.concat(TECH_ITEMS).map((tech, i) => (
+                  <div
+                    key={`${tech.name}-${i}`}
+                    aria-hidden={i >= TECH_ITEMS.length}
+                    className="flex h-[156px] w-[156px] flex-shrink-0 flex-col items-center justify-center gap-2 rounded-full border border-[#ECECEC] bg-white p-4 sm:h-[180px] sm:w-[180px]"
+                  >
+                  {tech.Icon ? (
+                    <tech.Icon size={48} color={tech.color ?? "#121212"} aria-hidden="true" />
+                  ) : tech.src ? (
                     <img
                       src={tech.src}
                       alt={tech.name}
                       className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto object-contain"
                     />
+                  ) : tech.monogram ? (
+                    <span aria-hidden="true" className="font-teko text-[38px] font-bold leading-none" style={{ color: tech.color ?? "#8B0AB4" }}>{tech.monogram}</span>
                   ) : (
                     /* Redux inline SVG */
                     <svg height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto">
@@ -1168,7 +1305,8 @@ export default function Index() {
                     {tech.name}
                   </span>
                 </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

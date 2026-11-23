@@ -161,6 +161,30 @@
   will-change: transform;
 }
 
+.tech-marquee-viewport {
+  overflow: hidden;
+}
+
+.tech-marquee-track {
+  animation: marquee 160s linear infinite;
+  will-change: transform;
+}
+
+.tech-marquee-viewport:hover .tech-marquee-track,
+.tech-marquee-viewport:focus-within .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-viewport {
+    overflow-x: auto;
+  }
+
+  .tech-marquee-track {
+    animation: none;
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
