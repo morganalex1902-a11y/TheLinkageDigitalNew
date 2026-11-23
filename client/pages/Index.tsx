@@ -7,6 +7,7 @@ import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
+import FAQAccordion from "../components/FAQAccordion";
 import { submitToWeb3Forms } from "../lib/web3forms";
 import { ArrowUpRight, Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -443,7 +444,6 @@ export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialDir, setTestimonialDir] = useState<"left" | "right">("right");
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [contactSubmitted, setContactSubmitted] = useState(false);
 
@@ -1450,62 +1450,7 @@ export default function Index() {
             </div>
 
             {/* Right: accordion */}
-            <div>
-              {HOME_FAQS.map((item, i) => (
-                <div key={i} className="border-t border-[#ECECEC]">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="relative w-full flex items-center justify-between gap-4 py-5 md:py-6 text-left group overflow-hidden"
-                  >
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute rounded-full"
-                      style={{
-                        width: 0,
-                        height: 0,
-                        left: 0,
-                        top: 0,
-                        backgroundColor: "#8B0AB4",
-                        opacity: 0.05,
-                        transform: "translate(-50%, -50%) scale(0)",
-                        transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-                        zIndex: 0,
-                      }}
-                    />
-                    <span className="relative z-10">
-                      <span
-                        className={`font-kanit font-bold uppercase text-[12px] md:text-[14px] tracking-wider leading-snug transition-colors ${
-                          openFaq === i ? "text-[#121212]" : "text-[#333] group-hover:text-[#8B0AB4]"
-                        }`}
-                      >
-                        {item.q}
-                      </span>
-                    </span>
-                    <span
-                      className={`flex-shrink-0 relative z-10 w-6 h-6 flex items-center justify-center font-kanit font-light text-xl leading-none transition-colors ${
-                        openFaq === i ? "text-[#121212]" : "text-[#555] group-hover:text-[#8B0AB4]"
-                      }`}
-                    >
-                      {openFaq === i ? "−" : "+"}
-                    </span>
-                  </button>
-
-                  {/* Answer (animated open/close) */}
-                  <div
-                    className="overflow-hidden transition-all duration-300 ease-in-out"
-                    style={{ maxHeight: openFaq === i ? "400px" : "0px", opacity: openFaq === i ? 1 : 0 }}
-                  >
-                    <div className="pb-6 pr-8">
-                      <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[15px] leading-[1.7]">
-                        {item.a}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {/* Bottom border */}
-              <div className="border-t border-[#ECECEC]" />
-            </div>
+            <FAQAccordion items={HOME_FAQS} />
 
           </div>
         </div>
