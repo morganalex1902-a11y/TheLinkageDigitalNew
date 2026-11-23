@@ -127,7 +127,7 @@ export default function ServiceDetail() {
         {service.slug === "web-design-development" ? (
           <section className="bg-[#171717] py-14 md:py-20 px-6 text-center">
             <div className="max-w-[900px] mx-auto">
-              <h2 className="font-teko font-bold text-white uppercase text-4xl md:text-5xl">Let&apos;s Build Your Business Website in Texas</h2>
+              <h2 className="font-teko font-bold text-white uppercase text-4xl md:text-5xl">Let&apos;s Build Your Business Website</h2>
               <p className="mt-6 text-white/80 leading-relaxed">Your next customer could be searching for your services online right now. Make sure your business has a professional website that communicates your value and makes it easy for customers to reach you.</p>
               <p className="mt-4 text-white/80 leading-relaxed">Whether you need a custom business website, a complete website redesign, an e-commerce platform, or a landing page, The Linkage Digital is ready to help.</p>
               <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s create a website that represents your brand, supports your business goals, and helps you grow online.</p>
