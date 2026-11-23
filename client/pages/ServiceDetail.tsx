@@ -59,8 +59,20 @@ const SERVICE_FAQS = {
     { q: "How do I get started with SEO services?", a: "The first step is to evaluate your website, business goals, industry, target audience, and competition. Contact The Linkage Digital to discuss your SEO requirements and develop an optimization strategy aligned with your growth objectives." },
   ],
   "video-editing-motion": [
-    { q: "Can you create video content for Austin businesses?", a: "Yes. The Linkage Digital provides video editing and motion design for Austin-area businesses and clients across the United States. Deliverables can be planned for your website, social channels, or digital campaigns." },
-    { q: "What types of business videos can you edit?", a: "Video work can include promotional edits, product or service explainers, social video assets, and motion graphics. The format and scope are planned around your message, audience, and the channels where you intend to share the content." },
+    { q: "What is included in professional video editing services?", a: "Professional video editing can include footage trimming, scene sequencing, transitions, color correction, color grading, audio synchronization, background music, sound effects, subtitles, text overlays, and final video rendering. The exact services depend on the project's creative requirements." },
+    { q: "What are motion graphics and how are they used?", a: "Motion graphics are animated visual elements such as text, shapes, icons, illustrations, and graphic designs. Businesses use them in promotional videos, advertisements, presentations, logo animations, explainer videos, and social media content." },
+    { q: "How much do professional video editing services cost?", a: "Video editing costs depend on video duration, footage quality, editing complexity, motion graphics requirements, revisions, and delivery formats. A simple social media video generally requires less work than a detailed commercial advertisement with advanced animations. Contact The Linkage Digital for a project-specific quote." },
+    { q: "Do you provide social media video editing?", a: "Yes. Our social media video editing services can include Instagram Reels, TikTok videos, Facebook advertisements, YouTube Shorts, promotional clips, subtitles, and branded video content." },
+    { q: "Can you create animated logos and motion graphics?", a: "Yes. We create animated logos, branded introductions, logo reveals, animated typography, motion graphics, and other visual elements that help businesses develop a more dynamic brand presentation." },
+    { q: "Do you edit promotional and commercial videos?", a: "Yes. We provide promotional and commercial video editing solutions for businesses looking to advertise products, showcase services, introduce their brands, and support marketing campaigns." },
+    { q: "Do you provide video editing services for businesses in Texas?", a: "Yes. The Linkage Digital provides video editing and motion graphics solutions for businesses targeting customers in Texas, including Austin, Houston, Dallas, San Antonio, and surrounding markets. Our services can be delivered remotely, allowing businesses throughout Texas to collaborate with our creative team." },
+    { q: "Can you edit videos using footage that I provide?", a: "Yes. You can provide your existing video footage, images, audio, brand assets, and creative references. Our team can use these materials to develop an edited video based on your project requirements." },
+    { q: "What video formats and dimensions can you deliver?", a: "Final delivery formats depend on your requirements. Common formats include MP4 and MOV, with dimensions suitable for horizontal, vertical, and square video placements. We can prepare content for websites, Instagram, Facebook, TikTok, YouTube, and other platforms." },
+    { q: "How long does it take to edit a professional video?", a: "The timeline depends on the video's length, footage quality, number of scenes, motion graphics complexity, and revision requirements. Short-form videos generally require less editing time than longer promotional or commercial productions." },
+    { q: "Can video editing help improve social media engagement?", a: "Engaging video content can help communicate messages more effectively and encourage audience interaction. Strong storytelling, clear visuals, relevant pacing, captions, and platform-appropriate formatting can contribute to a better viewing experience. Actual engagement depends on the audience, distribution, content, and platform." },
+    { q: "Do you provide complete video production or only editing?", a: "Our video editing and motion graphics services focus on editing, animation, and visual content development. Availability of filming, on-location production, voice-over, and other production services should be confirmed according to the individual project requirements." },
+    { q: "Can you create videos for advertisements and marketing campaigns?", a: "Yes. We can develop promotional video edits, product advertisements, social media advertising creatives, and branded visual content for digital marketing campaigns." },
+    { q: "How can I get started with a video editing project?", a: "Share your video footage or creative concept, project objectives, preferred editing style, reference examples, and intended platform. The Linkage Digital can then review your requirements and discuss a suitable creative approach." },
   ],
 } as const;
 
@@ -70,6 +82,9 @@ export default function ServiceDetail() {
   const seoService = service || services[0];
   const faqItems = SERVICE_FAQS[seoService.slug];
   const url = `${siteUrl}/services/${seoService.slug}`;
+  const defaultSeoTitle = `${seoService.title} Services | The Linkage Digital`;
+  const defaultSeoDescription = seoService.description;
+  const defaultSeoKeywords = seoService.keywords;
 
   useSEO({
     title: seoService.slug === "web-design-development"
@@ -80,7 +95,9 @@ export default function ServiceDetail() {
           ? "Strategic Digital Marketing Services | The Linkage Digital"
           : seoService.slug === "seo-optimization"
             ? "Professional SEO Services | The Linkage Digital"
-            : `${seoService.title} Services | The Linkage Digital`,
+            : seoService.slug === "video-editing-motion"
+              ? "Professional Video Editing & Motion Graphics | The Linkage Digital"
+              : defaultSeoTitle,
     description: seoService.slug === "web-design-development"
       ? "Professional web design and development for Texas businesses. The Linkage Digital builds responsive, SEO-friendly websites for small businesses and growing brands."
       : seoService.slug === "branding-logo-design"
@@ -89,7 +106,9 @@ export default function ServiceDetail() {
           ? "Strategic digital marketing services for businesses in Texas and across the United States. Social media, paid advertising, content, email, and video marketing."
           : seoService.slug === "seo-optimization"
             ? "Professional SEO services for businesses across Texas and the United States. Improve technical health, local visibility, content relevance, and organic search performance with The Linkage Digital."
-            : seoService.description,
+            : seoService.slug === "video-editing-motion"
+              ? "Professional video editing and motion graphics for businesses across Texas and the United States. Create promotional videos, social media content, and branded visual stories with The Linkage Digital."
+              : defaultSeoDescription,
     keywords: seoService.slug === "web-design-development"
       ? "web design Texas, website development Texas, small business web design, custom website development, SEO-friendly web design, website redesign"
       : seoService.slug === "branding-logo-design"
@@ -98,7 +117,9 @@ export default function ServiceDetail() {
           ? "digital marketing services Texas, social media marketing, PPC management, Google Ads, content marketing, email marketing, small business marketing"
           : seoService.slug === "seo-optimization"
             ? "SEO services Texas, local SEO, technical SEO, on-page SEO, keyword research, SEO audit, e-commerce SEO, SEO agency"
-            : seoService.keywords,
+            : seoService.slug === "video-editing-motion"
+              ? "video editing services, motion graphics, promotional video editing, social media video, animated explainer videos, logo animation, Texas video editing"
+              : defaultSeoKeywords,
     canonicalUrl: url,
     schema: [
       {
@@ -162,6 +183,7 @@ export default function ServiceDetail() {
         {service.slug === "branding-logo-design" && <BrandingContent />}
         {service.slug === "digital-marketing" && <DigitalMarketingContent />}
         {service.slug === "seo-optimization" && <SEOContent />}
+        {service.slug === "video-editing-motion" && <VideoEditingContent />}
         <section className="max-w-[1000px] mx-auto px-6 py-14 md:py-20">
           <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none mb-8">
             {service.slug === "web-design-development"
@@ -172,7 +194,9 @@ export default function ServiceDetail() {
                   ? "Frequently Asked Questions About Digital Marketing"
                   : service.slug === "seo-optimization"
                     ? "Frequently Asked Questions About SEO Services"
-                    : "Frequently asked questions"}
+                    : service.slug === "video-editing-motion"
+                      ? "Frequently Asked Questions About Video Editing and Motion Graphics"
+                      : "Frequently asked questions"}
           </h2>
           <div className="space-y-7">
             {faqItems.map(({ q, a }) => (
@@ -225,6 +249,17 @@ export default function ServiceDetail() {
               <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s build an SEO strategy that improves your website&apos;s visibility, attracts relevant visitors, and creates opportunities for sustainable business growth.</p>
               <p className="mt-4 text-white/80 leading-relaxed">Contact our team to discuss your SEO goals and discover the right optimization strategy for your business.</p>
               <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Start Improving Your Search Rankings With The Linkage Digital Today</Link>
+            </div>
+          </section>
+        ) : service.slug === "video-editing-motion" ? (
+          <section className="bg-[#171717] py-14 md:py-20 px-6 text-center">
+            <div className="max-w-[900px] mx-auto">
+              <h2 className="font-teko font-bold text-white uppercase text-4xl md:text-5xl">Let&apos;s Create Videos That Make Your Brand Stand Out</h2>
+              <p className="mt-6 text-white/80 leading-relaxed">Your brand has a story worth sharing. The right video can help you communicate that story, showcase your products, and connect with your audience through engaging visual content.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Whether you need promotional video editing, social media reels, motion graphics, animated explainers, product videos, or branded commercial content, The Linkage Digital is ready to help.</p>
+              <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s turn your creative ideas into professional video content that captures attention and supports your marketing goals.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Contact our team to discuss your creative vision and discover how our video editing and motion graphics services can help bring it to life.</p>
+              <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Start Your Video Editing Project With The Linkage Digital Today</Link>
             </div>
           </section>
         ) : (
@@ -669,6 +704,156 @@ function SEOContent() {
         <p className="mt-2">We monitor search visibility, organic traffic, indexing, keyword movements, and other relevant SEO indicators.</p>
         <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">6. Continuous Optimization</h3>
         <p className="mt-2">We use performance insights to refine the strategy, update content, resolve emerging issues, and identify additional growth opportunities.</p>
+      </section>
+    </div>
+  );
+}
+
+function VideoEditingContent() {
+  return (
+    <div className="max-w-[1000px] mx-auto px-6 py-14 md:py-20 text-[#555] leading-relaxed">
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Professional Video Editing &amp; Motion Graphics Services That Bring Your Ideas to Life</h2>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-3xl md:text-4xl leading-none">Create Engaging Visual Content That Captures Attention</h3>
+        <p className="mt-5">In today&apos;s digital world, video is one of the most powerful ways to communicate your brand message, showcase your products, and connect with potential customers.</p>
+        <p className="mt-4">At <strong>The Linkage Digital</strong>, we provide professional video editing and motion graphics services designed to transform raw footage and creative ideas into polished, engaging visual experiences.</p>
+        <p className="mt-4">From promotional videos and commercial advertisements to social media content, animated graphics, and branded video presentations, we help businesses create visual content that captures attention and communicates their message effectively.</p>
+        <p className="mt-4">Our creative approach combines professional editing, visual storytelling, motion design, transitions, sound synchronization, and brand-focused elements to produce videos suited to your marketing objectives.</p>
+        <p className="mt-4">Whether you&apos;re a startup building brand awareness, an established company promoting a new product, or a business looking to strengthen its social media presence, we develop video content tailored to your audience and brand identity.</p>
+        <p className="mt-4">We work with businesses targeting customers across the United States, including Austin, Houston, Dallas, San Antonio, and other Texas markets, helping brands create engaging digital content for competitive markets.</p>
+        <p className="mt-4">From short-form social media videos to polished promotional campaigns, The Linkage Digital helps turn creative concepts into professional visual content.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Complete Video Editing and Motion Design Solutions</h2>
+        <p className="mt-5">Every video serves a different purpose. A promotional advertisement needs a different creative approach from an educational video, product demonstration, or social media reel.</p>
+        <p className="mt-4">Our video editing and motion graphics solutions focus on creating content that aligns with your brand, platform, audience, and marketing goals.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Professional Video Editing</h3>
+        <p className="mt-2">Professional editing brings individual video clips together to create a smooth, engaging, and cohesive final production.</p>
+        <p className="mt-4">Our video editing services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Raw footage editing</li><li>Professional video cutting and trimming</li><li>Scene transitions and sequencing</li><li>Color correction and color grading</li><li>Audio synchronization</li><li>Background music integration</li><li>Sound effects and audio enhancement</li><li>Text overlays and subtitles</li><li>Visual effects and enhancements</li><li>Video resizing and formatting</li><li>Final video rendering and export</li>
+        </ul>
+        <p className="mt-4">Whether you have existing footage that needs professional editing or require content for a marketing campaign, we help transform your material into a polished final video.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Motion Graphics Design</h3>
+        <p className="mt-2">Motion graphics combine animation, typography, shapes, illustrations, and visual elements to communicate information in a more engaging way.</p>
+        <p className="mt-4">We create motion graphics that help brands explain ideas, highlight important messages, and make their content more visually dynamic.</p>
+        <p className="mt-4">Our motion graphics services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Animated typography</li><li>2D motion graphics</li><li>Animated icons and illustrations</li><li>Logo animation</li><li>Branded motion elements</li><li>Animated text and titles</li><li>Promotional motion graphics</li><li>Visual transitions</li><li>Animated presentations</li><li>Motion graphics for advertisements</li>
+        </ul>
+        <p className="mt-4">From subtle branded animations to visually engaging promotional sequences, we develop motion graphics that complement your brand identity.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Promotional and Commercial Video Editing</h3>
+        <p className="mt-2">Promotional videos help businesses communicate the value of their products and services while creating a stronger connection with potential customers.</p>
+        <p className="mt-4">We create promotional video content designed to showcase your business, communicate your message, and support your marketing campaigns.</p>
+        <p className="mt-4">Our promotional video editing solutions include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Business promotional videos</li><li>Product advertisement videos</li><li>Service showcase videos</li><li>Brand introduction videos</li><li>Commercial video advertisements</li><li>Promotional campaign videos</li><li>Event highlight videos</li><li>Marketing presentation videos</li>
+        </ul>
+        <p className="mt-4">We combine creative storytelling, engaging visuals, music, and branded elements to develop promotional content that represents your business professionally.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Social Media Video Editing</h3>
+        <p className="mt-2">Social media platforms are increasingly driven by short-form video content. Businesses need engaging visuals that communicate their message quickly and encourage viewers to interact.</p>
+        <p className="mt-4">Our social media video editing services help brands create platform-ready content for their digital marketing activities.</p>
+        <p className="mt-4">Our services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Instagram Reels editing</li><li>Facebook video editing</li><li>TikTok video editing</li><li>YouTube Shorts editing</li><li>Social media advertisements</li><li>Short-form promotional videos</li><li>Caption and subtitle integration</li><li>Animated social media content</li><li>Branded video templates</li><li>Vertical and square video formatting</li>
+        </ul>
+        <p className="mt-4">We focus on creating visually engaging videos that align with your brand and the requirements of different social media platforms.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Animated Explainer Videos</h3>
+        <p className="mt-2">Explainer videos help businesses simplify complicated ideas, demonstrate how products work, and communicate services in an easy-to-understand format.</p>
+        <p className="mt-4">We create animated explainer content that combines visual storytelling, motion graphics, typography, and structured messaging.</p>
+        <p className="mt-4">Our explainer video solutions can include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Animated business explainers</li><li>Product demonstration videos</li><li>Service explanation videos</li><li>Educational animations</li><li>Animated presentations</li><li>Infographic animations</li><li>Branded instructional videos</li>
+        </ul>
+        <p className="mt-4">Whether you&apos;re introducing a new product or explaining a business process, animated content can make your message easier to understand.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Logo Animation and Brand Motion Design</h3>
+        <p className="mt-2">Your brand identity can extend beyond static images and graphics.</p>
+        <p className="mt-4">Logo animations and branded motion elements help businesses create a more dynamic visual presentation across video advertisements, social media content, presentations, and promotional campaigns.</p>
+        <p className="mt-4">Our logo animation and brand motion services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Animated logo introductions</li><li>Logo reveal animations</li><li>Branded video intros and outros</li><li>Animated brand elements</li><li>Motion-based transitions</li><li>Animated typography</li><li>Branded promotional sequences</li>
+        </ul>
+        <p className="mt-4">We focus on maintaining your existing brand colors, visual identity, and design direction throughout the animation process.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Product and E-Commerce Video Editing</h3>
+        <p className="mt-2">Product videos allow businesses to showcase product features, demonstrate functionality, and create engaging shopping experiences.</p>
+        <p className="mt-4">Our product video editing services help transform product footage into professional visual content for online stores, advertisements, and social media platforms.</p>
+        <p className="mt-4">Our solutions include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Product showcase videos</li><li>Product demonstration editing</li><li>E-commerce promotional videos</li><li>Product feature highlights</li><li>Branded product advertisements</li><li>Promotional product animations</li><li>Social media product videos</li>
+        </ul>
+        <p className="mt-4">We help businesses present their products through engaging visuals that support their digital marketing and sales activities.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Video Content for Social Media and Digital Advertising</h2>
+        <p className="mt-5">Different platforms require different video formats, creative approaches, and presentation styles.</p>
+        <p className="mt-4">A vertical Instagram Reel, for example, serves a different purpose from a horizontal YouTube advertisement or a corporate presentation.</p>
+        <p className="mt-4">Our video editing process considers the intended platform and audience to ensure that the final content is suitable for its application.</p>
+        <p className="mt-4">We create video content for:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Instagram and Facebook</li><li>TikTok</li><li>YouTube</li><li>YouTube Shorts</li><li>Business websites</li><li>Digital advertising campaigns</li><li>E-commerce platforms</li><li>Corporate presentations</li>
+        </ul>
+        <p className="mt-4">Our focus is on creating platform-appropriate content that maintains visual consistency while communicating your message effectively.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Creative Video Editing Solutions for Businesses Across Texas</h2>
+        <p className="mt-5">Businesses need compelling visual content to stand out in competitive digital markets. From product advertisements to social media campaigns, professionally edited videos can help brands communicate their value and connect with customers.</p>
+        <p className="mt-4">The Linkage Digital works with businesses targeting audiences across Texas, providing creative video editing and motion graphics solutions for different marketing requirements.</p>
+        <p className="mt-4">We support businesses targeting markets such as:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Austin, Texas</li><li>Houston, Texas</li><li>Dallas, Texas</li><li>San Antonio, Texas</li><li>Fort Worth, Texas</li><li>Arlington, Texas</li><li>Plano, Texas</li><li>Frisco, Texas</li><li>El Paso, Texas</li><li>Corpus Christi, Texas</li>
+        </ul>
+        <p className="mt-4">Whether you&apos;re a company in Austin looking for promotional video editing, a business in Dallas developing social media advertisements, or a brand in Houston creating product videos, our creative services can support your digital content requirements.</p>
+        <p className="mt-4">Our video editing services can be delivered remotely, making it convenient for businesses across Texas and other US markets to collaborate with our creative team.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Video Content for Small Businesses and Growing Brands</h2>
+        <p className="mt-5">Small businesses need effective ways to communicate their products and services while building recognition in their respective industries.</p>
+        <p className="mt-4">Professional video content can help businesses introduce their brand, demonstrate their services, showcase customer experiences, and promote special offers.</p>
+        <p className="mt-4">We develop creative video solutions for businesses across different industries, including:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Restaurants and food businesses</li><li>Construction and contracting companies</li><li>Real estate agencies</li><li>Automotive and detailing businesses</li><li>Retail and e-commerce brands</li><li>Technology companies</li><li>Professional service providers</li><li>Fitness and lifestyle brands</li><li>Hospitality businesses</li><li>Startups and entrepreneurs</li>
+        </ul>
+        <p className="mt-4">From restaurant promotional videos to real estate property showcases and service-based business advertisements, we create content aligned with your industry and brand identity.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Our Creative Video Production and Editing Process</h2>
+        <p className="mt-5">We follow a structured creative process to ensure that every video aligns with your expectations and intended purpose.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">1. Project Discovery and Creative Brief</h3>
+        <p className="mt-2">We understand your business, target audience, video objectives, preferred style, reference materials, and final platform requirements.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">2. Concept and Creative Direction</h3>
+        <p className="mt-2">We establish the visual direction, storytelling approach, editing style, motion elements, and overall presentation based on your project requirements.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">3. Video Editing and Assembly</h3>
+        <p className="mt-2">We organize the supplied footage, select relevant scenes, develop the video sequence, and create a cohesive visual narrative.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">4. Motion Graphics and Visual Enhancements</h3>
+        <p className="mt-2">We incorporate animations, typography, transitions, visual effects, branded elements, and other agreed creative enhancements.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">5. Audio and Color Refinement</h3>
+        <p className="mt-2">We refine audio levels, synchronize sound, incorporate music and effects, and adjust colors to achieve a consistent final appearance.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">6. Review and Final Delivery</h3>
+        <p className="mt-2">We review the completed video, incorporate agreed revisions, and prepare the final files in the required formats and resolutions.</p>
+      </section>
+
+      <section>
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Why Choose The Linkage Digital for Video Editing?</h2>
+        <p className="mt-5">Choosing the right creative partner is important when producing video content that represents your brand.</p>
+        <p className="mt-4">At The Linkage Digital, we combine creative storytelling, visual design, motion graphics, and digital marketing knowledge to develop video content aligned with your business objectives.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Creative Visual Storytelling:</strong> We focus on presenting your message through engaging sequences, carefully selected visuals, and effective editing techniques.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Brand-Focused Design:</strong> We maintain consistency with your brand colors, typography, logo, and overall visual identity.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Platform-Ready Content:</strong> We prepare videos in suitable formats and dimensions for different digital platforms.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Professional Editing Techniques:</strong> We use transitions, color grading, audio synchronization, and visual enhancements to create polished content.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Customized Creative Solutions:</strong> Each project is approached according to its purpose, audience, and creative requirements.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Integrated Digital Expertise:</strong> Our branding, web design, and digital marketing capabilities help us create video content that fits into your wider digital strategy.</p>
       </section>
     </div>
   );
