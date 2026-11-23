@@ -4,6 +4,7 @@ import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
+import FAQAccordion from "../components/FAQAccordion";
 import { useInView } from "../hooks/useInView";
 import { submitToWeb3Forms } from "../lib/web3forms";
 
@@ -43,7 +44,6 @@ export default function Contact() {
   const whyGridRef = useInView();
   const processGridRef = useInView();
   const testimonialsGridRef = useInView();
-  const faqListRef = useInView();
 
   useSEO({
     title: "Contact The Linkage Digital - Web Design & Digital Services USA",
@@ -778,28 +778,19 @@ export default function Contact() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section ref={faqRef as React.RefObject<HTMLElement>} className="bg-[#F9F9F9] py-16 md:py-24 lg:py-32 overflow-hidden reveal">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="text-center mb-14 md:mb-20">
-            <span className="font-kanit font-bold text-[13px] md:text-[16px] uppercase text-[#121212] block mb-4">
-              FAQs
-            </span>
-            <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.92] text-[clamp(1.8rem,4.5vw,5rem)]">
-              Common Questions
-            </h2>
-          </div>
-
-          <div ref={faqListRef as React.RefObject<HTMLDivElement>} className="max-w-3xl mx-auto space-y-4 reveal-stagger">
-            {FAQ.map((faq, i) => (
-              <div key={i} className="bg-white border border-[#ECECEC] rounded-lg p-6 md:p-8 hover:border-[#8B0AB4] transition-colors">
-                <h3 className="font-teko font-bold text-[#121212] uppercase text-[16px] md:text-[18px] leading-[1.2] mb-3">
-                  {faq.q}
-                </h3>
-                <p className="font-kanit text-[#555] text-[14px] md:text-[15px] leading-[1.6]">
-                  {faq.a}
-                </p>
-              </div>
-            ))}
+      <section ref={faqRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-20 items-start">
+            <div className="lg:sticky lg:top-24">
+              <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2rem,5.5vw,5.5rem)] mb-6">
+                Frequently
+                <br />
+                Asked
+                <br />
+                Questions
+              </h2>
+            </div>
+            <FAQAccordion items={FAQ} />
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
+import FAQAccordion from "../components/FAQAccordion";
 import { useSEO } from "../hooks/useSEO";
 import { services, siteUrl } from "../siteContent";
 
@@ -184,30 +185,26 @@ export default function ServiceDetail() {
         {service.slug === "digital-marketing" && <DigitalMarketingContent />}
         {service.slug === "seo-optimization" && <SEOContent />}
         {service.slug === "video-editing-motion" && <VideoEditingContent />}
-        <section className="max-w-[1000px] mx-auto px-6 py-14 md:py-20">
-          <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none mb-8">
-            {service.slug === "web-design-development"
-              ? "Frequently Asked Questions About Web Design & Development in Texas"
-              : service.slug === "branding-logo-design"
-                ? "Frequently Asked Questions About Branding and Logo Design"
-                : service.slug === "digital-marketing"
-                  ? "Frequently Asked Questions About Digital Marketing"
-                  : service.slug === "seo-optimization"
-                    ? "Frequently Asked Questions About SEO Services"
-                    : service.slug === "video-editing-motion"
-                      ? "Frequently Asked Questions About Video Editing and Motion Graphics"
-                      : "Frequently asked questions"}
-          </h2>
-          <div className="divide-y divide-[#ECECEC]">
-            {faqItems.map(({ q, a }) => (
-              <details key={q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-kanit text-lg font-semibold text-[#121212] marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8B0AB4]">
-                  <span>{q}</span>
-                  <span aria-hidden="true" className="faq-toggle text-2xl font-normal leading-none text-[#8B0AB4] transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 pr-8 leading-relaxed text-[#555]">{a}</p>
-              </details>
-            ))}
+        <section className="bg-white py-10 md:py-20 lg:py-24">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-20 items-start">
+              <div className="lg:sticky lg:top-24">
+                <h2 className="font-teko font-bold text-[#121212] uppercase leading-[0.88] text-[clamp(2rem,5.5vw,5.5rem)] mb-6">
+                  {service.slug === "web-design-development"
+                    ? "Frequently Asked Questions About Web Design & Development in Texas"
+                    : service.slug === "branding-logo-design"
+                      ? "Frequently Asked Questions About Branding and Logo Design"
+                      : service.slug === "digital-marketing"
+                        ? "Frequently Asked Questions About Digital Marketing"
+                        : service.slug === "seo-optimization"
+                          ? "Frequently Asked Questions About SEO Services"
+                          : service.slug === "video-editing-motion"
+                            ? "Frequently Asked Questions About Video Editing and Motion Graphics"
+                            : "Frequently Asked Questions"}
+                </h2>
+              </div>
+              <FAQAccordion items={faqItems} />
+            </div>
           </div>
         </section>
         {service.slug === "web-design-development" ? (
