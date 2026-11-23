@@ -7,6 +7,7 @@ import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
+import TrustpilotWidget from "../components/TrustpilotWidget";
 import FAQAccordion from "../components/FAQAccordion";
 import { submitToWeb3Forms } from "../lib/web3forms";
 import { ArrowUpRight, Star } from "lucide-react";
@@ -936,6 +937,9 @@ export default function Index() {
                   <br />
                   <span className="text-[#999]">worldwide</span>
                 </p>
+                <div className="mt-4">
+                  <TrustpilotWidget />
+                </div>
               </div>
             </motion.div>
           </div>
