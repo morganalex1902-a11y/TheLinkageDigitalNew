@@ -357,7 +357,7 @@ function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId:
 const TABS = [
   {
     title: "Creativity",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Original design and thoughtful ideas that make your brand memorable.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-1)">
@@ -369,7 +369,7 @@ const TABS = [
   },
   {
     title: "Relationships",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Clear communication and lasting partnerships built around your goals.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-2)">
@@ -381,7 +381,7 @@ const TABS = [
   },
   {
     title: "Responsibility",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Reliable delivery, transparent communication, and ownership at every stage.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-3)">
@@ -393,7 +393,7 @@ const TABS = [
   },
   {
     title: "Cost effective",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Thoughtful scope and efficient execution that make your budget work harder.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-4)">
@@ -402,6 +402,25 @@ const TABS = [
         <defs><clipPath id="clip-tab-4"><rect width="25" height="25" fill="white"/></clipPath></defs>
       </svg>
     ),
+  },
+];
+
+const TAB_IMAGES = [
+  {
+    src: "https://images.pexels.com/photos/30889258/pexels-photo-30889258.jpeg",
+    alt: "Designer creating digital artwork with a tablet and stylus in a creative workspace.",
+  },
+  {
+    src: "https://images.pexels.com/photos/30688593/pexels-photo-30688593.jpeg",
+    alt: "Professionals collaborating around a table during a team meeting.",
+  },
+  {
+    src: "https://images.pexels.com/photos/6994833/pexels-photo-6994833.jpeg",
+    alt: "Volunteers organizing donated clothing to support their community.",
+  },
+  {
+    src: "https://images.pexels.com/photos/5900132/pexels-photo-5900132.jpeg",
+    alt: "Small business owner reviewing receipts and finances with a calculator.",
   },
 ];
 
@@ -1059,7 +1078,10 @@ export default function Index() {
               {TABS.map((tab, i) => (
                 <button
                   key={i}
+                  type="button"
                   onClick={() => setActiveTab(i)}
+                  aria-pressed={activeTab === i}
+                  aria-controls="skill-image-panel"
                   className={`relative border-l-2 pl-8 py-4 text-left transition-colors overflow-hidden ${
                     activeTab === i
                       ? "border-[#8B0AB4]"
@@ -1105,11 +1127,12 @@ export default function Index() {
             </div>
 
             {/* Tab panel image */}
-            <div>
+            <div id="skill-image-panel" aria-live="polite" aria-label={`${TABS[activeTab].title} image`}>
               <img
-                src="/images/dashboard-team.webp"
-                alt="Dashboard and team"
-                className="w-full h-auto object-cover"
+                key={activeTab}
+                src={TAB_IMAGES[activeTab].src}
+                alt={TAB_IMAGES[activeTab].alt}
+                className="aspect-[4/3] w-full rounded-[1.5rem] object-cover md:rounded-[2rem]"
               />
             </div>
           </div>
