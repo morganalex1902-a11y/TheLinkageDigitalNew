@@ -938,7 +938,7 @@ export default function Index() {
                   <span className="text-[#999]">worldwide</span>
                 </p>
                 <div className="mt-4">
-                  <TrustpilotWidget compact />
+                  <TrustpilotWidget />
                 </div>
               </div>
             </motion.div>
