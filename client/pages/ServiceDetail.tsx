@@ -198,12 +198,15 @@ export default function ServiceDetail() {
                       ? "Frequently Asked Questions About Video Editing and Motion Graphics"
                       : "Frequently asked questions"}
           </h2>
-          <div className="space-y-7">
+          <div className="divide-y divide-[#ECECEC]">
             {faqItems.map(({ q, a }) => (
-              <article key={q}>
-                <h3 className="font-kanit font-semibold text-[#121212] text-lg">{q}</h3>
-                <p className="mt-2 text-[#555] leading-relaxed">{a}</p>
-              </article>
+              <details key={q} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-kanit text-lg font-semibold text-[#121212] marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8B0AB4]">
+                  <span>{q}</span>
+                  <span aria-hidden="true" className="faq-toggle text-2xl font-normal leading-none text-[#8B0AB4] transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 pr-8 leading-relaxed text-[#555]">{a}</p>
+              </details>
             ))}
           </div>
         </section>
