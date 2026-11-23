@@ -1277,16 +1277,15 @@ export default function Index() {
               Our Technology Expertise Includes
             </p>
 
-            <div className="tech-marquee-viewport" role="region" aria-label="Technology expertise" tabIndex={0}>
+            <div className="tech-marquee-viewport w-full" role="region" aria-label="Technology expertise" tabIndex={0}>
               <div className="tech-marquee-track flex w-max">
-                {TECH_ITEMS.concat(TECH_ITEMS).map((tech, i) => (
+                {TECH_ITEMS.map((tech) => (
                   <div
-                    key={`${tech.name}-${i}`}
-                    aria-hidden={i >= TECH_ITEMS.length}
-                    className="flex h-[156px] w-[156px] flex-shrink-0 flex-col items-center justify-center gap-2 rounded-full border border-[#ECECEC] bg-white p-4 sm:h-[180px] sm:w-[180px]"
+                    key={tech.name}
+                    className="flex h-[190px] w-[190px] flex-shrink-0 flex-col items-center justify-center gap-3 rounded-full border border-[#ECECEC] bg-white p-5 text-center sm:h-[220px] sm:w-[220px]"
                   >
                   {tech.Icon ? (
-                    <tech.Icon size={48} color={tech.color ?? "#121212"} aria-hidden="true" />
+                    <tech.Icon className="h-16 w-16 shrink-0 sm:h-[76px] sm:w-[76px]" color={tech.color ?? "#121212"} aria-hidden="true" />
                   ) : tech.src ? (
                     <img
                       src={tech.src}
@@ -1294,14 +1293,14 @@ export default function Index() {
                       className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto object-contain"
                     />
                   ) : tech.monogram ? (
-                    <span aria-hidden="true" className="font-teko text-[38px] font-bold leading-none" style={{ color: tech.color ?? "#8B0AB4" }}>{tech.monogram}</span>
+                    <span aria-hidden="true" className="font-teko text-[46px] font-bold leading-none sm:text-[54px]" style={{ color: tech.color ?? "#8B0AB4" }}>{tech.monogram}</span>
                   ) : (
                     /* Redux inline SVG */
                     <svg height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto">
                       <path d="M65.6 46.6c1.5-7.3.4-13.1-3.4-15.3l-.1-.1c-1.8-1-3.9-1.3-6.3-.8-2.3.5-4.7 1.7-7.1 3.6-1.6-3.4-3.5-5.9-5.7-7.3-2.6-1.7-5.4-1.9-8-.7l-.2.1c-2.5 1.4-4.1 3.9-4.7 7.4-.5 3-0.3 6.6.8 10.4-3.4 1-6 2.4-7.7 4.2-2 2.1-2.7 4.7-2 7.4l.1.2c1.3 4.8 6 7.2 13.4 6.6l.4-.1c-.1.4-.1.8-.2 1.2-1.5 7.3-.4 13.1 3.4 15.3l.1.1c1.1.6 2.3.9 3.5.9 4.3 0 9-3 13-8.6 1.6 3.3 3.5 5.8 5.7 7.2 2.6 1.7 5.4 1.9 8 .7l.2-.1c2.6-1.4 4.2-3.9 4.7-7.4.5-3 .3-6.6-.8-10.4 3.3-1 5.9-2.4 7.7-4.2 2-2.1 2.7-4.7 2-7.4l-.1-.2c-1.2-4.7-5.8-7.1-13.2-6.6l-.5.1zm-1.3 3.5c5.9-.4 9.4 1.3 10.2 4.2.5 2-.1 4-1.8 5.7-1.4 1.5-3.5 2.6-6.3 3.4-.9-2.9-2-5.8-3.3-8.5 1-1.7 1-3.2.1-4.5l1.1-.3zm-14.5-13c1.7-2.4 3.5-4.2 5.3-5.3 1.7-1 3.2-1.3 4.4-.7 2.1 1.2 3.1 5.2 2.3 10.5-.1.7-.3 1.4-.5 2.1a36.7 36.7 0 00-4.7-.3 36.7 36.7 0 00-4.7.3c-1.3-2.5-2.4-4.8-3.3-6.9l1.2.3zm-10 0c.4-2.9 1.4-4.8 2.8-5.7 2.2-1.2 5.2.3 8.1 4l.1.1c-1.1 2.2-2.2 4.5-3.2 7-.9.2-1.8.5-2.5.8-2.8-1.8-4.9-4.1-5.3-6.2zm-7.4 14.7c-5.9.4-9.4-1.3-10.2-4.2-.5-2 .1-4 1.8-5.7 1.4-1.5 3.5-2.6 6.3-3.4.9 2.9 2 5.8 3.3 8.5-1 1.7-1 3.2-.1 4.5l-1.1.3zm14.6 20.6c-3.7 5.4-7.7 7.8-10.4 6.4-2.1-1.2-3.1-5.2-2.3-10.5.1-.7.3-1.4.5-2.1 1.5.2 3 .3 4.7.3 1.7 0 3.2-.1 4.7-.3 1.3 2.5 2.4 4.8 3.3 6.9l-.5.3zm2.5-6.8c-1.6.3-3.2.5-4.7.5-1.5 0-3.1-.2-4.7-.5-.7-1.7-1.3-3.3-1.9-5-.5-1.5-1-3-1.4-4.5.5-1.5 1-3 1.4-4.5.6-1.7 1.2-3.3 1.9-5 1.6-.3 3.2-.5 4.7-.5 1.5 0 3.1.2 4.7.5.7 1.7 1.3 3.3 1.9 5 .5 1.5 1 3 1.4 4.5-.5 1.5-1 3-1.4 4.5-.6 1.7-1.2 3.3-1.9 5zm4.3 2.8c-.4 2.9-1.4 4.8-2.8 5.7l-.1.1c-2.2 1.2-5.2-.3-8.1-4-.1-.1-.2-.2-.3-.4 1.1-2.2 2.2-4.5 3.2-7 .9-.2 1.8-.5 2.5-.8 2.8 1.8 4.9 4.1 5.6 6.4zm5.7-7.8c-1.1-2.9-2.5-5.7-3.3-8.5.9-1.3.9-2.8.1-4.5l1.1-.3c5.9-.4 9.4 1.3 10.2 4.2.5 2-.1 4-1.8 5.7-1.4 1.5-3.5 2.6-6.3 3.4z" fill="#121212"/>
                     </svg>
                   )}
-                  <span className="font-teko font-semibold text-[#121212] uppercase text-[16px] sm:text-[20px] lg:text-[24px] xl:text-[26px]">
+                  <span className="max-w-[170px] text-center font-teko font-semibold text-[#121212] uppercase text-[18px] leading-tight sm:text-[22px]">
                     {tech.name}
                   </span>
                 </div>

@@ -104,6 +104,11 @@
   100% { transform: translateX(-50%); }
 }
 
+@keyframes tech-marquee {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(calc(-100% + var(--tech-marquee-viewport-width))); }
+}
+
 @keyframes portfolioLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }
@@ -162,11 +167,24 @@
 }
 
 .tech-marquee-viewport {
+  --tech-marquee-viewport-width: calc(100vw - 2rem);
   overflow: hidden;
 }
 
+@media (min-width: 640px) {
+  .tech-marquee-viewport {
+    --tech-marquee-viewport-width: calc(100vw - 3rem);
+  }
+}
+
+@media (min-width: 1440px) {
+  .tech-marquee-viewport {
+    --tech-marquee-viewport-width: 1352px;
+  }
+}
+
 .tech-marquee-track {
-  animation: marquee 160s linear infinite;
+  animation: tech-marquee 220s linear infinite;
   will-change: transform;
 }
 
