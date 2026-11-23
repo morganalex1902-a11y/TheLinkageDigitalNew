@@ -29,8 +29,18 @@ const SERVICE_FAQS = {
     { q: "Can you help with website design after completing my branding?", a: "Yes. The Linkage Digital also provides website design and development services. We can help maintain a consistent visual identity across your website and other digital platforms." },
   ],
   "digital-marketing": [
-    { q: "What digital marketing services can support an Austin business?", a: "The Linkage Digital offers digital marketing support such as content strategy, paid media, social media marketing, and conversion reporting. Priorities are selected around your audience and business goals, whether you serve Austin customers or a broader U.S. market." },
-    { q: "Can digital marketing campaigns target customers in Austin, Texas?", a: "Campaign strategy can be tailored to a defined service area, including Austin, Texas, when that matches your business. Audience, location, and campaign goals are discussed before selecting channels and content." },
+    { q: "What services are included in digital marketing?", a: "Digital marketing can include social media marketing, paid advertising, Google Ads management, content marketing, email marketing, video marketing, and other online promotional activities. The right combination depends on your business objectives and target audience." },
+    { q: "How can digital marketing help my business grow?", a: "Digital marketing helps businesses reach potential customers through online channels, increase brand awareness, promote products and services, generate leads, and build stronger customer relationships. A well-planned strategy can improve your ability to reach relevant audiences and measure marketing performance." },
+    { q: "How much do professional digital marketing services cost?", a: "Digital marketing costs depend on the services required, campaign complexity, advertising budget, target audience, and project duration. Paid advertising budgets are generally separate from agency management fees. Contact The Linkage Digital for a customized proposal based on your requirements." },
+    { q: "What is the difference between SEO and digital marketing?", a: "SEO focuses on improving a website's visibility in organic search engine results. Digital marketing is a broader field that includes SEO, social media marketing, paid advertising, email marketing, content marketing, and other online promotional strategies." },
+    { q: "Can digital marketing help small businesses attract more customers?", a: "Yes. Digital marketing can help small businesses reach relevant audiences, promote their services, increase online visibility, and generate customer inquiries. The strategy should be aligned with the business's available resources, industry, and growth objectives." },
+    { q: "Do you provide social media marketing and account management?", a: "Yes. Our social media services include content planning, creative development, branded graphics, promotional campaigns, and social media management for relevant platforms." },
+    { q: "Do you manage Google Ads and paid advertising campaigns?", a: "Yes. We offer paid advertising solutions that can include Google Ads, search advertising, display campaigns, and social media advertising. Campaign scope and management depend on your business goals and requirements." },
+    { q: "Do you provide digital marketing services for businesses in Texas?", a: "Yes. The Linkage Digital works with businesses targeting customers in Texas, including Austin, Houston, Dallas, San Antonio, Fort Worth, and surrounding areas. Our digital marketing services can be delivered remotely, allowing businesses across Texas to work with our team." },
+    { q: "How long does it take to see results from digital marketing?", a: "Results depend on the marketing channel, competition, campaign budget, audience, and starting position. Paid advertising can generate campaign data and potential inquiries relatively quickly, while organic content and SEO typically require more time to build visibility. We recommend evaluating performance through meaningful business metrics." },
+    { q: "Can digital marketing generate leads for service-based businesses?", a: "Yes. Digital marketing can help service businesses attract potential customers through targeted advertising, relevant content, social media campaigns, and conversion-focused landing pages. Lead quality depends on targeting, messaging, offers, and the overall customer journey." },
+    { q: "Do I need a website for digital marketing?", a: "A website is not essential for every marketing activity, but it is a valuable foundation for most business marketing strategies. It provides a place to showcase services, establish credibility, collect inquiries, and convert visitors into potential customers." },
+    { q: "How do I get started with digital marketing services?", a: "Start by identifying your business goals, target audience, services, and marketing challenges. Contact The Linkage Digital to discuss your requirements and determine which marketing channels and strategies are appropriate for your business." },
   ],
   "seo-optimization": [
     { q: "What does local SEO include for an Austin business?", a: "Local SEO can include technical site improvements, keyword research, on-page content, location-relevant service pages, and Google Business Profile guidance. The right work depends on your market and current website; no specific ranking position can be guaranteed." },
@@ -54,17 +64,23 @@ export default function ServiceDetail() {
       ? "Professional Web Design & Development in Texas | The Linkage Digital"
       : seoService.slug === "branding-logo-design"
         ? "Creative Branding & Logo Design Services | The Linkage Digital"
-        : `${seoService.title} Services | The Linkage Digital`,
+        : seoService.slug === "digital-marketing"
+          ? "Strategic Digital Marketing Services | The Linkage Digital"
+          : `${seoService.title} Services | The Linkage Digital`,
     description: seoService.slug === "web-design-development"
       ? "Professional web design and development for Texas businesses. The Linkage Digital builds responsive, SEO-friendly websites for small businesses and growing brands."
       : seoService.slug === "branding-logo-design"
         ? "Custom branding and logo design services for businesses in Texas and across the United States. Build a memorable, consistent brand identity with The Linkage Digital."
-        : seoService.description,
+        : seoService.slug === "digital-marketing"
+          ? "Strategic digital marketing services for businesses in Texas and across the United States. Social media, paid advertising, content, email, and video marketing."
+          : seoService.description,
     keywords: seoService.slug === "web-design-development"
       ? "web design Texas, website development Texas, small business web design, custom website development, SEO-friendly web design, website redesign"
       : seoService.slug === "branding-logo-design"
         ? "branding services Texas, logo design Texas, custom logo design, brand identity development, startup branding, business branding"
-        : seoService.keywords,
+        : seoService.slug === "digital-marketing"
+          ? "digital marketing services Texas, social media marketing, PPC management, Google Ads, content marketing, email marketing, small business marketing"
+          : seoService.keywords,
     canonicalUrl: url,
     schema: [
       {
@@ -126,13 +142,16 @@ export default function ServiceDetail() {
         </section>
         {service.slug === "web-design-development" && <WebDesignContent />}
         {service.slug === "branding-logo-design" && <BrandingContent />}
+        {service.slug === "digital-marketing" && <DigitalMarketingContent />}
         <section className="max-w-[1000px] mx-auto px-6 py-14 md:py-20">
           <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none mb-8">
             {service.slug === "web-design-development"
               ? "Frequently Asked Questions About Web Design & Development in Texas"
               : service.slug === "branding-logo-design"
                 ? "Frequently Asked Questions About Branding and Logo Design"
-                : "Frequently asked questions"}
+                : service.slug === "digital-marketing"
+                  ? "Frequently Asked Questions About Digital Marketing"
+                  : "Frequently asked questions"}
           </h2>
           <div className="space-y-7">
             {faqItems.map(({ q, a }) => (
@@ -163,6 +182,17 @@ export default function ServiceDetail() {
               <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s turn your ideas into a recognizable brand that makes a lasting impression.</p>
               <p className="mt-4 text-white/80 leading-relaxed">Contact our team to discuss your branding requirements and discover how we can help bring your brand vision to life.</p>
               <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Start Your Branding Project With The Linkage Digital Today</Link>
+            </div>
+          </section>
+        ) : service.slug === "digital-marketing" ? (
+          <section className="bg-[#171717] py-14 md:py-20 px-6 text-center">
+            <div className="max-w-[900px] mx-auto">
+              <h2 className="font-teko font-bold text-white uppercase text-4xl md:text-5xl">Let&apos;s Grow Your Business With Digital Marketing</h2>
+              <p className="mt-6 text-white/80 leading-relaxed">Your next customer could already be searching, browsing, or engaging with businesses online. The right marketing strategy can help your brand become more visible and create opportunities to connect with those customers.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Whether you need social media management, paid advertising, content marketing, email campaigns, or a more comprehensive digital marketing strategy, The Linkage Digital is ready to help.</p>
+              <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s create a marketing strategy that connects your business with the right audience and supports your long-term goals.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Contact our team to discuss your marketing objectives and discover the right digital marketing solutions for your business.</p>
+              <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Start Growing Your Business With The Linkage Digital Today</Link>
             </div>
           </section>
         ) : (
@@ -299,6 +329,146 @@ function BrandingContent() {
         <p className="mt-4"><strong className="text-[#121212]">Versatile Brand Assets:</strong> We consider how your logo and visual identity will appear across different sizes, platforms, and applications.</p>
         <p className="mt-4"><strong className="text-[#121212]">Business-Focused Approach:</strong> Our goal is to create branding that supports your business image and long-term growth.</p>
         <p className="mt-4"><strong className="text-[#121212]">Complete Digital Capabilities:</strong> Alongside branding, our team offers web design, development, SEO, and digital marketing services to help businesses maintain a consistent digital presence.</p>
+      </section>
+    </div>
+  );
+}
+
+function DigitalMarketingContent() {
+  return (
+    <div className="max-w-[1000px] mx-auto px-6 py-14 md:py-20 text-[#555] leading-relaxed">
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Strategic Digital Marketing Services That Drive Business Growth</h2>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-3xl md:text-4xl leading-none">Build Your Online Presence, Reach More Customers, and Grow Your Business</h3>
+        <p className="mt-5">In today&apos;s competitive digital landscape, having an online presence is only the beginning. Businesses need the right marketing strategies to attract potential customers, build brand awareness, and turn online interactions into meaningful business opportunities.</p>
+        <p className="mt-4">At <strong>The Linkage Digital</strong>, we provide professional digital marketing services designed to help businesses strengthen their online presence, connect with their target audiences, and achieve sustainable growth.</p>
+        <p className="mt-4">Our approach combines creative marketing, audience research, strategic advertising, social media management, and engaging content to help your business reach the right people at the right time.</p>
+        <p className="mt-4">Whether you&apos;re a startup looking to establish your brand, a small business seeking more customers, or an established company aiming to expand your digital reach, we develop marketing strategies aligned with your business objectives.</p>
+        <p className="mt-4">We work with businesses across the United States, including companies in Austin, Houston, Dallas, San Antonio, and other Texas markets, helping brands build stronger digital visibility and reach their ideal customers.</p>
+        <p className="mt-4">From social media campaigns and paid advertising to content creation and email marketing, we bring the essential elements of digital marketing together to support your business growth.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Complete Digital Marketing Solutions for Your Business</h2>
+        <p className="mt-5">Every business has different marketing goals, customer audiences, and competitive challenges. An effective digital marketing strategy should reflect these differences rather than rely on a one-size-fits-all approach.</p>
+        <p className="mt-4">At The Linkage Digital, we combine different digital marketing channels to help businesses increase visibility, strengthen customer engagement, and generate opportunities.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Social Media Marketing</h3>
+        <p className="mt-2">Social media platforms provide businesses with valuable opportunities to connect with customers, showcase their products and services, and build brand recognition.</p>
+        <p className="mt-4">Our social media marketing services focus on developing a consistent online presence through strategic content, creative visuals, and audience engagement.</p>
+        <p className="mt-4">Our services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Social media strategy and planning</li><li>Facebook and Instagram marketing</li><li>Social media content creation</li><li>Branded promotional graphics</li><li>Social media account management</li><li>Audience engagement strategies</li><li>Social media advertising</li><li>Campaign performance monitoring</li>
+        </ul>
+        <p className="mt-4">We help businesses create meaningful social media experiences that communicate their brand message and encourage potential customers to engage.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Paid Advertising and PPC Campaign Management</h3>
+        <p className="mt-2">Paid advertising allows businesses to reach targeted audiences and promote their products or services through strategic advertising campaigns.</p>
+        <p className="mt-4">Our PPC and paid advertising solutions focus on reaching relevant audiences, improving campaign efficiency, and generating valuable customer inquiries.</p>
+        <p className="mt-4">Our advertising services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Google Ads campaign management</li><li>Search advertising</li><li>Display advertising</li><li>Facebook and Instagram advertising</li><li>Audience targeting</li><li>Advertising creative development</li><li>Campaign optimization</li><li>Conversion tracking and reporting</li>
+        </ul>
+        <p className="mt-4">Whether your objective is to generate leads, increase website traffic, or promote a specific offer, we develop advertising campaigns around your marketing goals.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Google Ads and Search Engine Marketing</h3>
+        <p className="mt-2">Search engine advertising can help businesses appear in front of customers who are actively searching for relevant products and services.</p>
+        <p className="mt-4">We help businesses plan and manage paid search campaigns by focusing on relevant search terms, audience intent, advertising messages, and landing page alignment.</p>
+        <p className="mt-4">Our Google Ads approach includes keyword research, campaign structure, ad copy development, audience targeting, budget management, and performance monitoring.</p>
+        <p className="mt-4">For businesses competing in Texas markets, campaigns can be structured around relevant service areas and customer search behavior, including searches from Austin, Dallas, Houston, and surrounding communities.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Content Marketing</h3>
+        <p className="mt-2">High-quality content helps businesses communicate their expertise, answer customer questions, and build meaningful relationships with their audiences.</p>
+        <p className="mt-4">Our content marketing services focus on developing relevant and engaging content that supports your overall marketing strategy.</p>
+        <p className="mt-4">Our content solutions include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Website content development</li><li>Blog and article writing</li><li>Social media content</li><li>Promotional marketing copy</li><li>Brand storytelling</li><li>Educational content</li><li>Campaign messaging</li><li>Content planning and strategy</li>
+        </ul>
+        <p className="mt-4">We create content that reflects your brand voice, communicates your value, and supports your wider digital marketing objectives.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Email Marketing</h3>
+        <p className="mt-2">Email marketing provides a direct communication channel between your business and its existing or potential customers.</p>
+        <p className="mt-4">We help businesses develop email marketing campaigns designed to share valuable information, promote offers, nurture leads, and maintain customer relationships.</p>
+        <p className="mt-4">Our email marketing solutions include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Promotional email campaigns</li><li>Business newsletters</li><li>Lead nurturing campaigns</li><li>Customer engagement emails</li><li>Email campaign planning</li><li>Email design and copywriting</li><li>Campaign performance analysis</li>
+        </ul>
+        <p className="mt-4">From customer announcements to promotional campaigns, we help businesses use email as part of a connected marketing strategy.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Video Marketing and Creative Advertising</h3>
+        <p className="mt-2">Video content is an effective way to communicate your brand message, showcase products, explain services, and capture audience attention.</p>
+        <p className="mt-4">Our video marketing and creative services help businesses produce engaging visual content for digital platforms and advertising campaigns.</p>
+        <p className="mt-4">Our creative solutions include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Promotional video editing</li><li>Social media video content</li><li>Short-form marketing videos</li><li>Product and service promotional videos</li><li>Motion graphics</li><li>Branded advertising creatives</li><li>Video content for marketing campaigns</li>
+        </ul>
+        <p className="mt-4">We focus on creating visual content that aligns with your brand identity and supports your campaign objectives.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Strategic Online Marketing for Small Businesses</h2>
+        <p className="mt-5">Small businesses need marketing strategies that make the best use of their available resources while helping them compete in an increasingly digital marketplace.</p>
+        <p className="mt-4">A strong digital marketing presence can help small businesses reach new audiences, communicate their services, and generate more customer inquiries.</p>
+        <p className="mt-4">At The Linkage Digital, we develop digital marketing solutions suitable for different business sizes and industries.</p>
+        <p className="mt-4">Our approach focuses on:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Building brand awareness</li><li>Reaching relevant audiences</li><li>Increasing website traffic</li><li>Generating qualified leads</li><li>Improving customer engagement</li><li>Promoting products and services</li><li>Strengthening online credibility</li><li>Supporting long-term business growth</li>
+        </ul>
+        <p className="mt-4">Whether you operate a construction company, home service business, restaurant, real estate company, retail store, or professional service business, we help develop marketing strategies around your business requirements.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Local Digital Marketing Strategies for Business Visibility</h2>
+        <p className="mt-5">For businesses that depend on customers in specific geographical areas, local digital marketing plays an important role in reaching the right audience.</p>
+        <p className="mt-4">Location-based marketing helps businesses connect with people searching for relevant products and services within their service areas.</p>
+        <p className="mt-4">The Linkage Digital helps businesses targeting customers across Texas develop digital marketing campaigns that reflect their geographical markets and customer interests.</p>
+        <p className="mt-4">We incorporate location relevance into marketing strategies for businesses targeting areas such as:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Austin, Texas</li><li>Houston, Texas</li><li>Dallas, Texas</li><li>San Antonio, Texas</li><li>Fort Worth, Texas</li><li>Arlington, Texas</li><li>Plano, Texas</li><li>Frisco, Texas</li><li>El Paso, Texas</li><li>Corpus Christi, Texas</li>
+        </ul>
+        <p className="mt-4">For example, a home service company targeting customers in Austin may benefit from location-relevant advertising, service-specific landing pages, and content designed around local search intent.</p>
+        <p className="mt-4">Similarly, businesses operating in Houston, Dallas, or San Antonio can develop campaigns that reflect the needs and search behavior of their respective audiences.</p>
+        <p className="mt-4">Our goal is to help businesses connect their marketing activities with the locations and customers that matter to their growth.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Data-Driven Marketing Strategies and Campaign Optimization</h2>
+        <p className="mt-5">Successful digital marketing requires more than launching campaigns and publishing content. It involves understanding audience behavior, evaluating campaign performance, and identifying opportunities for improvement.</p>
+        <p className="mt-4">We take a performance-focused approach to digital marketing by considering relevant campaign data and business objectives.</p>
+        <p className="mt-4">Our optimization process can include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Audience and market research</li><li>Marketing campaign analysis</li><li>Advertising performance monitoring</li><li>Website traffic evaluation</li><li>Lead generation tracking</li><li>Content engagement analysis</li><li>Conversion measurement</li><li>Campaign adjustments and improvements</li>
+        </ul>
+        <p className="mt-4">By evaluating how different marketing activities perform, we can identify areas that need improvement and make more informed marketing decisions.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Why Choose The Linkage Digital?</h2>
+        <p className="mt-5">Choosing a digital marketing partner is an important decision for any business. You need a team that understands your objectives, communicates clearly, and develops strategies around your actual business requirements.</p>
+        <p className="mt-4">At The Linkage Digital, we combine creative capabilities, technical knowledge, and marketing strategy to help businesses strengthen their digital presence.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Customized Marketing Strategies:</strong> We consider your industry, audience, competition, and business objectives when developing marketing campaigns.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Creative Content and Campaigns:</strong> We combine visual creativity and strategic messaging to help your business communicate effectively.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Multiple Marketing Channels:</strong> We bring social media, advertising, email, content, and video marketing together where they support your goals.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Audience-Focused Marketing:</strong> We prioritize reaching relevant audiences rather than focusing on unnecessary impressions and traffic.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Performance Monitoring:</strong> We evaluate campaign performance to identify opportunities for improvement and better marketing decisions.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Integrated Digital Expertise:</strong> Alongside marketing, we offer website design, development, branding, and SEO services to support a consistent digital presence.</p>
+      </section>
+
+      <section>
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Our Digital Marketing Process</h2>
+        <p className="mt-5">We follow a structured process to ensure that marketing activities are aligned with your business goals.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">1. Business Discovery and Research</h3>
+        <p className="mt-2">We learn about your business, products, services, target audience, competitors, and marketing objectives.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">2. Marketing Strategy Development</h3>
+        <p className="mt-2">We identify suitable marketing channels, campaign opportunities, audience segments, and messaging strategies based on your requirements.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">3. Creative Development and Campaign Setup</h3>
+        <p className="mt-2">Our team develops the required content, advertising creatives, campaign structure, and marketing materials.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">4. Campaign Launch and Management</h3>
+        <p className="mt-2">We launch the agreed marketing activities, monitor campaign delivery, and manage the relevant digital channels.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">5. Performance Analysis and Optimization</h3>
+        <p className="mt-2">We review available campaign data, evaluate performance, and identify opportunities to improve targeting, content, and campaign efficiency.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">6. Reporting and Continued Growth</h3>
+        <p className="mt-2">We use campaign insights and business feedback to guide future marketing activities and support ongoing improvements.</p>
       </section>
     </div>
   );
