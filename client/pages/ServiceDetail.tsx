@@ -43,8 +43,20 @@ const SERVICE_FAQS = {
     { q: "How do I get started with digital marketing services?", a: "Start by identifying your business goals, target audience, services, and marketing challenges. Contact The Linkage Digital to discuss your requirements and determine which marketing channels and strategies are appropriate for your business." },
   ],
   "seo-optimization": [
-    { q: "What does local SEO include for an Austin business?", a: "Local SEO can include technical site improvements, keyword research, on-page content, location-relevant service pages, and Google Business Profile guidance. The right work depends on your market and current website; no specific ranking position can be guaranteed." },
-    { q: "How long does local SEO take to show results in Austin?", a: "SEO timelines vary with competition, website condition, content quality, and consistency. Improvements may take time to be reflected in search results, so The Linkage Digital focuses on sustainable technical and content work rather than promising a fixed ranking or deadline." },
+    { q: "What are SEO services and how do they work?", a: "SEO services involve improving different aspects of a website to increase its visibility in organic search engine results. This includes keyword research, technical SEO, on-page optimization, content improvements, link building, and local SEO. The objective is to help search engines understand your website and connect it with relevant searches." },
+    { q: "How long does SEO take to improve Google rankings?", a: "SEO results depend on your website's current condition, competition, industry, target keywords, and optimization efforts. Some technical improvements may produce early positive signals, while meaningful organic ranking improvements often require several months of consistent work. SEO is a long-term investment rather than an instant marketing solution." },
+    { q: "How much do professional SEO services cost?", a: "SEO pricing depends on the size of your website, competition, target locations, number of keywords, and required optimization activities. A local business SEO campaign may have different requirements from a national e-commerce SEO campaign. Contact The Linkage Digital for a customized SEO proposal." },
+    { q: "What is the difference between on-page SEO and off-page SEO?", a: "On-page SEO focuses on optimizing elements within your website, including content, headings, title tags, internal links, and page structure. Off-page SEO focuses on external signals such as relevant backlinks, brand mentions, and online authority. Both contribute to a broader SEO strategy." },
+    { q: "What is local SEO and why is it important?", a: "Local SEO helps businesses improve their visibility in geographically relevant searches. It includes Google Business Profile optimization, local keyword research, location-specific website content, business information consistency, and relevant local authority signals. It is particularly useful for service businesses targeting customers in specific cities and regions." },
+    { q: "Can SEO help my small business compete with larger companies?", a: "Yes. A focused SEO strategy can help small businesses target relevant search queries, improve their website content, address technical issues, and build visibility within specific service areas. Success depends on competition, relevance, website quality, and the strength of the overall SEO strategy." },
+    { q: "Do you provide SEO services for businesses in Texas?", a: "Yes. The Linkage Digital provides SEO solutions for businesses targeting customers across Texas, including Austin, Houston, Dallas, San Antonio, Fort Worth, and surrounding communities. Our SEO strategies can incorporate local keyword targeting, location-specific content, technical optimization, and local search improvements." },
+    { q: "What is included in a technical SEO audit?", a: "A technical SEO audit examines important website elements such as crawlability, indexing, XML sitemaps, robots.txt, redirects, canonical tags, mobile usability, website speed, Core Web Vitals, structured data, and internal linking. It helps identify issues that may affect search engine accessibility and website performance." },
+    { q: "Can you improve my existing website's Google rankings?", a: "Yes. We can evaluate your existing website, identify optimization opportunities, and develop an SEO improvement strategy. This may include technical corrections, keyword targeting, content optimization, internal linking, and local SEO improvements." },
+    { q: "Do you offer Google Business Profile optimization?", a: "Yes. Google Business Profile optimization can be included in our local SEO strategy where appropriate. This may involve reviewing business information, categories, services, business descriptions, photos, and customer review management practices." },
+    { q: "Do you guarantee first-page Google rankings?", a: "No ethical SEO agency can guarantee specific Google rankings because search algorithms, competition, and search results are constantly changing. Our focus is on implementing proven SEO practices, improving website quality, and monitoring measurable search performance." },
+    { q: "How can I check whether my SEO campaign is working?", a: "SEO performance can be evaluated using Google Search Console, Google Analytics, keyword tracking, organic traffic reports, indexing data, and website conversion measurements. These tools help identify changes in search visibility, traffic quality, and customer inquiries." },
+    { q: "Do you provide SEO for e-commerce websites?", a: "Yes. E-commerce SEO can include product page optimization, category page improvements, product descriptions, technical SEO, structured data, internal linking, and keyword research to improve product visibility in organic search results." },
+    { q: "How do I get started with SEO services?", a: "The first step is to evaluate your website, business goals, industry, target audience, and competition. Contact The Linkage Digital to discuss your SEO requirements and develop an optimization strategy aligned with your growth objectives." },
   ],
   "video-editing-motion": [
     { q: "Can you create video content for Austin businesses?", a: "Yes. The Linkage Digital provides video editing and motion design for Austin-area businesses and clients across the United States. Deliverables can be planned for your website, social channels, or digital campaigns." },
@@ -66,21 +78,27 @@ export default function ServiceDetail() {
         ? "Creative Branding & Logo Design Services | The Linkage Digital"
         : seoService.slug === "digital-marketing"
           ? "Strategic Digital Marketing Services | The Linkage Digital"
-          : `${seoService.title} Services | The Linkage Digital`,
+          : seoService.slug === "seo-optimization"
+            ? "Professional SEO Services | The Linkage Digital"
+            : `${seoService.title} Services | The Linkage Digital`,
     description: seoService.slug === "web-design-development"
       ? "Professional web design and development for Texas businesses. The Linkage Digital builds responsive, SEO-friendly websites for small businesses and growing brands."
       : seoService.slug === "branding-logo-design"
         ? "Custom branding and logo design services for businesses in Texas and across the United States. Build a memorable, consistent brand identity with The Linkage Digital."
         : seoService.slug === "digital-marketing"
           ? "Strategic digital marketing services for businesses in Texas and across the United States. Social media, paid advertising, content, email, and video marketing."
-          : seoService.description,
+          : seoService.slug === "seo-optimization"
+            ? "Professional SEO services for businesses across Texas and the United States. Improve technical health, local visibility, content relevance, and organic search performance with The Linkage Digital."
+            : seoService.description,
     keywords: seoService.slug === "web-design-development"
       ? "web design Texas, website development Texas, small business web design, custom website development, SEO-friendly web design, website redesign"
       : seoService.slug === "branding-logo-design"
         ? "branding services Texas, logo design Texas, custom logo design, brand identity development, startup branding, business branding"
         : seoService.slug === "digital-marketing"
           ? "digital marketing services Texas, social media marketing, PPC management, Google Ads, content marketing, email marketing, small business marketing"
-          : seoService.keywords,
+          : seoService.slug === "seo-optimization"
+            ? "SEO services Texas, local SEO, technical SEO, on-page SEO, keyword research, SEO audit, e-commerce SEO, SEO agency"
+            : seoService.keywords,
     canonicalUrl: url,
     schema: [
       {
@@ -143,6 +161,7 @@ export default function ServiceDetail() {
         {service.slug === "web-design-development" && <WebDesignContent />}
         {service.slug === "branding-logo-design" && <BrandingContent />}
         {service.slug === "digital-marketing" && <DigitalMarketingContent />}
+        {service.slug === "seo-optimization" && <SEOContent />}
         <section className="max-w-[1000px] mx-auto px-6 py-14 md:py-20">
           <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none mb-8">
             {service.slug === "web-design-development"
@@ -151,7 +170,9 @@ export default function ServiceDetail() {
                 ? "Frequently Asked Questions About Branding and Logo Design"
                 : service.slug === "digital-marketing"
                   ? "Frequently Asked Questions About Digital Marketing"
-                  : "Frequently asked questions"}
+                  : service.slug === "seo-optimization"
+                    ? "Frequently Asked Questions About SEO Services"
+                    : "Frequently asked questions"}
           </h2>
           <div className="space-y-7">
             {faqItems.map(({ q, a }) => (
@@ -193,6 +214,17 @@ export default function ServiceDetail() {
               <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s create a marketing strategy that connects your business with the right audience and supports your long-term goals.</p>
               <p className="mt-4 text-white/80 leading-relaxed">Contact our team to discuss your marketing objectives and discover the right digital marketing solutions for your business.</p>
               <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Start Growing Your Business With The Linkage Digital Today</Link>
+            </div>
+          </section>
+        ) : service.slug === "seo-optimization" ? (
+          <section className="bg-[#171717] py-14 md:py-20 px-6 text-center">
+            <div className="max-w-[900px] mx-auto">
+              <h2 className="font-teko font-bold text-white uppercase text-4xl md:text-5xl">Grow Your Online Visibility With Professional SEO</h2>
+              <p className="mt-6 text-white/80 leading-relaxed">Your potential customers are already searching for products and services like yours. The opportunity is to make sure your business has the search visibility and website experience needed to reach them.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Whether you need technical SEO improvements, local SEO, keyword research, content optimization, or a comprehensive search engine optimization strategy, The Linkage Digital is ready to help.</p>
+              <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s build an SEO strategy that improves your website&apos;s visibility, attracts relevant visitors, and creates opportunities for sustainable business growth.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Contact our team to discuss your SEO goals and discover the right optimization strategy for your business.</p>
+              <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Start Improving Your Search Rankings With The Linkage Digital Today</Link>
             </div>
           </section>
         ) : (
@@ -469,6 +501,174 @@ function DigitalMarketingContent() {
         <p className="mt-2">We review available campaign data, evaluate performance, and identify opportunities to improve targeting, content, and campaign efficiency.</p>
         <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">6. Reporting and Continued Growth</h3>
         <p className="mt-2">We use campaign insights and business feedback to guide future marketing activities and support ongoing improvements.</p>
+      </section>
+    </div>
+  );
+}
+
+function SEOContent() {
+  return (
+    <div className="max-w-[1000px] mx-auto px-6 py-14 md:py-20 text-[#555] leading-relaxed">
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Professional SEO Services That Improve Rankings and Drive Organic Growth</h2>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-3xl md:text-4xl leading-none">Get Found on Google, Attract More Customers, and Grow Your Business</h3>
+        <p className="mt-5">Having a website is only the first step toward building a successful online presence. To attract potential customers, your website needs to appear when people search for the products and services your business offers.</p>
+        <p className="mt-4">At <strong>The Linkage Digital</strong>, we provide professional search engine optimization services designed to improve website visibility, strengthen organic search performance, and help businesses attract relevant visitors from search engines.</p>
+        <p className="mt-4">Our SEO strategies combine technical optimization, keyword research, on-page SEO, content development, local SEO, and website performance improvements to build a stronger foundation for long-term search visibility.</p>
+        <p className="mt-4">Whether you&apos;re a small business looking to attract local customers, an established company competing for valuable industry keywords, or an e-commerce brand looking to increase organic sales, we develop SEO strategies around your business objectives.</p>
+        <p className="mt-4">We work with businesses targeting customers across the United States, including Austin, Houston, Dallas, San Antonio, and other Texas markets, helping them improve their search presence and connect with relevant audiences.</p>
+        <p className="mt-4">Our goal is simple: help your business become more discoverable online, attract qualified website traffic, and turn search visibility into meaningful business opportunities.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Comprehensive Search Engine Optimization Solutions</h2>
+        <p className="mt-5">SEO involves multiple interconnected elements that influence how search engines discover, understand, and evaluate your website.</p>
+        <p className="mt-4">A successful SEO strategy requires more than adding keywords to website content. It involves improving technical performance, creating useful content, building relevant website authority, and ensuring that each page addresses the search intent of its target audience.</p>
+        <p className="mt-4">Our SEO services focus on these essential areas to help businesses establish stronger organic search visibility.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Technical SEO Optimization</h3>
+        <p className="mt-2">Technical SEO focuses on improving the underlying structure and performance of your website so that search engines can crawl, understand, and index your content effectively.</p>
+        <p className="mt-4">Technical issues can prevent important pages from appearing in search results, even when the content itself is relevant.</p>
+        <p className="mt-4">Our technical SEO services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Website technical SEO audits</li><li>Website crawlability and indexability analysis</li><li>XML sitemap optimization</li><li>Robots.txt configuration and review</li><li>Website speed optimization</li><li>Core Web Vitals improvements</li><li>Mobile usability optimization</li><li>Canonical tag implementation</li><li>Redirect and broken link analysis</li><li>Duplicate content identification</li><li>Structured data and schema markup</li><li>HTTPS and website security checks</li>
+        </ul>
+        <p className="mt-4">We identify technical problems that may affect search visibility and prioritize improvements based on their potential impact on website performance.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">On-Page SEO Optimization</h3>
+        <p className="mt-2">On-page SEO helps search engines understand what each website page is about while making the content more relevant and useful to visitors.</p>
+        <p className="mt-4">Our on-page SEO services focus on optimizing individual pages around relevant search terms and customer intent.</p>
+        <p className="mt-4">Our optimization process includes:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>SEO title tag optimization</li><li>Meta description development</li><li>H1, H2, and H3 heading optimization</li><li>Keyword placement and content structure</li><li>Search-intent analysis</li><li>Image optimization and ALT attributes</li><li>Internal linking optimization</li><li>URL structure improvements</li><li>Content quality and relevance improvements</li><li>Conversion-focused content organization</li>
+        </ul>
+        <p className="mt-4">We make sure that your website pages communicate their purpose clearly and provide valuable information to users searching for your services.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Keyword Research and Search Intent Analysis</h3>
+        <p className="mt-2">Targeting the right keywords is essential for attracting visitors who are genuinely interested in your products or services.</p>
+        <p className="mt-4">Our keyword research process identifies search terms relevant to your business, industry, audience, and geographical market.</p>
+        <p className="mt-4">We evaluate:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Primary and secondary keywords</li><li>Commercial search intent</li><li>Transactional search queries</li><li>Informational search opportunities</li><li>Long-tail keyword variations</li><li>Competitor keyword gaps</li><li>Local and geographical search terms</li><li>Keyword difficulty and ranking opportunities</li>
+        </ul>
+        <p className="mt-4">For businesses targeting customers in Texas, we also consider location-specific searches such as SEO services in Austin, SEO companies in Dallas, and local SEO agencies in Houston.</p>
+        <p className="mt-4">Our goal is to develop a keyword strategy that connects relevant search queries with the most appropriate pages on your website.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Local SEO Optimization</h3>
+        <p className="mt-2">Local SEO helps businesses improve their visibility when customers search for relevant services within a specific geographical area.</p>
+        <p className="mt-4">For service-based businesses, local search visibility can be particularly valuable because customers often search for providers within their city or surrounding communities.</p>
+        <p className="mt-4">Our local SEO services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Google Business Profile optimization</li><li>Local keyword research</li><li>Location-specific website content</li><li>Business information consistency</li><li>Local citation management</li><li>Local landing page optimization</li><li>Review strategy recommendations</li><li>Local competitor analysis</li><li>Local structured data implementation</li><li>Relevant local link-building opportunities</li>
+        </ul>
+        <p className="mt-4">We help businesses targeting Texas customers strengthen their geographical relevance through optimized website content and accurate business information.</p>
+        <p className="mt-4">Whether your business serves customers in Austin, Dallas, Houston, San Antonio, Fort Worth, or nearby communities, we can develop location-focused SEO strategies aligned with your actual service areas.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Off-Page SEO and Link Building</h3>
+        <p className="mt-2">Off-page SEO focuses on improving your website&apos;s authority and credibility through relevant external signals.</p>
+        <p className="mt-4">Search engines consider different signals when evaluating the relevance and trustworthiness of websites. Relevant, quality backlinks can contribute to your website&apos;s authority and organic search performance.</p>
+        <p className="mt-4">Our off-page SEO activities can include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Competitor backlink analysis</li><li>Backlink profile evaluation</li><li>Relevant website link opportunities</li><li>Industry-specific outreach</li><li>Digital PR opportunities</li><li>Brand mention opportunities</li><li>Link quality monitoring</li><li>Toxic or suspicious backlink investigation</li>
+        </ul>
+        <p className="mt-4">We prioritize relevance and quality rather than pursuing large quantities of low-quality backlinks.</p>
+        <p className="mt-4">Our objective is to help develop a natural and relevant backlink profile that supports your website&apos;s long-term SEO strategy.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">SEO Content Optimization</h3>
+        <p className="mt-2">High-quality website content helps search engines understand your expertise while providing visitors with useful answers to their questions.</p>
+        <p className="mt-4">Our content optimization services focus on developing and improving pages that address relevant search queries and customer needs.</p>
+        <p className="mt-4">Our content solutions include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>SEO website content writing</li><li>Service page optimization</li><li>Location page content development</li><li>Blog and article optimization</li><li>Content gap analysis</li><li>Keyword-focused content planning</li><li>Search-intent-based content improvements</li><li>Existing content updates</li><li>FAQ content development</li><li>Internal content linking</li>
+        </ul>
+        <p className="mt-4">We focus on creating informative, relevant content that naturally incorporates target keywords without unnecessary repetition.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">E-Commerce SEO</h3>
+        <p className="mt-2">Online stores require a different SEO approach because product pages, category pages, filters, and large inventories can create unique optimization challenges.</p>
+        <p className="mt-4">Our e-commerce SEO solutions focus on improving product discovery and organic visibility.</p>
+        <p className="mt-4">Our services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Product page SEO</li><li>Product title and description optimization</li><li>Category page optimization</li><li>E-commerce technical SEO</li><li>Product image optimization</li><li>Internal linking improvements</li><li>Product structured data</li><li>Duplicate product URL analysis</li><li>Organic search opportunity research</li>
+        </ul>
+        <p className="mt-4">Whether your store operates on Shopify, WooCommerce, or another platform, we can help improve its search engine foundation and product visibility.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">SEO Strategies for Small Businesses and Growing Companies</h2>
+        <p className="mt-5">Small businesses often compete against larger companies with established websites and stronger online authority.</p>
+        <p className="mt-4">A focused SEO strategy can help smaller businesses identify relevant search opportunities, improve their website content, and build visibility for the services they offer.</p>
+        <p className="mt-4">At The Linkage Digital, we develop SEO solutions for businesses across different industries, including:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Construction and contracting companies</li><li>Home improvement and maintenance services</li><li>Landscaping and tree service businesses</li><li>Real estate companies</li><li>Professional service providers</li><li>Restaurants and hospitality businesses</li><li>Retail and e-commerce stores</li><li>Automotive and detailing services</li><li>Technology and consulting companies</li>
+        </ul>
+        <p className="mt-4">For businesses targeting customers in Texas, we consider local search intent, relevant service-area keywords, and geographical content opportunities.</p>
+        <p className="mt-4">Our focus is on attracting visitors who are more likely to become customers rather than simply increasing website traffic.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Local Search Visibility for Businesses Across Texas</h2>
+        <p className="mt-5">When potential customers search for a service, they often include a city, location, or nearby area in their search query.</p>
+        <p className="mt-4">For example, someone searching for a contractor may use phrases such as &quot;construction company in Austin&quot; or &quot;roofing services in Dallas.&quot;</p>
+        <p className="mt-4">These location-based searches create opportunities for businesses to connect with customers who are actively looking for relevant services.</p>
+        <p className="mt-4">The Linkage Digital helps businesses strengthen their local search presence through geographical keyword research, local website optimization, and location-focused content strategies.</p>
+        <p className="mt-4">We support businesses targeting markets such as:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Austin, Texas</li><li>Houston, Texas</li><li>Dallas, Texas</li><li>San Antonio, Texas</li><li>Fort Worth, Texas</li><li>Arlington, Texas</li><li>Plano, Texas</li><li>Frisco, Texas</li><li>El Paso, Texas</li><li>Corpus Christi, Texas</li>
+        </ul>
+        <p className="mt-4">Our local SEO strategies can help businesses target relevant service-related searches in these markets while maintaining consistent and useful website content.</p>
+        <p className="mt-4">For example, a landscaping business serving Austin can benefit from service-specific landing pages and locally relevant content, while a construction company targeting Dallas may require a different keyword strategy based on its services and competition.</p>
+        <p className="mt-4">We focus on building geographical relevance around the actual locations and services your business supports.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">SEO Audits and Competitor Analysis</h2>
+        <p className="mt-5">Before developing an SEO strategy, it is important to understand your website&apos;s current search performance and identify areas that require improvement.</p>
+        <p className="mt-4">Our SEO audit process examines important aspects of your website to uncover technical issues, content gaps, keyword opportunities, and competitive challenges.</p>
+        <p className="mt-4">Our SEO audit can include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Technical website analysis</li><li>Current keyword visibility review</li><li>Organic traffic assessment</li><li>Competitor SEO analysis</li><li>Website content evaluation</li><li>Backlink profile assessment</li><li>Indexing and crawling checks</li><li>Internal linking analysis</li><li>Page speed and Core Web Vitals review</li><li>Local SEO performance assessment</li>
+        </ul>
+        <p className="mt-4">We use these findings to identify priorities and develop an actionable SEO improvement strategy.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">SEO Performance Tracking and Reporting</h2>
+        <p className="mt-5">SEO is an ongoing process that requires monitoring, analysis, and continuous improvement.</p>
+        <p className="mt-4">We evaluate relevant performance indicators to understand how your website is progressing and identify opportunities for further optimization.</p>
+        <p className="mt-4">Our reporting can include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Organic search traffic</li><li>Keyword ranking movements</li><li>Google Search Console performance</li><li>Search impressions and clicks</li><li>Indexed website pages</li><li>Organic landing page performance</li><li>Backlink profile changes</li><li>Local search visibility</li><li>Website conversions and inquiries</li>
+        </ul>
+        <p className="mt-4">We focus on meaningful performance indicators that connect SEO activities with your broader business objectives.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Why Choose The Linkage Digital for SEO Services?</h2>
+        <p className="mt-5">Choosing the right SEO partner can make a significant difference in your website&apos;s long-term search performance.</p>
+        <p className="mt-4">At The Linkage Digital, we combine technical expertise, content strategy, keyword research, and digital marketing knowledge to develop SEO solutions aligned with your business requirements.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Customized SEO Strategies:</strong> We develop optimization plans based on your industry, competition, target audience, and business goals.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Technical and Content Expertise:</strong> We consider both the technical structure of your website and the quality and relevance of its content.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Local and National SEO:</strong> We support businesses targeting specific geographical markets as well as companies seeking broader organic visibility.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Search Intent Optimization:</strong> We focus on connecting relevant search queries with website pages that provide useful answers and solutions.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Transparent Performance Monitoring:</strong> We evaluate SEO progress using relevant performance indicators and reporting.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Integrated Digital Services:</strong> Our expertise in web design, branding, and digital marketing allows us to consider the wider digital experience when improving your website&apos;s search presence.</p>
+      </section>
+
+      <section>
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Our SEO Optimization Process</h2>
+        <p className="mt-5">We follow a structured SEO process to understand your website, identify opportunities, and implement improvements.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">1. Website Discovery and SEO Audit</h3>
+        <p className="mt-2">We review your website, business objectives, industry, current search visibility, and existing technical SEO condition.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">2. Keyword Research and Competitor Analysis</h3>
+        <p className="mt-2">We identify relevant keywords, analyze search intent, review competitors, and find opportunities for improving your website&apos;s visibility.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">3. SEO Strategy Development</h3>
+        <p className="mt-2">We create an optimization plan covering technical SEO, on-page improvements, content development, and local search opportunities where relevant.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">4. SEO Implementation</h3>
+        <p className="mt-2">We implement the agreed improvements, including metadata, website content, internal links, technical corrections, and other optimization activities.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">5. Performance Monitoring</h3>
+        <p className="mt-2">We monitor search visibility, organic traffic, indexing, keyword movements, and other relevant SEO indicators.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">6. Continuous Optimization</h3>
+        <p className="mt-2">We use performance insights to refine the strategy, update content, resolve emerging issues, and identify additional growth opportunities.</p>
       </section>
     </div>
   );
