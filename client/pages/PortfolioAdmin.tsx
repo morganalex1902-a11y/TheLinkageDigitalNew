@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BASE_PORTFOLIO_PROJECTS, getPortfolioProjectId, type PortfolioProject, type PortfolioType } from "@/lib/portfolio";
+import { BASE_PORTFOLIO_PROJECTS, getPortfolioImage, getPortfolioProjectId, type PortfolioProject, type PortfolioType } from "@/lib/portfolio";
 import { createSupabaseClient } from "@/lib/supabase";
 
 type Entry = PortfolioProject & {
@@ -440,7 +440,7 @@ export default function PortfolioAdmin() {
             <div className="divide-y divide-[#f0ebf2]">
               {visibleEntries.map((entry) => (
                 <article key={entry.id} className="grid gap-4 p-4 sm:grid-cols-[88px_minmax(0,1fr)_auto] sm:items-center sm:gap-5 sm:p-5">
-                  {entry.image ? <img src={entry.image} alt="" className="h-20 w-24 rounded-xl bg-[#f2edf4] object-cover" loading="lazy" /> : <div aria-label="No project image" className="h-20 w-24 rounded-xl bg-[#f2edf4]" />}
+                  {getPortfolioImage(entry.image, entry.website, entry.type) ? <img src={getPortfolioImage(entry.image, entry.website, entry.type)} alt="" className="h-20 w-24 rounded-xl bg-[#f2edf4] object-cover" loading="lazy" /> : <div aria-label="No project image" className="h-20 w-24 rounded-xl bg-[#f2edf4]" />}
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <h2 className="font-semibold">{entry.title}</h2>
