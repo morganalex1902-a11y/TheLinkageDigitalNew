@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
@@ -12,11 +12,23 @@ export default function Portfolio() {
   const navigate = useNavigate();
   const [activeMainCategory, setActiveMainCategory] = useState("websites");
   const [activeNiche, setActiveNiche] = useState("all");
+  const [isNicheMenuOpen, setIsNicheMenuOpen] = useState(false);
+  const nicheFilterRef = useRef<HTMLDivElement>(null);
+  const nicheFilterButtonRef = useRef<HTMLButtonElement>(null);
   const [projects, setProjects] = useState<PortfolioProject[]>(BASE_PORTFOLIO_PROJECTS);
 
   const portfolioRef = useInView();
   const projectsGridRef = useInView();
   const statsGridRef = useInView();
+
+  useEffect(() => {
+    if (!isNicheMenuOpen) return;
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!nicheFilterRef.current?.contains(event.target as Node)) setIsNicheMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [isNicheMenuOpen]);
 
   useEffect(() => {
     let cancelled = false;
@@ -306,6 +318,7 @@ export default function Portfolio() {
                 onClick={() => {
                   setActiveMainCategory(cat.value);
                   setActiveNiche("all");
+                  setIsNicheMenuOpen(false);
                 }}
                 className={`relative font-kanit font-medium text-[13px] md:text-[14px] uppercase px-6 py-3 rounded-full transition-all overflow-hidden group ${
                   activeMainCategory === cat.value
@@ -333,37 +346,83 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {/* Niche filter buttons (only show for Websites category) */}
           {activeMainCategory === "websites" && (
-            <div className="flex flex-wrap gap-3 md:gap-4 mb-12 md:mb-16 lg:mb-20">
-              {WEB_NICHES.map((niche) => (
+            <div
+              ref={nicheFilterRef}
+              className="mb-12 md:mb-16 lg:mb-20 w-full max-w-sm"
+              onKeyDown={(event) => {
+                if (event.key === "Escape" && isNicheMenuOpen) {
+                  setIsNicheMenuOpen(false);
+                  nicheFilterButtonRef.current?.focus();
+                }
+              }}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsNicheMenuOpen(false);
+              }}
+            >
+              <span id="portfolio-industry-filter-label" className="mb-2 block font-kanit text-sm font-medium text-[#333]">
+                Filter projects by industry
+              </span>
+              <div className="relative">
                 <button
-                  key={niche}
-                  onClick={() => setActiveNiche(niche.toLowerCase())}
-                  className={`relative font-kanit font-medium text-[12px] md:text-[13px] uppercase px-5 py-2 rounded-full transition-all text-sm overflow-hidden group ${
-                    activeNiche === niche.toLowerCase()
-                      ? "bg-[#8B0AB4] text-white"
-                      : "bg-white text-[#121212] border border-[#ECECEC] hover:border-[#8B0AB4]"
-                  }`}
+                  ref={nicheFilterButtonRef}
+                  id="portfolio-industry-filter"
+                  type="button"
+                  aria-labelledby="portfolio-industry-filter-label portfolio-industry-filter-value"
+                  aria-expanded={isNicheMenuOpen}
+                  aria-controls="portfolio-industry-options"
+                  onClick={() => setIsNicheMenuOpen((open) => !open)}
+                  className="flex min-h-12 w-full items-center justify-between gap-4 rounded-xl border border-[#E5E5E5] bg-white px-4 py-3 text-left shadow-sm transition hover:border-[#8B0AB4] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B0AB4]/30"
                 >
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute rounded-full"
-                    style={{
-                      width: 0,
-                      height: 0,
-                      left: "50%",
-                      top: "50%",
-                      backgroundColor: "#8B0AB4",
-                      opacity: 0.1,
-                      transform: "translate(-50%, -50%) scale(0)",
-                      transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-                      zIndex: 0,
-                    }}
-                  />
-                  <span className="relative z-10">{niche}</span>
+                  <span>
+                    <span className="block font-kanit text-[11px] font-medium uppercase tracking-[0.12em] text-[#8B0AB4]">Industry</span>
+                    <span id="portfolio-industry-filter-value" className="mt-0.5 block font-kanit text-sm font-semibold text-[#121212]">
+                      {WEB_NICHES.find((niche) => niche.toLowerCase() === activeNiche) === "All"
+                        ? "All industries"
+                        : WEB_NICHES.find((niche) => niche.toLowerCase() === activeNiche) ?? "All industries"}
+                    </span>
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    className={`h-4 w-4 shrink-0 text-[#8B0AB4] transition-transform ${isNicheMenuOpen ? "rotate-180" : ""}`}
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path fillRule="evenodd" d="M5.22 7.47a.75.75 0 0 1 1.06 0L10 11.19l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 8.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                  </svg>
                 </button>
-              ))}
+                {isNicheMenuOpen && (
+                  <div
+                    id="portfolio-industry-options"
+                    role="group"
+                    aria-labelledby="portfolio-industry-filter-label"
+                    className="absolute left-0 right-0 top-full z-30 mt-2 max-h-72 overflow-y-auto rounded-xl border border-[#ECECEC] bg-white p-2 shadow-xl"
+                  >
+                    {WEB_NICHES.map((niche) => {
+                      const value = niche.toLowerCase();
+                      const isActive = activeNiche === value;
+                      return (
+                        <button
+                          key={value}
+                          type="button"
+                          aria-pressed={isActive}
+                          onClick={() => {
+                            setActiveNiche(value);
+                            setIsNicheMenuOpen(false);
+                            nicheFilterButtonRef.current?.focus();
+                          }}
+                          className={`flex min-h-10 w-full items-center justify-between rounded-lg px-3 py-2 text-left font-kanit text-sm transition-colors ${
+                            isActive ? "bg-[#F7EAFB] font-semibold text-[#7A079F]" : "text-[#333] hover:bg-[#FAF7FC] hover:text-[#7A079F]"
+                          }`}
+                        >
+                          <span>{niche === "All" ? "All industries" : niche}</span>
+                          {isActive && <span aria-hidden="true" className="text-base">✓</span>}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
           )}
 

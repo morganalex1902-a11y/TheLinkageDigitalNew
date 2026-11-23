@@ -7,9 +7,74 @@ import { useSEO } from "../hooks/useSEO";
 import { OriginButton } from "../components/ui/origin-button";
 import { AnimatedButton } from "../components/ui/animated-button";
 import SiteHeader from "../components/SiteHeader";
+import FAQAccordion from "../components/FAQAccordion";
 import { submitToWeb3Forms } from "../lib/web3forms";
 import { ArrowUpRight, Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import type { IconType } from "react-icons";
+import {
+  SiAppwrite,
+  SiCloudflare,
+  SiCloudinary,
+  SiClaude,
+  SiClerk,
+  SiConvex,
+  SiDjango,
+  SiDocker,
+  SiDrizzle,
+  SiExpo,
+  SiExpress,
+  SiFastapi,
+  SiFirebase,
+  SiFigma,
+  SiFlutter,
+  SiFramer,
+  SiGithub,
+  SiGithubactions,
+  SiGooglegemini,
+  SiGoogleanalytics,
+  SiGooglemaps,
+  SiGraphql,
+  SiGsap,
+  SiHostinger,
+  SiJsonwebtokens,
+  SiMapbox,
+  SiMui,
+  SiNextdotjs,
+  SiMongoose,
+  SiMysql,
+  SiNetlify,
+  SiNestjs,
+  SiNodedotjs,
+  SiPaypal,
+  SiPostgresql,
+  SiPosthog,
+  SiPostman,
+  SiPrisma,
+  SiRailway,
+  SiRazorpay,
+  SiReact,
+  SiReactquery,
+  SiRedis,
+  SiRedux,
+  SiRender,
+  SiResend,
+  SiSanity,
+  SiSentry,
+  SiShadcnui,
+  SiShopify,
+  SiSocketdotio,
+  SiStrapi,
+  SiStripe,
+  SiSupabase,
+  SiTailwindcss,
+  SiTrpc,
+  SiVercel,
+  SiVite,
+  SiWoocommerce,
+  SiWordpress,
+} from "react-icons/si";
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -356,7 +421,7 @@ function ExploreCircleButton({ onClick, clipId }: { onClick: () => void; clipId:
 const TABS = [
   {
     title: "Creativity",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Original design and thoughtful ideas that make your brand memorable.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-1)">
@@ -368,7 +433,7 @@ const TABS = [
   },
   {
     title: "Relationships",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Clear communication and lasting partnerships built around your goals.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-2)">
@@ -380,7 +445,7 @@ const TABS = [
   },
   {
     title: "Responsibility",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Reliable delivery, transparent communication, and ownership at every stage.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-3)">
@@ -392,7 +457,7 @@ const TABS = [
   },
   {
     title: "Cost effective",
-    desc: "Add the best talent on the market, an agile skilled management & seamless involvement",
+    desc: "Thoughtful scope and efficient execution that make your budget work harder.",
     icon: (
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip-tab-4)">
@@ -404,21 +469,166 @@ const TABS = [
   },
 ];
 
-const TECH_ITEMS = [
-  { name: "WordPress", src: "/images/tech-wordpress.webp" },
-  { name: "React.js",  src: "/images/tech-react.webp" },
-  { name: "Node.js",   src: "/images/tech-node.webp" },
-  { name: "Flutter",   src: "/images/tech-flutter.webp" },
-  { name: "Redux",     src: null },
+const TAB_IMAGES = [
+  {
+    src: "https://images.pexels.com/photos/30889258/pexels-photo-30889258.jpeg",
+    alt: "Designer creating digital artwork with a tablet and stylus in a creative workspace.",
+  },
+  {
+    src: "https://images.pexels.com/photos/30688593/pexels-photo-30688593.jpeg",
+    alt: "Professionals collaborating around a table during a team meeting.",
+  },
+  {
+    src: "https://images.pexels.com/photos/6994833/pexels-photo-6994833.jpeg",
+    alt: "Volunteers organizing donated clothing to support their community.",
+  },
+  {
+    src: "https://images.pexels.com/photos/5900132/pexels-photo-5900132.jpeg",
+    alt: "Small business owner reviewing receipts and finances with a calculator.",
+  },
 ];
+
+const TECH_ITEMS: { name: string; Icon?: IconType; src?: string; monogram?: string; color?: string }[] = [
+  { name: "WordPress", Icon: SiWordpress, color: "#21759B" },
+  { name: "React.js", Icon: SiReact, color: "#61DAFB" },
+  { name: "Node.js", Icon: SiNodedotjs, color: "#339933" },
+  { name: "Flutter", Icon: SiFlutter, color: "#02569B" },
+  { name: "Redux", Icon: SiRedux, color: "#764ABC" },
+  { name: "Next.js", Icon: SiNextdotjs },
+  { name: "Vite", Icon: SiVite, color: "#646CFF" },
+  { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "shadcn/ui", Icon: SiShadcnui },
+  { name: "Material UI", Icon: SiMui, color: "#007FFF" },
+  { name: "Framer Motion", Icon: SiFramer, color: "#0055FF" },
+  { name: "GSAP", Icon: SiGsap, color: "#88CE02" },
+  { name: "Zustand", monogram: "Z" },
+  { name: "React Query", Icon: SiReactquery, color: "#FF4154" },
+  { name: "Express.js", Icon: SiExpress },
+  { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
+  { name: "FastAPI", Icon: SiFastapi, color: "#009688" },
+  { name: "Django", Icon: SiDjango, color: "#092E20" },
+  { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+  { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
+  { name: "Redis", Icon: SiRedis, color: "#DC382D" },
+  { name: "Firebase Firestore", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "Prisma", Icon: SiPrisma, color: "#2D3748" },
+  { name: "Mongoose", Icon: SiMongoose, color: "#880000" },
+  { name: "Drizzle", Icon: SiDrizzle },
+  { name: "Clerk", Icon: SiClerk, color: "#6C47FF" },
+  { name: "Firebase Auth", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "NextAuth / Auth.js", Icon: SiNextdotjs },
+  { name: "Supabase Auth", Icon: SiSupabase, color: "#3FCF8E" },
+  { name: "JWT", Icon: SiJsonwebtokens },
+  { name: "Firebase", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "Appwrite", Icon: SiAppwrite, color: "#F02E65" },
+  { name: "Convex", Icon: SiConvex },
+  { name: "Cloudinary", Icon: SiCloudinary, color: "#3448C5" },
+  { name: "AWS S3", monogram: "S3", color: "#FF9900" },
+  { name: "UploadThing", monogram: "UT", color: "#7C3AED" },
+  { name: "Firebase Storage", Icon: SiFirebase, color: "#FFCA28" },
+  { name: "Stripe", Icon: SiStripe, color: "#635BFF" },
+  { name: "Razorpay", Icon: SiRazorpay, color: "#0C2451" },
+  { name: "PayPal", Icon: SiPaypal, color: "#003087" },
+  { name: "JazzCash / Easypaisa", monogram: "J/E", color: "#168A52" },
+  { name: "Resend", Icon: SiResend },
+  { name: "Nodemailer", monogram: "N" },
+  { name: "EmailJS", monogram: "@" },
+  { name: "Twilio", monogram: "T", color: "#F22F46" },
+  { name: "Sanity", Icon: SiSanity, color: "#F03E2F" },
+  { name: "Strapi", Icon: SiStrapi, color: "#4945FF" },
+  { name: "Shopify", Icon: SiShopify, color: "#7AB55C" },
+  { name: "WooCommerce", Icon: SiWoocommerce, color: "#96588A" },
+  { name: "React Native", Icon: SiReact, color: "#61DAFB" },
+  { name: "Expo", Icon: SiExpo },
+  { name: "REST API", monogram: "REST" },
+  { name: "GraphQL", Icon: SiGraphql, color: "#E10098" },
+  { name: "tRPC", Icon: SiTrpc, color: "#398CCB" },
+  { name: "Socket.io", Icon: SiSocketdotio },
+  { name: "Vercel", Icon: SiVercel },
+  { name: "Netlify", Icon: SiNetlify, color: "#00C7B7" },
+  { name: "Render", Icon: SiRender, color: "#46E3B7" },
+  { name: "Railway", Icon: SiRailway, color: "#0B0D0E" },
+  { name: "Cloudflare", Icon: SiCloudflare, color: "#F38020" },
+  { name: "AWS", monogram: "AWS", color: "#FF9900" },
+  { name: "Hostinger", Icon: SiHostinger, color: "#673DE6" },
+  { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+  { name: "Git / GitHub", Icon: SiGithub },
+  { name: "GitHub Actions", Icon: SiGithubactions },
+  { name: "Postman", Icon: SiPostman, color: "#FF6C37" },
+  { name: "Figma", Icon: SiFigma, color: "#F24E1E" },
+  { name: "Sentry", Icon: SiSentry, color: "#362D59" },
+  { name: "OpenAI API", monogram: "AI" },
+  { name: "Claude API", Icon: SiClaude },
+  { name: "Gemini API", Icon: SiGooglegemini, color: "#8E75B2" },
+  { name: "Vercel AI SDK", Icon: SiVercel },
+  { name: "Google Analytics", Icon: SiGoogleanalytics, color: "#E37400" },
+  { name: "PostHog", Icon: SiPosthog, color: "#F9BD2B" },
+  { name: "Google Maps API", Icon: SiGooglemaps, color: "#4285F4" },
+  { name: "Mapbox", Icon: SiMapbox, color: "#4264FB" },
+];
+
+const HOME_FAQS = [
+  {
+    q: "Does The Linkage Digital provide web design for businesses in Austin, Texas?",
+    a: "Yes. The Linkage Digital is based in Austin, Texas and creates responsive, conversion-focused websites for Austin-area businesses and organizations across the United States. Projects are tailored to your goals, audience, and the services you want customers to find online.",
+  },
+  {
+    q: "How can local SEO help my Austin business appear in Google searches?",
+    a: "Local SEO helps relevant customers discover a business in nearby search results. Work can include improving location and service pages, technical SEO, local keyword research, and Google Business Profile guidance so Austin-area businesses can strengthen their visibility in Google Search and Maps.",
+  },
+  {
+    q: "Do you work with businesses outside Austin?",
+    a: "Yes. The Linkage Digital works with businesses in Austin and throughout the United States. Website design, branding, SEO, digital marketing, and video projects can be planned and delivered remotely.",
+  },
+  {
+    q: "What digital marketing services are available for Austin businesses?",
+    a: "Austin businesses can get support with web design and development, branding and logo design, SEO optimization, digital marketing, and video editing and motion graphics. The right mix depends on your audience, goals, and current online presence.",
+  },
+  {
+    q: "Can you help an Austin business improve its Google Business Profile?",
+    a: "The Linkage Digital can provide local SEO guidance that includes Google Business Profile optimization, accurate business information, service-area content, and location-relevant website pages. These improvements support local discovery but do not guarantee specific rankings.",
+  },
+  {
+    q: "How do I get started with a website or SEO project in Austin?",
+    a: "Contact The Linkage Digital with your business goals, target customers, and the services you need. The team will discuss a suitable next step for your Austin, Texas business or your organization elsewhere in the United States.",
+  },
+  {
+    q: "What do SEO, AEO, and GEO mean for my business?",
+    a: "SEO helps your website become more discoverable in traditional search results. AEO, or answer engine optimization, focuses on making information clear and useful for question-based searches. GEO, or generative engine optimization, focuses on presenting accurate, well-organized information that generative search tools can interpret. These practices support discoverability, but no agency can guarantee rankings or AI citations.",
+  },
+  {
+    q: "How can I make my website content useful for Google and AI answer tools?",
+    a: "Start with accurate information about your business, services, service areas, and expertise. Organize pages with descriptive headings, answer common customer questions directly, keep business details consistent, and use structured data when it accurately describes visible content. Clear, helpful content supports search understanding but does not guarantee a particular result or citation.",
+  },
+  {
+    q: "Can The Linkage Digital guarantee first-page Google rankings?",
+    a: "No. Search rankings depend on many factors, including competition, content relevance, website quality, and search engine changes. The Linkage Digital focuses on sound technical SEO, useful content, and measurable improvements rather than promising a specific position.",
+  },
+  {
+    q: "How long does SEO take to show results?",
+    a: "SEO timelines vary based on your website, competition, target searches, and the work involved. Some technical improvements can be made quickly, while meaningful changes in organic visibility often take sustained effort. The Linkage Digital can help define priorities and monitor progress without promising a fixed timeline.",
+  },
+  {
+    q: "How much does a website or digital marketing project cost?",
+    a: "Project pricing depends on scope, functionality, content needs, selected services, and ongoing campaign requirements. Share your goals and priorities through the contact form to discuss the project and request a tailored estimate.",
+  },
+  {
+    q: "Which digital services are right for my business?",
+    a: "The right mix depends on your goals. A new business may prioritize branding and a website; a business seeking local discovery may focus on local SEO; and a company promoting campaigns may consider paid ads, social content, or video. The Linkage Digital can discuss your audience, current presence, and priorities before recommending next steps.",
+  },
+  {
+    q: "How can I measure whether digital marketing is working?",
+    a: "Choose measures that connect to your goals, such as qualified inquiries, calls, form submissions, sales, relevant website traffic, or campaign engagement. The right metrics depend on the channel and objective, so reporting should focus on meaningful outcomes rather than traffic alone.",
+  },
+] as const;
 
 export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialDir, setTestimonialDir] = useState<"left" | "right">("right");
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const TESTIMONIALS = [
     {
@@ -528,9 +738,9 @@ export default function Index() {
   useSEO({
     title: "The Linkage Digital — Web Design, App Development & Digital Marketing USA",
     description: "Professional web design, app development, digital marketing, and video editing services in Texas and across the USA. Full-service digital agency specializing in branding, SEO optimization, and creative solutions.",
-    keywords: "web design USA, app development, digital marketing services USA, web development Texas, branding agency, SEO optimization, video editing, digital agency",
+    keywords: "Austin web design, Austin local SEO, digital marketing Austin TX, web design USA, app development, web development Texas, branding agency, SEO optimization, video editing",
     ogTitle: "The Linkage Digital — Web Design & App Development Services",
-    ogDescription: "Full-service digital agency in Texas. Expert web design, app development, digital marketing, and video editing for businesses nationwide.",
+    ogDescription: "Austin, Texas digital agency for web design, local SEO, app development, digital marketing, and video editing for businesses nationwide.",
     ogImage: "https://cdn.builder.io/api/v1/image/assets%2F37fe508629794307b44d873859aad7cf%2F2b1408065852494b93dd7445e38a5652?format=webp&width=1200",
     canonicalUrl: "https://thelinkagedigital.com/",
     schema: [
@@ -562,6 +772,15 @@ export default function Index() {
       },
       {
         "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": HOME_FAQS.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "The Linkage Digital - Web Design, App Development & Digital Marketing",
         "description": "Professional web design, app development, digital marketing, and video editing services across the USA",
@@ -584,6 +803,22 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-white font-kanit">
       <SiteHeader />
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="w-[calc(100%-2rem)] max-w-[500px] gap-0 overflow-hidden border-0 bg-black p-0">
+          <DialogTitle className="sr-only">Watch our introduction video</DialogTitle>
+          <DialogDescription className="sr-only">The Linkage Digital introduction video plays below.</DialogDescription>
+          <div className="aspect-[9/16] max-h-[85vh] w-full">
+            <iframe
+              src="https://www.youtube.com/embed/O7_-p8rzoaA?autoplay=1&playsinline=1"
+              title="The Linkage Digital introduction video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="h-full w-full"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* ── HERO ── */}
       <main className="relative overflow-hidden bg-[#faf7fc]">
@@ -670,7 +905,7 @@ export default function Index() {
                   />
                   {/* Play button sits just outside the bottom-right curve */}
                   <div className="absolute -right-7 sm:-right-10 bottom-[38%] flex flex-col items-center gap-1">
-                    <button className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
+                    <button type="button" onClick={() => setIsVideoOpen(true)} aria-label="Play The Linkage Digital introduction video" className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-black border-[3px] border-white flex items-center justify-center hover:bg-[#8B0AB4] hover:scale-110 transition-all shadow-2xl animate-pulse-ring">
                       <PlayIcon />
                     </button>
                     <span className="font-kanit font-medium text-[8px] sm:text-[9px] md:text-[10px] uppercase text-[#121212] text-center leading-tight tracking-wide">
@@ -953,7 +1188,7 @@ export default function Index() {
       </section>
 
       {/* ── EMPOWERING SKILLS SECTION ── */}
-      <section ref={empowerRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
+      <section id="empowering-skills" ref={empowerRef as React.RefObject<HTMLElement>} className="bg-white py-10 md:py-20 lg:py-24 reveal">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
           {/* Heading + description row */}
@@ -977,7 +1212,10 @@ export default function Index() {
               {TABS.map((tab, i) => (
                 <button
                   key={i}
+                  type="button"
                   onClick={() => setActiveTab(i)}
+                  aria-pressed={activeTab === i}
+                  aria-controls="skill-image-panel"
                   className={`relative border-l-2 pl-8 py-4 text-left transition-colors overflow-hidden ${
                     activeTab === i
                       ? "border-[#8B0AB4]"
@@ -1023,11 +1261,12 @@ export default function Index() {
             </div>
 
             {/* Tab panel image */}
-            <div>
+            <div id="skill-image-panel" aria-live="polite" aria-label={`${TABS[activeTab].title} image`}>
               <img
-                src="/images/dashboard-team.webp"
-                alt="Dashboard and team"
-                className="w-full h-auto object-cover"
+                key={activeTab}
+                src={TAB_IMAGES[activeTab].src}
+                alt={TAB_IMAGES[activeTab].alt}
+                className="aspect-[4/3] w-full rounded-[1.5rem] object-cover md:rounded-[2rem]"
               />
             </div>
           </div>
@@ -1038,32 +1277,35 @@ export default function Index() {
               Our Technology Expertise Includes
             </p>
 
-            {/* Tech circles – overlapping on desktop */}
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-0">
-              {TECH_ITEMS.map((tech, i) => (
-                <div
-                  key={tech.name}
-                  className={`flex-shrink-0 w-[130px] h-[130px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] xl:w-[298px] xl:h-[298px] rounded-full border border-[#ECECEC] bg-white flex flex-col items-center justify-center gap-1 sm:gap-2 lg:gap-3 ${
-                    i > 0 ? "sm:-ml-4 md:-ml-6 lg:-ml-10 xl:-ml-12" : ""
-                  }`}
-                >
-                  {tech.src ? (
+            <div className="tech-marquee-viewport w-full" role="region" aria-label="Technology expertise" tabIndex={0}>
+              <div className="tech-marquee-track flex w-max">
+                {TECH_ITEMS.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="flex h-[190px] w-[190px] flex-shrink-0 flex-col items-center justify-center gap-3 rounded-full border border-[#ECECEC] bg-white p-5 text-center sm:h-[220px] sm:w-[220px]"
+                  >
+                  {tech.Icon ? (
+                    <tech.Icon className="h-16 w-16 shrink-0 sm:h-[76px] sm:w-[76px]" color={tech.color ?? "#121212"} aria-hidden="true" />
+                  ) : tech.src ? (
                     <img
                       src={tech.src}
                       alt={tech.name}
                       className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto object-contain"
                     />
+                  ) : tech.monogram ? (
+                    <span aria-hidden="true" className="font-teko text-[46px] font-bold leading-none sm:text-[54px]" style={{ color: tech.color ?? "#8B0AB4" }}>{tech.monogram}</span>
                   ) : (
                     /* Redux inline SVG */
                     <svg height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[50px] sm:h-[65px] lg:h-[85px] xl:h-[100px] w-auto">
                       <path d="M65.6 46.6c1.5-7.3.4-13.1-3.4-15.3l-.1-.1c-1.8-1-3.9-1.3-6.3-.8-2.3.5-4.7 1.7-7.1 3.6-1.6-3.4-3.5-5.9-5.7-7.3-2.6-1.7-5.4-1.9-8-.7l-.2.1c-2.5 1.4-4.1 3.9-4.7 7.4-.5 3-0.3 6.6.8 10.4-3.4 1-6 2.4-7.7 4.2-2 2.1-2.7 4.7-2 7.4l.1.2c1.3 4.8 6 7.2 13.4 6.6l.4-.1c-.1.4-.1.8-.2 1.2-1.5 7.3-.4 13.1 3.4 15.3l.1.1c1.1.6 2.3.9 3.5.9 4.3 0 9-3 13-8.6 1.6 3.3 3.5 5.8 5.7 7.2 2.6 1.7 5.4 1.9 8 .7l.2-.1c2.6-1.4 4.2-3.9 4.7-7.4.5-3 .3-6.6-.8-10.4 3.3-1 5.9-2.4 7.7-4.2 2-2.1 2.7-4.7 2-7.4l-.1-.2c-1.2-4.7-5.8-7.1-13.2-6.6l-.5.1zm-1.3 3.5c5.9-.4 9.4 1.3 10.2 4.2.5 2-.1 4-1.8 5.7-1.4 1.5-3.5 2.6-6.3 3.4-.9-2.9-2-5.8-3.3-8.5 1-1.7 1-3.2.1-4.5l1.1-.3zm-14.5-13c1.7-2.4 3.5-4.2 5.3-5.3 1.7-1 3.2-1.3 4.4-.7 2.1 1.2 3.1 5.2 2.3 10.5-.1.7-.3 1.4-.5 2.1a36.7 36.7 0 00-4.7-.3 36.7 36.7 0 00-4.7.3c-1.3-2.5-2.4-4.8-3.3-6.9l1.2.3zm-10 0c.4-2.9 1.4-4.8 2.8-5.7 2.2-1.2 5.2.3 8.1 4l.1.1c-1.1 2.2-2.2 4.5-3.2 7-.9.2-1.8.5-2.5.8-2.8-1.8-4.9-4.1-5.3-6.2zm-7.4 14.7c-5.9.4-9.4-1.3-10.2-4.2-.5-2 .1-4 1.8-5.7 1.4-1.5 3.5-2.6 6.3-3.4.9 2.9 2 5.8 3.3 8.5-1 1.7-1 3.2-.1 4.5l-1.1.3zm14.6 20.6c-3.7 5.4-7.7 7.8-10.4 6.4-2.1-1.2-3.1-5.2-2.3-10.5.1-.7.3-1.4.5-2.1 1.5.2 3 .3 4.7.3 1.7 0 3.2-.1 4.7-.3 1.3 2.5 2.4 4.8 3.3 6.9l-.5.3zm2.5-6.8c-1.6.3-3.2.5-4.7.5-1.5 0-3.1-.2-4.7-.5-.7-1.7-1.3-3.3-1.9-5-.5-1.5-1-3-1.4-4.5.5-1.5 1-3 1.4-4.5.6-1.7 1.2-3.3 1.9-5 1.6-.3 3.2-.5 4.7-.5 1.5 0 3.1.2 4.7.5.7 1.7 1.3 3.3 1.9 5 .5 1.5 1 3 1.4 4.5-.5 1.5-1 3-1.4 4.5-.6 1.7-1.2 3.3-1.9 5zm4.3 2.8c-.4 2.9-1.4 4.8-2.8 5.7l-.1.1c-2.2 1.2-5.2-.3-8.1-4-.1-.1-.2-.2-.3-.4 1.1-2.2 2.2-4.5 3.2-7 .9-.2 1.8-.5 2.5-.8 2.8 1.8 4.9 4.1 5.6 6.4zm5.7-7.8c-1.1-2.9-2.5-5.7-3.3-8.5.9-1.3.9-2.8.1-4.5l1.1-.3c5.9-.4 9.4 1.3 10.2 4.2.5 2-.1 4-1.8 5.7-1.4 1.5-3.5 2.6-6.3 3.4z" fill="#121212"/>
                     </svg>
                   )}
-                  <span className="font-teko font-semibold text-[#121212] uppercase text-[16px] sm:text-[20px] lg:text-[24px] xl:text-[26px]">
+                  <span className="max-w-[170px] text-center font-teko font-semibold text-[#121212] uppercase text-[18px] leading-tight sm:text-[22px]">
                     {tech.name}
                   </span>
                 </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -1101,12 +1343,13 @@ export default function Index() {
               height: "clamp(100px, 22.4vw, 420px)",
             }}
           >
-            <span
-              className="font-teko font-bold text-[#8B0AB4] uppercase"
+            <a
+              href="/portfolio"
+              className="pointer-events-auto font-teko font-bold text-[#8B0AB4] uppercase"
               style={{ fontSize: "clamp(0.85rem, 2.13vw, 2.5rem)" }}
             >
               Portfolio
-            </span>
+            </a>
           </div>
         </div>
       </section>
@@ -1409,99 +1652,12 @@ export default function Index() {
                 Questions
               </h2>
               <p className="font-kanit font-normal text-[#555] text-[14px] md:text-[16px] leading-[1.55] max-w-[280px]">
+                Answers about web design, branding, SEO, and digital marketing for Austin businesses and organizations across the United States.
               </p>
             </div>
 
             {/* Right: accordion */}
-            <div>
-              {[
-                {
-                  q: "How can professional web design improve my online visibility?",
-                  a: "A well-designed website with proper SEO foundation increases organic search rankings and builds credibility. The Linkage Digital creates responsive, fast-loading websites optimized for search engines, helping you rank higher for local and national searches.",
-                },
-                {
-                  q: "What's included in your digital marketing services?",
-                  a: "We offer PPC advertising, social media management, email marketing, content strategy, and video marketing. These services integrate seamlessly with your website to create a comprehensive online presence that drives qualified leads and converts visitors into customers.",
-                },
-                {
-                  q: "How does local SEO help my business?",
-                  a: "Local SEO optimization includes Google Business Profile setup, location-specific keywords, local link building, and location-based content. This is essential for service businesses looking to attract customers in their geographic area and dominate local search results.",
-                },
-                {
-                  q: "Can you design a custom logo and complete branding package?",
-                  a: "Yes, we specialize in logo design and full brand identity development including color palettes, typography, brand guidelines, and cohesive visual assets. Strong branding builds customer recognition, trust, and differentiates you from competitors.",
-                },
-                {
-                  q: "How long does a typical web design project take?",
-                  a: "Most web design projects take 1 week, while custom full-stack applications range from 4-6 months. Timeline depends on scope and complexity. We use agile methodology to keep you informed at every stage with regular updates and feedback opportunities.",
-                },
-                {
-                  q: "What makes The Linkage Digital different from other agencies?",
-                  a: "We combine strategic design, technical expertise, and SEO knowledge to deliver results. We focus on user experience, performance, and conversions—not just aesthetics. Our team has proven experience with startups and enterprise clients, backed by verifiable case studies and client testimonials.",
-                },
-                {
-                  q: "Do you offer ongoing support and maintenance?",
-                  a: "Absolutely. We provide flexible support packages including security updates, performance monitoring, content updates, and feature enhancements. Our retainer plans start at $200/month, ensuring your website stays secure, fast, and competitive.",
-                },
-                {
-                  q: "What's your typical project cost range?",
-                  a: "Web design costs vary based on complexity. Simple 5-page websites start around $300-$500, while e-commerce and custom applications range $8,000-$25,000+. We offer transparent pricing with no hidden fees and custom quotes for your specific needs.",
-                },
-              ].map((item, i) => (
-                <div key={i} className="border-t border-[#ECECEC]">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="relative w-full flex items-center justify-between gap-4 py-5 md:py-6 text-left group overflow-hidden"
-                  >
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute rounded-full"
-                      style={{
-                        width: 0,
-                        height: 0,
-                        left: 0,
-                        top: 0,
-                        backgroundColor: "#8B0AB4",
-                        opacity: 0.05,
-                        transform: "translate(-50%, -50%) scale(0)",
-                        transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-                        zIndex: 0,
-                      }}
-                    />
-                    <span className="relative z-10">
-                      <span
-                        className={`font-kanit font-bold uppercase text-[12px] md:text-[14px] tracking-wider leading-snug transition-colors ${
-                          openFaq === i ? "text-[#121212]" : "text-[#333] group-hover:text-[#8B0AB4]"
-                        }`}
-                      >
-                        {item.q}
-                      </span>
-                    </span>
-                    <span
-                      className={`flex-shrink-0 relative z-10 w-6 h-6 flex items-center justify-center font-kanit font-light text-xl leading-none transition-colors ${
-                        openFaq === i ? "text-[#121212]" : "text-[#555] group-hover:text-[#8B0AB4]"
-                      }`}
-                    >
-                      {openFaq === i ? "−" : "+"}
-                    </span>
-                  </button>
-
-                  {/* Answer (animated open/close) */}
-                  <div
-                    className="overflow-hidden transition-all duration-300 ease-in-out"
-                    style={{ maxHeight: openFaq === i ? "200px" : "0px", opacity: openFaq === i ? 1 : 0 }}
-                  >
-                    <div className="pb-6 pr-8">
-                      <p className="font-kanit font-normal text-[#555] text-[13px] md:text-[15px] leading-[1.7]">
-                        {item.a}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {/* Bottom border */}
-              <div className="border-t border-[#ECECEC]" />
-            </div>
+            <FAQAccordion items={HOME_FAQS} />
 
           </div>
         </div>
