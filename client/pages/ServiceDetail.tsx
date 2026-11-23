@@ -17,8 +17,16 @@ const SERVICE_FAQS = {
     { q: "What information do I need to start a website project?", a: "You should ideally have your business name, logo, service details, preferred design direction, contact information, and any existing website or branding materials. Our team can help you plan the remaining requirements." },
   ],
   "branding-logo-design": [
-    { q: "Can you create a brand identity for an Austin small business?", a: "The Linkage Digital works with Austin businesses and organizations across the United States on logo design and cohesive visual identity. Branding can include logo concepts, color and typography direction, and guidelines for consistent use across digital materials." },
-    { q: "Why does consistent branding matter for a local business?", a: "A consistent brand helps customers recognize your business across your website, social profiles, and marketing materials. For Austin-area businesses, clear and recognizable branding can support trust as people compare local options." },
+    { q: "What is included in professional branding services?", a: "Professional branding services can include custom logo design, brand identity development, color palette selection, typography, brand guidelines, graphic design, and branded marketing materials. The exact deliverables depend on your business requirements and selected branding package." },
+    { q: "What is the difference between logo design and brand identity?", a: "Logo design focuses on creating the visual symbol or wordmark that represents your business. Brand identity is a broader system that includes your logo, colors, typography, visual elements, design guidelines, and overall brand presentation." },
+    { q: "How much does professional logo design cost?", a: "Logo design costs vary depending on the complexity of the project, creative requirements, number of concepts, revisions, and final deliverables. Contact The Linkage Digital for a quote based on your specific branding requirements." },
+    { q: "How long does a branding project take?", a: "The timeline depends on the scope of the project. A basic logo design may take less time than a complete brand identity development project involving strategy, multiple design elements, and brand guidelines." },
+    { q: "Can you create a complete brand identity for a new business?", a: "Yes. We provide branding solutions for startups and new businesses, including custom logo design, brand colors, typography, visual identity systems, and other creative assets needed to establish a professional brand." },
+    { q: "Can you redesign my existing business logo?", a: "Yes. We can modernize existing logos while maintaining recognizable brand elements or develop a completely new visual direction based on your business goals." },
+    { q: "Do you provide branding services for businesses in Texas?", a: "Yes. The Linkage Digital works with businesses targeting Texas markets, including Austin, Houston, Dallas, San Antonio, and surrounding areas. Our branding solutions can be delivered remotely, making it convenient for businesses across Texas to collaborate with our creative team." },
+    { q: "Do you offer branding for small businesses and startups?", a: "Yes. We create branding solutions for startups, entrepreneurs, and small businesses across different industries. Our services help new businesses establish a recognizable and professional visual identity." },
+    { q: "Will I receive the final logo files for different platforms?", a: "Final deliverables depend on the agreed project scope. Branding packages can include suitable logo formats for websites, social media, digital marketing, and print applications." },
+    { q: "Can you help with website design after completing my branding?", a: "Yes. The Linkage Digital also provides website design and development services. We can help maintain a consistent visual identity across your website and other digital platforms." },
   ],
   "digital-marketing": [
     { q: "What digital marketing services can support an Austin business?", a: "The Linkage Digital offers digital marketing support such as content strategy, paid media, social media marketing, and conversion reporting. Priorities are selected around your audience and business goals, whether you serve Austin customers or a broader U.S. market." },
@@ -44,13 +52,19 @@ export default function ServiceDetail() {
   useSEO({
     title: seoService.slug === "web-design-development"
       ? "Professional Web Design & Development in Texas | The Linkage Digital"
-      : `${seoService.title} Services | The Linkage Digital`,
+      : seoService.slug === "branding-logo-design"
+        ? "Creative Branding & Logo Design Services | The Linkage Digital"
+        : `${seoService.title} Services | The Linkage Digital`,
     description: seoService.slug === "web-design-development"
       ? "Professional web design and development for Texas businesses. The Linkage Digital builds responsive, SEO-friendly websites for small businesses and growing brands."
-      : seoService.description,
+      : seoService.slug === "branding-logo-design"
+        ? "Custom branding and logo design services for businesses in Texas and across the United States. Build a memorable, consistent brand identity with The Linkage Digital."
+        : seoService.description,
     keywords: seoService.slug === "web-design-development"
       ? "web design Texas, website development Texas, small business web design, custom website development, SEO-friendly web design, website redesign"
-      : seoService.keywords,
+      : seoService.slug === "branding-logo-design"
+        ? "branding services Texas, logo design Texas, custom logo design, brand identity development, startup branding, business branding"
+        : seoService.keywords,
     canonicalUrl: url,
     schema: [
       {
@@ -111,9 +125,14 @@ export default function ServiceDetail() {
           </aside>
         </section>
         {service.slug === "web-design-development" && <WebDesignContent />}
+        {service.slug === "branding-logo-design" && <BrandingContent />}
         <section className="max-w-[1000px] mx-auto px-6 py-14 md:py-20">
           <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none mb-8">
-            {service.slug === "web-design-development" ? "Frequently Asked Questions About Web Design & Development in Texas" : "Frequently asked questions"}
+            {service.slug === "web-design-development"
+              ? "Frequently Asked Questions About Web Design & Development in Texas"
+              : service.slug === "branding-logo-design"
+                ? "Frequently Asked Questions About Branding and Logo Design"
+                : "Frequently asked questions"}
           </h2>
           <div className="space-y-7">
             {faqItems.map(({ q, a }) => (
@@ -135,6 +154,17 @@ export default function ServiceDetail() {
               <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Get Started With Your Website Project Today</Link>
             </div>
           </section>
+        ) : service.slug === "branding-logo-design" ? (
+          <section className="bg-[#171717] py-14 md:py-20 px-6 text-center">
+            <div className="max-w-[900px] mx-auto">
+              <h2 className="font-teko font-bold text-white uppercase text-4xl md:text-5xl">Let&apos;s Create a Brand That Represents Your Business</h2>
+              <p className="mt-6 text-white/80 leading-relaxed">Your brand deserves an identity that reflects the quality of your products, services, and vision.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Whether you need a professional logo, a complete brand identity, or a creative refresh of your existing business image, The Linkage Digital is ready to help.</p>
+              <p className="mt-4 text-white font-semibold leading-relaxed">Let&apos;s turn your ideas into a recognizable brand that makes a lasting impression.</p>
+              <p className="mt-4 text-white/80 leading-relaxed">Contact our team to discuss your branding requirements and discover how we can help bring your brand vision to life.</p>
+              <Link to="/contact" className="inline-flex mt-6 text-white border-b border-white pb-1 uppercase text-sm hover:text-[#dba8ef]">Start Your Branding Project With The Linkage Digital Today</Link>
+            </div>
+          </section>
         ) : (
           <section className="bg-[#171717] py-14 text-center px-6">
             <h2 className="font-teko font-bold text-white uppercase text-4xl md:text-5xl">Ready to grow?</h2>
@@ -142,6 +172,134 @@ export default function ServiceDetail() {
           </section>
         )}
       </main>
+    </div>
+  );
+}
+
+function BrandingContent() {
+  return (
+    <div className="max-w-[1000px] mx-auto px-6 py-14 md:py-20 text-[#555] leading-relaxed">
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Creative Branding &amp; Logo Design Services That Make Your Business Stand Out</h2>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-3xl md:text-4xl leading-none">Build a Powerful Brand Identity That People Remember</h3>
+        <p className="mt-5">Your brand is more than a logo. It is the visual identity, personality, and impression that customers associate with your business.</p>
+        <p className="mt-4">At <strong>The Linkage Digital</strong>, we provide professional branding and logo design services that help businesses establish a distinctive identity, build customer recognition, and create a consistent presence across digital and physical platforms.</p>
+        <p className="mt-4">Whether you&apos;re launching a startup, growing an established company, or refreshing an outdated brand, our creative team develops custom branding solutions that reflect your vision and connect with your target audience.</p>
+        <p className="mt-4">From logo creation and brand strategy to color palettes, typography, and complete visual identity systems, we bring every element together to create a brand that communicates professionalism and builds lasting recognition.</p>
+        <p className="mt-4">We work with businesses across the United States, including companies in Austin, Houston, Dallas, San Antonio, and other Texas markets, helping them develop memorable brand identities that stand out in competitive industries.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Complete Branding Solutions for Every Business</h2>
+        <p className="mt-5">Every successful brand starts with a clear identity. Your visual presentation should communicate what your business represents and create a consistent experience wherever customers interact with it.</p>
+        <p className="mt-4">Our branding services combine creative design with strategic thinking to develop identities that align with your business objectives.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Custom Logo Design</h3>
+        <p className="mt-2">Your logo is one of the most recognizable elements of your business. We create custom logos that communicate your brand personality and make a lasting impression.</p>
+        <p className="mt-4">Our logo design services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Modern and minimalist logo designs</li><li>Professional business logos</li><li>Corporate logo design</li><li>Creative and abstract logo concepts</li><li>Wordmark and lettermark logos</li><li>Icon-based logo designs</li><li>Logo redesign and modernization</li><li>Scalable logo variations for digital and print use</li>
+        </ul>
+        <p className="mt-4">Whether you need a new logo for a startup or a complete redesign for an established company, we create distinctive visual marks tailored to your business.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Brand Identity Development</h3>
+        <p className="mt-2">A strong brand requires more than a standalone logo. It needs a cohesive visual system that maintains consistency across every customer touchpoint.</p>
+        <p className="mt-4">Our brand identity development services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Brand color palette selection</li><li>Typography and font systems</li><li>Logo variations and brand marks</li><li>Visual identity development</li><li>Brand patterns and graphic elements</li><li>Brand guidelines and usage standards</li><li>Consistent digital and print branding</li>
+        </ul>
+        <p className="mt-4">We build complete visual identity systems that help businesses maintain a recognizable and professional appearance.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Brand Strategy and Creative Direction</h3>
+        <p className="mt-2">Effective branding starts with understanding your business, audience, and market position.</p>
+        <p className="mt-4">Our creative process considers your business personality, target customers, industry, and competitive landscape to develop a visual direction that communicates your unique value.</p>
+        <p className="mt-4">We help define:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Brand positioning</li><li>Brand personality</li><li>Visual direction</li><li>Creative concepts</li><li>Brand messaging direction</li><li>Audience-focused design decisions</li>
+        </ul>
+        <p className="mt-4">This strategic foundation helps ensure that your brand communicates a consistent message and creates a meaningful connection with customers.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Business and Corporate Branding</h3>
+        <p className="mt-2">Professional branding plays an important role in establishing credibility and creating a recognizable business presence.</p>
+        <p className="mt-4">We develop branding solutions for businesses across different industries, including construction, real estate, technology, restaurants, retail, professional services, and home service companies.</p>
+        <p className="mt-4">Our corporate and business branding solutions help companies create a consistent visual identity across their websites, marketing materials, business documents, and customer communications.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Social Media Branding and Graphic Design</h3>
+        <p className="mt-2">Your brand should look consistent wherever customers discover your business.</p>
+        <p className="mt-4">We create branded visual assets that help businesses maintain a cohesive identity across social media and digital marketing platforms.</p>
+        <p className="mt-4">Our creative services include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Social media post designs</li><li>Instagram and Facebook branding</li><li>Promotional graphics</li><li>Digital advertising creatives</li><li>Business banners and covers</li><li>Branded marketing templates</li><li>Promotional campaign designs</li>
+        </ul>
+        <p className="mt-4">From social media profiles to advertising campaigns, we help your business maintain a professional and recognizable appearance.</p>
+
+        <h3 className="mt-8 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">Brand Refresh and Rebranding</h3>
+        <p className="mt-2">As businesses evolve, their visual identities sometimes need to evolve too.</p>
+        <p className="mt-4">If your existing logo looks outdated, your branding lacks consistency, or your business has moved in a new direction, we can help refresh your identity.</p>
+        <p className="mt-4">Our rebranding solutions focus on modernizing your visual presentation while preserving the recognizable elements that make your business unique.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Branding That Helps Your Business Stand Out</h2>
+        <p className="mt-5">In competitive markets, customers often encounter several businesses offering similar products or services. A distinctive brand identity helps communicate why your business deserves their attention.</p>
+        <p className="mt-4">Our approach to branding focuses on creating visual identities that are:</p>
+        <p className="mt-4"><strong className="text-[#121212]">Memorable:</strong> Distinctive logo designs and visual elements that customers can recognize.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Consistent:</strong> A unified appearance across websites, social media, advertising, and printed materials.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Professional:</strong> Carefully selected typography, colors, and design elements that establish credibility.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Relevant:</strong> Branding that reflects your industry, target audience, and business personality.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Adaptable:</strong> Flexible visual assets that work across different platforms and applications.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Professional Branding Services for Businesses Across Texas</h2>
+        <p className="mt-5">Texas is home to a diverse business environment, with companies competing across industries such as construction, real estate, technology, hospitality, retail, and professional services.</p>
+        <p className="mt-4">For businesses operating in this competitive market, a recognizable brand identity can help create a stronger first impression and establish customer trust.</p>
+        <p className="mt-4">The Linkage Digital provides branding and logo design solutions for businesses looking to strengthen their visual presence in Texas and beyond.</p>
+        <p className="mt-4">We work with businesses and entrepreneurs targeting markets such as:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Austin, TX</li><li>Houston, TX</li><li>Dallas, TX</li><li>San Antonio, TX</li><li>Fort Worth, TX</li><li>Arlington, TX</li><li>Plano, TX</li><li>Frisco, TX</li><li>El Paso, TX</li><li>Corpus Christi, TX</li>
+        </ul>
+        <p className="mt-4">Whether you&apos;re establishing a new business in Austin, refreshing a company identity in Dallas, or launching a new brand in Houston, our creative team can help develop a visual identity aligned with your business goals.</p>
+        <p className="mt-4">Our branding solutions are designed to help businesses establish a consistent image, communicate their value, and create a stronger presence in their respective markets.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Branding for Startups and Small Businesses</h2>
+        <p className="mt-5">Launching a new business requires more than an idea. You need an identity that helps customers recognize your company and understand what it offers.</p>
+        <p className="mt-4">We help startups, entrepreneurs, and small businesses establish their visual identity through professional logo design and complete branding solutions.</p>
+        <p className="mt-4">Our startup branding services can include:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-6">
+          <li>Custom startup logo design</li><li>Business name and visual identity direction</li><li>Brand color and typography selection</li><li>Brand identity development</li><li>Social media branding</li><li>Business stationery design</li><li>Brand guidelines</li><li>Website and digital brand consistency</li>
+        </ul>
+        <p className="mt-4">Whether you&apos;re starting a local service company, opening a restaurant, launching an online store, or introducing a new professional brand, we help you establish a strong visual foundation.</p>
+      </section>
+
+      <section className="mb-14 md:mb-20">
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Our Creative Branding Process</h2>
+        <p className="mt-5">We believe great branding comes from combining creative ideas with a structured design process.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">1. Discovery and Brand Understanding</h3>
+        <p className="mt-2">We learn about your business, industry, target audience, competitors, and overall vision to understand what makes your brand different.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">2. Research and Creative Direction</h3>
+        <p className="mt-2">We explore visual references, design styles, industry trends, and creative concepts to establish a direction that aligns with your business identity.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">3. Logo and Identity Design</h3>
+        <p className="mt-2">Our designers develop custom logo concepts and visual identity elements, considering typography, colors, proportions, and practical applications.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">4. Feedback and Refinement</h3>
+        <p className="mt-2">We review the creative concepts with you, gather feedback, and refine the selected direction to better match your expectations.</p>
+        <h3 className="mt-6 font-teko font-bold text-[#121212] uppercase text-2xl md:text-3xl">5. Final Brand Assets</h3>
+        <p className="mt-2">Once approved, we prepare the final branding assets in suitable formats for digital and print applications, along with agreed brand guidelines.</p>
+      </section>
+
+      <section>
+        <h2 className="font-teko font-bold text-[#121212] uppercase text-4xl md:text-5xl leading-none">Why Choose The Linkage Digital?</h2>
+        <p className="mt-5">Choosing the right creative partner is important when building an identity that represents your business.</p>
+        <p className="mt-4">At The Linkage Digital, we combine creative design, digital expertise, and business-focused thinking to deliver branding solutions that go beyond aesthetics.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Custom Creative Designs:</strong> We develop visual identities tailored to your business instead of relying on generic logo templates.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Strategic Brand Thinking:</strong> We consider your audience, industry, and business objectives when developing your visual direction.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Consistent Brand Identity:</strong> We create cohesive design systems that can be applied across your website, social media, and marketing materials.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Versatile Brand Assets:</strong> We consider how your logo and visual identity will appear across different sizes, platforms, and applications.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Business-Focused Approach:</strong> Our goal is to create branding that supports your business image and long-term growth.</p>
+        <p className="mt-4"><strong className="text-[#121212]">Complete Digital Capabilities:</strong> Alongside branding, our team offers web design, development, SEO, and digital marketing services to help businesses maintain a consistent digital presence.</p>
+      </section>
     </div>
   );
 }
