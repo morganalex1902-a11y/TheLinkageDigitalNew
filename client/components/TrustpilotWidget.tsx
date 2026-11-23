@@ -14,7 +14,7 @@ export default function TrustpilotWidget({ compact = false }: { compact?: boolea
 
   return (
     <div
-      className={`blootrue-widget-gRuIm9QNGZMz ${compact ? "h-[145px] overflow-hidden [&>iframe]:!h-[145px] [&>iframe]:!max-h-[145px]" : ""}`}
+      className={`blootrue-widget-gRuIm9QNGZMz ${compact ? "h-[145px] overflow-hidden [&>iframe]:!h-[410px] [&>iframe]:!max-h-none [&>iframe]:!-translate-y-32" : ""}`}
     />
   );
 }
