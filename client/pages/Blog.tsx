@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BASE_BLOG_POSTS, blogCategories, formatBlogDate, normalizeBlogPosts, type BlogPost } from "@/lib/blog";
+import { BASE_BLOG_POSTS, blogCategories, formatBlogDate, mergeLatestBlogPosts, type BlogPost } from "@/lib/blog";
 import { supabase } from "@/lib/supabase";
 import { Link, useNavigate } from "react-router-dom";
 import { useSEO } from "../hooks/useSEO";
@@ -11,7 +11,7 @@ import { useInView } from "../hooks/useInView";
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [articles, setArticles] = useState<BlogPost[]>(BASE_BLOG_POSTS);
+  const [articles, setArticles] = useState<BlogPost[]>(mergeLatestBlogPosts(BASE_BLOG_POSTS));
 
   useEffect(() => {
     let cancelled = false;
@@ -20,7 +20,7 @@ export default function Blog() {
       if (cancelled || !config?.initialized) return;
       const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).order("published_at", { ascending: false });
       if (cancelled || error || !data) return;
-      setArticles(normalizeBlogPosts(data as BlogPost[]));
+      setArticles(mergeLatestBlogPosts(data as BlogPost[]));
     };
     void loadPosts();
     return () => { cancelled = true; };

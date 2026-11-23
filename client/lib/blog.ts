@@ -71,6 +71,21 @@ export function normalizeBlogPosts(posts: BlogPost[]) {
   });
 }
 
+const latestArticleSlugs = new Set([
+  "ai-web-design-for-us-small-businesses",
+  "ai-in-web-development-workflows",
+  "ai-digital-marketing-for-us-businesses",
+]);
+
+export function mergeLatestBlogPosts(posts: BlogPost[]) {
+  const normalized = normalizeBlogPosts(posts);
+  const existingSlugs = new Set(normalized.map((post) => post.slug));
+  return [
+    ...normalized,
+    ...BASE_BLOG_POSTS.filter((post) => latestArticleSlugs.has(post.slug) && !existingSlugs.has(post.slug)),
+  ].sort((a, b) => b.published_at.localeCompare(a.published_at));
+}
+
 export const emptyBlogPost: Omit<BlogPost, "id"> = {
   slug: "",
   title: "",
