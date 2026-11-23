@@ -1,1 +1,3 @@
-export { handleCloudinarySignature as default } from "../../server/routes/cloudinary";
+import { handleCloudinarySignature } from "../../server/routes/cloudinary.js";
+
+export default handleCloudinarySignature;
