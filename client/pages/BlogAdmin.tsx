@@ -11,6 +11,22 @@ import { createSupabaseClient } from "@/lib/supabase";
 
 type BlogForm = Omit<BlogPost, "id">;
 
+const toCodePostRow = (post: BlogPost) => ({
+  id: post.slug,
+  slug: post.slug,
+  title: post.title,
+  category: post.category,
+  published_at: post.published_at,
+  excerpt: post.excerpt,
+  content: post.content,
+  image: post.image,
+  video: post.video ?? null,
+  author: post.author,
+  published: post.published,
+  source_slug: post.slug,
+  deleted_from_cms: false,
+});
+
 export default function BlogAdmin() {
   const { isLoaded, isSignedIn, getToken } = useAuth();
   const { signOut } = useClerk();
@@ -69,7 +85,7 @@ export default function BlogAdmin() {
       setStorageUnavailable(false);
 
       if (!config?.initialized) {
-        const seedPosts = BASE_BLOG_POSTS.map((post) => ({ ...post, id: post.slug }));
+        const seedPosts = BASE_BLOG_POSTS.map(toCodePostRow);
         const { error: seedError } = await supabase.from("blog_posts").upsert(seedPosts, { onConflict: "slug" });
         if (seedError) {
           setLoading(false);
@@ -84,7 +100,41 @@ export default function BlogAdmin() {
         }
       }
 
-      const { data, error } = await supabase.from("blog_posts").select("*").order("published_at", { ascending: false });
+      const codeSlugs = BASE_BLOG_POSTS.map((post) => post.slug);
+      const { data: trackedPosts, error: trackedError } = await supabase.from("blog_posts").select("source_slug").not("source_slug", "is", null);
+      if (trackedError) {
+        setLoading(false);
+        toast.error("Could not sync website blog posts.");
+        return;
+      }
+      const removedCodeSlugs = trackedPosts.map((post) => post.source_slug as string).filter((slug) => !codeSlugs.includes(slug));
+      if (removedCodeSlugs.length) {
+        const { error: removeError } = await supabase.from("blog_posts").delete().in("source_slug", removedCodeSlugs);
+        if (removeError) {
+          setLoading(false);
+          toast.error("Could not sync removed website blog posts.");
+          return;
+        }
+      }
+
+      const { data: storedPosts, error: storedError } = await supabase.from("blog_posts").select("source_slug").not("source_slug", "is", null);
+      if (storedError) {
+        setLoading(false);
+        toast.error("Could not sync website blog posts.");
+        return;
+      }
+      const storedCodeSlugs = new Set(storedPosts.map((post) => post.source_slug));
+      const newCodePosts = BASE_BLOG_POSTS.filter((post) => !storedCodeSlugs.has(post.slug)).map(toCodePostRow);
+      if (newCodePosts.length) {
+        const { error: addError } = await supabase.from("blog_posts").insert(newCodePosts);
+        if (addError) {
+          setLoading(false);
+          toast.error("Could not sync new website blog posts.");
+          return;
+        }
+      }
+
+      const { data, error } = await supabase.from("blog_posts").select("*").eq("deleted_from_cms", false).order("published_at", { ascending: false });
       if (cancelled) return;
       if (error) {
         toast.error("Could not load blog posts.");
@@ -265,7 +315,10 @@ export default function BlogAdmin() {
 
   const handleDelete = async (post: BlogPost) => {
     if (!window.confirm(`Delete “${post.title}”?`)) return;
-    const { error } = await supabase.from("blog_posts").delete().eq("slug", post.slug);
+    const request = post.source_slug
+      ? supabase.from("blog_posts").update({ deleted_from_cms: true }).eq("slug", post.slug)
+      : supabase.from("blog_posts").delete().eq("slug", post.slug);
+    const { error } = await request;
     if (error) {
       toast.error(error.message);
       return;

@@ -10,6 +10,8 @@ import SiteHeader from "../components/SiteHeader";
 import TrustpilotWidget from "../components/TrustpilotWidget";
 import FAQAccordion from "../components/FAQAccordion";
 import { submitToWeb3Forms } from "../lib/web3forms";
+import { BASE_BLOG_POSTS, normalizeBlogPosts, type BlogPost } from "@/lib/blog";
+import { supabase } from "@/lib/supabase";
 import { ArrowUpRight, Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -630,6 +632,19 @@ export default function Index() {
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [homeBlogPosts, setHomeBlogPosts] = useState<BlogPost[]>(BASE_BLOG_POSTS);
+
+  useEffect(() => {
+    let cancelled = false;
+    const loadPosts = async () => {
+      const { data: config } = await supabase.from("blog_config").select("initialized").eq("id", "main").maybeSingle();
+      if (cancelled || !config?.initialized) return;
+      const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).eq("deleted_from_cms", false).order("published_at", { ascending: false });
+      if (!cancelled && !error && data) setHomeBlogPosts(normalizeBlogPosts(data as BlogPost[]));
+    };
+    void loadPosts();
+    return () => { cancelled = true; };
+  }, []);
 
   const TESTIMONIALS = [
     {
@@ -1696,25 +1711,9 @@ export default function Index() {
 
           {/* Blog cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {[
-              {
-                title: "Web Design Psychology: How Color and Typography Drive Conversions",
-                excerpt: "Discover how strategic color choices and typography selection can influence user behavior and website conversions.",
-                url: "/blog/web-design-psychology-color-typography-conversions",
-              },
-              {
-                title: "The Complete Guide to SEO: Rankings That Stick",
-                excerpt: "Learn the foundations of technical optimization, content strategy, and authority building for sustainable search visibility.",
-                url: "/blog/complete-guide-seo-rankings-that-stick",
-              },
-              {
-                title: "Branding 101: Creating a Logo That Stands Out",
-                excerpt: "Learn the principles of an effective logo and visual identity that customers remember and trust.",
-                url: "/blog/creating-a-logo-that-stands-out",
-              },
-            ].map((post, i) => (
+            {homeBlogPosts.filter((post) => post.published).slice(0, 3).map((post, i) => (
               <Link
-                to={post.url}
+                to={`/blog/${post.slug}`}
                 key={i}
                 className="bg-[#1e2029] p-6 md:p-7 lg:p-8 flex flex-col justify-between min-h-[270px] md:min-h-[300px] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
               >
@@ -1732,7 +1731,7 @@ export default function Index() {
                       Written by
                     </p>
                     <p className="font-kanit font-medium text-white text-[13px] leading-tight">
-                      Admin
+                      {post.author}
                     </p>
                   </div>
                 </div>
