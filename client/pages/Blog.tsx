@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BASE_BLOG_POSTS, blogCategories, formatBlogDate, mergeLatestBlogPosts, type BlogPost } from "@/lib/blog";
+import { BASE_BLOG_POSTS, blogCategories, formatBlogDate, normalizeBlogPosts, type BlogPost } from "@/lib/blog";
 import { supabase } from "@/lib/supabase";
 import { Link, useNavigate } from "react-router-dom";
 import { useSEO } from "../hooks/useSEO";
@@ -11,16 +11,16 @@ import { useInView } from "../hooks/useInView";
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [articles, setArticles] = useState<BlogPost[]>(mergeLatestBlogPosts(BASE_BLOG_POSTS));
+  const [articles, setArticles] = useState<BlogPost[]>(BASE_BLOG_POSTS);
 
   useEffect(() => {
     let cancelled = false;
     const loadPosts = async () => {
       const { data: config } = await supabase.from("blog_config").select("initialized").eq("id", "main").maybeSingle();
       if (cancelled || !config?.initialized) return;
-      const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).order("published_at", { ascending: false });
+      const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).eq("deleted_from_cms", false).order("published_at", { ascending: false });
       if (cancelled || error || !data) return;
-      setArticles(mergeLatestBlogPosts(data as BlogPost[]));
+      setArticles(normalizeBlogPosts(data as BlogPost[]));
     };
     void loadPosts();
     return () => { cancelled = true; };
@@ -116,7 +116,7 @@ export default function Blog() {
               </div>
 
               {/* RIGHT — overlapping article preview cards */}
-              <div className="relative h-[300px] sm:h-[360px] md:h-[480px] lg:h-[600px] flex items-center justify-center mt-6 sm:mt-4 lg:mt-0">
+              {articles.length >= 3 && <div className="relative h-[300px] sm:h-[360px] md:h-[480px] lg:h-[600px] flex items-center justify-center mt-6 sm:mt-4 lg:mt-0">
                 {/* dotted grid decoration */}
                 <div className="hidden md:grid absolute -top-4 right-4 grid-cols-4 gap-[6px] opacity-60 pointer-events-none">
                   {Array.from({ length: 16 }).map((_, i) => (
@@ -127,22 +127,22 @@ export default function Blog() {
                 {/* Left card — TRENDS (9:16 aspect ratio, tightly packed) */}
                 <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md -rotate-2 block" style={{ aspectRatio: "9/16", left: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5 } as React.CSSProperties}>
                   <img
-                    src={BASE_BLOG_POSTS[0].image}
-                    alt={BASE_BLOG_POSTS[0].imageAlt}
+                    src={articles[0].image}
+                    alt={articles[0].imageAlt ?? articles[0].title}
                     className="w-full h-full object-cover grayscale"
                   />
                   <div className="absolute inset-0 bg-black/10" />
                   <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
                     <span className="bg-white/90 text-[#121212] font-kanit font-semibold text-[7px] sm:text-[9px] md:text-[10px] uppercase px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
-                      {BASE_BLOG_POSTS[0].category}
+                      {articles[0].category}
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent">
                     <p className="font-kanit text-white text-[8px] sm:text-[10px] md:text-[11px] font-medium leading-tight">
-                      Web Design Psychology and Conversion
+                      {articles[0].title}
                     </p>
                     <p className="font-kanit text-white/70 text-[7px] sm:text-[9px] md:text-[10px] mt-0.5 sm:mt-1">
-                      {formatBlogDate(BASE_BLOG_POSTS[0].published_at)}
+                      {formatBlogDate(articles[0].published_at)}
                     </p>
                   </div>
                 </div>
@@ -150,22 +150,22 @@ export default function Blog() {
                 {/* Middle card — STRATEGY (featured, centered and largest) */}
                 <div className="absolute w-[28%] sm:w-[30%] md:w-[28%] lg:w-[28%] rounded-xl overflow-hidden shadow-2xl block" style={{ aspectRatio: "9/16", left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 20 }}>
                   <img
-                    src={BASE_BLOG_POSTS[3].image}
-                    alt={BASE_BLOG_POSTS[3].imageAlt}
+                    src={articles[1].image}
+                    alt={articles[1].imageAlt ?? articles[1].title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#8B0AB4]/95 via-[#8B0AB4]/30 to-transparent" />
                   <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
                     <span className="bg-white text-[#8B0AB4] font-kanit font-semibold text-[8px] sm:text-[10px] md:text-[11px] uppercase px-2 sm:px-4 py-1 sm:py-2 rounded-full">
-                      {BASE_BLOG_POSTS[3].category}
+                      {articles[1].category}
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5">
                     <h3 className="font-teko font-bold text-white uppercase text-[13px] sm:text-[16px] md:text-[18px] leading-[1.1] mb-1 sm:mb-2">
-                      Branding 101: Creating a Logo That Stands Out
+                      {articles[1].title}
                     </h3>
                     <p className="font-kanit text-white/80 text-[8px] sm:text-[10px] md:text-[11px]">
-                      {formatBlogDate(BASE_BLOG_POSTS[3].published_at)}
+                      {formatBlogDate(articles[1].published_at)}
                     </p>
                   </div>
                 </div>
@@ -173,26 +173,26 @@ export default function Blog() {
                 {/* Right card — TIPS (9:16 aspect ratio, tightly packed) */}
                 <div className="absolute w-[20%] sm:w-[22%] md:w-[22%] lg:w-[22%] rounded-xl overflow-hidden shadow-md rotate-2 block" style={{ aspectRatio: "9/16", right: "2%", top: "50%", transform: "translateY(-50%)", zIndex: 5 }}>
                   <img
-                    src={BASE_BLOG_POSTS[2].image}
-                    alt={BASE_BLOG_POSTS[2].imageAlt}
+                    src={articles[2].image}
+                    alt={articles[2].imageAlt ?? articles[2].title}
                     className="w-full h-full object-cover grayscale"
                   />
                   <div className="absolute inset-0 bg-black/10" />
                   <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
                     <span className="bg-white/90 text-[#121212] font-kanit font-semibold text-[7px] sm:text-[9px] md:text-[10px] uppercase px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
-                      {BASE_BLOG_POSTS[2].category}
+                      {articles[2].category}
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent">
                     <p className="font-kanit text-white text-[8px] sm:text-[10px] md:text-[11px] font-medium leading-tight">
-                      The Complete Guide to SEO
+                      {articles[2].title}
                     </p>
                     <p className="font-kanit text-white/70 text-[7px] sm:text-[9px] md:text-[10px] mt-0.5 sm:mt-1">
-                      {formatBlogDate(BASE_BLOG_POSTS[2].published_at)}
+                      {formatBlogDate(articles[2].published_at)}
                     </p>
                   </div>
                 </div>
-              </div>
+              </div>}
             </div>
 
             {/* Bottom row — scroll indicator + view all link */}

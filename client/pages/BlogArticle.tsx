@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import { useSEO } from "../hooks/useSEO";
-import { BASE_BLOG_POSTS, formatBlogDate, mergeLatestBlogPosts, type BlogPost } from "@/lib/blog";
+import { BASE_BLOG_POSTS, formatBlogDate, normalizeBlogPosts, type BlogPost } from "@/lib/blog";
 import { supabase } from "@/lib/supabase";
 import { siteUrl } from "../siteContent";
 
 export default function BlogArticle() {
   const { slug } = useParams();
-  const [posts, setPosts] = useState<BlogPost[]>(mergeLatestBlogPosts(BASE_BLOG_POSTS));
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [article, setArticle] = useState<BlogPost | null>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -19,7 +19,7 @@ export default function BlogArticle() {
       const { data: config } = await supabase.from("blog_config").select("initialized").eq("id", "main").maybeSingle();
       if (!config?.initialized) {
         if (!cancelled) {
-          const availablePosts = mergeLatestBlogPosts(BASE_BLOG_POSTS);
+          const availablePosts = BASE_BLOG_POSTS;
           setPosts(availablePosts);
           setArticle(availablePosts.find((post) => post.slug === slug) ?? null);
           setLoaded(true);
@@ -27,14 +27,14 @@ export default function BlogArticle() {
         return;
       }
 
-      const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).order("published_at", { ascending: false });
+      const { data, error } = await supabase.from("blog_posts").select("id, slug, title, category, published_at, excerpt, content, image, video, author, published").eq("published", true).eq("deleted_from_cms", false).order("published_at", { ascending: false });
       if (cancelled) return;
       if (error || !data) {
         setArticle(null);
         setLoaded(true);
         return;
       }
-      const publishedPosts = mergeLatestBlogPosts(data as BlogPost[]);
+      const publishedPosts = normalizeBlogPosts(data as BlogPost[]);
       setPosts(publishedPosts);
       setArticle(publishedPosts.find((post) => post.slug === slug) ?? null);
       setLoaded(true);

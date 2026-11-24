@@ -40,9 +40,15 @@ create table if not exists public.blog_posts (
   video text,
   author text not null default 'The Linkage Team',
   published boolean not null default true,
+  source_slug text,
+  deleted_from_cms boolean not null default false,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+create unique index if not exists blog_posts_source_slug_key
+  on public.blog_posts (source_slug)
+  where source_slug is not null;
 
 alter table public.blog_posts enable row level security;
 grant select on public.blog_posts to anon, authenticated;
